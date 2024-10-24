@@ -133,3 +133,17 @@
   - 체력: 레벨로 통일
   - 공격력: 밥주는거 포만감으로
   - 피로도?
+
+<br>
+
+# 2024-10-24(목)
+
+오늘 한 일: 개발 역할 분담, 기능 구체화, 유저스토리 제작, 와이어프레임 제작
+
+1. userstory
+   ![alt text](README/userstory.png)
+
+<br>
+
+2. wireframe
+   ![alt text](README/wireframe.png)
