@@ -1,8 +1,12 @@
 2024.10.21
 
+
 노인 일자리, 수어, 노래연습, 추억 속의 거리
 
+
 2024.10.22
+
+
 **아이디어 회의**
 등산 관련 앱
 등산 시스템 제공
@@ -11,9 +15,13 @@
 곤충 사진 -> detection AI를 통해 곤충 도감에 등록
 
 
+
 2024.10.23
+
+
 **아이디어 회의**
 곤충 탐험대 FIX!
+
 
 서비스 흐름 구조
 1. 채집사진 및 AI판별
@@ -30,3 +38,26 @@
 5. 명예의 전당
     5-1. 내가 키웠던 곤충들을 모아볼 수 있음.
     5-2. 얼마나 잘 키웠었는지의 척도를 볼 수 있음.
+
+
+
+2024.10.24
+
+What I did today
+
+- idea detail conference for our service
+
+- load data for training, validation and test
+
+- For insects classification machine learning, I will use YOLO.v.11 model which is evaluated as one of the greatest model for classification and detection.
+
+- Settings for training data
+
+what to do in the future
+
+- identifying and translating the names and images of insects
+
+- Successfully training model
+
+- fine-tuning model for classfying accuracy
+
