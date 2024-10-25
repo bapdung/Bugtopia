@@ -69,3 +69,22 @@
 
 - fine-tuning model for classfying accuracy
 
+## 2024.10.25
+
+#### 중간발표회
+
+#### What I did today
+
+- learning ML/AL for ai training
+
+- organizing insects data to use easy
+
+- identifying and translating the names and images of insects
+
+#### what to do in the future
+
+- complete data preparing file
+
+- complete config file
+
+- complete setting file
