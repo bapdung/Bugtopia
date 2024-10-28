@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: bugar
+  profiles:
+    include:
+      - private
+
+server:
+  port: 8080
+
