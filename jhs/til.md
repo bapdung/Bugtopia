@@ -88,3 +88,19 @@
 - complete config file
 
 - complete setting file
+
+## 2024.10.28
+
+#### training AI model for classfying insects
+
+#### what I did today
+
+- checked training file operating
+
+- Idea conference 
+
+#### what to do in the future
+
+- GPU server settings for ML
+
+- convert data excel file to kr language
