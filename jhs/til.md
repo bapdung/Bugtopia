@@ -104,3 +104,29 @@
 - GPU server settings for ML
 
 - convert data excel file to kr language
+
+## 2024.10.29
+
+#### training AU model for classfying insects
+
+#### what I did today
+
+- idea conference
+    - make concept for our services
+    - 'insects country' and 'master and pupil'
+    - select
+        - the start of fight
+        - add the condition (raining event)
+        - consistence of maps and country
+        - how to care the insect that ends all processes
+        - apply AR
+        - etc..
+
+#### what to do in the future
+
+- configure how to fight 
+- design
+- docs(api, userstory, function, erd, etc...)
+- learning unity
+
+
