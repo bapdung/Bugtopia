@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1928048041, guid: b9e4fbc309dd78f47b2a2672da252c01, type: 3}
+  m_Name: com.vdc.nature-renderer.free.uas
+  m_EditorClassIdentifier: 
+  _standardPackage: {fileID: 102900000, guid: 68ed5b55dfbbc41daa67b979097189e1, type: 3}
+  _highDefinitionPackage: {fileID: 102900000, guid: 68ed5b55dfbbc41daa67b979097189e1, type: 3}
+  _universalPackage: {fileID: 102900000, guid: 68ed5b55dfbbc41daa67b979097189e1, type: 3}
+  _skipIfVariantInstalled:
+  - com.vdc.nature-renderer.pro.source.uas
+  - com.vdc.nature-renderer.enterprise.source.uas
+  - com.vdc.nature-renderer.pro.source.web
+  - com.vdc.nature-renderer.enterprise.source.web
+  - com.vdc.nature-renderer.pro.source.vsp
+  - com.vdc.nature-renderer.enterprise.source.vsp
+  - com.vdc.nature-renderer.enterprise.uas
+  - com.vdc.nature-renderer.enterprise.vsp
+  - com.vdc.nature-renderer.enterprise.web
+  - com.vdc.nature-renderer.pro.web
+  - com.vdc.nature-renderer.pro.uas
+  - com.vdc.nature-renderer.pro.vsp
+  _dependencies: []
+  _supportedUnityVersions: 

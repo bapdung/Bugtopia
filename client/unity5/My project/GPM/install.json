@@ -1,0 +1,46 @@
+{
+    "installs": [
+        {
+            "name": "Common",
+            "version": "2.4.0",
+            "dependency": []
+        },
+        {
+            "name": "Communicator",
+            "version": "1.1.1",
+            "dependency": [
+                "Common"
+            ]
+        },
+        {
+            "name": "WebView",
+            "version": "2.2.0",
+            "dependency": [
+                "Common",
+                "Communicator"
+            ]
+        },
+        {
+            "name": "AssetManagement",
+            "version": "1.2.3",
+            "dependency": [
+                "Common"
+            ]
+        },
+        {
+            "name": "CacheStorage",
+            "version": "1.4.0",
+            "dependency": [
+                "Common"
+            ]
+        },
+        {
+            "name": "UI",
+            "version": "2.10.0",
+            "dependency": [
+                "Common",
+                "CacheStorage"
+            ]
+        }
+    ]
+}
