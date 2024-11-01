@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -35,4 +36,11 @@ public class User {
     @Column(nullable = false)
     private Timestamp updatedDate;
 
+    @Builder
+    private User(String deviceId, String nickname) {
+        this.deviceId = deviceId;
+        this.nickname = nickname;
+        this.createdDate = new Timestamp(System.currentTimeMillis());
+        this.updatedDate = new Timestamp(System.currentTimeMillis());
+    }
 }
