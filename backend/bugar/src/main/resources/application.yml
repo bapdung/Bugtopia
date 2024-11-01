@@ -8,3 +8,6 @@ spring:
 server:
   port: 8080
 
+firebase:
+  server:
+    key: "BJuk7MoH__eRKwHE-Li5x1ThQs7dNeRNmm_zOFPIzSlz_fmw48OSgxirsqr0vpiIqMAVeWAPdFOMzUA1KaYbpCkY"  # Firebase Console에서 복사한 서버 키를 여기에 넣습니다.
