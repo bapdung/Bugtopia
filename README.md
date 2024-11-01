@@ -10,3 +10,9 @@
 6. [2024.10.29 화요일](./README/241029.md)
 
 7. [2024.10.30 수요일](./README/241030.md)
+
+---
+
+## ERD
+
+![alt text](<README/asset/자율PJT (1).png>)
