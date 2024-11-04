@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41da2f6571716b418f6a0bcfeab86f5, type: 3}
   m_Name: EnvironmentConfig
   m_EditorClassIdentifier: 
-  baseUrl: 
+  baseUrl: http://localhost:8080/api
