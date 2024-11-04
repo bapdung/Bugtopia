@@ -3,12 +3,15 @@ package com.ssafy.bugar.domain.insect.entity;
 import com.ssafy.bugar.domain.insect.enums.RaiseState;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -34,15 +37,14 @@ public class RaisingInsect {
     @Column(nullable = false)
     private Long insectId;
 
-    @Column(nullable = false)
     @ColumnDefault("0")
-    private int feedCnt;
+    private Integer feedCnt;
+
+    @ColumnDefault("0")
+    private Integer interactCnt;
 
     @Column(nullable = false)
-    @ColumnDefault("0")
-    private int interactCnt;
-
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private RaiseState state;
 
     @Column(nullable = false)
@@ -51,11 +53,21 @@ public class RaisingInsect {
     @Column(nullable = false)
     private Timestamp updatedDate;
 
-    @Column(nullable = false)
     @ColumnDefault("1")
-    private int continuousDays;
+    private Integer continuousDays;
 
     @Column(nullable = false)
-    private long eventId;
+    private Long eventId;
+
+    @Builder
+    public RaisingInsect(Long userId, String insectNickname, Long insectId) {
+        this.userId = userId;
+        this.insectNickname = insectNickname;
+        this.insectId = insectId;
+        this.state = RaiseState.RAISE;
+        this.createdDate = new Timestamp(System.currentTimeMillis());
+        this.updatedDate = new Timestamp(System.currentTimeMillis());
+        this.eventId = 1L;
+    }
 
 }
