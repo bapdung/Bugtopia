@@ -1,15 +1,18 @@
 package com.ssafy.bugar.notification;
 
 import com.ssafy.bugar.client.FcmClient;
+import com.ssafy.bugar.dto.FcmMessageRequestDto;
+import com.ssafy.bugar.notification.TokenService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FcmService {
+
     private final FcmClient fcmClient;
     private final TokenService tokenService;
 
-    @Value("${firebase.server.key}")
+    @Value("${fcm.server.key}")
     private String serverKey;
 
     public FcmService(FcmClient fcmClient, TokenService tokenService) {
@@ -17,17 +20,23 @@ public class FcmService {
         this.tokenService = tokenService;
     }
 
-    public void sendNotificationToAll(String title, String body) {
+    public String sendNotificationToAll(FcmMessageRequestDto request) {
+        StringBuilder responseLog = new StringBuilder();
+
         for (String token : tokenService.getAllTokens()) {
             String payload = "{"
                     + "\"to\": \"" + token + "\","
                     + "\"notification\": {"
-                    + "\"title\": \"" + title + "\","
-                    + "\"body\": \"" + body + "\""
+                    + "\"title\": \"" + request.getTitle() + "\","
+                    + "\"body\": \"" + request.getBody() + "\""
                     + "}"
                     + "}";
-            fcmClient.sendNotification("key=" + serverKey, "application/json", payload);
-        }
-    }
 
+            String response = String.valueOf(
+                    fcmClient.sendNotification("key=" + serverKey, "application/json", payload));
+            responseLog.append("Response for token ").append(token).append(": ").append(response).append("\n");
+        }
+
+        return responseLog.toString();
+    }
 }
