@@ -18,4 +18,6 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
             """, nativeQuery = true)
     List<GetAreaInsectResponseDto.InsectList> findInsectsByUserIdAndAreaName(@Param("userId") Long userId, @Param("areaName") String areaName);
 
+    RaisingInsect findByRaisingInsectId(Long raisingInsectId);
+
 }

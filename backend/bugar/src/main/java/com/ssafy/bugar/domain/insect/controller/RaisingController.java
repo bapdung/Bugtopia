@@ -3,6 +3,7 @@ package com.ssafy.bugar.domain.insect.controller;
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.service.RaisingInsectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,12 @@ public class RaisingController {
     public ResponseEntity<GetAreaInsectResponseDto> getAreaInsect(@RequestHeader("userId") Long userId, @RequestParam String areaType) {
         GetAreaInsectResponseDto getAreaInsectResponseDto = raisingInsectService.searchAreaInsect(userId, areaType);
         return ResponseEntity.ok(getAreaInsectResponseDto);
+    }
+
+    @GetMapping("/{raisingInsectId}")
+    public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId) {
+        GetInsectInfoResponseDto getInsectInfoResponseDto = raisingInsectService.search(raisingInsectId);
+        return ResponseEntity.ok(getInsectInfoResponseDto);
     }
 
 }
