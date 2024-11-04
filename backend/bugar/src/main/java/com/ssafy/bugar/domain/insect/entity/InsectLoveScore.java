@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.DynamicInsert;
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "insect_love_score")
-public class InsertLoveScore {
+public class InsectLoveScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +36,12 @@ public class InsertLoveScore {
 
     @Column(nullable = false)
     private Timestamp cratedDate;
+
+    @Builder
+    public InsectLoveScore(Long insectId, Category category) {
+        this.collectedInsectId = insectId;
+        this.category = category;
+        this.cratedDate = new Timestamp(System.currentTimeMillis());
+    }
 
 }
