@@ -12,6 +12,7 @@ public class GetAreaInsectResponseDto {
     private List<InsectList> insectListList;
 
     public interface InsectList {
+        Long getRaisingInsectId();
         Long getInsectId();
         String getNickname();
     }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Long> {
 
     @Query(value = """
-            SELECT ri.insect_id AS insectId, ri.insect_nickname AS nickname
+            SELECT ri.raising_insect_id AS raisingInsectId, ri.insect_id AS insectId, ri.insect_nickname AS nickname
             FROM raising_insects ri
             JOIN insects i ON ri.insect_id = i.insect_id
             JOIN area a ON i.area_id = a.area_id
