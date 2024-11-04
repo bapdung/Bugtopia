@@ -1,10 +1,13 @@
 package com.ssafy.bugar.domain.insect.service;
 
+import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto.InsectList;
 import com.ssafy.bugar.domain.insect.entity.InsectLoveScore;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import com.ssafy.bugar.domain.insect.enums.Category;
 import com.ssafy.bugar.domain.insect.repository.InsectLoveScoreRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,4 +49,9 @@ public class RaisingInsectService {
         insectLoveScoreRepository.save(insectLoveScore);
     }
 
+    public GetAreaInsectResponseDto searchAreaInsect(Long userId, String areaName) {
+        List<GetAreaInsectResponseDto.InsectList> insectList = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId, areaName);
+        int num = insectList.size();
+        return new GetAreaInsectResponseDto(num, insectList);
+    }
 }
