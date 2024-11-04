@@ -35,7 +35,7 @@ public class RaisingController {
 
     @PostMapping("/love-score")
     public ResponseEntity<Void> saveLoveScore(@RequestBody SaveLoveScoreRequestDto saveLoveScoreRequestDto) {
-        raisingInsectService.saveLoveScore(saveLoveScoreRequestDto.getInsectId(), saveLoveScoreRequestDto.getCategory());
+        raisingInsectService.saveLoveScore(saveLoveScoreRequestDto.getRaisingInsectId(), saveLoveScoreRequestDto.getCategory());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

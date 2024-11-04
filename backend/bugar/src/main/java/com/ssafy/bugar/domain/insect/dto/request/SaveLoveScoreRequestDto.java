@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class SaveLoveScoreRequestDto {
 
-    private Long insectId;
+    private Long raisingInsectId;
     private int category;
 
 }
