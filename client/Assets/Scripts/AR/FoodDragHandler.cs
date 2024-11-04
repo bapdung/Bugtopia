@@ -58,7 +58,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Debug.Log("지흔: Food가 평면에 최종 배치되었습니다!");
 
             // ARPlaceOnPlane의 StartBugMovement 호출
-            FindObjectOfType<InsectController>().StartInsectMovement(placedFood);
+            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood);
 
             // 미리보기 오브젝트 삭제
             Destroy(foodPreviewObject);

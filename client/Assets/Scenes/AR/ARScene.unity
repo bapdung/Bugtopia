@@ -704,9 +704,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1037246578}
-  - component: {fileID: 1037246577}
   - component: {fileID: 1037246576}
-  - component: {fileID: 1037246575}
   m_Layer: 0
   m_Name: InsectSpawner
   m_TagString: Untagged
@@ -714,19 +712,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1037246575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037246574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5702629270badfb4885e3207d9202408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodObject: {fileID: 0}
 --- !u!114 &1037246576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,24 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
-  foodPrefab: {fileID: 0}
+  foodPrefab: {fileID: 5366714587145079893}
   insectPrefab: {fileID: 1549318728098764, guid: 864705ce5485d7847b522a0eaceb43ab, type: 3}
---- !u!114 &1037246577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037246574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f1163c606df7c4fa84e192c07a2bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mealObject: {fileID: 0}
-  bugAnimator: {fileID: 0}
-  isBugMoving: 0
-  rotationSpeed: 2
 --- !u!4 &1037246578
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,8 +981,10 @@ GameObject:
   - component: {fileID: 1175401534}
   - component: {fileID: 1175401536}
   - component: {fileID: 1175401535}
+  - component: {fileID: 1175401538}
+  - component: {fileID: 1175401537}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FoodIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1076,6 +1047,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175401533}
   m_CullTransparentMesh: 1
+--- !u!114 &1175401537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175401533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c265fbc4c93fdf846a2615032aa05b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arRaycaster: {fileID: 40919615}
+  foodPrefab: {fileID: 5366714587145079893}
+--- !u!114 &1175401538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175401533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1175401537}
+          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+          m_MethodName: OnBeginDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1175401537}
+          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+          m_MethodName: OnDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1175401537}
+          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+          m_MethodName: OnEndDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1600812346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6095,6 +6141,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &5366714587145079892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 922.3656
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 132.21844
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -89.20325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308251881701149984, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752836886648817591, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+      propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+--- !u!1 &5366714587145079893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6752836886648817591, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
+  m_PrefabInstance: {fileID: 5366714587145079892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6108,3 +6216,4 @@ SceneRoots:
   - {fileID: 1037246578}
   - {fileID: 1855392035}
   - {fileID: 579171724}
+  - {fileID: 5366714587145079892}
