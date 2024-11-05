@@ -51,14 +51,15 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             long raisingInsectId = 1; // 하드코딩된 raisingInsectId
 
-            insectApi.GetInsectInfo(raisingInsectId, (response) =>
+            Debug.Log("자 호출 드가자잉");
+            StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
             {
-                Debug.Log("지흔: insectInfo: " + response.insectName);
+                Debug.Log("지흔: insectInfo: " + response.nickname);
             },
             (error) =>
             {
                 Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
-            });
+            }));
 
             // 초기화 작업: 평면 인식 후 중앙에 Insect 배치 시도
             UpdateCenterObject();

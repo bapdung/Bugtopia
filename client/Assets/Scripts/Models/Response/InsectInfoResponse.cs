@@ -5,7 +5,7 @@ namespace Models.Response
     {
         public string areaType;
         public int canFeed;
-        public string nickName;
+        public string nickname;
         public string insectName;
         public long insectId;
         public string livingDate;
