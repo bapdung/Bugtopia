@@ -1,5 +1,6 @@
 package com.ssafy.bugar.domain.insect.controller;
 
+import com.ssafy.bugar.domain.insect.dto.request.ClearEventRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
@@ -53,6 +54,12 @@ public class RaisingController {
     @GetMapping("/event/{raisingInsectId}")
     public ResponseEntity<CheckInsectEventResponseDto> checkInsectEvent(@PathVariable Long raisingInsectId) {
         return ResponseEntity.ok(raisingInsectService.checkInsectEvent(raisingInsectId));
+    }
+
+    @PostMapping("/event/clear")
+    public ResponseEntity<Void> clearEvent(@RequestBody ClearEventRequestDto clearEventRequestDto) {
+        raisingInsectService.clearEvent(clearEventRequestDto.getRaisingInsectId(), clearEventRequestDto.getClearEventType());
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

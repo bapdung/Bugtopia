@@ -9,6 +9,7 @@ import com.ssafy.bugar.domain.insect.entity.InsectLoveScore;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
 import com.ssafy.bugar.domain.insect.enums.Category;
+import com.ssafy.bugar.domain.insect.enums.EventType;
 import com.ssafy.bugar.domain.insect.repository.AreaRepository;
 import com.ssafy.bugar.domain.insect.repository.EventRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectLoveScoreRepository;
@@ -116,5 +117,12 @@ public class RaisingInsectService {
         }
 
         return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
+    }
+
+    @Transactional
+    public void clearEvent(long raisingInsectId, EventType clearEventType) {
+        RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        Event clearEvent = eventRepository.findByEventName(clearEventType);
+        raisingInsect.updateClearEvent(clearEvent.getEventId());
     }
 }
