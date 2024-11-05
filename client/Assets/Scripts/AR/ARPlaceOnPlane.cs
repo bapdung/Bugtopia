@@ -52,7 +52,7 @@ public class ARPlaceOnPlane : MonoBehaviour
                 insectAnimator = insectObject.GetComponent<Animator>(); // Animator 초기화
                 if (insectAnimator != null)
                 {
-                    insectAnimator.SetBool("idle", true); // 초기 상태를 idle로 설정
+                    SetInsectIdle(); // 초기 상태를 idle로 설정
                 }
                 Debug.Log("지흔: Insect가 화면 중앙에 배치되었습니다!");
             }
@@ -81,29 +81,50 @@ public class ARPlaceOnPlane : MonoBehaviour
         // Insect 오브젝트의 위치를 Food 오브젝트의 위치로 이동
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, foodObject.transform.position, step);
 
-        Debug.Log("지흔: 이동 후 Insect 위치 - " + insectObject.transform.position);
-
         // 이동 후 Insect와 Food의 거리가 충분히 가까워졌을 때 충돌로 간주
-        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.1f)
+        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.4f)
         {
-            Debug.Log("지흔: Food를 먹었습니다!");
-
-            // Food 제거 및 상태 업데이트
-            Destroy(foodObject); // Food 제거
             isInsectMoving = false; // 이동 중지
+
+            // // 공격 애니메이션 실행
+            // if (insectAnimator != null)
+            // {
+            //     insectAnimator.SetBool("walk", false);
+            //     insectAnimator.SetBool("attack", true);
+            //     StartCoroutine(SwitchToIdleAfterAttack());
+            // }
+
+            SetInsectIdle();
+            Debug.Log("지흔: Food를 먹었습니다!");
+            Destroy(foodObject); // Food 제거
             foodObject = null; // Food 참조 제거
-
-            Debug.Log("지흔: 점수 3점 증가");
-            Debug.Log("쿨타임 발동 및 먹이 횟수 증가");
-            Debug.Log("foodIcon 버튼 비활성화");
-
-            // 이동 중지 후 idle 애니메이션으로 전환
-            if (insectAnimator != null)
-            {
-                insectAnimator.SetBool("walk", false);
-                insectAnimator.SetBool("idle", true);
-            }
         }
+    }
+
+    // 공격 애니메이션을 3초 동안 유지하고 idle로 전환하는 Coroutine
+    private IEnumerator SwitchToIdleAfterAttack()
+    {
+        Debug.Log("지흔: 3초 동안 공격 애니메이션 유지");
+        yield return new WaitForSeconds(3); // 3초 대기
+
+        if (insectAnimator != null)
+        {
+            insectAnimator.SetBool("attack", false);
+            SetInsectIdle(); // idle로 전환
+        }
+    }
+
+    // Insect의 애니메이션을 idle로 초기화하는 함수
+    private void SetInsectIdle()
+    {
+        insectAnimator.SetBool("idle", true);
+        insectAnimator.SetBool("walk", false);
+        insectAnimator.SetBool("turnleft", false);
+        insectAnimator.SetBool("turnright", false);
+        insectAnimator.SetBool("flyleft", false);
+        insectAnimator.SetBool("flyright", false);
+        insectAnimator.SetBool("attack", false);
+        insectAnimator.SetBool("hit", false);
     }
 
     // Food을 외부에서 생성한 경우 이 메서드를 호출하여 Insect가 이동을 시작하게 함
