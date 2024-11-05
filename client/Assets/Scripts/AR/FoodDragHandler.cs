@@ -11,7 +11,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public GameObject foodPrefab; // Food 프리팹
     private GameObject foodPreviewObject; // 드래그 중 미리보기로 나타날 Food 오브젝트
 
-    // 드래그 시작 시 호출되는 함수
+    // 드래그 시작 시 호출되는 함수입니다
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (foodPreviewObject == null)

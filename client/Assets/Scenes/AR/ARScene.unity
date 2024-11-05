@@ -517,7 +517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697ffa24e24c56e4498e4f012a3e7fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1572623814440851627, guid: f4cff6605845c1a43a71975cec16ebe5, type: 3}
 --- !u!4 &579171724
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
-  foodPrefab: {fileID: 5366714587145079893}
+  foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
   insectPrefab: {fileID: 1549318728098764, guid: 864705ce5485d7847b522a0eaceb43ab, type: 3}
 --- !u!4 &1037246578
 Transform:
@@ -1060,7 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arRaycaster: {fileID: 40919615}
-  foodPrefab: {fileID: 5366714587145079893}
+  foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
 --- !u!114 &1175401538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6198,11 +6197,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
---- !u!1 &5366714587145079893 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6752836886648817591, guid: 1e85307bd34395f479cddcdd74d43ab1, type: 3}
-  m_PrefabInstance: {fileID: 5366714587145079892}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
