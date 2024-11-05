@@ -18,7 +18,6 @@ namespace API.InsectAPI
                 environmentConfig = Resources.Load<EnvironmentConfig>("EnvironmentConfig");
             }
 
-            // baseUrl과 엔드포인트를 조합하여 insectUrl 생성
             insectUrl = $"{environmentConfig.baseUrl}/insect";
         }
 
@@ -27,22 +26,16 @@ namespace API.InsectAPI
         {
             string requestUrl = $"{insectUrl}/{raisingInsectId}";
 
-            Debug.Log("호출시작: " + requestUrl);
-
             using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
             {
                 request.SetRequestHeader("Content-Type", "application/json");
 
-                Debug.Log("요청해요");
-                
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     string jsonResponse = request.downloadHandler.text;
                     InsectInfoResponse responseData = JsonUtility.FromJson<InsectInfoResponse>(jsonResponse);
-
-                    Debug.Log(responseData);
 
                     // 성공 콜백 호출
                     onSuccess?.Invoke(responseData);
