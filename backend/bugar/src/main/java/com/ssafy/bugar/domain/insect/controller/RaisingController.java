@@ -62,4 +62,10 @@ public class RaisingController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PostMapping("/release/{raisingInsectId}")
+    public ResponseEntity<Void> release(@PathVariable("raisingInsectId") Long raisingInsectId) {
+        raisingInsectService.release(raisingInsectId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }

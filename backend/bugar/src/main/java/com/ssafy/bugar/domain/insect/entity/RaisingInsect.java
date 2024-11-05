@@ -74,4 +74,8 @@ public class RaisingInsect {
         this.eventId = eventId;
     }
 
+    public void changeStatus(RaiseState state) {
+        this.state = state;
+    }
+
 }
