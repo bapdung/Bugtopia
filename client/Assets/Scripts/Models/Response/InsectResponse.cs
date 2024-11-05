@@ -1,7 +1,7 @@
-namespace Models.Response
+namespace Models.Insect.Response
 {
     [System.Serializable]
-    public class InsectInfoResponse
+    public class InsectInfo
     {
         public string areaType;
         public int canFeed;

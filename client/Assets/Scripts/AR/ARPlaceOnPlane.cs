@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using API.InsectAPI;
-using Models.Response;
+using API.Insect;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
-    private InsectInfoResponse insectInfo; // Insect 정보
+    private Models.Insect.Response.InsectInfo insectInfo; // Insect 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
