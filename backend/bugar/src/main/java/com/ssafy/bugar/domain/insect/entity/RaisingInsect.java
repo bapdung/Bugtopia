@@ -70,4 +70,12 @@ public class RaisingInsect {
         this.eventId = 1L;
     }
 
+    public void updateClearEvent(long eventId) {
+        this.eventId = eventId;
+    }
+
+    public void changeStatus(RaiseState state) {
+        this.state = state;
+    }
+
 }

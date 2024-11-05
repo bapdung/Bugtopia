@@ -204,3 +204,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,macos,windows
 *.hprof
 application-private.yml
+
+/build
+.gradle/

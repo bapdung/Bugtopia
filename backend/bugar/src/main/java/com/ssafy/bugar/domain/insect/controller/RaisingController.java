@@ -1,7 +1,9 @@
 package com.ssafy.bugar.domain.insect.controller;
 
+import com.ssafy.bugar.domain.insect.dto.request.ClearEventRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
+import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.service.RaisingInsectService;
@@ -41,14 +43,29 @@ public class RaisingController {
 
     @GetMapping("/area")
     public ResponseEntity<GetAreaInsectResponseDto> getAreaInsect(@RequestHeader("userId") Long userId, @RequestParam String areaType) {
-        GetAreaInsectResponseDto getAreaInsectResponseDto = raisingInsectService.searchAreaInsect(userId, areaType);
-        return ResponseEntity.ok(getAreaInsectResponseDto);
+        return ResponseEntity.ok(raisingInsectService.searchAreaInsect(userId, areaType));
     }
 
     @GetMapping("/{raisingInsectId}")
     public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId) {
-        GetInsectInfoResponseDto getInsectInfoResponseDto = raisingInsectService.search(raisingInsectId);
-        return ResponseEntity.ok(getInsectInfoResponseDto);
+        return ResponseEntity.ok(raisingInsectService.search(raisingInsectId));
+    }
+
+    @GetMapping("/event/{raisingInsectId}")
+    public ResponseEntity<CheckInsectEventResponseDto> checkInsectEvent(@PathVariable Long raisingInsectId) {
+        return ResponseEntity.ok(raisingInsectService.checkInsectEvent(raisingInsectId));
+    }
+
+    @PostMapping("/event/clear")
+    public ResponseEntity<Void> clearEvent(@RequestBody ClearEventRequestDto clearEventRequestDto) {
+        raisingInsectService.clearEvent(clearEventRequestDto.getRaisingInsectId(), clearEventRequestDto.getClearEventType());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/release/{raisingInsectId}")
+    public ResponseEntity<Void> release(@PathVariable("raisingInsectId") Long raisingInsectId) {
+        raisingInsectService.release(raisingInsectId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
