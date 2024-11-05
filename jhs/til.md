@@ -140,3 +140,15 @@
 #### what to do in the future
 
 - be a Unity master
+
+## 2024.11.05
+
+#### training AI model for classfying insects
+
+#### what I did today
+
+- learning Unity & training AI model at Jupyter Lab
+
+#### what to do in the future
+
+- Unity master
