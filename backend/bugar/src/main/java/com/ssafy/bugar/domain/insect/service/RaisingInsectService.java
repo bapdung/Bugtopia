@@ -1,5 +1,7 @@
 package com.ssafy.bugar.domain.insect.service;
 
+import static java.rmi.server.LogStream.log;
+
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
@@ -16,13 +18,16 @@ import com.ssafy.bugar.domain.insect.repository.EventRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectLoveScoreRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
+import com.ssafy.bugar.global.util.CategoryUtils;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RaisingInsectService {
 
     private final RaisingInsectRepository raisingInsectRepository;
@@ -44,21 +49,19 @@ public class RaisingInsectService {
 
     @Transactional
     public void saveLoveScore(Long insectId, int categoryType) {
-        Category category = null;
-        if(categoryType == 1) {
-            category = Category.FOOD;
-        } else if (categoryType == 2) {
-            category = Category.INTERACTION;
-        } else if (categoryType == 3) {
-            category = Category.WEATHER;
+        try {
+            Category category = CategoryUtils.getCategory(categoryType);
+
+            InsectLoveScore insectLoveScore = InsectLoveScore.builder()
+                    .insectId(insectId)
+                    .category(category)
+                    .build();
+
+            insectLoveScoreRepository.save(insectLoveScore);
+        } catch (IllegalArgumentException e) {
+            log.error(e.getMessage());
+            throw e;
         }
-
-        InsectLoveScore insectLoveScore = InsectLoveScore.builder()
-                .insectId(insectId)
-                .category(category)
-                .build();
-
-        insectLoveScoreRepository.save(insectLoveScore);
     }
 
     public GetAreaInsectResponseDto searchAreaInsect(Long userId, String areaName) {
@@ -100,12 +103,11 @@ public class RaisingInsectService {
         List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByCollectedInsectId(raisingInsectId);
 
         for(InsectLoveScore insectLoveScore : list) {
-            if(insectLoveScore.getCategory() == Category.WEATHER) {
-                score += 5;
-            } else if(insectLoveScore.getCategory() == Category.FOOD) {
-                score += 3;
-            } else if(insectLoveScore.getCategory() == Category.INTERACTION) {
-                score += 1;
+            try {
+                score += CategoryUtils.getCategoryScore(insectLoveScore.getCategory());
+            } catch (IllegalArgumentException e) {
+                log.error(e.getMessage());
+                throw e;
             }
         }
 

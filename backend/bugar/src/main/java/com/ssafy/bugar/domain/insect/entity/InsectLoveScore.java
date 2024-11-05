@@ -35,13 +35,13 @@ public class InsectLoveScore {
     private Category category;
 
     @Column(nullable = false)
-    private Timestamp cratedDate;
+    private Timestamp createdDate ;
 
     @Builder
     public InsectLoveScore(Long insectId, Category category) {
         this.collectedInsectId = insectId;
         this.category = category;
-        this.cratedDate = new Timestamp(System.currentTimeMillis());
+        this.createdDate  = new Timestamp(System.currentTimeMillis());
     }
 
 }
