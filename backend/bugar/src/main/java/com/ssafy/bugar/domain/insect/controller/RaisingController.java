@@ -2,6 +2,7 @@ package com.ssafy.bugar.domain.insect.controller;
 
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
+import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.service.RaisingInsectService;
@@ -49,6 +50,11 @@ public class RaisingController {
     public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId) {
         GetInsectInfoResponseDto getInsectInfoResponseDto = raisingInsectService.search(raisingInsectId);
         return ResponseEntity.ok(getInsectInfoResponseDto);
+    }
+
+    @GetMapping("/event/{raisingInsectId}")
+    public ResponseEntity<CheckInsectEventResponseDto> checkInsectEvent(@PathVariable Long raisingInsectId) {
+        return ResponseEntity.ok(raisingInsectService.checkInsectEvent(raisingInsectId));
     }
 
 }

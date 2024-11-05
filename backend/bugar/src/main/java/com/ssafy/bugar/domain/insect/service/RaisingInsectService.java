@@ -1,13 +1,16 @@
 package com.ssafy.bugar.domain.insect.service;
 
+import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
+import com.ssafy.bugar.domain.insect.entity.Event;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.entity.InsectLoveScore;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
 import com.ssafy.bugar.domain.insect.enums.Category;
 import com.ssafy.bugar.domain.insect.repository.AreaRepository;
+import com.ssafy.bugar.domain.insect.repository.EventRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectLoveScoreRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
@@ -24,6 +27,7 @@ public class RaisingInsectService {
     private final InsectLoveScoreRepository insectLoveScoreRepository;
     private final InsectRepository insectRepository;
     private final AreaRepository areaRepository;
+    private final EventRepository eventRepository;
 
     @Transactional
     public void save(Long userId, Long insectId, String nickname) {
@@ -82,5 +86,35 @@ public class RaisingInsectService {
                 .build();
 
         return getInsectInfoResponseDto;
+    }
+
+    public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) {
+        RaisingInsect insect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+
+        // 현재 애정도 점수 계산
+        // 연속 출석일에 따라 점수 추가 (최대 10점)
+        // 애정도 올리기 항목에 따라 점수 추가 (WEATHER 5점, FOOD 3점, INTERACTION 1점)
+        int score = (insect.getContinuousDays() <= 10) ? insect.getContinuousDays() : 10;
+        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByCollectedInsectId(raisingInsectId);
+
+        for(InsectLoveScore insectLoveScore : list) {
+            if(insectLoveScore.getCategory() == Category.WEATHER) {
+                score += 5;
+            } else if(insectLoveScore.getCategory() == Category.FOOD) {
+                score += 3;
+            } else if(insectLoveScore.getCategory() == Category.INTERACTION) {
+                score += 1;
+            }
+        }
+
+        // 진행할 이벤트가 있는지 여부와 이벤트 종류 확인
+        int completedEventScore = eventRepository.findByEventId(insect.getEventId()).getEventScore();
+        List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
+
+        if(notCompletedEventList.isEmpty()) {
+            return new CheckInsectEventResponseDto(score, false, null);
+        }
+
+        return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
     }
 }
