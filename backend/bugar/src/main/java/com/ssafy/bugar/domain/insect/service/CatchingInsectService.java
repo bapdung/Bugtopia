@@ -48,6 +48,6 @@ public class CatchingInsectService {
             InsectItem responseInsect = InsectItem.builder().insectName(insect.getInsectKrName()).photo(catchedInsect.getPhoto()).catchedDate(catchedInsect.getPhoto()).state(catchedInsect.getState()).build();
             response.add(responseInsect);
         }
-        return CatchListResponseDto.builder().totalCnt(response.size()).InsectList(response).build();
+        return CatchListResponseDto.builder().totalCnt(response.size()).insectList(response).build();
     }
 }

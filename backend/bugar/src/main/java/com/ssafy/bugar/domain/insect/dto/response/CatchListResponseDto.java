@@ -1,5 +1,6 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssafy.bugar.domain.insect.enums.CatchState;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -11,10 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CatchListResponseDto {
     private int totalCnt;
-    private List<InsectItem> InsectList;
+    private List<InsectItem> insectList;
 
+    @Getter
     @Builder
     @AllArgsConstructor
     public static class InsectItem {
