@@ -86,6 +86,7 @@ public class RaisingInsectService {
                 .canFeed(raisingInsect.getFeedCnt())
                 .nickname(raisingInsect.getInsectNickname())
                 .insectId(raisingInsect.getInsectId())
+                .family(insectType.getFamily())
                 .livingDate(raisingInsect.getCreatedDate())
                 .clearEvent(raisingInsect.getEventId())
                 .build();

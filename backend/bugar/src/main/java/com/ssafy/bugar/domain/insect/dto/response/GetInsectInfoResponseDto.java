@@ -16,16 +16,18 @@ public class GetInsectInfoResponseDto {
     private String nickname;
     private String insectName;
     private Long insectId;
+    private String family;
     private Timestamp livingDate;
     private Long clearEvent;
 
     @Builder
-    public GetInsectInfoResponseDto(AreaType areaType, int canFeed, String nickname, String insectName, Long insectId, Timestamp livingDate, Long clearEvent) {
+    public GetInsectInfoResponseDto(AreaType areaType, int canFeed, String nickname, String insectName, Long insectId, String family, Timestamp livingDate, Long clearEvent) {
         this.areaType = areaType;
         this.canFeed = canFeed;
         this.nickname = nickname;
         this.insectName = insectName;
         this.insectId = insectId;
+        this.family = family;
         this.livingDate = livingDate;
         this.clearEvent = clearEvent;
     }

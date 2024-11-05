@@ -46,4 +46,7 @@ public class Insect {
     @Enumerated(EnumType.STRING)
     private Food food;
 
+    @Column(length = 100)
+    private String family;
+
 }
