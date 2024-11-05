@@ -1,5 +1,6 @@
 package com.ssafy.bugar.domain.insect.service;
 
+import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.InsectItem;
@@ -41,7 +42,6 @@ public class CatchingInsectService {
 
     public CatchListResponseDto getCatchList(Long userId) {
         List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserId(userId);
-
         List<InsectItem> response = new ArrayList<>();
         for (CatchedInsect catchedInsect : catchedInsects) {
             Insect insect = insectRepository.findByInsectId(catchedInsect.getInsectId());
@@ -49,5 +49,11 @@ public class CatchingInsectService {
             response.add(responseInsect);
         }
         return CatchListResponseDto.builder().totalCnt(response.size()).insectList(response).build();
+    }
+
+    @Transactional
+    public void deleteCatchInsect(CatchDeleteRequestDto request) {
+        CatchedInsect insect = catchingInsectRepository.findByCatchedInsectId(request.getCatchedInsectId());
+        insect.deleteInsect(request.getCatchedInsectId());
     }
 }

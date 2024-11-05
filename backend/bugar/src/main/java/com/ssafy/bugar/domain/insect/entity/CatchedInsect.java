@@ -51,4 +51,8 @@ public class CatchedInsect {
         this.state = state;
         this.catchedDate = new Timestamp(System.currentTimeMillis());
     }
+
+    public void deleteInsect(Long catchedInsectId) {
+        this.state = CatchState.DELETE;
+    }
 }
