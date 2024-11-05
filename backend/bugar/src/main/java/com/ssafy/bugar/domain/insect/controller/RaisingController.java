@@ -42,14 +42,12 @@ public class RaisingController {
 
     @GetMapping("/area")
     public ResponseEntity<GetAreaInsectResponseDto> getAreaInsect(@RequestHeader("userId") Long userId, @RequestParam String areaType) {
-        GetAreaInsectResponseDto getAreaInsectResponseDto = raisingInsectService.searchAreaInsect(userId, areaType);
-        return ResponseEntity.ok(getAreaInsectResponseDto);
+        return ResponseEntity.ok(raisingInsectService.searchAreaInsect(userId, areaType));
     }
 
     @GetMapping("/{raisingInsectId}")
     public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId) {
-        GetInsectInfoResponseDto getInsectInfoResponseDto = raisingInsectService.search(raisingInsectId);
-        return ResponseEntity.ok(getInsectInfoResponseDto);
+        return ResponseEntity.ok(raisingInsectService.search(raisingInsectId));
     }
 
     @GetMapping("/event/{raisingInsectId}")
