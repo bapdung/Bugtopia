@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using Models.Response;
 
 public class InsectApi : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class InsectApi : MonoBehaviour
             {
                 string jsonResponse = request.downloadHandler.text;
                 InsectInfoResponse responseData = JsonUtility.FromJson<InsectInfoResponse>(jsonResponse);
+
+                Debug.log(responseData);
 
                 // 성공 콜백 호출
                 onSuccess?.Invoke(responseData);
