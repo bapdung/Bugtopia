@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -42,4 +43,12 @@ public class CatchedInsect {
     @Enumerated(EnumType.STRING)
     private CatchState state;
 
+    @Builder
+    public CatchedInsect(Long userId, Long insectId, String photo, CatchState state) {
+        this.userId = userId;
+        this.insectId = insectId;
+        this.photo = photo;
+        this.state = state;
+        this.catchedDate = new Timestamp(System.currentTimeMillis());
+    }
 }

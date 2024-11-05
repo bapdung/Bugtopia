@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -31,6 +32,9 @@ public class Insect {
     @Column(nullable = false, length = 100)
     private String insectEngName;
 
+    @Column(nullable = false, length = 100)
+    private String family;
+
     @Column(nullable = false, length = 512)
     private String insectInfo;
 
@@ -45,5 +49,4 @@ public class Insect {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Food food;
-
 }
