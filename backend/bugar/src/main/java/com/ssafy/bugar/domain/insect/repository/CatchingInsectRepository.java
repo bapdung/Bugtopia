@@ -18,8 +18,8 @@ public interface CatchingInsectRepository extends JpaRepository<CatchedInsect, L
     @Query(value = """
             SELECT c.catched_insect_id AS catchedInsectId, c.photo AS photo, c.created_date AS catchedDate, i.insect_kr_name AS insectName
             FROM catched_insects AS c
-            JOIN insects AS i ON i.insect_id = c.insect_id
-            WHERE c.user_id = :userId AND c.state = 'POSSIBLE'
+            JOIN insects AS i ON i.insect_id = c.insect_id 
+            WHERE c.user_id = :userId AND c.state IN ('POSSIBLE', 'IMPOSSIBLE')
             ORDER BY c.created_date DESC
             """, nativeQuery = true)
     List<PossibleInsect> findPossibleInsectsByUserId(@Param("userId") Long userId);
