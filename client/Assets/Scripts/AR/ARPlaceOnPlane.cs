@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using API.Insect;
+using Models.Insect.Response;
+using Models.Insect.Request;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
-    private Models.Insect.Response.InsectInfo insectInfo; // Insect 정보
+    private InsectInfoResponse insectInfoResponse; // Insect 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
@@ -23,21 +25,25 @@ public class ARPlaceOnPlane : MonoBehaviour
     void Awake()
     {
         // insectApi가 할당되지 않았을 경우 코드 내에서 생성
+        Debug.Log("하이릉");
         if (insectApi == null)
         {
             GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
             insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
         }
+        Debug.Log("하이루");
     }
 
     void Start()
     {
         long raisingInsectId = 1; // 하드코딩된 raisingInsectId
 
+        Debug.Log("하이");
+
         StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
         {
-            insectInfo = response;
-            Debug.Log("지흔: insectInfo: " + insectInfo.nickname);
+            insectInfoResponse = response;
+            Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
         },
         (error) =>
         {
@@ -113,9 +119,9 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             SetInsectIdle();
 
-            var increaseScoreRequest = new Models.Insect.Request.IncreaseScore
+            var increaseScoreRequest = new IncreaseScoreRequest
             {
-                raisingInsectId = insectInfo.insectId,
+                raisingInsectId = insectInfoResponse.insectId,
                 category = 1
             };
             Debug.Log("지흔: Food를 먹었습니다!");

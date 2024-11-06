@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
+using Models.Insect.Response;
+using Models.Insect.Request;
 
 namespace API.Insect
 {
@@ -21,7 +23,7 @@ namespace API.Insect
             insectUrl = $"{environmentConfig.baseUrl}/insect";
         }
 
-        public IEnumerator GetInsectInfo(long raisingInsectId, System.Action<Models.Insect.Response.InsectInfo> onSuccess, System.Action<string> onFailure)
+        public IEnumerator GetInsectInfo(long raisingInsectId, System.Action<InsectInfoResponse> onSuccess, System.Action<string> onFailure)
         {
             string requestUrl = $"{insectUrl}/{raisingInsectId}";
 
@@ -34,7 +36,7 @@ namespace API.Insect
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     string jsonResponse = request.downloadHandler.text;
-                    Models.Insect.Response.InsectInfo responseData = JsonUtility.FromJson<Models.Insect.Response.InsectInfo>(jsonResponse);
+                    InsectInfoResponse responseData = JsonUtility.FromJson<InsectInfoResponse>(jsonResponse);
 
                     // 성공 콜백 호출
                     onSuccess?.Invoke(responseData);
@@ -47,9 +49,9 @@ namespace API.Insect
             }
         }
 
-        public IEnumerator PostIncreaseScore(Models.Insect.Request.IncreaseScore requestData, System.Action onSuccess, System.Action<string> onFailure)
+        public IEnumerator PostIncreaseScore(IncreaseScoreRequest requestData, System.Action onSuccess, System.Action<string> onFailure)
         {
-            string requestUrl = $"{insectUrl}/increaseScore";
+            string requestUrl = $"{insectUrl}/love-score";
 
             // JSON 직렬화
             string json = JsonUtility.ToJson(requestData);

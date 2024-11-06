@@ -1,7 +1,7 @@
 namespace Models.Insect.Request
 {
     [System.Serializable]
-    public class IncreaseScore
+    public class IncreaseScoreRequest
     {
         public long raisingInsectId;
         public int category;
