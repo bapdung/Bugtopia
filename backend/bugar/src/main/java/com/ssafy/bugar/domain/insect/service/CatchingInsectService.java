@@ -2,6 +2,8 @@ package com.ssafy.bugar.domain.insect.service;
 
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchDoneListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchDoneListResponseDto.DoneInsectItem;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.EggItem;
@@ -9,7 +11,6 @@ import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.P
 import com.ssafy.bugar.domain.insect.dto.response.CatchRaisingListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto.InsectList;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
-import com.ssafy.bugar.domain.insect.entity.Egg;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
@@ -18,7 +19,6 @@ import com.ssafy.bugar.domain.insect.repository.CatchingInsectRepository;
 import com.ssafy.bugar.domain.insect.repository.EggRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -65,20 +65,8 @@ public class CatchingInsectService {
 
     // 키우기 가능 곤충 + 알 목록 return
     public CatchPossibleListResponseDto getPossibleInsectList(Long userId) {
-        List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserIdAndStateOrderByCatchedDateDesc(userId, CatchState.POSSIBLE);
-        List<PossibleInsect> possibleInsects = new ArrayList<>();
-        for (CatchedInsect catchedInsect : catchedInsects) {
-            Insect insect = insectRepository.findByInsectId(catchedInsect.getInsectId());
-            PossibleInsect possibleInsect = PossibleInsect.builder().catchedInsectId(catchedInsect.getCatchedInsectId()).insectName(insect.getInsectKrName()).photo(
-                    catchedInsect.getPhoto()).catchedDate(String.valueOf(catchedInsect.getCatchedDate())).build();
-            possibleInsects.add(possibleInsect);
-        }
-        List<EggItem> eggs = new ArrayList<>();
-        List<Egg> findEggs = eggRepository.findByUserIdOrderByCreatedDateDesc(userId);
-        for (Egg findEgg : findEggs) {
-            EggItem egg = EggItem.builder().eggId(findEgg.getEggId()).eggName(findEgg.getParentNickname() + " 의 알").receiveDate(findEgg.getCreatedDate().toString()).build();
-            eggs.add(egg);
-        }
+        List<PossibleInsect> possibleInsects = catchingInsectRepository.findPossibleInsectsByUserId(userId);
+        List<EggItem> eggs = eggRepository.findEggItemsByUserIdOrderByCreatedDateDesc(userId);
 
         return CatchPossibleListResponseDto.builder().possibleInsectCnt(
                 possibleInsects.size()).eggCnt(eggs.size()).possibleList(possibleInsects).eggList(eggs).build();
@@ -94,9 +82,10 @@ public class CatchingInsectService {
     }
 
     // 육성완료 곤충
-//    public CatchDoneListResponseDto getDoneInsectList(Long userId) {
-//        List<>
-//    }
+    public CatchDoneListResponseDto getDoneInsectList(Long userId) {
+        List<DoneInsectItem> doneInsects = raisingInsectRepository.findDoneInsectsByUserId(userId);
+        return CatchDoneListResponseDto.builder().totalCnt(doneInsects.size()).doneList(doneInsects).build();
+    }
 
     @Transactional
     public void deleteCatchInsect(CatchDeleteRequestDto request) {
@@ -104,3 +93,4 @@ public class CatchingInsectService {
         insect.deleteInsect(request.getCatchedInsectId());
     }
 }
+

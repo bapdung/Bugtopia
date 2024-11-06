@@ -1,7 +1,5 @@
 package com.ssafy.bugar.domain.insect.service;
 
-import static java.rmi.server.LogStream.log;
-
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;

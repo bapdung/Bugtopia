@@ -23,15 +23,11 @@ public class CatchPossibleListResponseDto {
     @Builder.Default
     private List<EggItem> eggList = Collections.emptyList();
 
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    public static class PossibleInsect {
-        private Long catchedInsectId;
-        private String insectName;
-        private String photo;
-        private String catchedDate;
+    public interface PossibleInsect {
+        Long getCatchedInsectId();
+        String getPhoto();
+        String getCatchedDate();
+        String getInsectName();
     }
 
     @Getter
