@@ -4,7 +4,7 @@ import com.ssafy.bugar.global.exception.CustomException;
 import org.springframework.http.HttpStatus;
 
 public enum CatchInsectViewType {
-    POSSIBLE, RAISING, DONE;
+    CATCHED, RAISING, DONE;
 
     public static CatchInsectViewType fromString(String value) {
         try {
