@@ -25,4 +25,12 @@ namespace Models.Insect.Response
         public bool isClear;
     }
 
+    [System.Serializable]
+    public class IncreaseScoreResponse
+    {
+        public long loveScore;
+        public bool isEvent;
+        public string eventType;
+    }
+
 }
