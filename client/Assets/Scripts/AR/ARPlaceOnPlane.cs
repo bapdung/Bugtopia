@@ -121,17 +121,15 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             var increaseScoreRequest = new IncreaseScoreRequest
             {
-                raisingInsectId = insectInfoResponse.insectId,
+                raisingInsectId = insectInfoResponse.raisingInsectId,
                 category = 1
             };
-            Debug.Log("지흔: Food를 먹었습니다!");
 
             StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
                 onSuccess: () => Debug.Log("점수 증가 성공"),
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
 
-            //여기에 그 api 함수 불러
             Destroy(foodObject);
             foodObject = null;
         }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour
+public class Stag_Beetle_CameraFollow : MonoBehaviour
 {
     public Transform target;
     public Vector3 offset;
