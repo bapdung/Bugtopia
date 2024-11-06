@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CatchDoneListResponseDto {
     private int totalCnt;
-
-    @Builder.Default
     private List<DoneInsectItem> doneList = Collections.emptyList();
 
     @Getter

@@ -16,11 +16,7 @@ public class CatchPossibleListResponseDto {
 
     private int possibleInsectCnt;
     private int eggCnt;
-
-    @Builder.Default
     private List<PossibleInsect> possibleList = Collections.emptyList();
-
-    @Builder.Default
     private List<EggItem> eggList = Collections.emptyList();
 
     public interface PossibleInsect {
