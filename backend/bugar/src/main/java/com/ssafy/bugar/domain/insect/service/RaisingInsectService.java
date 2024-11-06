@@ -1,7 +1,5 @@
 package com.ssafy.bugar.domain.insect.service;
 
-import static java.rmi.server.LogStream.log;
-
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
@@ -101,7 +99,7 @@ public class RaisingInsectService {
         // 연속 출석일에 따라 점수 추가 (최대 10점)
         // 애정도 올리기 항목에 따라 점수 추가 (WEATHER 5점, FOOD 3점, INTERACTION 1점)
         int score = (insect.getContinuousDays() <= 10) ? insect.getContinuousDays() : 10;
-        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByCollectedInsectId(raisingInsectId);
+        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsectId);
 
         for(InsectLoveScore insectLoveScore : list) {
             try {
