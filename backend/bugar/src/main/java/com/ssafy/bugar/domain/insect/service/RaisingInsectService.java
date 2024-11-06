@@ -1,6 +1,7 @@
 package com.ssafy.bugar.domain.insect.service;
 
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetArInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
@@ -84,7 +85,7 @@ public class RaisingInsectService {
         Insect insectType = insectRepository.findByInsectId(raisingInsect.getInsectId());
         AreaType areaName = areaRepository.findByAreaId(insectType.getAreaId()).getAreaName();
 
-        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(Category.FOOD);
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId, Category.FOOD);
 
         CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
 
@@ -145,5 +146,19 @@ public class RaisingInsectService {
     public void release(long raisingInsectId) {
         RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
         raisingInsect.changeStatus(RaiseState.RELEASE);
+    }
+
+    public GetArInsectInfoResponseDto getInsectArInfo(Long raisingInsectId){
+        RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        Insect insect = insectRepository.findByInsectId(raisingInsect.getInsectId());
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId, Category.FOOD);
+
+        return GetArInsectInfoResponseDto.builder()
+                .nickname(raisingInsect.getInsectNickname())
+                .family(insect.getFamily())
+                .feedCnt(raisingInsect.getFeedCnt())
+                .lastEat(foodLoveScore.get(0).getCreatedDate())
+                .interactCnt(raisingInsect.getInteractCnt())
+                .build();
     }
 }

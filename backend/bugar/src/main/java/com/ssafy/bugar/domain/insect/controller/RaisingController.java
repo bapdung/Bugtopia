@@ -4,6 +4,7 @@ import com.ssafy.bugar.domain.insect.dto.request.ClearEventRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetArInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
@@ -73,6 +74,11 @@ public class RaisingController {
     public ResponseEntity<Void> release(@PathVariable("raisingInsectId") Long raisingInsectId) {
         raisingInsectService.release(raisingInsectId);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/ar/{raisingInsectId}")
+    public ResponseEntity<GetArInsectInfoResponseDto> getInsectArInfo(@PathVariable Long raisingInsectId) {
+        return ResponseEntity.ok(raisingInsectService.getInsectArInfo(raisingInsectId));
     }
 
 }
