@@ -37,7 +37,6 @@ public class CatchingController {
     @GetMapping
     public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId, @RequestParam("viewType")
                                                                       CatchInsectViewType viewType) {
-        log.info("첫 호출" + userId + ", " + viewType);
         CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
     }

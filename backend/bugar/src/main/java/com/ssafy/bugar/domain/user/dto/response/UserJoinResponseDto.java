@@ -4,11 +4,9 @@ import com.ssafy.bugar.domain.user.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
-@ToString
 public final class UserJoinResponseDto {
     private Long userId;
     private String nickname;

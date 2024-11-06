@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 public class CatchPossibleListResponseDto {
 
     private int possibleInsectCnt;

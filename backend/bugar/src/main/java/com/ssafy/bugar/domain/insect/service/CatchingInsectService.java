@@ -63,23 +63,12 @@ public class CatchingInsectService {
         // 육성 가능 곤충
         if (viewType == CatchInsectViewType.CATCHED) {
             CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
-
-            log.info("possibleResponse : " + possibleResponse.toString());
-
-            // 모든 사용자 목록을 불러와서 UserJoinResponseDto로 변환 후 로그에 출력
-            List<User> users = userRepository.findAll();
-            List<UserJoinResponseDto> userDtos = users.stream()
-                    .map(user -> UserJoinResponseDto.builder().user(user).build())
-                    .toList();
-            log.info("User List: " + userDtos);
-
             return CatchListResponseDto.builder().possibleInsectCnt(possibleResponse.getPossibleInsectCnt()).eggCnt(
                     possibleResponse.getEggCnt()).possibleList(possibleResponse.getPossibleList()).build();
         }
         // 육성 중 곤충
         if (viewType == CatchInsectViewType.RAISING) {
             CatchRaisingListResponseDto raisingResponse = getRaisingInsectList(userId);
-            log.info("raisingResponse : " + raisingResponse.toString());
             return CatchListResponseDto.builder().forestCnt(raisingResponse.getForestCnt()).waterCnt(
                     raisingResponse.getWaterCnt()).gardenCnt(raisingResponse.getGardenCnt()).forestList(raisingResponse.getForestList()).waterList(raisingResponse.getWaterList()).gardenList(raisingResponse.getGardenList()).build();
         }
@@ -87,7 +76,6 @@ public class CatchingInsectService {
         // 육성 완료 곤충
         CatchDoneListResponseDto doneResponse = getDoneInsectList(userId);
 
-        log.info("doneResponse : " + doneResponse.toString());
         return CatchListResponseDto.builder().totalCnt(doneResponse.getTotalCnt()).doneList(doneResponse.getDoneList()).build();
     }
 
