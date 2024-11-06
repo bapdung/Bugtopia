@@ -121,7 +121,7 @@ public class RaisingInsectService {
         int completedEventScore = eventRepository.findByEventId(insect.getEventId()).getEventScore();
         List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
 
-        if(notCompletedEventList.isEmpty()) {
+        if(notCompletedEventList.isEmpty() || notCompletedEventList.get(0).getEventScore() > score) {
             return new CheckInsectEventResponseDto(score, false, null);
         }
 
