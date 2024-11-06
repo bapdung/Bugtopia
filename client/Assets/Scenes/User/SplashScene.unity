@@ -284,15 +284,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start to touch
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4282276801
+  m_fontColor: {r: 0.7584905, g: 0.35622802, b: 0.2447205, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -440,7 +440,6 @@ GameObject:
   - component: {fileID: 1098769252}
   - component: {fileID: 1098769251}
   - component: {fileID: 1098769254}
-  - component: {fileID: 1098769255}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -559,19 +558,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1098769249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87eb2c0f01759914b8c51116a68dadc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1098769255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098769249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87eb2c0f01759914b8c51116a68dadc8, type: 3}
+  m_Script: {fileID: 11500000, guid: f732ef3111581b64ca42466bac98d709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1694930679

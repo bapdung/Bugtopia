@@ -336,8 +336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -540,8 +540,8 @@ MonoBehaviour:
 
     Choose your nickname'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -695,8 +695,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -963,8 +963,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tell me this name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 1705559074}
   - component: {fileID: 1705559076}
   - component: {fileID: 1705559075}
+  - component: {fileID: 1705559077}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1211,6 +1212,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705559073}
   m_CullTransparentMesh: 1
+--- !u!114 &1705559077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705559073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b424ecabcf5d84c841afe809417744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nicknameSubmitButton: {fileID: 1065737135}
+  nicknameInputField: {fileID: 2145101140}
 --- !u!1 &2145101137
 GameObject:
   m_ObjectHideFlags: 0
