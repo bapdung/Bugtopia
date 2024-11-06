@@ -36,18 +36,17 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         long raisingInsectId = 1; // 하드코딩된 raisingInsectId
 
-        // StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
-        // {
-        //     insectInfoResponse = response;
-        //     Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
-        // },
-        // (error) =>
-        // {
-        //     Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
-        // }));
+        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        {
+            insectInfoResponse = response;
+            Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
+        },
+        (error) =>
+        {
+            Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
+        }));
 
-        // insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
-        insectPrefab = PrefabLoader.LoadInsectPrefab("Mantis");
+        insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
 
 
         UpdateInsectObject();
@@ -122,16 +121,16 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             SetInsectIdle();
 
-            // var increaseScoreRequest = new IncreaseScoreRequest
-            // {
-            //     raisingInsectId = insectInfoResponse.insectId,
-            //     category = 1
-            // };
+            var increaseScoreRequest = new IncreaseScoreRequest
+            {
+                raisingInsectId = insectInfoResponse.raisingInsectId,
+                category = 1
+            };
 
-            // StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-            //     onSuccess: () => Debug.Log("점수 증가 성공"),
-            //     onFailure: error => Debug.LogError("점수 증가 실패: " + error)
-            // ));
+            StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
+                onSuccess: () => Debug.Log("점수 증가 성공"),
+                onFailure: error => Debug.LogError("점수 증가 실패: " + error)
+            ));
 
             Destroy(foodObject);
             foodObject = null;
