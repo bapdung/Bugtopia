@@ -1,10 +1,8 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
 import java.util.Collections;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class CatchPossibleListResponseDto {
 
     private int possibleInsectCnt;
