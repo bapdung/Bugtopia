@@ -28,7 +28,7 @@ public class InsectLoveScore {
     private Long insectLoveScoreId;
 
     @Column(nullable = false)
-    private Long collectedInsectId;
+    private Long raisingInsectId;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -39,7 +39,7 @@ public class InsectLoveScore {
 
     @Builder
     public InsectLoveScore(Long insectId, Category category) {
-        this.collectedInsectId = insectId;
+        this.raisingInsectId = insectId;
         this.category = category;
         this.createdDate  = new Timestamp(System.currentTimeMillis());
     }

@@ -28,7 +28,7 @@ public class Notification {
     private Long notificationId;
 
     @Column(nullable = false)
-    private Long collectedInsectId;
+    private Long raisingInsectId;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
