@@ -107,13 +107,30 @@ public class RaisingInsectService {
     }
 
     public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) {
-        RaisingInsect insect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        int score = calculateLoveScore(raisingInsect);
 
-        // 현재 애정도 점수 계산
+        // 진행할 이벤트가 있는지 여부와 이벤트 종류 확인
+        int completedEventScore = eventRepository.findByEventId(raisingInsect.getEventId()).getEventScore();
+        List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
+
+        if(notCompletedEventList.isEmpty() || notCompletedEventList.get(0).getEventScore() > score) {
+            return new CheckInsectEventResponseDto(score, false, null);
+        }
+
+        return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
+    }
+
+    /**
+     * 현재 애정도 점수 계산
+     * @param raisingInsect
+     * @return score
+     */
+    public int calculateLoveScore (RaisingInsect raisingInsect) {
         // 연속 출석일에 따라 점수 추가 (최대 10점)
         // 애정도 올리기 항목에 따라 점수 추가 (WEATHER 5점, FOOD 3점, INTERACTION 1점)
-        int score = (insect.getContinuousDays() <= 10) ? insect.getContinuousDays() : 10;
-        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsectId);
+        int score = (raisingInsect.getContinuousDays() <= 10) ? raisingInsect.getContinuousDays() : 10;
+        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsect.getRaisingInsectId());
 
         for(InsectLoveScore insectLoveScore : list) {
             try {
@@ -124,15 +141,7 @@ public class RaisingInsectService {
             }
         }
 
-        // 진행할 이벤트가 있는지 여부와 이벤트 종류 확인
-        int completedEventScore = eventRepository.findByEventId(insect.getEventId()).getEventScore();
-        List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
-
-        if(notCompletedEventList.isEmpty() || notCompletedEventList.get(0).getEventScore() > score) {
-            return new CheckInsectEventResponseDto(score, false, null);
-        }
-
-        return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
+        return score;
     }
 
     @Transactional
