@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InsectLoveScoreRepository extends JpaRepository<InsectLoveScore, Long> {
 
-    List<InsectLoveScore> findInsectLoveScoreByCollectedInsectId(Long raisingInsectId);
+    List<InsectLoveScore> findInsectLoveScoreByRaisingInsectId(Long raisingInsectId);
 
 }
