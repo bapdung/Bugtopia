@@ -6,6 +6,7 @@ import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.InsectItem;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import com.ssafy.bugar.domain.insect.entity.Insect;
+import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.enums.CatchState;
 import com.ssafy.bugar.domain.insect.repository.CatchingInsectRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
@@ -40,7 +41,7 @@ public class CatchingInsectService {
         catchingInsectRepository.save(catchingInsect);
     }
 
-    public CatchListResponseDto getCatchList(Long userId) {
+    public CatchListResponseDto getCatchList(Long userId, CatchInsectViewType viewType) {
         List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserId(userId);
         List<InsectItem> response = new ArrayList<>();
         for (CatchedInsect catchedInsect : catchedInsects) {

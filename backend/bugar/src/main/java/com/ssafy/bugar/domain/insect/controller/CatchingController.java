@@ -3,6 +3,7 @@ package com.ssafy.bugar.domain.insect.controller;
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
+import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -31,8 +33,9 @@ public class CatchingController {
     }
 
     @GetMapping
-    public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId) {
-        CatchListResponseDto response = catchingInsectService.getCatchList(userId);
+    public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId, @RequestParam("viewType")
+                                                                      CatchInsectViewType viewType) {
+        CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
     }
 
