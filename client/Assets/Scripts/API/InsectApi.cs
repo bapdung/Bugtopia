@@ -49,7 +49,7 @@ namespace API.Insect
             }
         }
 
-        public IEnumerator PostIncreaseScore(IncreaseScoreRequest requestData, System.Action onSuccess, System.Action<string> onFailure)
+        public IEnumerator PostIncreaseScore(IncreaseScoreRequest requestData, System.Action<IncreaseScoreResponse> onSuccess, System.Action<string> onFailure)
         {
             string requestUrl = $"{insectUrl}/love-score";
 
@@ -68,15 +68,11 @@ namespace API.Insect
 
                 if (request.result == UnityWebRequest.Result.Success)
                 {
-                    if (request.responseCode == 201) // HTTP 상태 코드 201 확인
-                    {
-                        Debug.Log("점수 증가 성공");
-                        onSuccess?.Invoke();
-                    }
-                    else
-                    {
-                        Debug.LogError("응답 성공이지만 예상치 못한 상태 코드: " + request.responseCode);
-                    }
+                    string jsonResponse = request.downloadHandler.text;
+                    IncreaseScoreResponse responseData = JsonUtility.FromJson<IncreaseScoreResponse>(jsonResponse);
+
+                    onSuccess?.Invoke(responseData);
+                    
                 }
                 else
                 {

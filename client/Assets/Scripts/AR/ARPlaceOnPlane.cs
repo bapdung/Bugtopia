@@ -18,6 +18,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
     private InsectInfoResponse insectInfoResponse; // Insect 정보
+    private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
@@ -25,20 +26,16 @@ public class ARPlaceOnPlane : MonoBehaviour
     void Awake()
     {
         // insectApi가 할당되지 않았을 경우 코드 내에서 생성
-        Debug.Log("하이릉");
         if (insectApi == null)
         {
             GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
             insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
         }
-        Debug.Log("하이루");
     }
 
     void Start()
     {
         long raisingInsectId = 1; // 하드코딩된 raisingInsectId
-
-        Debug.Log("하이");
 
         StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
         {
@@ -49,6 +46,8 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
         }));
+
+        insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
 
         UpdateInsectObject();
     }
@@ -81,6 +80,12 @@ public class ARPlaceOnPlane : MonoBehaviour
             {
                 insectObject = Instantiate(insectPrefab, placementPose.position, placementPose.rotation);
                 insectAnimator = insectObject.GetComponent<Animator>(); // Animator 초기화
+                
+                var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
+                touchHandler.Initialize(insectApi, insectInfoResponse);
+
+                insectObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
                 if (insectAnimator != null)
                 {
                     SetInsectIdle(); // 초기 상태를 idle로 설정
@@ -121,17 +126,20 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             var increaseScoreRequest = new IncreaseScoreRequest
             {
-                raisingInsectId = insectInfoResponse.insectId,
+                raisingInsectId = insectInfoResponse.raisingInsectId,
                 category = 1
             };
-            Debug.Log("지흔: Food를 먹었습니다!");
 
             StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-                onSuccess: () => Debug.Log("점수 증가 성공"),
+                onSuccess: (response) => {
+                    increaseScoreResponse = response;
+                    Debug.Log("점수 증가 성공");
+                    Debug.Log($"애정도 총합: {response.loveScore}");
+
+                },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
 
-            //여기에 그 api 함수 불러
             Destroy(foodObject);
             foodObject = null;
         }
@@ -170,4 +178,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         isInsectMoving = true;
         Debug.Log("지흔: Insect가 Food로 이동을 시작합니다.");
     }
+
+
 }
