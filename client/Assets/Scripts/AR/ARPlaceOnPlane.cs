@@ -3,23 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using API.Insect;
+using Models.Insect.Response;
+using Models.Insect.Request;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
     public ARRaycastManager aRRaycaster; // AR Raycast Manager를 참조하여 평면에 대한 레이캐스팅 수행
     public GameObject foodPrefab; // 평면에 배치할 Food 오브젝트
     public GameObject insectPrefab; // 화면 중앙에 배치할 Insect 오브젝트
+    public InsectApi insectApi; // Insect API를 참조
 
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
+
+    private InsectInfoResponse insectInfoResponse; // Insect 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
 
+    void Awake()
+    {
+        // insectApi가 할당되지 않았을 경우 코드 내에서 생성
+        Debug.Log("하이릉");
+        if (insectApi == null)
+        {
+            GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
+            insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
+        }
+        Debug.Log("하이루");
+    }
+
     void Start()
     {
-        // 초기화 작업: 평면 인식 후 중앙에 Insect 배치 시도
-        UpdateCenterObject();
+        long raisingInsectId = 1; // 하드코딩된 raisingInsectId
+
+        Debug.Log("하이");
+
+        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        {
+            insectInfoResponse = response;
+            Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
+        },
+        (error) =>
+        {
+            Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
+        }));
+
+        UpdateInsectObject();
     }
 
     void Update()
@@ -27,7 +58,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         // 평면 중앙에 Insect 배치
         if (insectObject == null)
         {
-            UpdateCenterObject();
+            UpdateInsectObject();
         }
 
         // Insect가 Food를 향해 이동
@@ -38,7 +69,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     }
 
     // 화면 중앙에 Insect 오브젝트를 배치하는 함수
-    private void UpdateCenterObject()
+    private void UpdateInsectObject()
     {
         Vector3 screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -86,18 +117,23 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             isInsectMoving = false; // 이동 중지
 
-            // // 공격 애니메이션 실행
-            // if (insectAnimator != null)
-            // {
-            //     insectAnimator.SetBool("walk", false);
-            //     insectAnimator.SetBool("attack", true);
-            //     StartCoroutine(SwitchToIdleAfterAttack());
-            // }
-
             SetInsectIdle();
+
+            var increaseScoreRequest = new IncreaseScoreRequest
+            {
+                raisingInsectId = insectInfoResponse.insectId,
+                category = 1
+            };
             Debug.Log("지흔: Food를 먹었습니다!");
-            Destroy(foodObject); // Food 제거
-            foodObject = null; // Food 참조 제거
+
+            StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
+                onSuccess: () => Debug.Log("점수 증가 성공"),
+                onFailure: error => Debug.LogError("점수 증가 실패: " + error)
+            ));
+
+            //여기에 그 api 함수 불러
+            Destroy(foodObject);
+            foodObject = null;
         }
     }
 
