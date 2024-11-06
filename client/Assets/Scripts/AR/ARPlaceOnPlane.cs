@@ -25,13 +25,11 @@ public class ARPlaceOnPlane : MonoBehaviour
     void Awake()
     {
         // insectApi가 할당되지 않았을 경우 코드 내에서 생성
-        Debug.Log("하이릉");
         if (insectApi == null)
         {
             GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
             insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
         }
-        Debug.Log("하이루");
     }
 
     void Start()
@@ -121,7 +119,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             var increaseScoreRequest = new IncreaseScoreRequest
             {
-                raisingInsectId = insectInfoResponse.raisingInsectId,
+                raisingInsectId = insectInfoResponse.insectId,
                 category = 1
             };
 
