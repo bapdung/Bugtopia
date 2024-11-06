@@ -57,6 +57,7 @@ public class CatchingInsectService {
         catchingInsectRepository.save(catchingInsect);
     }
 
+    // 채집 곤충 목록 조회
     public CatchListResponseDto getCatchList(Long userId, String viewType) {
         CatchInsectViewType type = CatchInsectViewType.fromString(viewType);
 
