@@ -1,5 +1,6 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
 import com.ssafy.bugar.domain.insect.enums.EventType;
 import java.sql.Timestamp;
@@ -25,7 +26,12 @@ public class GetInsectInfoResponseDto {
     private Timestamp livingDate;
     private int continuousDays;
     private int loveScore;
-    private boolean isEvent;
+    private boolean isEvent;  // 그대로 유지합니다
     private EventType eventType;
 
+    @JsonProperty("isEvent")
+    public boolean getIsEvent() {
+        return isEvent;
+    }
 }
+

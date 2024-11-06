@@ -94,7 +94,7 @@ public class RaisingInsectService {
                 .livingDate(raisingInsect.getCreatedDate())
                 .continuousDays(raisingInsect.getContinuousDays())
                 .loveScore(checkInsectEvent.getLoveScore())
-                .isEvent(checkInsectEvent.isEvnet())
+                .isEvent(checkInsectEvent.isEvent())
                 .eventType(checkInsectEvent.getEventType())
                 .build();
     }

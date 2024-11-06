@@ -9,7 +9,7 @@ import lombok.Getter;
 public class CheckInsectEventResponseDto {
 
     private int loveScore;
-    private boolean isEvnet;
+    private boolean isEvent;
     private EventType eventType;
 
 }
