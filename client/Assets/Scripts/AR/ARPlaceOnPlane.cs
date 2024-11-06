@@ -47,7 +47,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         }));
 
         insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
-
+        // insectPrefab = PrefabLoader.LoadInsectPrefab("Beetle");
 
         UpdateInsectObject();
     }
@@ -80,6 +80,9 @@ public class ARPlaceOnPlane : MonoBehaviour
             {
                 insectObject = Instantiate(insectPrefab, placementPose.position, placementPose.rotation);
                 insectAnimator = insectObject.GetComponent<Animator>(); // Animator 초기화
+                
+                var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
+                touchHandler.Initialize(insectApi, insectInfoResponse);
 
                 insectObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -170,4 +173,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         isInsectMoving = true;
         Debug.Log("지흔: Insect가 Food로 이동을 시작합니다.");
     }
+
+
 }
