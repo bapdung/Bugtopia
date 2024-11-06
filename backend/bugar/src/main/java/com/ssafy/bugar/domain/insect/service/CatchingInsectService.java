@@ -21,6 +21,11 @@ import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import com.ssafy.bugar.domain.user.dto.response.UserJoinResponseDto;
+import com.ssafy.bugar.domain.user.entity.User;
+import com.ssafy.bugar.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,6 +40,7 @@ public class CatchingInsectService {
     private final CatchingInsectRepository catchingInsectRepository;
     private final EggRepository eggRepository;
     private final RaisingInsectRepository raisingInsectRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void save(Long userId, CatchSaveRequestDto request) {
@@ -57,7 +63,16 @@ public class CatchingInsectService {
         // 육성 가능 곤충
         if (viewType == CatchInsectViewType.CATCHED) {
             CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
+
             log.info("possibleResponse : " + possibleResponse.toString());
+
+            // 모든 사용자 목록을 불러와서 UserJoinResponseDto로 변환 후 로그에 출력
+            List<User> users = userRepository.findAll();
+            List<UserJoinResponseDto> userDtos = users.stream()
+                    .map(user -> UserJoinResponseDto.builder().user(user).build())
+                    .toList();
+            log.info("User List: " + userDtos);
+
             return CatchListResponseDto.builder().possibleInsectCnt(possibleResponse.getPossibleInsectCnt()).eggCnt(
                     possibleResponse.getEggCnt()).possibleList(possibleResponse.getPossibleList()).build();
         }
