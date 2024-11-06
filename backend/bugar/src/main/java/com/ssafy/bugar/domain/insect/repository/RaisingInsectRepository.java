@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Long> {
 
     @Query(value = """
-            SELECT ri.raising_insect_id AS raisingInsectId, ri.insect_id AS insectId, ri.insect_nickname AS nickname, i.family AS family
+            SELECT ri.raising_insect_id AS raisingInsectId, ri.insect_nickname AS nickname, i.family AS family
             FROM raising_insects ri
             JOIN insects i ON ri.insect_id = i.insect_id
             JOIN area a ON i.area_id = a.area_id
