@@ -15,5 +15,6 @@ public class GetAreaInsectResponseDto {
         Long getRaisingInsectId();
         Long getInsectId();
         String getNickname();
+        String getFamily();
     }
 }
