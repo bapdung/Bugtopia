@@ -55,7 +55,7 @@ public class CatchingInsectService {
 
 
         // 육성 가능 곤충
-        if (viewType == CatchInsectViewType.POSSIBLE) {
+        if (viewType == CatchInsectViewType.CATCHED) {
             CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
             return CatchListResponseDto.builder().possibleInsectCnt(possibleResponse.getPossibleInsectCnt()).eggCnt(
                     possibleResponse.getEggCnt()).possibleList(possibleResponse.getPossibleList()).build();
