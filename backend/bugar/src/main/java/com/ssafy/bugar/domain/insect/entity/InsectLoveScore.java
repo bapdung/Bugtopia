@@ -38,8 +38,8 @@ public class InsectLoveScore {
     private Timestamp createdDate ;
 
     @Builder
-    public InsectLoveScore(Long insectId, Category category) {
-        this.raisingInsectId = insectId;
+    public InsectLoveScore(Long raisingInsectId, Category category) {
+        this.raisingInsectId = raisingInsectId;
         this.category = category;
         this.createdDate  = new Timestamp(System.currentTimeMillis());
     }

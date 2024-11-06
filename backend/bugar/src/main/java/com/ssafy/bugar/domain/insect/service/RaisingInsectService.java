@@ -50,12 +50,12 @@ public class RaisingInsectService {
     }
 
     @Transactional
-    public void saveLoveScore(Long insectId, int categoryType) {
+    public CheckInsectEventResponseDto saveLoveScore(Long raisingInsectId, int categoryType) {
         try {
             Category category = CategoryUtils.getCategory(categoryType);
 
             InsectLoveScore insectLoveScore = InsectLoveScore.builder()
-                    .insectId(insectId)
+                    .raisingInsectId(raisingInsectId)
                     .category(category)
                     .build();
 
@@ -64,6 +64,8 @@ public class RaisingInsectService {
             log.error(e.getMessage());
             throw e;
         }
+
+        return checkInsectEvent(raisingInsectId);
     }
 
     public GetAreaInsectResponseDto searchAreaInsect(Long userId, String areaName) {
@@ -98,7 +100,7 @@ public class RaisingInsectService {
                 .livingDate(raisingInsect.getCreatedDate())
                 .continuousDays(raisingInsect.getContinuousDays())
                 .loveScore(checkInsectEvent.getLoveScore())
-                .isEvent(checkInsectEvent.isEvent())
+                .isEvent(checkInsectEvent.getIsEvent())
                 .eventType(checkInsectEvent.getEventType())
                 .build();
     }
