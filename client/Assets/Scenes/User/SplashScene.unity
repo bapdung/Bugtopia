@@ -282,10 +282,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start to touch
+  m_text: "\uD130\uCE58\uD574\uC11C \uC2DC\uC791\uD574\uC694 "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: cdbd1efe9dfcfef429454becfdb618a7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 20e7b5a96814e2f43873276eb814c91c, type: 2}
+  m_sharedMaterial: {fileID: 2675761959349057276, guid: 20e7b5a96814e2f43873276eb814c91c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
