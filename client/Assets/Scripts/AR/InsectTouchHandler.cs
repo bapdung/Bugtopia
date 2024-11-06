@@ -8,6 +8,7 @@ public class InsectTouchHandler : MonoBehaviour
 {
     private InsectApi insectApi;
     private InsectInfoResponse insectInfoResponse;
+    private IncreaseScoreResponse increaseScoreResponse;
 
     public void Initialize(InsectApi api, InsectInfoResponse infoResponse)
     {
@@ -53,7 +54,10 @@ public class InsectTouchHandler : MonoBehaviour
 
         // 점수 증가 API 호출
         StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-            onSuccess: () => Debug.Log("점수 증가 성공"),
+            onSuccess: (response) => {
+
+                Debug.Log("점수 증가 성공");
+            },
             onFailure: error => Debug.LogError("점수 증가 실패: " + error)
         ));
     }

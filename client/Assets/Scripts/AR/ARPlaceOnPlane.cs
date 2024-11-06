@@ -18,6 +18,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
     private InsectInfoResponse insectInfoResponse; // Insect 정보
+    private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
@@ -47,7 +48,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         }));
 
         insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
-        // insectPrefab = PrefabLoader.LoadInsectPrefab("Beetle");
 
         UpdateInsectObject();
     }
@@ -131,7 +131,12 @@ public class ARPlaceOnPlane : MonoBehaviour
             };
 
             StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-                onSuccess: () => Debug.Log("점수 증가 성공"),
+                onSuccess: (response) => {
+                    increaseScoreResponse = response;
+                    Debug.Log("점수 증가 성공");
+                    Debug.Log($"애정도 총합: {response.loveScore}");
+
+                },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
 
