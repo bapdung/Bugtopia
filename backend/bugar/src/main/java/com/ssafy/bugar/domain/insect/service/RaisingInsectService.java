@@ -3,6 +3,7 @@ package com.ssafy.bugar.domain.insect.service;
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.Event;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.entity.InsectLoveScore;
@@ -35,14 +36,17 @@ public class RaisingInsectService {
     private final EventRepository eventRepository;
 
     @Transactional
-    public void save(Long userId, Long insectId, String nickname) {
+    public SaveRaisingInsectResponseDto save(Long userId, Long insectId, String nickname) {
         RaisingInsect raisingInsect = RaisingInsect.builder()
                 .userId(userId)
                 .insectId(insectId)
                 .insectNickname(nickname)
                 .build();
 
-        raisingInsectRepository.save(raisingInsect);
+        RaisingInsect savedRaisingInsect = raisingInsectRepository.save(raisingInsect);
+        String family = insectRepository.findByInsectId(insectId).getFamily();
+
+        return new SaveRaisingInsectResponseDto(savedRaisingInsect.getRaisingInsectId(), nickname, family);
     }
 
     @Transactional
