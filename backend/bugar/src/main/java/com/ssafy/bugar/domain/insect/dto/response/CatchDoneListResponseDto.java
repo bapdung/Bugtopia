@@ -1,11 +1,9 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
-import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.PossibleInsect;
 import java.util.Collections;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CatchDoneListResponseDto {
     private int totalCnt;
-
-    @Builder.Default
     private List<DoneInsectItem> doneList = Collections.emptyList();
 
     @Getter

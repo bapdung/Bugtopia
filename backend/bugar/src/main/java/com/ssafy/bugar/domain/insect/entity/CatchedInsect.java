@@ -34,7 +34,7 @@ public class CatchedInsect {
     private Long insectId;
 
     @Column(nullable = false)
-    private Timestamp catchedDate;
+    private Timestamp createdDate;
 
     @Column(nullable = false, length = 512)
     private String photo;
@@ -49,7 +49,7 @@ public class CatchedInsect {
         this.insectId = insectId;
         this.photo = photo;
         this.state = state;
-        this.catchedDate = new Timestamp(System.currentTimeMillis());
+        this.createdDate = new Timestamp(System.currentTimeMillis());
     }
 
     public void deleteInsect(Long catchedInsectId) {

@@ -16,14 +16,7 @@ public class CatchRaisingListResponseDto {
     private int forestCnt;
     private int waterCnt;
     private int gardenCnt;
-
-    @Builder.Default
     private List<InsectList> forestList = Collections.emptyList();
-
-    @Builder.Default
     private List<InsectList> waterList = Collections.emptyList();
-
-    @Builder.Default
     private List<InsectList> gardenList = Collections.emptyList();
-
 }
