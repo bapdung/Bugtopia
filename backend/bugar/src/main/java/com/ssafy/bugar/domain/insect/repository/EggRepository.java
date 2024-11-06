@@ -18,5 +18,5 @@ public interface EggRepository extends JpaRepository<Egg, Long>{
         WHERE e.user_id = :userId
         ORDER BY e.created_date DESC
         """, nativeQuery = true)
-    List<EggItem> findEggItemsByUserIdOrderByCatchedDateDesc(@Param("userId") Long userId);
+    List<EggItem> findEggItemsByUserIdOrderByCreatedDateDesc(@Param("userId") Long userId);
 }

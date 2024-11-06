@@ -11,7 +11,6 @@ import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.P
 import com.ssafy.bugar.domain.insect.dto.response.CatchRaisingListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto.InsectList;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
-import com.ssafy.bugar.domain.insect.entity.Egg;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
@@ -68,7 +67,7 @@ public class CatchingInsectService {
     // 키우기 가능 곤충 + 알 목록 return
     public CatchPossibleListResponseDto getPossibleInsectList(Long userId) {
         List<PossibleInsect> possibleInsects = catchingInsectRepository.findPossibleInsectsByUserId(userId);
-        List<EggItem> eggs = eggRepository.findEggItemsByUserIdOrderByCatchedDateDesc(userId);
+        List<EggItem> eggs = eggRepository.findEggItemsByUserIdOrderByCreatedDateDesc(userId);
 
         return CatchPossibleListResponseDto.builder().possibleInsectCnt(
                 possibleInsects.size()).eggCnt(eggs.size()).possibleList(possibleInsects).eggList(eggs).build();
