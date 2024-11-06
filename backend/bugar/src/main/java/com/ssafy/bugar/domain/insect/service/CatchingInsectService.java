@@ -19,7 +19,6 @@ import com.ssafy.bugar.domain.insect.repository.CatchingInsectRepository;
 import com.ssafy.bugar.domain.insect.repository.EggRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
