@@ -3,7 +3,8 @@ package com.ssafy.bugar.domain.insect.service;
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.InsectItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.PossibleInsect;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
@@ -42,14 +43,28 @@ public class CatchingInsectService {
     }
 
     public CatchListResponseDto getCatchList(Long userId, CatchInsectViewType viewType) {
-        List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserId(userId);
-        List<InsectItem> response = new ArrayList<>();
+//        List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserId(userId);
+//        List<InsectItem> response = new ArrayList<>();
+//        for (CatchedInsect catchedInsect : catchedInsects) {
+//            Insect insect = insectRepository.findByInsectId(catchedInsect.getInsectId());
+//            InsectItem responseInsect = InsectItem.builder().insectName(insect.getInsectKrName()).photo(catchedInsect.getPhoto()).catchedDate(catchedInsect.getPhoto()).state(catchedInsect.getState()).build();
+//            response.add(responseInsect);
+//        }
+//        return CatchListResponseDto.builder().totalCnt(response.size()).insectList(response).build();
+        return CatchListResponseDto.builder().build();
+    }
+
+    public CatchPossibleListResponseDto getPossibleInsectList(Long userId) {
+        List<CatchedInsect> catchedInsects = catchingInsectRepository.findByUserIdAndStateOrderByCatchedDateDesc(userId, CatchState.POSSIBLE);
+        List<PossibleInsect> possibleInsects = new ArrayList<>();
         for (CatchedInsect catchedInsect : catchedInsects) {
             Insect insect = insectRepository.findByInsectId(catchedInsect.getInsectId());
-            InsectItem responseInsect = InsectItem.builder().insectName(insect.getInsectKrName()).photo(catchedInsect.getPhoto()).catchedDate(catchedInsect.getPhoto()).state(catchedInsect.getState()).build();
-            response.add(responseInsect);
+            PossibleInsect possibleInsect = PossibleInsect.builder().catchedInsectId(catchedInsect.getCatchedInsectId()).insectName(insect.getInsectKrName()).photo(
+                    catchedInsect.getPhoto()).catchedDate(String.valueOf(catchedInsect.getCatchedDate())).build();
+            possibleInsects.add(possibleInsect);
         }
-        return CatchListResponseDto.builder().totalCnt(response.size()).insectList(response).build();
+        return CatchPossibleListResponseDto.builder().build();
+//        CatchPossibleListResponseDto response =
     }
 
     @Transactional
