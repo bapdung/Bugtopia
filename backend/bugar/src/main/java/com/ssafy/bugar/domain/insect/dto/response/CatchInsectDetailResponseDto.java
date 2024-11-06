@@ -5,10 +5,8 @@ import com.ssafy.bugar.domain.insect.enums.AreaType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
@@ -49,4 +47,4 @@ public class CatchInsectDetailResponseDto {
         String getDoneDate();
         Integer getMeetingDays();
     }
-}
+    }

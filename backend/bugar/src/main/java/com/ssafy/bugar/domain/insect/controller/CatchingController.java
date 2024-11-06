@@ -37,7 +37,7 @@ public class CatchingController {
 
     @GetMapping
     public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId, @RequestParam("viewType")
-                                                                      CatchInsectViewType viewType) {
+                                                                      String viewType) {
         CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
     }
@@ -50,7 +50,7 @@ public class CatchingController {
 
     @GetMapping("/{insectId}")
     public ResponseEntity<CatchInsectDetailResponseDto> getInsectDetail(@RequestHeader("userId") Long userId, @PathVariable Long insectId,
-                                                                        @RequestParam CatchInsectDetailViewType viewType) {
+                                                                        @RequestParam String viewType) {
         CatchInsectDetailResponseDto response = catchingInsectService.getDetail(insectId, viewType, userId);
         return ResponseEntity.ok(response);
     }

@@ -44,7 +44,8 @@ public class CatchingInsectService {
     @Transactional
     public void save(Long userId, CatchSaveRequestDto request) {
         Insect insect = insectRepository.findById(request.getInsectId())
-                .orElseThrow(() -> new IllegalArgumentException("곤충 아이디를 찾지 못했습니다. " + request.getInsectId()));
+                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND,
+                        "곤충 아이디를 찾지 못했습니다. 요청한 ID: " + request.getInsectId()));
 
         CatchedInsect catchingInsect = CatchedInsect.builder()
                 .userId(userId)
@@ -56,25 +57,48 @@ public class CatchingInsectService {
         catchingInsectRepository.save(catchingInsect);
     }
 
-    public CatchListResponseDto getCatchList(Long userId, CatchInsectViewType viewType) {
+    public CatchListResponseDto getCatchList(Long userId, String viewType) {
+        CatchInsectViewType type = CatchInsectViewType.fromString(viewType);
 
-        // 육성 가능 곤충
-        if (viewType == CatchInsectViewType.CATCHED) {
-            CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
-            return CatchListResponseDto.builder().possibleInsectCnt(possibleResponse.getPossibleInsectCnt()).eggCnt(
-                    possibleResponse.getEggCnt()).possibleList(possibleResponse.getPossibleList()).build();
-        }
+        return switch (type) {
+            case CATCHED -> buildCatchPossibleList(userId);
+            case RAISING -> buildCatchRaisingList(userId);
+            case DONE -> buildCatchDoneList(userId);
+            default -> throw new CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "에러가 발생했습니다.");
+        };
+    }
 
-        // 육성 중 곤충
-        if (viewType == CatchInsectViewType.RAISING) {
-            CatchRaisingListResponseDto raisingResponse = getRaisingInsectList(userId);
-            return CatchListResponseDto.builder().forestCnt(raisingResponse.getForestCnt()).waterCnt(
-                    raisingResponse.getWaterCnt()).gardenCnt(raisingResponse.getGardenCnt()).forestList(raisingResponse.getForestList()).waterList(raisingResponse.getWaterList()).gardenList(raisingResponse.getGardenList()).build();
-        }
+    // 육성 가능 곤충 목록을 빌드하는 메서드
+    private CatchListResponseDto buildCatchPossibleList(Long userId) {
+        CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
+        return CatchListResponseDto.builder()
+                .possibleInsectCnt(possibleResponse.getPossibleInsectCnt())
+                .eggCnt(possibleResponse.getEggCnt())
+                .possibleList(possibleResponse.getPossibleList())
+                .eggList(possibleResponse.getEggList())
+                .build();
+    }
 
-        // 육성 완료 곤충
+    // 육성 중 곤충 목록을 빌드하는 메서드
+    private CatchListResponseDto buildCatchRaisingList(Long userId) {
+        CatchRaisingListResponseDto raisingResponse = getRaisingInsectList(userId);
+        return CatchListResponseDto.builder()
+                .forestCnt(raisingResponse.getForestCnt())
+                .waterCnt(raisingResponse.getWaterCnt())
+                .gardenCnt(raisingResponse.getGardenCnt())
+                .forestList(raisingResponse.getForestList())
+                .waterList(raisingResponse.getWaterList())
+                .gardenList(raisingResponse.getGardenList())
+                .build();
+    }
+
+    // 육성 완료 곤충 목록을 빌드하는 메서드
+    private CatchListResponseDto buildCatchDoneList(Long userId) {
         CatchDoneListResponseDto doneResponse = getDoneInsectList(userId);
-        return CatchListResponseDto.builder().totalCnt(doneResponse.getTotalCnt()).doneList(doneResponse.getDoneList()).build();
+        return CatchListResponseDto.builder()
+                .totalCnt(doneResponse.getTotalCnt())
+                .doneList(doneResponse.getDoneList())
+                .build();
     }
 
     // 키우기 가능 곤충 + 알 목록 메서드
@@ -82,48 +106,83 @@ public class CatchingInsectService {
         List<PossibleInsect> possibleInsects = catchingInsectRepository.findPossibleInsectsByUserId(userId);
         List<EggItem> eggs = eggRepository.findEggItemsByUserIdOrderByCreatedDateDesc(userId);
 
-        return CatchPossibleListResponseDto.builder().possibleInsectCnt(
-                possibleInsects.size()).eggCnt(eggs.size()).possibleList(possibleInsects).eggList(eggs).build();
+        return CatchPossibleListResponseDto.builder()
+                .possibleInsectCnt(possibleInsects.size())
+                .eggCnt(eggs.size())
+                .possibleList(possibleInsects)
+                .eggList(eggs)
+                .build();
     }
 
     // 육성중 곤충 메서드
     public CatchRaisingListResponseDto getRaisingInsectList(Long userId) {
-        List<InsectList> forestInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId, AreaType.FOREST.toString());
-        List<InsectList> waterInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId, AreaType.WATER.toString());
-        List<InsectList> gardenInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId, AreaType.GARDEN.toString());
-        return CatchRaisingListResponseDto.builder().forestCnt(forestInsects.size()).waterCnt(
-                waterInsects.size()).gardenCnt(gardenInsects.size()).forestList(forestInsects).waterList(waterInsects).gardenList(gardenInsects).build();
+        List<InsectList> forestInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
+                AreaType.FOREST.toString());
+        List<InsectList> waterInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
+                AreaType.WATER.toString());
+        List<InsectList> gardenInsects = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
+                AreaType.GARDEN.toString());
+        return CatchRaisingListResponseDto.builder()
+                .forestCnt(forestInsects.size())
+                .waterCnt(waterInsects.size())
+                .gardenCnt(gardenInsects.size())
+                .forestList(forestInsects)
+                .waterList(waterInsects)
+                .gardenList(gardenInsects)
+                .build();
     }
 
     // 육성완료 곤충 메서드
     public CatchDoneListResponseDto getDoneInsectList(Long userId) {
         List<DoneInsectItem> doneInsects = raisingInsectRepository.findDoneInsectsByUserId(userId);
-        return CatchDoneListResponseDto.builder().totalCnt(doneInsects.size()).doneList(doneInsects).build();
+        return CatchDoneListResponseDto.builder()
+                .totalCnt(doneInsects.size())
+                .doneList(doneInsects)
+                .build();
     }
 
     // 곤충 디테일 정보
-    public CatchInsectDetailResponseDto getDetail(Long insectId, CatchInsectDetailViewType viewType, Long userId) {
-        // 채집 곤충 디테일
-        if (viewType == CatchInsectDetailViewType.CATCHED) {
-            CatchInsectDetailProjection catchInsect = catchingInsectRepository.findCatchedInsectDetail(insectId);
-            int havingInsectCnt = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
-                    String.valueOf(catchInsect.getArea())).size();
-            return CatchInsectDetailResponseDto.builder().krwName(catchInsect.getKrwName()).engName(
-                    catchInsect.getEngName()).info(catchInsect.getInfo()).canRaise(catchInsect.getCanRaise() == 0 ? (havingInsectCnt >= 3 ? 2 : 0) : catchInsect.getCanRaise()).family(
-                    catchInsect.getFamily()).area(catchInsect.getArea()).rejectedReason(catchInsect.getRejectedReason()).build();
-        }
+    public CatchInsectDetailResponseDto getDetail(Long insectId, String viewType, Long userId) {
+        CatchInsectDetailViewType type = CatchInsectDetailViewType.fromString(viewType);
 
-        // 육성 완료 곤충 디테일
-        if (viewType == CatchInsectDetailViewType.DONE) {
-            CatchInsectDetailProjection doneInsect = raisingInsectRepository.findDoneInsectDetail(insectId);
-            return CatchInsectDetailResponseDto.builder().insectNickname(doneInsect.getInsectNickname()).krwName(
-                    doneInsect.getKrwName()).startDate(doneInsect.getStartDate()).doneDate(doneInsect.getDoneDate()).meetingDays(
-                    doneInsect.getMeetingDays()).family(doneInsect.getFamily()).build();
-        }
-
-        throw new CustomException(HttpStatus.BAD_REQUEST, "ViewType 을 다시 한 번 확인해주세요.");
+        return switch (type) {
+            case CATCHED -> getCatchedInsectDetail(insectId, userId);
+            case DONE -> getDoneInsectDetail(insectId);
+            default -> throw new CustomException(HttpStatus.BAD_REQUEST, "ViewType 을 다시 한 번 확인해주세요.");
+        };
     }
 
+    // 채집 곤충 디테일을 가져오는 메서드
+    private CatchInsectDetailResponseDto getCatchedInsectDetail(Long insectId, Long userId) {
+        CatchInsectDetailProjection catchInsect = catchingInsectRepository.findCatchedInsectDetail(insectId);
+        int havingInsectCnt = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
+                String.valueOf(catchInsect.getArea())).size();
+
+        return CatchInsectDetailResponseDto.builder()
+                .krwName(catchInsect.getKrwName())
+                .engName(catchInsect.getEngName())
+                .info(catchInsect.getInfo())
+                .canRaise(
+                        catchInsect.getCanRaise() == 0 ? (havingInsectCnt >= 3 ? 2 : 0) : catchInsect.getCanRaise())
+                .family(catchInsect.getFamily())
+                .area(catchInsect.getArea())
+                .rejectedReason(catchInsect.getRejectedReason())
+                .build();
+    }
+
+    // 육성 완료 곤충 디테일을 가져오는 메서드
+    private CatchInsectDetailResponseDto getDoneInsectDetail(Long insectId) {
+        CatchInsectDetailProjection doneInsect = raisingInsectRepository.findDoneInsectDetail(insectId);
+
+        return CatchInsectDetailResponseDto.builder()
+                .insectNickname(doneInsect.getInsectNickname())
+                .krwName(doneInsect.getKrwName())
+                .startDate(doneInsect.getStartDate())
+                .doneDate(doneInsect.getDoneDate())
+                .meetingDays(doneInsect.getMeetingDays())
+                .family(doneInsect.getFamily())
+                .build();
+    }
 
     @Transactional
     public void deleteCatchInsect(CatchDeleteRequestDto request) {
