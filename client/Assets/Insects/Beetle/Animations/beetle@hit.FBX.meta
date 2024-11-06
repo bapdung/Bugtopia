@@ -1,0 +1,1552 @@
+fileFormatVersion: 2
+guid: b70101fb1ff577b41bb8dcd74ef351f9
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: beetle_Abdomen1_bone
+  - first:
+      1: 100004
+    second: beetle_Abdomen1_ctrl
+  - first:
+      1: 100006
+    second: beetle_Abdomen2_bone
+  - first:
+      1: 100008
+    second: beetle_Abdomen2_ctrl
+  - first:
+      1: 100010
+    second: beetle_Abdomen3_bone
+  - first:
+      1: 100012
+    second: beetle_Abdomen3_ctrl
+  - first:
+      1: 100014
+    second: beetle_Abdomen4-nub_bone
+  - first:
+      1: 100016
+    second: beetle_Abdomen4_bone
+  - first:
+      1: 100018
+    second: beetle_Abdomen4_ctrl
+  - first:
+      1: 100020
+    second: beetle_COM_ctrl
+  - first:
+      1: 100022
+    second: beetle_Head-nub_bone
+  - first:
+      1: 100024
+    second: beetle_Head_bone
+  - first:
+      1: 100026
+    second: beetle_jaw_bone
+  - first:
+      1: 100028
+    second: beetle_jaw_ctrl
+  - first:
+      1: 100030
+    second: beetle_l_Antenna1_bone
+  - first:
+      1: 100032
+    second: beetle_l_Antenna1_ctrl
+  - first:
+      1: 100034
+    second: beetle_l_Antenna2_bone
+  - first:
+      1: 100036
+    second: beetle_l_Antenna2_ctrl
+  - first:
+      1: 100038
+    second: beetle_l_Antenna3_bone
+  - first:
+      1: 100040
+    second: beetle_l_Antenna3_ctrl
+  - first:
+      1: 100042
+    second: beetle_l_Antenna4-nub_bone
+  - first:
+      1: 100044
+    second: beetle_l_Antenna4_bone
+  - first:
+      1: 100046
+    second: beetle_l_Antenna4_ctrl
+  - first:
+      1: 100048
+    second: beetle_l_Chelicerae1_bone
+  - first:
+      1: 100050
+    second: beetle_l_Chelicerae2-nub_bone
+  - first:
+      1: 100052
+    second: beetle_l_Chelicerae2_bone
+  - first:
+      1: 100054
+    second: beetle_l_Elytron-nub_bone
+  - first:
+      1: 100056
+    second: beetle_l_Elytron_bone
+  - first:
+      1: 100058
+    second: beetle_l_Elytron_ctrl
+  - first:
+      1: 100060
+    second: beetle_l_frontball_IKGoal
+  - first:
+      1: 100062
+    second: beetle_l_Frontclaws-nub_bone
+  - first:
+      1: 100064
+    second: beetle_l_Frontclaws_bone
+  - first:
+      1: 100066
+    second: beetle_l_Frontfemur_bone
+  - first:
+      1: 100068
+    second: beetle_l_FrontFoot_ctrl
+  - first:
+      1: 100070
+    second: beetle_l_FrontHeel_hlp
+  - first:
+      1: 100072
+    second: beetle_l_frontheel_IKGoal
+  - first:
+      1: 100074
+    second: beetle_l_FrontHeelPeel_hlp
+  - first:
+      1: 100076
+    second: beetle_l_Fronttarsus_bone
+  - first:
+      1: 100078
+    second: beetle_l_Fronttibia_bone
+  - first:
+      1: 100080
+    second: beetle_l_fronttoe_IKGoal
+  - first:
+      1: 100082
+    second: beetle_l_FrontToeLift_hlp
+  - first:
+      1: 100084
+    second: beetle_l_FrontToeTap_hlp
+  - first:
+      1: 100086
+    second: beetle_l_hindball_IKGoal
+  - first:
+      1: 100088
+    second: beetle_l_Hindclaws-nub_bone
+  - first:
+      1: 100090
+    second: beetle_l_Hindclaws_bone
+  - first:
+      1: 100092
+    second: beetle_l_Hindfemur_bone
+  - first:
+      1: 100094
+    second: beetle_l_HindFoot_ctrl
+  - first:
+      1: 100096
+    second: beetle_l_HindHeel_hlp
+  - first:
+      1: 100098
+    second: beetle_l_hindheel_IKGoal
+  - first:
+      1: 100100
+    second: beetle_l_HindHeelPeel_hlp
+  - first:
+      1: 100102
+    second: beetle_l_Hindtarsus_bone
+  - first:
+      1: 100104
+    second: beetle_l_Hindtibia_bone
+  - first:
+      1: 100106
+    second: beetle_l_hindtoe_IKGoal
+  - first:
+      1: 100108
+    second: beetle_l_HindToeLift_hlp
+  - first:
+      1: 100110
+    second: beetle_l_HindToeTap_hlp
+  - first:
+      1: 100112
+    second: beetle_l_horn-nub_bone
+  - first:
+      1: 100114
+    second: beetle_l_horn_bone
+  - first:
+      1: 100116
+    second: beetle_l_horn_ctrl
+  - first:
+      1: 100118
+    second: beetle_l_middleball_IKGoal
+  - first:
+      1: 100120
+    second: beetle_l_Middleclaws-nub_bone
+  - first:
+      1: 100122
+    second: beetle_l_Middleclaws_bone
+  - first:
+      1: 100124
+    second: beetle_l_Middlefemur_bone
+  - first:
+      1: 100126
+    second: beetle_l_MiddleFoot_ctrl
+  - first:
+      1: 100128
+    second: beetle_l_MiddleHeel_hlp
+  - first:
+      1: 100130
+    second: beetle_l_middleheel_IKGoal
+  - first:
+      1: 100132
+    second: beetle_l_MiddleHeelPeel_hlp
+  - first:
+      1: 100134
+    second: beetle_l_Middletarsus_bone
+  - first:
+      1: 100136
+    second: beetle_l_Middletibia_bone
+  - first:
+      1: 100138
+    second: beetle_l_middletoe_IKGoal
+  - first:
+      1: 100140
+    second: beetle_l_MiddleToeLift_hlp
+  - first:
+      1: 100142
+    second: beetle_l_MiddleToeTap_hlp
+  - first:
+      1: 100144
+    second: beetle_l_Wing1_bone
+  - first:
+      1: 100146
+    second: beetle_l_Wing1_ctrl
+  - first:
+      1: 100148
+    second: beetle_l_Wing2_bone
+  - first:
+      1: 100150
+    second: beetle_l_Wing2_ctrl
+  - first:
+      1: 100152
+    second: beetle_l_Wing3_bone
+  - first:
+      1: 100154
+    second: beetle_l_Wing3_ctrl
+  - first:
+      1: 100156
+    second: beetle_l_Wing4-nub_bone
+  - first:
+      1: 100158
+    second: beetle_l_Wing4_bone
+  - first:
+      1: 100160
+    second: beetle_l_Wing4_ctrl
+  - first:
+      1: 100162
+    second: beetle_Main_ctrl
+  - first:
+      1: 100164
+    second: beetle_mouth-nub_bone
+  - first:
+      1: 100166
+    second: beetle_mouth_bone
+  - first:
+      1: 100168
+    second: beetle_mouth_ctrl
+  - first:
+      1: 100170
+    second: beetle_Pronotum_bone
+  - first:
+      1: 100172
+    second: beetle_r_Antenna1_bone
+  - first:
+      1: 100174
+    second: beetle_r_Antenna1_ctrl
+  - first:
+      1: 100176
+    second: beetle_r_Antenna2_bone
+  - first:
+      1: 100178
+    second: beetle_r_Antenna2_bone 1
+  - first:
+      1: 100180
+    second: beetle_r_Antenna2_ctrl
+  - first:
+      1: 100182
+    second: beetle_r_Antenna2_ctrl 1
+  - first:
+      1: 100184
+    second: beetle_r_Antenna4-nub_bone
+  - first:
+      1: 100186
+    second: beetle_r_Antenna4_bone
+  - first:
+      1: 100188
+    second: beetle_r_Antenna4_ctrl
+  - first:
+      1: 100190
+    second: beetle_r_Chelicerae1_bone
+  - first:
+      1: 100192
+    second: beetle_r_Chelicerae2-nub_bone
+  - first:
+      1: 100194
+    second: beetle_r_Chelicerae2_bone
+  - first:
+      1: 100196
+    second: beetle_r_Elytron-nub_bone
+  - first:
+      1: 100198
+    second: beetle_r_Elytron_bone
+  - first:
+      1: 100200
+    second: beetle_r_Elytron_ctrl
+  - first:
+      1: 100202
+    second: beetle_r_frontball_IKGoal
+  - first:
+      1: 100204
+    second: beetle_r_Frontclaws-nub_bone
+  - first:
+      1: 100206
+    second: beetle_r_Frontclaws_bone
+  - first:
+      1: 100208
+    second: beetle_r_Frontfemur_bone
+  - first:
+      1: 100210
+    second: beetle_r_FrontFoot_ctrl
+  - first:
+      1: 100212
+    second: beetle_r_FrontHeel_hlp
+  - first:
+      1: 100214
+    second: beetle_r_frontheel_IKGoal
+  - first:
+      1: 100216
+    second: beetle_r_FrontHeelPeel_hlp
+  - first:
+      1: 100218
+    second: beetle_r_Fronttarsus_bone
+  - first:
+      1: 100220
+    second: beetle_r_Fronttibia_bone
+  - first:
+      1: 100222
+    second: beetle_r_fronttoe_IKGoal
+  - first:
+      1: 100224
+    second: beetle_r_FrontToeLift_hlp
+  - first:
+      1: 100226
+    second: beetle_r_FrontToeTap_hlp
+  - first:
+      1: 100228
+    second: beetle_r_hindball_IKGoal
+  - first:
+      1: 100230
+    second: beetle_r_Hindclaws-nub_bone
+  - first:
+      1: 100232
+    second: beetle_r_Hindclaws_bone
+  - first:
+      1: 100234
+    second: beetle_r_Hindfemur_bone
+  - first:
+      1: 100236
+    second: beetle_r_HindFoot_ctrl
+  - first:
+      1: 100238
+    second: beetle_r_HindHeel_hlp
+  - first:
+      1: 100240
+    second: beetle_r_hindheel_IKGoal
+  - first:
+      1: 100242
+    second: beetle_r_HindHeelPeel_hlp
+  - first:
+      1: 100244
+    second: beetle_r_Hindtarsus_bone
+  - first:
+      1: 100246
+    second: beetle_r_Hindtibia_bone
+  - first:
+      1: 100248
+    second: beetle_r_hindtoe_IKGoal
+  - first:
+      1: 100250
+    second: beetle_r_HindToeLift_hlp
+  - first:
+      1: 100252
+    second: beetle_r_HindToeTap_hlp
+  - first:
+      1: 100254
+    second: beetle_r_horn-nub_bone
+  - first:
+      1: 100256
+    second: beetle_r_horn_bone
+  - first:
+      1: 100258
+    second: beetle_r_horn_ctrl
+  - first:
+      1: 100260
+    second: beetle_r_middleball_IKGoal
+  - first:
+      1: 100262
+    second: beetle_r_Middleclaws-nub_bone
+  - first:
+      1: 100264
+    second: beetle_r_Middleclaws_bone
+  - first:
+      1: 100266
+    second: beetle_r_Middlefemur_bone
+  - first:
+      1: 100268
+    second: beetle_r_MiddleFoot_ctrl
+  - first:
+      1: 100270
+    second: beetle_r_MiddleHeel_hlp
+  - first:
+      1: 100272
+    second: beetle_r_MiddleHeelPeel_hlp
+  - first:
+      1: 100274
+    second: beetle_r_Middletarsus_bone
+  - first:
+      1: 100276
+    second: beetle_r_Middletibia_bone
+  - first:
+      1: 100278
+    second: beetle_r_middletoe_IKGoal
+  - first:
+      1: 100280
+    second: beetle_r_MiddleToeLift_hlp
+  - first:
+      1: 100282
+    second: beetle_r_MiddleToeTap_hlp
+  - first:
+      1: 100284
+    second: beetle_r_midleheel_IKGoal
+  - first:
+      1: 100286
+    second: beetle_r_Wing1_bone
+  - first:
+      1: 100288
+    second: beetle_r_Wing1_ctrl
+  - first:
+      1: 100290
+    second: beetle_r_Wing2_bone
+  - first:
+      1: 100292
+    second: beetle_r_Wing2_ctrl
+  - first:
+      1: 100294
+    second: beetle_r_Wing3_bone
+  - first:
+      1: 100296
+    second: beetle_r_Wing3_ctrl
+  - first:
+      1: 100298
+    second: beetle_r_Wing4-nub_bone
+  - first:
+      1: 100300
+    second: beetle_r_Wing4_bone
+  - first:
+      1: 100302
+    second: beetle_r_Wing4_ctrl
+  - first:
+      1: 100304
+    second: beetle_Scutellum_bone
+  - first:
+      1: 100306
+    second: beetle_Scutellum_ctrl
+  - first:
+      1: 100308
+    second: beetle_Scutellum_ctrl001
+  - first:
+      1: 100310
+    second: beetle_Scutellum_ctrl002
+  - first:
+      1: 100312
+    second: Body
+  - first:
+      1: 100314
+    second: Elytron
+  - first:
+      1: 100316
+    second: Eye
+  - first:
+      1: 100318
+    second: Fur
+  - first:
+      1: 100320
+    second: Fur 1
+  - first:
+      1: 100322
+    second: target
+  - first:
+      1: 100324
+    second: wings
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: beetle_Abdomen1_bone
+  - first:
+      4: 400004
+    second: beetle_Abdomen1_ctrl
+  - first:
+      4: 400006
+    second: beetle_Abdomen2_bone
+  - first:
+      4: 400008
+    second: beetle_Abdomen2_ctrl
+  - first:
+      4: 400010
+    second: beetle_Abdomen3_bone
+  - first:
+      4: 400012
+    second: beetle_Abdomen3_ctrl
+  - first:
+      4: 400014
+    second: beetle_Abdomen4-nub_bone
+  - first:
+      4: 400016
+    second: beetle_Abdomen4_bone
+  - first:
+      4: 400018
+    second: beetle_Abdomen4_ctrl
+  - first:
+      4: 400020
+    second: beetle_COM_ctrl
+  - first:
+      4: 400022
+    second: beetle_Head-nub_bone
+  - first:
+      4: 400024
+    second: beetle_Head_bone
+  - first:
+      4: 400026
+    second: beetle_jaw_bone
+  - first:
+      4: 400028
+    second: beetle_jaw_ctrl
+  - first:
+      4: 400030
+    second: beetle_l_Antenna1_bone
+  - first:
+      4: 400032
+    second: beetle_l_Antenna1_ctrl
+  - first:
+      4: 400034
+    second: beetle_l_Antenna2_bone
+  - first:
+      4: 400036
+    second: beetle_l_Antenna2_ctrl
+  - first:
+      4: 400038
+    second: beetle_l_Antenna3_bone
+  - first:
+      4: 400040
+    second: beetle_l_Antenna3_ctrl
+  - first:
+      4: 400042
+    second: beetle_l_Antenna4-nub_bone
+  - first:
+      4: 400044
+    second: beetle_l_Antenna4_bone
+  - first:
+      4: 400046
+    second: beetle_l_Antenna4_ctrl
+  - first:
+      4: 400048
+    second: beetle_l_Chelicerae1_bone
+  - first:
+      4: 400050
+    second: beetle_l_Chelicerae2-nub_bone
+  - first:
+      4: 400052
+    second: beetle_l_Chelicerae2_bone
+  - first:
+      4: 400054
+    second: beetle_l_Elytron-nub_bone
+  - first:
+      4: 400056
+    second: beetle_l_Elytron_bone
+  - first:
+      4: 400058
+    second: beetle_l_Elytron_ctrl
+  - first:
+      4: 400060
+    second: beetle_l_frontball_IKGoal
+  - first:
+      4: 400062
+    second: beetle_l_Frontclaws-nub_bone
+  - first:
+      4: 400064
+    second: beetle_l_Frontclaws_bone
+  - first:
+      4: 400066
+    second: beetle_l_Frontfemur_bone
+  - first:
+      4: 400068
+    second: beetle_l_FrontFoot_ctrl
+  - first:
+      4: 400070
+    second: beetle_l_FrontHeel_hlp
+  - first:
+      4: 400072
+    second: beetle_l_frontheel_IKGoal
+  - first:
+      4: 400074
+    second: beetle_l_FrontHeelPeel_hlp
+  - first:
+      4: 400076
+    second: beetle_l_Fronttarsus_bone
+  - first:
+      4: 400078
+    second: beetle_l_Fronttibia_bone
+  - first:
+      4: 400080
+    second: beetle_l_fronttoe_IKGoal
+  - first:
+      4: 400082
+    second: beetle_l_FrontToeLift_hlp
+  - first:
+      4: 400084
+    second: beetle_l_FrontToeTap_hlp
+  - first:
+      4: 400086
+    second: beetle_l_hindball_IKGoal
+  - first:
+      4: 400088
+    second: beetle_l_Hindclaws-nub_bone
+  - first:
+      4: 400090
+    second: beetle_l_Hindclaws_bone
+  - first:
+      4: 400092
+    second: beetle_l_Hindfemur_bone
+  - first:
+      4: 400094
+    second: beetle_l_HindFoot_ctrl
+  - first:
+      4: 400096
+    second: beetle_l_HindHeel_hlp
+  - first:
+      4: 400098
+    second: beetle_l_hindheel_IKGoal
+  - first:
+      4: 400100
+    second: beetle_l_HindHeelPeel_hlp
+  - first:
+      4: 400102
+    second: beetle_l_Hindtarsus_bone
+  - first:
+      4: 400104
+    second: beetle_l_Hindtibia_bone
+  - first:
+      4: 400106
+    second: beetle_l_hindtoe_IKGoal
+  - first:
+      4: 400108
+    second: beetle_l_HindToeLift_hlp
+  - first:
+      4: 400110
+    second: beetle_l_HindToeTap_hlp
+  - first:
+      4: 400112
+    second: beetle_l_horn-nub_bone
+  - first:
+      4: 400114
+    second: beetle_l_horn_bone
+  - first:
+      4: 400116
+    second: beetle_l_horn_ctrl
+  - first:
+      4: 400118
+    second: beetle_l_middleball_IKGoal
+  - first:
+      4: 400120
+    second: beetle_l_Middleclaws-nub_bone
+  - first:
+      4: 400122
+    second: beetle_l_Middleclaws_bone
+  - first:
+      4: 400124
+    second: beetle_l_Middlefemur_bone
+  - first:
+      4: 400126
+    second: beetle_l_MiddleFoot_ctrl
+  - first:
+      4: 400128
+    second: beetle_l_MiddleHeel_hlp
+  - first:
+      4: 400130
+    second: beetle_l_middleheel_IKGoal
+  - first:
+      4: 400132
+    second: beetle_l_MiddleHeelPeel_hlp
+  - first:
+      4: 400134
+    second: beetle_l_Middletarsus_bone
+  - first:
+      4: 400136
+    second: beetle_l_Middletibia_bone
+  - first:
+      4: 400138
+    second: beetle_l_middletoe_IKGoal
+  - first:
+      4: 400140
+    second: beetle_l_MiddleToeLift_hlp
+  - first:
+      4: 400142
+    second: beetle_l_MiddleToeTap_hlp
+  - first:
+      4: 400144
+    second: beetle_l_Wing1_bone
+  - first:
+      4: 400146
+    second: beetle_l_Wing1_ctrl
+  - first:
+      4: 400148
+    second: beetle_l_Wing2_bone
+  - first:
+      4: 400150
+    second: beetle_l_Wing2_ctrl
+  - first:
+      4: 400152
+    second: beetle_l_Wing3_bone
+  - first:
+      4: 400154
+    second: beetle_l_Wing3_ctrl
+  - first:
+      4: 400156
+    second: beetle_l_Wing4-nub_bone
+  - first:
+      4: 400158
+    second: beetle_l_Wing4_bone
+  - first:
+      4: 400160
+    second: beetle_l_Wing4_ctrl
+  - first:
+      4: 400162
+    second: beetle_Main_ctrl
+  - first:
+      4: 400164
+    second: beetle_mouth-nub_bone
+  - first:
+      4: 400166
+    second: beetle_mouth_bone
+  - first:
+      4: 400168
+    second: beetle_mouth_ctrl
+  - first:
+      4: 400170
+    second: beetle_Pronotum_bone
+  - first:
+      4: 400172
+    second: beetle_r_Antenna1_bone
+  - first:
+      4: 400174
+    second: beetle_r_Antenna1_ctrl
+  - first:
+      4: 400176
+    second: beetle_r_Antenna2_bone
+  - first:
+      4: 400178
+    second: beetle_r_Antenna2_bone 1
+  - first:
+      4: 400180
+    second: beetle_r_Antenna2_ctrl
+  - first:
+      4: 400182
+    second: beetle_r_Antenna2_ctrl 1
+  - first:
+      4: 400184
+    second: beetle_r_Antenna4-nub_bone
+  - first:
+      4: 400186
+    second: beetle_r_Antenna4_bone
+  - first:
+      4: 400188
+    second: beetle_r_Antenna4_ctrl
+  - first:
+      4: 400190
+    second: beetle_r_Chelicerae1_bone
+  - first:
+      4: 400192
+    second: beetle_r_Chelicerae2-nub_bone
+  - first:
+      4: 400194
+    second: beetle_r_Chelicerae2_bone
+  - first:
+      4: 400196
+    second: beetle_r_Elytron-nub_bone
+  - first:
+      4: 400198
+    second: beetle_r_Elytron_bone
+  - first:
+      4: 400200
+    second: beetle_r_Elytron_ctrl
+  - first:
+      4: 400202
+    second: beetle_r_frontball_IKGoal
+  - first:
+      4: 400204
+    second: beetle_r_Frontclaws-nub_bone
+  - first:
+      4: 400206
+    second: beetle_r_Frontclaws_bone
+  - first:
+      4: 400208
+    second: beetle_r_Frontfemur_bone
+  - first:
+      4: 400210
+    second: beetle_r_FrontFoot_ctrl
+  - first:
+      4: 400212
+    second: beetle_r_FrontHeel_hlp
+  - first:
+      4: 400214
+    second: beetle_r_frontheel_IKGoal
+  - first:
+      4: 400216
+    second: beetle_r_FrontHeelPeel_hlp
+  - first:
+      4: 400218
+    second: beetle_r_Fronttarsus_bone
+  - first:
+      4: 400220
+    second: beetle_r_Fronttibia_bone
+  - first:
+      4: 400222
+    second: beetle_r_fronttoe_IKGoal
+  - first:
+      4: 400224
+    second: beetle_r_FrontToeLift_hlp
+  - first:
+      4: 400226
+    second: beetle_r_FrontToeTap_hlp
+  - first:
+      4: 400228
+    second: beetle_r_hindball_IKGoal
+  - first:
+      4: 400230
+    second: beetle_r_Hindclaws-nub_bone
+  - first:
+      4: 400232
+    second: beetle_r_Hindclaws_bone
+  - first:
+      4: 400234
+    second: beetle_r_Hindfemur_bone
+  - first:
+      4: 400236
+    second: beetle_r_HindFoot_ctrl
+  - first:
+      4: 400238
+    second: beetle_r_HindHeel_hlp
+  - first:
+      4: 400240
+    second: beetle_r_hindheel_IKGoal
+  - first:
+      4: 400242
+    second: beetle_r_HindHeelPeel_hlp
+  - first:
+      4: 400244
+    second: beetle_r_Hindtarsus_bone
+  - first:
+      4: 400246
+    second: beetle_r_Hindtibia_bone
+  - first:
+      4: 400248
+    second: beetle_r_hindtoe_IKGoal
+  - first:
+      4: 400250
+    second: beetle_r_HindToeLift_hlp
+  - first:
+      4: 400252
+    second: beetle_r_HindToeTap_hlp
+  - first:
+      4: 400254
+    second: beetle_r_horn-nub_bone
+  - first:
+      4: 400256
+    second: beetle_r_horn_bone
+  - first:
+      4: 400258
+    second: beetle_r_horn_ctrl
+  - first:
+      4: 400260
+    second: beetle_r_middleball_IKGoal
+  - first:
+      4: 400262
+    second: beetle_r_Middleclaws-nub_bone
+  - first:
+      4: 400264
+    second: beetle_r_Middleclaws_bone
+  - first:
+      4: 400266
+    second: beetle_r_Middlefemur_bone
+  - first:
+      4: 400268
+    second: beetle_r_MiddleFoot_ctrl
+  - first:
+      4: 400270
+    second: beetle_r_MiddleHeel_hlp
+  - first:
+      4: 400272
+    second: beetle_r_MiddleHeelPeel_hlp
+  - first:
+      4: 400274
+    second: beetle_r_Middletarsus_bone
+  - first:
+      4: 400276
+    second: beetle_r_Middletibia_bone
+  - first:
+      4: 400278
+    second: beetle_r_middletoe_IKGoal
+  - first:
+      4: 400280
+    second: beetle_r_MiddleToeLift_hlp
+  - first:
+      4: 400282
+    second: beetle_r_MiddleToeTap_hlp
+  - first:
+      4: 400284
+    second: beetle_r_midleheel_IKGoal
+  - first:
+      4: 400286
+    second: beetle_r_Wing1_bone
+  - first:
+      4: 400288
+    second: beetle_r_Wing1_ctrl
+  - first:
+      4: 400290
+    second: beetle_r_Wing2_bone
+  - first:
+      4: 400292
+    second: beetle_r_Wing2_ctrl
+  - first:
+      4: 400294
+    second: beetle_r_Wing3_bone
+  - first:
+      4: 400296
+    second: beetle_r_Wing3_ctrl
+  - first:
+      4: 400298
+    second: beetle_r_Wing4-nub_bone
+  - first:
+      4: 400300
+    second: beetle_r_Wing4_bone
+  - first:
+      4: 400302
+    second: beetle_r_Wing4_ctrl
+  - first:
+      4: 400304
+    second: beetle_Scutellum_bone
+  - first:
+      4: 400306
+    second: beetle_Scutellum_ctrl
+  - first:
+      4: 400308
+    second: beetle_Scutellum_ctrl001
+  - first:
+      4: 400310
+    second: beetle_Scutellum_ctrl002
+  - first:
+      4: 400312
+    second: Body
+  - first:
+      4: 400314
+    second: Elytron
+  - first:
+      4: 400316
+    second: Eye
+  - first:
+      4: 400318
+    second: Fur
+  - first:
+      4: 400320
+    second: Fur 1
+  - first:
+      4: 400322
+    second: target
+  - first:
+      4: 400324
+    second: wings
+  - first:
+      23: 2300000
+    second: beetle_l_FrontFoot_ctrl
+  - first:
+      23: 2300002
+    second: beetle_l_HindFoot_ctrl
+  - first:
+      23: 2300004
+    second: beetle_l_MiddleFoot_ctrl
+  - first:
+      23: 2300006
+    second: beetle_r_FrontFoot_ctrl
+  - first:
+      23: 2300008
+    second: beetle_r_HindFoot_ctrl
+  - first:
+      23: 2300010
+    second: beetle_r_MiddleFoot_ctrl
+  - first:
+      23: 2300012
+    second: Eye
+  - first:
+      33: 3300000
+    second: beetle_l_FrontFoot_ctrl
+  - first:
+      33: 3300002
+    second: beetle_l_HindFoot_ctrl
+  - first:
+      33: 3300004
+    second: beetle_l_MiddleFoot_ctrl
+  - first:
+      33: 3300006
+    second: beetle_r_FrontFoot_ctrl
+  - first:
+      33: 3300008
+    second: beetle_r_HindFoot_ctrl
+  - first:
+      33: 3300010
+    second: beetle_r_MiddleFoot_ctrl
+  - first:
+      33: 3300012
+    second: Eye
+  - first:
+      43: 4300000
+    second: Body
+  - first:
+      43: 4300002
+    second: wings
+  - first:
+      43: 4300004
+    second: Elytron
+  - first:
+      43: 4300006
+    second: Fur
+  - first:
+      43: 4300008
+    second: Fur
+  - first:
+      43: 4300010
+    second: beetle_r_MiddleFoot_ctrl
+  - first:
+      43: 4300012
+    second: beetle_l_MiddleFoot_ctrl
+  - first:
+      43: 4300014
+    second: beetle_l_HindFoot_ctrl
+  - first:
+      43: 4300016
+    second: beetle_r_HindFoot_ctrl
+  - first:
+      43: 4300018
+    second: beetle_r_FrontFoot_ctrl
+  - first:
+      43: 4300020
+    second: beetle_l_FrontFoot_ctrl
+  - first:
+      43: 4300022
+    second: Eye
+  - first:
+      74: 7400000
+    second: hit
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Body
+  - first:
+      137: 13700002
+    second: Elytron
+  - first:
+      137: 13700004
+    second: Fur
+  - first:
+      137: 13700006
+    second: Fur 1
+  - first:
+      137: 13700008
+    second: wings
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: b374b1c8aa51a6a4bbeb3fb379a2d1c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 82990909f642d4444a79cdd70bba6be8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 04 - Default
+    second: {fileID: 2100000, guid: b314d589779d2c048a8e811dc93de8e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 05 - Default
+    second: {fileID: 2100000, guid: ac0763ff33ec68f4d8d8244ddc47a49c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: e07a4f14543908a4c89182a0a06df4d9, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: hit
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 429
+      lastFrame: 447
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: beatle_Elytron_mesh
+        weight: 1
+      - path: beatle_Eyes_mesh
+        weight: 1
+      - path: beatle_Fur1_mesh
+        weight: 1
+      - path: beatle_Fur2_mesh
+        weight: 1
+      - path: beatle_mesh
+        weight: 1
+      - path: beatle_Wings_mesh
+        weight: 1
+      - path: beetle_Head_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_COM_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp/beetle_l_FrontHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp/beetle_l_FrontHeelPeel_hlp/beetle_l_frontball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp/beetle_l_FrontHeelPeel_hlp/beetle_l_frontheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp/beetle_l_FrontToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_FrontFoot_ctrl/beetle_l_FrontHeel_hlp/beetle_l_FrontToeLift_hlp/beetle_l_FrontToeTap_hlp/beetle_l_fronttoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp/beetle_l_HindHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp/beetle_l_HindHeelPeel_hlp/beetle_l_hindball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp/beetle_l_HindHeelPeel_hlp/beetle_l_hindheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp/beetle_l_HindToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_HindFoot_ctrl/beetle_l_HindHeel_hlp/beetle_l_HindToeLift_hlp/beetle_l_HindToeTap_hlp/beetle_l_hindtoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp/beetle_l_MiddleHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp/beetle_l_MiddleHeelPeel_hlp/beetle_l_middleball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp/beetle_l_MiddleHeelPeel_hlp/beetle_l_middleheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp/beetle_l_MiddleToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_l_MiddleFoot_ctrl/beetle_l_MiddleHeel_hlp/beetle_l_MiddleToeLift_hlp/beetle_l_MiddleToeTap_hlp/beetle_l_middletoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp/beetle_r_FrontHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp/beetle_r_FrontHeelPeel_hlp/beetle_r_frontball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp/beetle_r_FrontHeelPeel_hlp/beetle_r_frontheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp/beetle_r_FrontToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_FrontFoot_ctrl/beetle_r_FrontHeel_hlp/beetle_r_FrontToeLift_hlp/beetle_r_FrontToeTap_hlp/beetle_r_fronttoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp/beetle_r_HindHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp/beetle_r_HindHeelPeel_hlp/beetle_r_hindball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp/beetle_r_HindHeelPeel_hlp/beetle_r_hindheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp/beetle_r_HindToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_HindFoot_ctrl/beetle_r_HindHeel_hlp/beetle_r_HindToeLift_hlp/beetle_r_HindToeTap_hlp/beetle_r_hindtoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp/beetle_r_MiddleHeelPeel_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp/beetle_r_MiddleHeelPeel_hlp/beetle_r_middleball_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp/beetle_r_MiddleHeelPeel_hlp/beetle_r_midleheel_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp/beetle_r_MiddleToeTap_hlp
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_r_MiddleFoot_ctrl/beetle_r_MiddleHeel_hlp/beetle_r_MiddleToeLift_hlp/beetle_r_MiddleToeTap_hlp/beetle_r_middletoe_IKGoal
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_bone/beetle_Abdomen2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_bone/beetle_Abdomen2_bone/beetle_Abdomen3_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_bone/beetle_Abdomen2_bone/beetle_Abdomen3_bone/beetle_Abdomen4_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_bone/beetle_Abdomen2_bone/beetle_Abdomen3_bone/beetle_Abdomen4_bone/beetle_Abdomen4-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_ctrl/beetle_Abdomen2_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_ctrl/beetle_Abdomen2_ctrl/beetle_Abdomen3_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Abdomen1_ctrl/beetle_Abdomen2_ctrl/beetle_Abdomen3_ctrl/beetle_Abdomen4_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Elytron_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Elytron_bone/beetle_l_Elytron-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Elytron_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Hindfemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Hindfemur_bone/beetle_l_Hindtibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Hindfemur_bone/beetle_l_Hindtibia_bone/beetle_l_Hindtarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Hindfemur_bone/beetle_l_Hindtibia_bone/beetle_l_Hindtarsus_bone/beetle_l_Hindclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Hindfemur_bone/beetle_l_Hindtibia_bone/beetle_l_Hindtarsus_bone/beetle_l_Hindclaws_bone/beetle_l_Hindclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Middlefemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Middlefemur_bone/beetle_l_Middletibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Middlefemur_bone/beetle_l_Middletibia_bone/beetle_l_Middletarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Middlefemur_bone/beetle_l_Middletibia_bone/beetle_l_Middletarsus_bone/beetle_l_Middleclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Middlefemur_bone/beetle_l_Middletibia_bone/beetle_l_Middletarsus_bone/beetle_l_Middleclaws_bone/beetle_l_Middleclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_bone/beetle_l_Wing2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_bone/beetle_l_Wing2_bone/beetle_l_Wing3_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_bone/beetle_l_Wing2_bone/beetle_l_Wing3_bone/beetle_l_Wing4_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_bone/beetle_l_Wing2_bone/beetle_l_Wing3_bone/beetle_l_Wing4_bone/beetle_l_Wing4-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_ctrl/beetle_l_Wing2_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_ctrl/beetle_l_Wing2_ctrl/beetle_l_Wing3_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_l_Wing1_ctrl/beetle_l_Wing2_ctrl/beetle_l_Wing3_ctrl/beetle_l_Wing4_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_Head-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_l_Chelicerae1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_l_Chelicerae1_bone/beetle_l_Chelicerae2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_l_Chelicerae1_bone/beetle_l_Chelicerae2_bone/beetle_l_Chelicerae2-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_mouth-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_r_Chelicerae1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_r_Chelicerae1_bone/beetle_r_Chelicerae2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_bone/beetle_mouth_bone/beetle_r_Chelicerae1_bone/beetle_r_Chelicerae2_bone/beetle_r_Chelicerae2-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_jaw_ctrl/beetle_mouth_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_bone/beetle_l_Antenna2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_bone/beetle_l_Antenna2_bone/beetle_l_Antenna3_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_bone/beetle_l_Antenna2_bone/beetle_l_Antenna3_bone/beetle_l_Antenna4_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_bone/beetle_l_Antenna2_bone/beetle_l_Antenna3_bone/beetle_l_Antenna4_bone/beetle_l_Antenna4-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_ctrl/beetle_l_Antenna2_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_ctrl/beetle_l_Antenna2_ctrl/beetle_l_Antenna3_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_Antenna1_ctrl/beetle_l_Antenna2_ctrl/beetle_l_Antenna3_ctrl/beetle_l_Antenna4_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_horn_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_horn_bone/beetle_l_horn-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_l_horn_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_bone/beetle_r_Antenna2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_bone/beetle_r_Antenna2_bone/beetle_r_Antenna3_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_bone/beetle_r_Antenna2_bone/beetle_r_Antenna3_bone/beetle_r_Antenna4_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_bone/beetle_r_Antenna2_bone/beetle_r_Antenna3_bone/beetle_r_Antenna4_bone/beetle_r_Antenna4-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_ctrl/beetle_r_Antenna2_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_ctrl/beetle_r_Antenna2_ctrl/beetle_r_Antenna3_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_Antenna1_ctrl/beetle_r_Antenna2_ctrl/beetle_r_Antenna3_ctrl/beetle_r_Antenna4_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_horn_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_horn_bone/beetle_r_horn-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_Head_bone/beetle_r_horn_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_l_Frontfemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_l_Frontfemur_bone/beetle_l_Fronttibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_l_Frontfemur_bone/beetle_l_Fronttibia_bone/beetle_l_Fronttarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_l_Frontfemur_bone/beetle_l_Fronttibia_bone/beetle_l_Fronttarsus_bone/beetle_l_Frontclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_l_Frontfemur_bone/beetle_l_Fronttibia_bone/beetle_l_Fronttarsus_bone/beetle_l_Frontclaws_bone/beetle_l_Frontclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_r_Frontfemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_r_Frontfemur_bone/beetle_r_Fronttibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_r_Frontfemur_bone/beetle_r_Fronttibia_bone/beetle_r_Fronttarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_r_Frontfemur_bone/beetle_r_Fronttibia_bone/beetle_r_Fronttarsus_bone/beetle_r_Frontclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_Pronotum_bone/beetle_r_Frontfemur_bone/beetle_r_Fronttibia_bone/beetle_r_Fronttarsus_bone/beetle_r_Frontclaws_bone/beetle_r_Frontclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Elytron_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Elytron_bone/beetle_r_Elytron-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Elytron_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Hindfemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Hindfemur_bone/beetle_r_Hindtibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Hindfemur_bone/beetle_r_Hindtibia_bone/beetle_r_Hindtarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Hindfemur_bone/beetle_r_Hindtibia_bone/beetle_r_Hindtarsus_bone/beetle_r_Hindclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Hindfemur_bone/beetle_r_Hindtibia_bone/beetle_r_Hindtarsus_bone/beetle_r_Hindclaws_bone/beetle_r_Hindclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Middlefemur_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Middlefemur_bone/beetle_r_Middletibia_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Middlefemur_bone/beetle_r_Middletibia_bone/beetle_r_Middletarsus_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Middlefemur_bone/beetle_r_Middletibia_bone/beetle_r_Middletarsus_bone/beetle_r_Middleclaws_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Middlefemur_bone/beetle_r_Middletibia_bone/beetle_r_Middletarsus_bone/beetle_r_Middleclaws_bone/beetle_r_Middleclaws-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_bone/beetle_r_Wing2_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_bone/beetle_r_Wing2_bone/beetle_r_Wing3_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_bone/beetle_r_Wing2_bone/beetle_r_Wing3_bone/beetle_r_Wing4_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_bone/beetle_r_Wing2_bone/beetle_r_Wing3_bone/beetle_r_Wing4_bone/beetle_r_Wing4-nub_bone
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_ctrl/beetle_r_Wing2_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_ctrl/beetle_r_Wing2_ctrl/beetle_r_Wing3_ctrl
+        weight: 1
+      - path: beetle_Main_ctrl/beetle_Scutellum_bone/beetle_r_Wing1_ctrl/beetle_r_Wing2_ctrl/beetle_r_Wing3_ctrl/beetle_r_Wing4_ctrl
+        weight: 1
+      - path: beetle_Pronotum_ctrl
+        weight: 1
+      - path: beetle_Scutellum_ctrl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: beetle_Main_ctrl
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
