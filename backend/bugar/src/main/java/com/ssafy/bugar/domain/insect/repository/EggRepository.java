@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EggRepository extends JpaRepository<Egg, Long>{
-    List<Egg> findByUserIdOrderByCatchedDateDesc(Long userId);
+    List<Egg> findByUserIdOrderByCreatedDateDesc(Long userId);
 }

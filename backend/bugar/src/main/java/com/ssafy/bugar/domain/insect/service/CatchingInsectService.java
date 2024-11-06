@@ -74,7 +74,7 @@ public class CatchingInsectService {
             possibleInsects.add(possibleInsect);
         }
         List<EggItem> eggs = new ArrayList<>();
-        List<Egg> findEggs = eggRepository.findByUserIdOrderByCatchedDateDesc(userId);
+        List<Egg> findEggs = eggRepository.findByUserIdOrderByCreatedDateDesc(userId);
         for (Egg findEgg : findEggs) {
             EggItem egg = EggItem.builder().eggId(findEgg.getEggId()).eggName(findEgg.getParentNickname() + " 의 알").receiveDate(findEgg.getCreatedDate().toString()).build();
             eggs.add(egg);

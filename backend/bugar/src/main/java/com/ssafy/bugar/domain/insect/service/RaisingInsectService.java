@@ -80,18 +80,25 @@ public class RaisingInsectService {
         Insect insectType = insectRepository.findByInsectId(raisingInsect.getInsectId());
         AreaType areaName = areaRepository.findByAreaId(insectType.getAreaId()).getAreaName();
 
-        GetInsectInfoResponseDto getInsectInfoResponseDto = GetInsectInfoResponseDto.builder()
-                .areaType(areaName)
-                .insectName(insectType.getInsectKrName())
-                .canFeed(raisingInsect.getFeedCnt())
-                .nickname(raisingInsect.getInsectNickname())
-                .insectId(raisingInsect.getInsectId())
-                .family(insectType.getFamily())
-                .livingDate(raisingInsect.getCreatedDate())
-                .clearEvent(raisingInsect.getEventId())
-                .build();
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(Category.FOOD);
 
-        return getInsectInfoResponseDto;
+        CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
+
+        return GetInsectInfoResponseDto.builder()
+                .raisingInsectId(raisingInsectId)
+                .nickname(raisingInsect.getInsectNickname())
+                .insectName(insectType.getInsectKrName())
+                .family(insectType.getFamily())
+                .areaType(areaName)
+                .feedCnt(raisingInsect.getFeedCnt())
+                .lastEat(foodLoveScore.get(0).getCreatedDate())
+                .interactCnt(raisingInsect.getInteractCnt())
+                .livingDate(raisingInsect.getCreatedDate())
+                .continuousDays(raisingInsect.getContinuousDays())
+                .loveScore(checkInsectEvent.getLoveScore())
+                .isEvent(checkInsectEvent.isEvnet())
+                .eventType(checkInsectEvent.getEventType())
+                .build();
     }
 
     public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) {
@@ -101,7 +108,7 @@ public class RaisingInsectService {
         // 연속 출석일에 따라 점수 추가 (최대 10점)
         // 애정도 올리기 항목에 따라 점수 추가 (WEATHER 5점, FOOD 3점, INTERACTION 1점)
         int score = (insect.getContinuousDays() <= 10) ? insect.getContinuousDays() : 10;
-        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByCollectedInsectId(raisingInsectId);
+        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsectId);
 
         for(InsectLoveScore insectLoveScore : list) {
             try {
