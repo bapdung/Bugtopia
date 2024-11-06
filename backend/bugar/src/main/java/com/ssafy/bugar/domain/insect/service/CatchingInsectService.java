@@ -57,19 +57,22 @@ public class CatchingInsectService {
         // 육성 가능 곤충
         if (viewType == CatchInsectViewType.CATCHED) {
             CatchPossibleListResponseDto possibleResponse = getPossibleInsectList(userId);
+            log.info("possibleResponse : " + possibleResponse.toString());
             return CatchListResponseDto.builder().possibleInsectCnt(possibleResponse.getPossibleInsectCnt()).eggCnt(
                     possibleResponse.getEggCnt()).possibleList(possibleResponse.getPossibleList()).build();
         }
-
         // 육성 중 곤충
         if (viewType == CatchInsectViewType.RAISING) {
             CatchRaisingListResponseDto raisingResponse = getRaisingInsectList(userId);
+            log.info("raisingResponse : " + raisingResponse.toString());
             return CatchListResponseDto.builder().forestCnt(raisingResponse.getForestCnt()).waterCnt(
                     raisingResponse.getWaterCnt()).gardenCnt(raisingResponse.getGardenCnt()).forestList(raisingResponse.getForestList()).waterList(raisingResponse.getWaterList()).gardenList(raisingResponse.getGardenList()).build();
         }
 
         // 육성 완료 곤충
         CatchDoneListResponseDto doneResponse = getDoneInsectList(userId);
+
+        log.info("doneResponse : " + doneResponse.toString());
         return CatchListResponseDto.builder().totalCnt(doneResponse.getTotalCnt()).doneList(doneResponse.getDoneList()).build();
     }
 

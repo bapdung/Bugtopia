@@ -6,6 +6,7 @@ import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/catch")
 @RequiredArgsConstructor
+@Slf4j
 public class CatchingController {
 
     private final CatchingInsectService catchingInsectService;
@@ -35,6 +37,7 @@ public class CatchingController {
     @GetMapping
     public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId, @RequestParam("viewType")
                                                                       CatchInsectViewType viewType) {
+        log.info("첫 호출" + userId + ", " + viewType);
         CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
     }
