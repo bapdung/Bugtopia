@@ -725,7 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  insectPrefab: {fileID: 1549318728098764, guid: 864705ce5485d7847b522a0eaceb43ab, type: 3}
+  insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
 --- !u!4 &1037246578
 Transform:

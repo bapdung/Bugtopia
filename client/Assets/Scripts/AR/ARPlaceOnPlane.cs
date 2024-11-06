@@ -36,17 +36,19 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         long raisingInsectId = 1; // 하드코딩된 raisingInsectId
 
-        Debug.Log("하이");
+        // StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        // {
+        //     insectInfoResponse = response;
+        //     Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
+        // },
+        // (error) =>
+        // {
+        //     Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
+        // }));
 
-        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
-        {
-            insectInfoResponse = response;
-            Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
-        },
-        (error) =>
-        {
-            Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
-        }));
+        // insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
+        insectPrefab = PrefabLoader.LoadInsectPrefab("Mantis");
+
 
         UpdateInsectObject();
     }
@@ -79,6 +81,9 @@ public class ARPlaceOnPlane : MonoBehaviour
             {
                 insectObject = Instantiate(insectPrefab, placementPose.position, placementPose.rotation);
                 insectAnimator = insectObject.GetComponent<Animator>(); // Animator 초기화
+
+                insectObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
                 if (insectAnimator != null)
                 {
                     SetInsectIdle(); // 초기 상태를 idle로 설정
@@ -117,16 +122,16 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             SetInsectIdle();
 
-            var increaseScoreRequest = new IncreaseScoreRequest
-            {
-                raisingInsectId = insectInfoResponse.insectId,
-                category = 1
-            };
+            // var increaseScoreRequest = new IncreaseScoreRequest
+            // {
+            //     raisingInsectId = insectInfoResponse.insectId,
+            //     category = 1
+            // };
 
-            StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-                onSuccess: () => Debug.Log("점수 증가 성공"),
-                onFailure: error => Debug.LogError("점수 증가 실패: " + error)
-            ));
+            // StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
+            //     onSuccess: () => Debug.Log("점수 증가 성공"),
+            //     onFailure: error => Debug.LogError("점수 증가 실패: " + error)
+            // ));
 
             Destroy(foodObject);
             foodObject = null;
