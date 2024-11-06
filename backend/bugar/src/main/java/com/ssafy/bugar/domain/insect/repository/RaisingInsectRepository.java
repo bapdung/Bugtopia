@@ -1,6 +1,8 @@
 package com.ssafy.bugar.domain.insect.repository;
 
 import com.ssafy.bugar.domain.insect.dto.response.CatchDoneListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto.CatchInsectDetailProjection;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +19,7 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
             FROM raising_insects ri
             JOIN insects i ON ri.insect_id = i.insect_id
             JOIN area a ON i.area_id = a.area_id
-            WHERE ri.user_id = :userId AND a.area_name = :areaName
+            WHERE ri.user_id = :userId AND a.area_name = :areaName AND ri.state = 'RAISE'
             """, nativeQuery = true)
     List<GetAreaInsectResponseDto.InsectList> findInsectsByUserIdAndAreaName(@Param("userId") Long userId, @Param("areaName") String areaName);
 
@@ -32,4 +34,11 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
 
     RaisingInsect findByRaisingInsectId(Long raisingInsectId);
 
+    @Query(value = """
+            SELECT r.insect_nickname AS insectNickname, i.family AS family, i.insect_kr_name AS krwName, r.created_date AS startDate, r.updated_date AS doneDate, DATEDIFF(NOW(), r.created_date) + 1 AS meetingDays
+            FROM raising_insects AS r
+            JOIN insects AS i ON i.insect_id = r.insect_id
+            WHERE r.raising_insect_id = :raisingInsectId
+            """, nativeQuery = true)
+    CatchInsectDetailProjection findDoneInsectDetail(@Param("raisingInsectId") Long raisingInsectId);
 }

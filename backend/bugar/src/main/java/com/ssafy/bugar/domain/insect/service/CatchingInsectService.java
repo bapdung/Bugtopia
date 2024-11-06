@@ -4,6 +4,8 @@ import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchDoneListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchDoneListResponseDto.DoneInsectItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto.CatchInsectDetailProjection;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchPossibleListResponseDto.EggItem;
@@ -13,16 +15,19 @@ import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto.Insec
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
+import com.ssafy.bugar.domain.insect.enums.CatchInsectDetailViewType;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.enums.CatchState;
 import com.ssafy.bugar.domain.insect.repository.CatchingInsectRepository;
 import com.ssafy.bugar.domain.insect.repository.EggRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
+import com.ssafy.bugar.global.exception.CustomException;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,7 +57,6 @@ public class CatchingInsectService {
     }
 
     public CatchListResponseDto getCatchList(Long userId, CatchInsectViewType viewType) {
-
 
         // 육성 가능 곤충
         if (viewType == CatchInsectViewType.CATCHED) {
@@ -96,6 +100,30 @@ public class CatchingInsectService {
         List<DoneInsectItem> doneInsects = raisingInsectRepository.findDoneInsectsByUserId(userId);
         return CatchDoneListResponseDto.builder().totalCnt(doneInsects.size()).doneList(doneInsects).build();
     }
+
+    // 곤충 디테일 정보
+    public CatchInsectDetailResponseDto getDetail(Long insectId, CatchInsectDetailViewType viewType, Long userId) {
+        // 채집 곤충 디테일
+        if (viewType == CatchInsectDetailViewType.CATCHED) {
+            CatchInsectDetailProjection catchInsect = catchingInsectRepository.findCatchedInsectDetail(insectId);
+            int havingInsectCnt = raisingInsectRepository.findInsectsByUserIdAndAreaName(userId,
+                    String.valueOf(catchInsect.getArea())).size();
+            return CatchInsectDetailResponseDto.builder().krwName(catchInsect.getKrwName()).engName(
+                    catchInsect.getEngName()).info(catchInsect.getInfo()).canRaise(catchInsect.getCanRaise() == 0 ? (havingInsectCnt >= 3 ? 2 : 0) : catchInsect.getCanRaise()).family(
+                    catchInsect.getFamily()).area(catchInsect.getArea()).rejectedReason(catchInsect.getRejectedReason()).build();
+        }
+
+        // 육성 완료 곤충 디테일
+        if (viewType == CatchInsectDetailViewType.DONE) {
+            CatchInsectDetailProjection doneInsect = raisingInsectRepository.findDoneInsectDetail(insectId);
+            return CatchInsectDetailResponseDto.builder().insectNickname(doneInsect.getInsectNickname()).krwName(
+                    doneInsect.getKrwName()).startDate(doneInsect.getStartDate()).doneDate(doneInsect.getDoneDate()).meetingDays(
+                    doneInsect.getMeetingDays()).family(doneInsect.getFamily()).build();
+        }
+
+        throw new CustomException(HttpStatus.BAD_REQUEST, "ViewType 을 다시 한 번 확인해주세요.");
+    }
+
 
     @Transactional
     public void deleteCatchInsect(CatchDeleteRequestDto request) {
