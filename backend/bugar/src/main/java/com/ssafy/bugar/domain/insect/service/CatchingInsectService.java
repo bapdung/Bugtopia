@@ -103,3 +103,4 @@ public class CatchingInsectService {
         insect.deleteInsect(request.getCatchedInsectId());
     }
 }
+

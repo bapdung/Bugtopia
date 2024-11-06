@@ -31,4 +31,5 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
     List<CatchDoneListResponseDto.DoneInsectItem> findDoneInsectsByUserId(@Param("userId") Long userId);
 
     RaisingInsect findByRaisingInsectId(Long raisingInsectId);
+
 }

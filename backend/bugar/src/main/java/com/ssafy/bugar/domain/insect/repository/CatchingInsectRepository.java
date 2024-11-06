@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CatchingInsectRepository extends JpaRepository<CatchedInsect, Long> {
+
     CatchedInsect findByCatchedInsectId(Long catchedInsectId);
 
     @Query(value = """
@@ -22,4 +23,5 @@ public interface CatchingInsectRepository extends JpaRepository<CatchedInsect, L
             ORDER BY c.created_date DESC
             """, nativeQuery = true)
     List<PossibleInsect> findPossibleInsectsByUserId(@Param("userId") Long userId);
+
 }
