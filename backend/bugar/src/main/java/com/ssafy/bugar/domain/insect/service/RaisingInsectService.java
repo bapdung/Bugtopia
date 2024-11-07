@@ -55,7 +55,7 @@ public class RaisingInsectService {
     }
 
     @Transactional
-    public CheckInsectEventResponseDto saveLoveScore(Long raisingInsectId, int categoryType) {
+    public CheckInsectEventResponseDto saveLoveScore(Long raisingInsectId, int categoryType) throws IOException {
         try {
             Category category = CategoryUtils.getCategory(categoryType);
 
@@ -80,7 +80,7 @@ public class RaisingInsectService {
         return new GetAreaInsectResponseDto(num, insectList);
     }
 
-    public GetInsectInfoResponseDto search(Long raisingInsectId) {
+    public GetInsectInfoResponseDto search(Long raisingInsectId) throws IOException {
         RaisingInsect raisingInsect = raisingInsectRepository.findById(raisingInsectId).orElse(null);
 
         if (raisingInsect == null) {

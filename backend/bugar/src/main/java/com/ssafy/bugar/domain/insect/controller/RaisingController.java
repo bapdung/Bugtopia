@@ -9,6 +9,7 @@ import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.service.RaisingInsectService;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ public class RaisingController {
 
     @PostMapping("/love-score")
     public ResponseEntity<CheckInsectEventResponseDto> saveLoveScore(
-            @RequestBody SaveLoveScoreRequestDto saveLoveScoreRequestDto) {
+            @RequestBody SaveLoveScoreRequestDto saveLoveScoreRequestDto) throws IOException {
         CheckInsectEventResponseDto checkInsectEventResponseDto = raisingInsectService.saveLoveScore(
                 saveLoveScoreRequestDto.getRaisingInsectId(), saveLoveScoreRequestDto.getCategory());
         return ResponseEntity.ok(checkInsectEventResponseDto);
@@ -57,12 +58,14 @@ public class RaisingController {
     }
 
     @GetMapping("/{raisingInsectId}")
-    public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId) {
+    public ResponseEntity<GetInsectInfoResponseDto> getInsectInfo(@PathVariable Long raisingInsectId)
+            throws IOException {
         return ResponseEntity.ok(raisingInsectService.search(raisingInsectId));
     }
 
     @GetMapping("/event/{raisingInsectId}")
-    public ResponseEntity<CheckInsectEventResponseDto> checkInsectEvent(@PathVariable Long raisingInsectId) {
+    public ResponseEntity<CheckInsectEventResponseDto> checkInsectEvent(@PathVariable Long raisingInsectId)
+            throws IOException {
         return ResponseEntity.ok(raisingInsectService.checkInsectEvent(raisingInsectId));
     }
 
