@@ -1,8 +1,10 @@
 package com.ssafy.bugar.domain.insect.service;
 
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetArInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.Event;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.entity.InsectLoveScore;
@@ -35,23 +37,26 @@ public class RaisingInsectService {
     private final EventRepository eventRepository;
 
     @Transactional
-    public void save(Long userId, Long insectId, String nickname) {
+    public SaveRaisingInsectResponseDto save(Long userId, Long insectId, String nickname) {
         RaisingInsect raisingInsect = RaisingInsect.builder()
                 .userId(userId)
                 .insectId(insectId)
                 .insectNickname(nickname)
                 .build();
 
-        raisingInsectRepository.save(raisingInsect);
+        RaisingInsect savedRaisingInsect = raisingInsectRepository.save(raisingInsect);
+        String family = insectRepository.findByInsectId(insectId).getFamily();
+
+        return new SaveRaisingInsectResponseDto(savedRaisingInsect.getRaisingInsectId(), nickname, family);
     }
 
     @Transactional
-    public void saveLoveScore(Long insectId, int categoryType) {
+    public CheckInsectEventResponseDto saveLoveScore(Long raisingInsectId, int categoryType) {
         try {
             Category category = CategoryUtils.getCategory(categoryType);
 
             InsectLoveScore insectLoveScore = InsectLoveScore.builder()
-                    .insectId(insectId)
+                    .raisingInsectId(raisingInsectId)
                     .category(category)
                     .build();
 
@@ -60,6 +65,8 @@ public class RaisingInsectService {
             log.error(e.getMessage());
             throw e;
         }
+
+        return checkInsectEvent(raisingInsectId);
     }
 
     public GetAreaInsectResponseDto searchAreaInsect(Long userId, String areaName) {
@@ -78,7 +85,7 @@ public class RaisingInsectService {
         Insect insectType = insectRepository.findByInsectId(raisingInsect.getInsectId());
         AreaType areaName = areaRepository.findByAreaId(insectType.getAreaId()).getAreaName();
 
-        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(Category.FOOD);
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId, Category.FOOD);
 
         CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
 
@@ -94,19 +101,36 @@ public class RaisingInsectService {
                 .livingDate(raisingInsect.getCreatedDate())
                 .continuousDays(raisingInsect.getContinuousDays())
                 .loveScore(checkInsectEvent.getLoveScore())
-                .isEvent(checkInsectEvent.isEvent())
+                .isEvent(checkInsectEvent.getIsEvent())
                 .eventType(checkInsectEvent.getEventType())
                 .build();
     }
 
     public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) {
-        RaisingInsect insect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        int score = calculateLoveScore(raisingInsect);
 
-        // 현재 애정도 점수 계산
+        // 진행할 이벤트가 있는지 여부와 이벤트 종류 확인
+        int completedEventScore = eventRepository.findByEventId(raisingInsect.getEventId()).getEventScore();
+        List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
+
+        if(notCompletedEventList.isEmpty() || notCompletedEventList.get(0).getEventScore() > score) {
+            return new CheckInsectEventResponseDto(score, false, null);
+        }
+
+        return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
+    }
+
+    /**
+     * 현재 애정도 점수 계산
+     * @param raisingInsect
+     * @return score
+     */
+    public int calculateLoveScore (RaisingInsect raisingInsect) {
         // 연속 출석일에 따라 점수 추가 (최대 10점)
         // 애정도 올리기 항목에 따라 점수 추가 (WEATHER 5점, FOOD 3점, INTERACTION 1점)
-        int score = (insect.getContinuousDays() <= 10) ? insect.getContinuousDays() : 10;
-        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsectId);
+        int score = (raisingInsect.getContinuousDays() <= 10) ? raisingInsect.getContinuousDays() : 10;
+        List<InsectLoveScore> list = insectLoveScoreRepository.findInsectLoveScoreByRaisingInsectId(raisingInsect.getRaisingInsectId());
 
         for(InsectLoveScore insectLoveScore : list) {
             try {
@@ -117,15 +141,7 @@ public class RaisingInsectService {
             }
         }
 
-        // 진행할 이벤트가 있는지 여부와 이벤트 종류 확인
-        int completedEventScore = eventRepository.findByEventId(insect.getEventId()).getEventScore();
-        List<Event> notCompletedEventList = eventRepository.getNotCompletedEvents(completedEventScore);
-
-        if(notCompletedEventList.isEmpty() || notCompletedEventList.get(0).getEventScore() > score) {
-            return new CheckInsectEventResponseDto(score, false, null);
-        }
-
-        return new CheckInsectEventResponseDto(score, true, notCompletedEventList.get(0).getEventName());
+        return score;
     }
 
     @Transactional
@@ -139,5 +155,19 @@ public class RaisingInsectService {
     public void release(long raisingInsectId) {
         RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
         raisingInsect.changeStatus(RaiseState.RELEASE);
+    }
+
+    public GetArInsectInfoResponseDto getInsectArInfo(Long raisingInsectId){
+        RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
+        Insect insect = insectRepository.findByInsectId(raisingInsect.getInsectId());
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId, Category.FOOD);
+
+        return GetArInsectInfoResponseDto.builder()
+                .nickname(raisingInsect.getInsectNickname())
+                .family(insect.getFamily())
+                .feedCnt(raisingInsect.getFeedCnt())
+                .lastEat(foodLoveScore.get(0).getCreatedDate())
+                .interactCnt(raisingInsect.getInteractCnt())
+                .build();
     }
 }

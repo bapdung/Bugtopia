@@ -1,14 +1,14 @@
 package com.ssafy.bugar.global.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+
 @Getter
-@NoArgsConstructor
 public class CustomException extends RuntimeException {
 
-    private HttpStatus status;
+    private final HttpStatus status;
 
     public CustomException(HttpStatus status, String message) {
         super(message);

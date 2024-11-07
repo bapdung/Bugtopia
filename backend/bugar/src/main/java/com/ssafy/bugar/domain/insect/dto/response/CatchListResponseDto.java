@@ -6,12 +6,9 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-// null인 필드는 JSON에서 보이지 않도록 설정
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CatchListResponseDto {

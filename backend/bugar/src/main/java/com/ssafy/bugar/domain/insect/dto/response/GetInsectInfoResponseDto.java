@@ -26,7 +26,7 @@ public class GetInsectInfoResponseDto {
     private Timestamp livingDate;
     private int continuousDays;
     private int loveScore;
-    private boolean isEvent;  // 그대로 유지합니다
+    private boolean isEvent;
     private EventType eventType;
 
     @JsonProperty("isEvent")

@@ -10,7 +10,7 @@ public enum CatchInsectViewType {
         try {
             return CatchInsectViewType.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CustomException(HttpStatus.BAD_REQUEST, "viewType을 다시 확인해주세요.");
+            throw new CustomException(HttpStatus.BAD_REQUEST, "viewType을 다시 확인해주세요. (CATCHED, RAISING, DONE 만 가능)");
         }
     }
 }
