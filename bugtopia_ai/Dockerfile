@@ -22,6 +22,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 애플리케이션 코드 복사
 COPY ./app ./app
 
+# 모델 파일이 있는 디렉토리 생성 및 복사
+RUN mkdir -p /app/app/model
+COPY ./app/model/bugtopia_ai_model.pt /app/app/model/
+COPY ./app/model/classes.txt /app/app/model/
+
+# Python 경로 설정
+ENV PYTHONPATH="/app:${PYTHONPATH}"
+
 # 포트 80 노출
 EXPOSE 80
 
