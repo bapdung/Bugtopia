@@ -1,7 +1,7 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.ssafy.bugar.domain.insect.enums.AreaType;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class CatchInsectDetailResponseDto {
     private String engName;
     private String info;
     private Integer canRaise;
-    private AreaType area;
+    private String area;
     private String rejectedReason;
 
     // 육성 완료 곤충
@@ -27,24 +27,42 @@ public class CatchInsectDetailResponseDto {
     private String startDate;
     private String doneDate;
     private Integer meetingDays;
+    private int messageCnt;
+    private List<MessageItem> messages;
 
     public interface CatchInsectDetailProjection {
 
         // 공통 속성
         String getKrwName();
+
         String getFamily();
 
         // 채집 곤충
         String getEngName();
+
         String getInfo();
+
         Integer getCanRaise();
-        AreaType getArea();
+
+        String getArea();
+
         String getRejectedReason();
 
         // 육성 완료 곤충
         String getInsectNickname();
+
         String getStartDate();
+
         String getDoneDate();
+
         Integer getMeetingDays();
     }
+
+    public interface MessageItem {
+        String getType();
+
+        Long getNotificationId();
+
+        boolean getIsRead();
     }
+}

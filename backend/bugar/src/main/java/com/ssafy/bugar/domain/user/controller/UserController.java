@@ -1,7 +1,9 @@
 package com.ssafy.bugar.domain.user.controller;
 
 import com.ssafy.bugar.domain.user.dto.request.UserJoinRequestDto;
+import com.ssafy.bugar.domain.user.dto.request.UserLoginRequestDto;
 import com.ssafy.bugar.domain.user.dto.response.UserJoinResponseDto;
+import com.ssafy.bugar.domain.user.dto.response.UserLoginResponseDto;
 import com.ssafy.bugar.domain.user.entity.User;
 import com.ssafy.bugar.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +30,11 @@ public class UserController {
                 .build();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginResponseDto> login(@RequestBody UserLoginRequestDto request) {
+        UserLoginResponseDto response = userService.login(request); // userService는 적절히 주입되어 있어야 함
+        return ResponseEntity.ok(response); // 200 OK 상태로 반환
     }
 }

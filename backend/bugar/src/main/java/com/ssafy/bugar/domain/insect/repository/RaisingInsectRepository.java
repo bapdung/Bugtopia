@@ -1,7 +1,7 @@
 package com.ssafy.bugar.domain.insect.repository;
 
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto.CatchInsectDetailProjection;
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.DoneInsectItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto.DoneInsectItem;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import java.util.List;
@@ -24,7 +24,13 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
                                                                              @Param("areaName") String areaName);
 
     @Query(value = """
-            SELECT r.raising_insect_id AS raisingInsectId, r.insect_nickname AS insectNickname, i.family AS family
+            SELECT r.raising_insect_id AS raisingInsectId, 
+                   r.insect_nickname AS insectNickname, 
+                   i.family AS family,
+                   (SELECT COUNT(*) 
+                    FROM notifications n 
+                    WHERE n.raising_insect_id = r.raising_insect_id 
+                      AND n.is_read = 0) AS messageCnt
             FROM raising_insects AS r
             JOIN insects AS i ON i.insect_id = r.insect_id
             WHERE r.state = 'DONE' AND r.user_id = :userId
