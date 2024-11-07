@@ -25,6 +25,11 @@ import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
 import com.ssafy.bugar.global.exception.CustomException;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import com.ssafy.bugar.domain.user.dto.response.UserJoinResponseDto;
+import com.ssafy.bugar.domain.user.entity.User;
+import com.ssafy.bugar.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -40,6 +45,7 @@ public class CatchingInsectService {
     private final CatchingInsectRepository catchingInsectRepository;
     private final EggRepository eggRepository;
     private final RaisingInsectRepository raisingInsectRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void save(Long userId, CatchSaveRequestDto request) {
