@@ -65,7 +65,7 @@ public class CatchingInsectService {
 
         return switch (type) {
             case CATCHED -> builderService.catchedInsectDetailBuilder(insectId, userId);
-            case DONE -> builderService.doneInsectDetailBuilder(insectId, userId);
+            case DONE -> builderService.doneInsectDetailBuilder(insectId);
         };
     }
 
