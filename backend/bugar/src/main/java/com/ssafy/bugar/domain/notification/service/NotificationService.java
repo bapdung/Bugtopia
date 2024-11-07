@@ -12,6 +12,7 @@ import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -23,6 +24,7 @@ public class NotificationService {
     private final UserRepository userRepository;
     private final RaisingInsectRepository raisingInsectRepository;
 
+    @Transactional
     public NotificationResponseDto save(Long raisingInsectId, NotificationType type) throws IOException {
         // 엔티티 가져오기
         RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
@@ -36,6 +38,7 @@ public class NotificationService {
         return push(user, raisingInsect, type);
     }
 
+    @Transactional
     public NotificationResponseDto push(User user, RaisingInsect raisingInsect, NotificationType type)
             throws IOException {
         // 메시지 생성
@@ -47,6 +50,7 @@ public class NotificationService {
         return buildResponse(user, message);
     }
 
+    @Transactional
     public NotificationResponseDto buildResponse(User user, String message) {
         return NotificationResponseDto.builder()
                 .userId(user.getUserId())
