@@ -11,11 +11,13 @@ namespace Models.Insect.Response
         public string family;
         public string areaType;
         public int feedCnt;
-
         public DateTime lastEat;
         public int interactCnt;
         public DateTime livingDate;
         public int continuousDays;
+        public int loveScore;
+        public bool isEvent;
+        public string eventType;
     }
 
     [System.Serializable]
