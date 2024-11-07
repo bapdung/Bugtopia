@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 121525301}
   - component: {fileID: 121525303}
   - component: {fileID: 121525302}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,8 +507,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 617347419}
   m_HandleRect: {fileID: 617347418}
   m_Direction: 2
-  m_Value: -0.000003521259
-  m_Size: 0.60529226
+  m_Value: -0.0000033908411
+  m_Size: 0.60998917
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 352424628}
   - component: {fileID: 352424627}
   - component: {fileID: 352424626}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WaterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 577235067}
   - component: {fileID: 577235066}
   - component: {fileID: 577235065}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,10 +921,10 @@ RectTransform:
   - {fileID: 1050118408}
   m_Father: {fileID: 736546020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 366}
+  m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577235065
 MonoBehaviour:
@@ -959,7 +959,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 71
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -1387,7 +1387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012198717, y: 117.00039}
+  m_AnchoredPosition: {x: 0.00012198717, y: 117.00044}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &959291728
@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 1050118411}
   - component: {fileID: 1050118410}
   - component: {fileID: 1050118409}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GardenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1586,10 +1586,10 @@ RectTransform:
   - {fileID: 321747925}
   m_Father: {fileID: 736546020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 195}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199968410
 MonoBehaviour:
@@ -1604,7 +1604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 959291727}
-  insectItemPrefab: {fileID: 0}
 --- !u!114 &1199968411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,7 +1686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1201773314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1981,7 +1980,7 @@ GameObject:
   - component: {fileID: 1626074065}
   - component: {fileID: 1626074067}
   - component: {fileID: 1626074066}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2115,7 +2114,7 @@ GameObject:
   - component: {fileID: 1651793079}
   - component: {fileID: 1651793081}
   - component: {fileID: 1651793080}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2250,7 +2249,7 @@ GameObject:
   - component: {fileID: 1656134015}
   - component: {fileID: 1656134014}
   - component: {fileID: 1656134013}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ForestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
