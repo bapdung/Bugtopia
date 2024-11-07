@@ -4,8 +4,6 @@ import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
-import com.ssafy.bugar.domain.insect.enums.CatchInsectDetailViewType;
-import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +30,15 @@ public class CatchingController {
     private final CatchingInsectService catchingInsectService;
 
     @PostMapping
-    public ResponseEntity<Void> saveCatchingInsect(@RequestHeader("userId") Long userId, @RequestBody CatchSaveRequestDto request) {
+    public ResponseEntity<Void> saveCatchingInsect(@RequestHeader("userId") Long userId,
+                                                   @RequestBody CatchSaveRequestDto request) {
         catchingInsectService.save(userId, request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId, @RequestParam("viewType")
+    public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId,
+                                                                      @RequestParam("viewType")
                                                                       String viewType) {
         CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
@@ -51,7 +51,8 @@ public class CatchingController {
     }
 
     @GetMapping("/{insectId}")
-    public ResponseEntity<CatchInsectDetailResponseDto> getInsectDetail(@RequestHeader("userId") Long userId, @PathVariable Long insectId,
+    public ResponseEntity<CatchInsectDetailResponseDto> getInsectDetail(@RequestHeader("userId") Long userId,
+                                                                        @PathVariable Long insectId,
                                                                         @RequestParam String viewType) {
         CatchInsectDetailResponseDto response = catchingInsectService.getDetail(insectId, viewType, userId);
         return ResponseEntity.ok(response);

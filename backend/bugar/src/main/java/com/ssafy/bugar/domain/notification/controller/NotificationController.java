@@ -1,8 +1,8 @@
 package com.ssafy.bugar.domain.notification.controller;
 
 import com.ssafy.bugar.domain.notification.dto.request.NotificationRequestDto;
-import com.ssafy.bugar.domain.notification.dto.request.PushMessageRequestDto;
-import com.ssafy.bugar.domain.notification.service.FirebaseService;
+import com.ssafy.bugar.domain.notification.dto.response.NotificationResponseDto;
+import com.ssafy.bugar.domain.notification.service.NotificationService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,25 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class NotificationController {
 
-    private final FirebaseService firebaseService;
-
-    @PostMapping("/fcm")
-    public ResponseEntity pushMessage(@RequestBody NotificationRequestDto requestDTO) throws IOException {
-        System.out.println(requestDTO.getTargetToken() + " "
-                + requestDTO.getTitle() + " " + requestDTO.getBody());
-
-        firebaseService.sendMessageTo(
-                requestDTO.getTargetToken(),
-                requestDTO.getTitle(),
-                requestDTO.getBody());
-        return ResponseEntity.ok().build();
-    }
+    private final NotificationService notificationService;
 
     @PostMapping("/push")
-    public ResponseEntity pushNotification(@RequestBody PushMessageRequestDto requestDTO) throws IOException {
-        firebaseService.sendMessageTo(requestDTO.getMessage().getToken(),
-                requestDTO.getMessage().getNotification().getTitle(),
-                requestDTO.getMessage().getNotification().getBody());
-        return ResponseEntity.ok().build();
+    public ResponseEntity<NotificationResponseDto> pushMessage(@RequestBody NotificationRequestDto requestDTO)
+            throws IOException {
+
+        NotificationResponseDto response = notificationService.save(requestDTO.getRaisingInsectId(),
+                requestDTO.getType());
+        return ResponseEntity.ok(response);
     }
 }
