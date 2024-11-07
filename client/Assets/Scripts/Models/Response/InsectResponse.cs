@@ -38,7 +38,7 @@ namespace Models.Insect.Response
     public class InsectListWithRegionResponse
     {
         public int num;
-        public List<InsectInfo> insectListList;
+        public List<InsectInfo> insectList;
     }
 
     [System.Serializable]

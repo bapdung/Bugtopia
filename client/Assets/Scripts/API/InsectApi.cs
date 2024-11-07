@@ -99,11 +99,11 @@ namespace API.Insect
                     InsectListWithRegionResponse responseData = JsonUtility.FromJson<InsectListWithRegionResponse>(jsonResponse);
 
                     Debug.Log("InsectListWithRegionResponse: " + responseData.num);
-                    Debug.Log("InsectListWithRegionResponse: " + responseData.insectListList);
-                    foreach (InsectInfo child in responseData.insectListList)
-                    {
-                        Debug.Log(child.family + " " + child.raisingInsectId + " " + child.nickname);
-                    }
+                    // Debug.Log("InsectListWithRegionResponse: " + responseData.insectList);
+                    // foreach (InsectInfo child in responseData.insectList)
+                    // {
+                    //     Debug.Log(child.family + " " + child.raisingInsectId + " " + child.nickname);
+                    // }
 
                     // 성공 콜백 호출
                     onSuccess?.Invoke(responseData);

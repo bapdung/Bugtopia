@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 121525301}
   - component: {fileID: 121525303}
   - component: {fileID: 121525302}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,8 +507,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 617347419}
   m_HandleRect: {fileID: 617347418}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.60999995
+  m_Value: -0.000003521259
+  m_Size: 0.60529226
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 352424628}
   - component: {fileID: 352424627}
   - component: {fileID: 352424626}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WaterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 577235067}
   - component: {fileID: 577235066}
   - component: {fileID: 577235065}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TabPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 71
     m_Bottom: 0
   m_ChildAlignment: 1
   m_Spacing: 0
@@ -1387,7 +1387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012198717, y: 117.00039}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &959291728
@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 1050118411}
   - component: {fileID: 1050118410}
   - component: {fileID: 1050118409}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GardenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1622,7 +1622,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -1981,7 +1981,7 @@ GameObject:
   - component: {fileID: 1626074065}
   - component: {fileID: 1626074067}
   - component: {fileID: 1626074066}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2115,7 +2115,7 @@ GameObject:
   - component: {fileID: 1651793079}
   - component: {fileID: 1651793081}
   - component: {fileID: 1651793080}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2250,7 +2250,7 @@ GameObject:
   - component: {fileID: 1656134015}
   - component: {fileID: 1656134014}
   - component: {fileID: 1656134013}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ForestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1402471006}
   m_HandleRect: {fileID: 1402471005}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

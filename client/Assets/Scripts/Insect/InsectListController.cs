@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using Models.Insect.Response;
@@ -8,7 +8,6 @@ using API.Insect;
 public class InsectListController : MonoBehaviour
 {
     public Transform content;
-    public GameObject insectItemPrefab;
     private InsectApi insectApi;
 
     private void Start()
@@ -30,7 +29,7 @@ public class InsectListController : MonoBehaviour
         yield return insectApi.GetInsectListWithRegion(region, response =>
         {
             Debug.Log(region + " 곤충 목록을 불러옵니다 개수: " + response.num);
-            PopulateInsectList(response.insectListList);
+            PopulateInsectList(response.insectList);
         },
         error =>
         {
@@ -46,12 +45,25 @@ public class InsectListController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // 새 리스트 아이템 생성 (nickname 텍스트만 표시)
         foreach (var insect in insectList)
         {
             Debug.Log(insect.nickname);
-            GameObject newItem = Instantiate(insectItemPrefab, content);
-            newItem.transform.Find("Nickname").GetComponent<Text>().text = insect.nickname;
+
+            // 새로운 TextMeshPro 텍스트 오브젝트 생성
+            GameObject newTextObject = new GameObject("NicknameText");
+            newTextObject.transform.SetParent(content);
+
+            // TextMeshProUGUI 컴포넌트 추가
+            TextMeshProUGUI nicknameText = newTextObject.AddComponent<TextMeshProUGUI>();
+            nicknameText.text = insect.nickname;
+            nicknameText.fontSize = 24;
+            nicknameText.alignment = TextAlignmentOptions.Center;
+            nicknameText.color = Color.black;
+
+            // 위치 및 크기 조정
+            RectTransform rectTransform = newTextObject.GetComponent<RectTransform>();
+            rectTransform.localScale = Vector3.one;
+            rectTransform.sizeDelta = new Vector2(200, 50); // 텍스트의 크기 설정
         }
     }
 }
