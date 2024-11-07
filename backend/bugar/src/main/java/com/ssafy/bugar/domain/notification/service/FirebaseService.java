@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auth.oauth2.GoogleCredentials;
-import com.ssafy.bugar.domain.notification.dto.FcmMessageDto;
+import com.ssafy.bugar.domain.notification.dto.request.PushMessageRequestDto;
 import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -24,16 +24,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FirebaseService {
 
-    @Value("{firebase.server.url}")
+    @Value("${firebase.server.url}")
     private String API_URL;
     private final ObjectMapper objectMapper;
 
     public void sendMessageTo(String targetToken, String title, String body) throws IOException {
         String message = makeMessage(targetToken, title, body);
-
+        log.info(message + "@@@@@@@@@sendMessageTo");
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(message,
                 MediaType.get("application/json; charset=utf-8"));
+        log.info(API_URL + "@@@@@@@@@@url");
         Request request = new Request.Builder()
                 .url(API_URL)
                 .post(requestBody)
@@ -42,16 +43,15 @@ public class FirebaseService {
                 .build();
 
         Response response = client.newCall(request).execute();
-
-        System.out.println(response.body().string());
+        log.info(response.toString() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 응답값!!");
     }
 
     private String makeMessage(String targetToken, String title, String body)
             throws JsonParseException, JsonProcessingException {
-        FcmMessageDto fcmMessage = FcmMessageDto.builder()
-                .message(FcmMessageDto.Message.builder()
+        PushMessageRequestDto fcmMessage = PushMessageRequestDto.builder()
+                .message(PushMessageRequestDto.Message.builder()
                         .token(targetToken)
-                        .notification(FcmMessageDto.Notification.builder()
+                        .notification(PushMessageRequestDto.Notification.builder()
                                 .title(title)
                                 .body(body)
                                 .image(null)
