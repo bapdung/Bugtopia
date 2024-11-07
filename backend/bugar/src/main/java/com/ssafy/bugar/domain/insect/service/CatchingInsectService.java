@@ -8,11 +8,13 @@ import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectDetailViewType;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
+import com.ssafy.bugar.domain.insect.enums.CatchState;
 import com.ssafy.bugar.domain.insect.repository.CatchingInsectRepository;
 import com.ssafy.bugar.domain.insect.repository.EggRepository;
 import com.ssafy.bugar.domain.insect.repository.InsectRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
 import com.ssafy.bugar.global.exception.CustomException;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,14 +32,19 @@ public class CatchingInsectService {
     private final RaisingInsectRepository raisingInsectRepository;
     private final CatchingBuilderService builderService;
 
-    // 채집 도감 저장
     @Transactional
     public void save(Long userId, CatchSaveRequestDto request) {
         Insect insect = insectRepository.findById(request.getInsectId())
                 .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND,
                         "곤충 아이디를 찾지 못했습니다. 요청한 ID: " + request.getInsectId()));
 
-        CatchedInsect catchingInsect = builderService.catchedInsectSaveBuilder(userId, request, insect);
+        CatchedInsect catchingInsect = CatchedInsect.builder()
+                .userId(userId)
+                .insectId(request.getInsectId())
+                .photo(request.getImgUrl())
+                .state(Objects.requireNonNull(insect).isCanRaise() ? CatchState.POSSIBLE : CatchState.IMPOSSIBLE)
+                .build();
+
         catchingInsectRepository.save(catchingInsect);
     }
 
@@ -49,18 +56,16 @@ public class CatchingInsectService {
             case CATCHED -> builderService.catchedInsectListBuilder(userId);
             case RAISING -> builderService.raisingInsectListBuilder(userId);
             case DONE -> builderService.doneInsectListBuilder(userId);
-            default -> throw new CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "에러가 발생했습니다.");
         };
     }
 
-    // 곤충 디테일 조회
+    // 곤충 디테일 정보
     public CatchInsectDetailResponseDto getDetail(Long insectId, String viewType, Long userId) {
         CatchInsectDetailViewType type = CatchInsectDetailViewType.fromString(viewType);
 
         return switch (type) {
             case CATCHED -> builderService.catchedInsectDetailBuilder(insectId, userId);
             case DONE -> builderService.doneInsectDetailBuilder(insectId, userId);
-            default -> throw new CustomException(HttpStatus.BAD_REQUEST, "ViewType 을 다시 한 번 확인해주세요.");
         };
     }
 

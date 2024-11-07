@@ -8,6 +8,7 @@ import com.ssafy.bugar.domain.insect.enums.CatchInsectDetailViewType;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectViewType;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/catch")
 @RequiredArgsConstructor
+@Slf4j
 public class CatchingController {
 
     private final CatchingInsectService catchingInsectService;
