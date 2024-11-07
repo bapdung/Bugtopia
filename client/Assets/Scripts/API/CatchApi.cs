@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
+using System;
 
 namespace API.Catch
 {
@@ -66,12 +67,19 @@ namespace API.Catch
             {
                 Debug.Log("s3에 사진 업로드 성공");
                 string photoUrl = s3Url; 
-                StartCoroutine(PostSearchInsect(photoUrl));
+                StartCoroutine(PostSearchInsect(photoUrl, (SearchInsectResponse response) =>
+                {
+                    var cameraManager = FindObjectOfType<CameraManager>();
+                    if (cameraManager != null)
+                    {
+                        cameraManager.OnInsectSearched(response);
+                    }
+                }));
             }
         }
 
         // 'postSearchInsect' API에 사진 URL을 전송
-        public IEnumerator PostSearchInsect(string photoUrl)
+        public IEnumerator PostSearchInsect(string photoUrl, Action<SearchInsectResponse> callback)
         {
             string requestUrl = $"{catchUrl}/search";
 
@@ -97,10 +105,33 @@ namespace API.Catch
                 }
                 else
                 {
-                    Debug.Log(request.downloadHandler.text);  
+                    // API 응답을 SearchInsectResponse 객체로 파싱
+                    SearchInsectResponse response = JsonUtility.FromJson<SearchInsectResponse>(request.downloadHandler.text);
+                    callback?.Invoke(response);  // 콜백 함수 호출
                 }
             }
         }
+    }
+
+    [System.Serializable]
+    public class SearchInsectRequest
+    {
+        public string photoUrl;
+    }
+
+    // 수정된 응답 객체
+    [System.Serializable]
+    public class SearchInsectResponse
+    {
+        public int insectId;           // 곤충ID
+        public string krName;          // 곤충명 (한글)
+        public string engName;         // 곤충명 (영어)
+        public string info;            // 곤충 정보
+        public int canRaise;           // 육성 가능(0), 육성 불가능(1), 슬롯 부족(2)
+        public string family;          // 곤충 종류
+        public string area;            // 서식지
+        public string rejectedReason;  // 육성 불가능인 경우 이유, 그 외는 null
+    
     }
 
     [System.Serializable]
@@ -115,9 +146,4 @@ namespace API.Catch
         public string path;
     }
 
-    [System.Serializable]
-    public class SearchInsectRequest
-    {
-        public string photoUrl;
-    }
 }
