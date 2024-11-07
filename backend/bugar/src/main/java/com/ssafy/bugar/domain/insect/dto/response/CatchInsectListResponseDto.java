@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class CatchListResponseDto {
+public class CatchInsectListResponseDto {
 
     // 채집 곤충 필드
     private Integer catchedInsectCnt;
@@ -32,17 +32,6 @@ public class CatchListResponseDto {
     private Integer totalCnt; // 육성 완료된 총 곤충 수
     private List<DoneInsectItem> doneList = Collections.emptyList(); // 완료된 곤충 목록
 
-    // 육성 완료 곤충 목록
-    @Getter
-    @AllArgsConstructor
-    @Builder
-    public static class DoneInsectItem {
-        private Long raisingInsectId;
-        private String family;
-        private String insectNickname;
-        private String doneDate;
-    }
-
     // 인터페이스(알)
     public interface EggItem {
         Long getEggId();
@@ -61,6 +50,18 @@ public class CatchListResponseDto {
         String getCatchedDate();
 
         String getInsectName();
+    }
+
+    public interface DoneInsectItem {
+        Long getRaisingInsectId();
+
+        String getFamily();
+
+        String getInsectNickname();
+
+        String getDoneDate();
+
+        int getMessageCnt();
     }
 
 }

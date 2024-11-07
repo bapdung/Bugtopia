@@ -3,7 +3,7 @@ package com.ssafy.bugar.domain.insect.controller;
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,10 +37,10 @@ public class CatchingController {
     }
 
     @GetMapping
-    public ResponseEntity<CatchListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId,
-                                                                      @RequestParam("viewType")
-                                                                      String viewType) {
-        CatchListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
+    public ResponseEntity<CatchInsectListResponseDto> getCatchingInsectList(@RequestHeader("userId") Long userId,
+                                                                            @RequestParam("viewType")
+                                                                            String viewType) {
+        CatchInsectListResponseDto response = catchingInsectService.getCatchList(userId, viewType);
         return ResponseEntity.ok(response);
     }
 

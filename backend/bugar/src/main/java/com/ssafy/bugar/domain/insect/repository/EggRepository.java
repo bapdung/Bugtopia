@@ -1,6 +1,6 @@
 package com.ssafy.bugar.domain.insect.repository;
 
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.EggItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto.EggItem;
 import com.ssafy.bugar.domain.insect.entity.Egg;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

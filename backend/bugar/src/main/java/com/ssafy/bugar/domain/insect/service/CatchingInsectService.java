@@ -3,7 +3,7 @@ package com.ssafy.bugar.domain.insect.service;
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import com.ssafy.bugar.domain.insect.entity.Insect;
 import com.ssafy.bugar.domain.insect.enums.CatchInsectDetailViewType;
@@ -49,7 +49,7 @@ public class CatchingInsectService {
     }
 
     // 채집 곤충 목록 조회
-    public CatchListResponseDto getCatchList(Long userId, String viewType) {
+    public CatchInsectListResponseDto getCatchList(Long userId, String viewType) {
         CatchInsectViewType type = CatchInsectViewType.fromString(viewType);
 
         return switch (type) {
