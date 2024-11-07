@@ -18,4 +18,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
                 ORDER BY is_read ASC, created_date DESC
             """, nativeQuery = true)
     List<MessageItem> findNotificationListByRaisingInsectId(@Param("raisingInsectId") Long raisingInsectId);
+
+    Notification findByNotificationId(Long notificationId);
 }

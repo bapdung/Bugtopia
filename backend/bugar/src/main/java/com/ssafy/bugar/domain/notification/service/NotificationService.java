@@ -24,6 +24,7 @@ public class NotificationService {
     private final UserRepository userRepository;
     private final RaisingInsectRepository raisingInsectRepository;
 
+    // 알림 저장 및 생성 -> 푸시알림
     @Transactional
     public NotificationResponseDto save(Long raisingInsectId, NotificationType type) throws IOException {
         // 엔티티 가져오기
@@ -38,6 +39,7 @@ public class NotificationService {
         return push(user, raisingInsect, type);
     }
 
+    // 알림 전송
     @Transactional
     public NotificationResponseDto push(User user, RaisingInsect raisingInsect, NotificationType type)
             throws IOException {
@@ -70,5 +72,12 @@ public class NotificationService {
             case THANKS -> ": 스승님 덕분에 저는 잘 지내고 있어요!";
             default -> ""; // 기본값 반환 (필요에 따라 변경 가능)
         };
+    }
+
+    // 알림 읽기 처리
+    public void readMessage(Long notificationId) {
+        Notification notification = notificationRepository.findByNotificationId(notificationId);
+        notification.read();
+        notificationRepository.save(notification);
     }
 }
