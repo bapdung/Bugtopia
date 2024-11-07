@@ -11,6 +11,7 @@
 //     public RawImage cameraView;
 //     private WebCamTexture webCamTexture;
 //     public GameObject HelpPanel;
+//     public GameObject LoadingPanel;
 //     private CatchApi catchApi;
 
 //     void Start()
@@ -35,8 +36,14 @@
 //         if (HelpPanel != null)
 //         {
 //             HelpPanel.SetActive(false); // 도움말 숨기고 시작
-//             Debug.Log("판넬 찾고 숨겻음");
+//             Debug.Log("도움말판넬 찾고 숨겻음");
 //         }
+//         if (LoadingPanel != null)
+//         {
+//             LoadingPanel.SetActive(false); // 로딩중 숨기고 시작
+//             Debug.Log("로딩중판넬 찾고 숨겻음");
+//         }
+//         // TODO : api response가 도착하면 심사결과 페이지로 이동하게 할 것
 
 //         catchApi = FindObjectOfType<CatchApi>();
 //     }
@@ -46,6 +53,10 @@
 //         Texture2D photo = new Texture2D(webCamTexture.width, webCamTexture.height);
 //         photo.SetPixels(webCamTexture.GetPixels());
 //         photo.Apply();
+//         if (LoadingPanel != null)
+//         {
+//             LoadingPanel.SetActive(!LoadingPanel.activeSelf);
+//         }
 
 //         string fileName = "photo_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
 //         byte[] photoBytes = photo.EncodeToPNG(); 
@@ -53,7 +64,6 @@
 //         // S3 URL 요청 및 사진 업로드
 //         StartCoroutine(catchApi.GetS3Url(fileName, photoBytes));
 
-//         SceneManager.LoadScene("LoadingScene"); 
 //     }
 
 //     public void BackToHomeButton()
@@ -86,6 +96,7 @@ public class CameraManager : MonoBehaviour
     public RawImage cameraView;
     private WebCamTexture webCamTexture;
     public GameObject HelpPanel;
+    public GameObject LoadingPanel;
     private CatchApi catchApi;
 
     void Start()
@@ -95,17 +106,36 @@ public class CameraManager : MonoBehaviour
             HelpPanel.SetActive(false); // 도움말 숨기고 시작
             Debug.Log("판넬 찾고 숨겻음");
         }
+        if (LoadingPanel != null)
+        {
+            LoadingPanel.SetActive(false); // 도움말 숨기고 시작
+            Debug.Log("판넬 찾고 숨겻음");
+        }
 
     }
 
     public void TakePhotoButton()
     {
-        SceneManager.LoadScene("LoadingScene"); 
+        if (LoadingPanel != null)
+        {
+            LoadingPanel.SetActive(!LoadingPanel.activeSelf);
+        }
+        GameObject.Find("TakePhotoButton").GetComponent<Button>().interactable = false;
+        GameObject.Find("BackToHomeButton").GetComponent<Button>().interactable = false;
+        GameObject.Find("HelpButton").GetComponent<Button>().interactable = false;
+        
+        StartCoroutine(WaitAndLoadScene());
+    }
+    public IEnumerator WaitAndLoadScene()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("EntryScanScene");
     }
 
     public void BackToHomeButton()
     {
-        SceneManager.LoadScene("MainScene");  
+        SceneManager.LoadScene("MainScene");
+        
     }
 
     public void HelpButton()

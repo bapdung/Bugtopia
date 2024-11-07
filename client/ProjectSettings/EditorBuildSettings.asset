@@ -7,28 +7,31 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/User/SplashScene.unity
-    guid: a02c558504843f54e80625db2642a80f
+    guid: 1a0a9c3274802b2468f3217e63732a33
   - enabled: 1
     path: Assets/Scenes/User/CreateNicknameScene.unity
-    guid: 1c78201708bfb4343b6a2413c5755d5c
+    guid: cd606a041da3dda43af56d5325b7094e
   - enabled: 1
     path: Assets/Scenes/User/CheckNicknameScene.unity
-    guid: a8676719c3031a94b9190a217ef6d588
+    guid: a3e864d4c4b0e1048ae277aedecbbe3a
   - enabled: 1
     path: Assets/Scenes/User/GreetingScene.unity
-    guid: b362c9865964c014794cc640a563626d
+    guid: 5eb8ea59202d21a4b9604890c00b7fd0
   - enabled: 1
     path: Assets/Scenes/Insect/MainScene.unity
-    guid: 080e8d1592c607843b4182e4f63a804f
+    guid: 0778070d1ccb76c4da33c5f9fdc16a0c
   - enabled: 1
     path: Assets/Scenes/Catch/CameraScene.unity
     guid: 20d0ffb318fa9054a9faf5b2020f7b1d
   - enabled: 1
     path: Assets/Scenes/Catch/ResultScene.unity
     guid: acac0dfb129a94546b383e7932db22a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Catch/LoadingScene.unity
     guid: 4ceeae84a2b6edf4eaeb75a9a515c08c
+  - enabled: 1
+    path: Assets/Scenes/Catch/EntryScanScene.unity
+    guid: fba0c6d8fdd4b1144b16392fd84df40c
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9da824055b39a3d4e863539f16ad8e47, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 7d91eb8d7fdae38459dc341f5ffb8ba9, type: 2}
