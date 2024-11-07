@@ -52,8 +52,7 @@ tomli==2.0.1
 torch==1.13.1
 torchaudio==0.13.1
 torchvision==0.14.1
-tqdm==4.66.
-typing_extensions==4.7.1
+tqdm==4.66
 ultralytics==8.0.145
 urllib3==2.0.7
 yapf==0.40.2
