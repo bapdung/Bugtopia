@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByDeviceId(String deviceId);
 
-    User findByUserID(Long userID);
+    User findByUserId(Long userId);
 }

@@ -2,7 +2,6 @@ package com.ssafy.bugar.domain.notification.service;
 
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
-import com.ssafy.bugar.domain.insect.service.EggService;
 import com.ssafy.bugar.domain.notification.dto.response.NotificationResponseDto;
 import com.ssafy.bugar.domain.notification.entity.Notification;
 import com.ssafy.bugar.domain.notification.enums.NotificationType;
@@ -23,14 +22,13 @@ public class NotificationService {
     private final NotificationRepository notificationRepository;
     private final FirebaseService firebaseService;
     private final UserRepository userRepository;
-    private final EggService eggService;
     private final RaisingInsectRepository raisingInsectRepository;
 
     @Transactional
     public NotificationResponseDto save(Long raisingInsectId, NotificationType type) throws IOException {
         // 엔티티 가져오기
         RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
-        User user = userRepository.findByUserID(raisingInsect.getUserId());
+        User user = userRepository.findByUserId(raisingInsect.getUserId());
 
         // Notification 저장
         Notification notification = new Notification(type, raisingInsect.getRaisingInsectId());
@@ -48,9 +46,6 @@ public class NotificationService {
 
         // Firebase 메시지 전송
         firebaseService.sendMessageTo(user.getDeviceId(), "벅토피아", message);
-
-        // 알 생성 메서드
-        eggService.save(raisingInsect.getInsectId(), type);
 
         return buildResponse(user, message);
     }
