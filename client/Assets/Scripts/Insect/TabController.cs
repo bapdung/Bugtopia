@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class TabController : MonoBehaviour
 {
-     public InsectListController insectListController;
+    public InsectListController insectListController;
     public Button forestButton;
     public Button waterButton;
     public Button gardenButton;
@@ -21,6 +21,7 @@ public class TabController : MonoBehaviour
 
     private void ShowTabContent(string region)
     {
+        Debug.Log("Tab실행 " + region);
         // 탭에 맞는 곤충 리스트를 로드하도록 요청
         insectListController.LoadInsectList(region);
     }
