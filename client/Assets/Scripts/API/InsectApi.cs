@@ -98,6 +98,13 @@ namespace API.Insect
                     string jsonResponse = request.downloadHandler.text;
                     InsectListWithRegionResponse responseData = JsonUtility.FromJson<InsectListWithRegionResponse>(jsonResponse);
 
+                    Debug.Log("InsectListWithRegionResponse: " + responseData.num);
+                    Debug.Log("InsectListWithRegionResponse: " + responseData.insectList);
+                    foreach (InsectInfo child in responseData.insectList)
+                    {
+                        Debug.Log(child.family + " " + child.raisingInsectId + " " + child.nickname);
+                    }
+
                     // 성공 콜백 호출
                     onSuccess?.Invoke(responseData);
                 }
