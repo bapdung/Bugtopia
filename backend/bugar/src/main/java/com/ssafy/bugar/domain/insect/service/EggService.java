@@ -1,12 +1,12 @@
 package com.ssafy.bugar.domain.insect.service;
 
+import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.Egg;
 import com.ssafy.bugar.domain.insect.entity.RaisingInsect;
 import com.ssafy.bugar.domain.insect.enums.RaiseState;
 import com.ssafy.bugar.domain.insect.repository.EggRepository;
 import com.ssafy.bugar.domain.insect.repository.RaisingInsectRepository;
 import com.ssafy.bugar.domain.notification.enums.NotificationType;
-import com.ssafy.bugar.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @RequiredArgsConstructor
 public class EggService {
-    private final UserRepository userRepository;
+
     private final EggRepository eggRepository;
     private final RaisingInsectRepository raisingInsectRepository;
+    private final RaisingInsectService raisingInsectService;
 
     @Transactional
     public void save(Long raisingInsectId, NotificationType type) {
@@ -36,5 +37,14 @@ public class EggService {
         }
         RaisingInsect insect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
         return insect.getState() == RaiseState.DONE;
+    }
+
+    @Transactional
+    public SaveRaisingInsectResponseDto raise(Long eggId, Long userId, String nickname) {
+        Egg egg = eggRepository.findByEggId(eggId);
+
+        SaveRaisingInsectResponseDto response = raisingInsectService.save(userId, egg.getInsectId(), nickname);
+        egg.raise();
+        return response;
     }
 }

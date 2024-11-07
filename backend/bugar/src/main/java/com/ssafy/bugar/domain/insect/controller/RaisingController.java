@@ -1,6 +1,7 @@
 package com.ssafy.bugar.domain.insect.controller;
 
 import com.ssafy.bugar.domain.insect.dto.request.ClearEventRequestDto;
+import com.ssafy.bugar.domain.insect.dto.request.EggRaiseRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveLoveScoreRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.SaveRaisingInsectRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
@@ -8,6 +9,7 @@ import com.ssafy.bugar.domain.insect.dto.response.GetArInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
+import com.ssafy.bugar.domain.insect.service.EggService;
 import com.ssafy.bugar.domain.insect.service.RaisingInsectService;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RaisingController {
 
     private final RaisingInsectService raisingInsectService;
+    private final EggService eggService;
 
     @PostMapping
     public ResponseEntity<SaveRaisingInsectResponseDto> saveRaisingInsect(
@@ -85,5 +88,13 @@ public class RaisingController {
     @GetMapping("/ar/{raisingInsectId}")
     public ResponseEntity<GetArInsectInfoResponseDto> getInsectArInfo(@PathVariable Long raisingInsectId) {
         return ResponseEntity.ok(raisingInsectService.getInsectArInfo(raisingInsectId));
+    }
+
+    @PostMapping("/egg/{eggId}")
+    public ResponseEntity<SaveRaisingInsectResponseDto> receiveEgg(@RequestHeader("userId") Long userId,
+                                                                   @PathVariable Long eggId,
+                                                                   @RequestBody EggRaiseRequestDto request) {
+        SaveRaisingInsectResponseDto response = eggService.raise(eggId, userId, request.getNickname());
+        return ResponseEntity.ok(response);
     }
 }
