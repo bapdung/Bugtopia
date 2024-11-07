@@ -20,7 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Insect/MainScene.unity
     guid: 080e8d1592c607843b4182e4f63a804f
+  - enabled: 1
+    path: Assets/Scenes/Catch/CameraScene.unity
+    guid: 20d0ffb318fa9054a9faf5b2020f7b1d
+  - enabled: 1
+    path: Assets/Scenes/Catch/ResultScene.unity
+    guid: acac0dfb129a94546b383e7932db22a6
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9da824055b39a3d4e863539f16ad8e47, type: 2}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 1ea323acade60fb438d6faac49756edd, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 7d91eb8d7fdae38459dc341f5ffb8ba9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7af8b4c4f7af0694ba05c9875afdb580, type: 2}
