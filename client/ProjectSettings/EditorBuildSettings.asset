@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Catch/CameraScene.unity
     guid: 20d0ffb318fa9054a9faf5b2020f7b1d
+  - enabled: 1
+    path: Assets/Scenes/AR/ARScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9da824055b39a3d4e863539f16ad8e47, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 7d91eb8d7fdae38459dc341f5ffb8ba9, type: 2}
