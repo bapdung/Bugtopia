@@ -8,7 +8,11 @@ using Models.Insect.Response;
 
 public class InsectDetailController : MonoBehaviour
 {
+
+    private Coroutine countdownCoroutine;
+
     private InsectApi insectApi; // InsectApi 인스턴스 참조
+    private DateTime lastEatTime;
 
     [SerializeField] private Image areaContainer;
     [SerializeField] private TextMeshProUGUI area;
@@ -50,7 +54,7 @@ public class InsectDetailController : MonoBehaviour
 
     private void Start()
     {
-        long raisingInsectId = 7; // => 하드코딩 (추후수정)
+        long raisingInsectId = 5; // => 하드코딩 (추후수정)
 
         if (insectApi != null)
         {
@@ -90,8 +94,17 @@ public class InsectDetailController : MonoBehaviour
             feedContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
         } else {
             feedContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
-            feedInfo1.text = "오늘의 먹이 주기";
-            feedInfo2.text = "지금 먹이를 줄 수 있어요!";
+            
+            if (DateTime.TryParse(response.lastEat, out lastEatTime))
+            {
+                StartCountdown();
+            }
+        }
+
+        if(interactCnt >= 10) {
+            interactContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
+        } else {
+            interactContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
         }
     }
 
@@ -99,5 +112,37 @@ public class InsectDetailController : MonoBehaviour
     {
         // 실패 시 오류 메시지 출력
         Debug.LogError("Failed to fetch insect info: " + error);
+    }
+
+    private void StartCountdown() {
+        // 기존에 진행 중이던 카운트다운을 중지하고 새로 시작
+        if (countdownCoroutine != null) {
+            StopCoroutine(countdownCoroutine);
+        }
+        countdownCoroutine = StartCoroutine(UpdateCountdown());
+    }
+
+     private IEnumerator UpdateCountdown()
+    {
+        while (true)
+        {
+            TimeSpan timeDifference = DateTime.Now - lastEatTime;
+            TimeSpan remainingTime = TimeSpan.FromHours(6) - timeDifference;
+
+            if (remainingTime.TotalSeconds <= 0)
+            {
+                feedInfo1.text = "오늘의 먹이 주기";
+                feedInfo2.text = "지금 먹이를 줄 수 있어요!";
+                break;
+            }
+            else
+            {
+                feedInfo1.text = "지금은 배가 불러요";
+                feedInfo2.text = "다음 밥 시간 - " + string.Format("{0:D2}:{1:D2}:{2:D2}",
+                    remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds);
+            }
+
+            yield return new WaitForSeconds(1);
+        }
     }
 }
