@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Models.Insect.Response
 {
@@ -11,11 +12,13 @@ namespace Models.Insect.Response
         public string family;
         public string areaType;
         public int feedCnt;
-
         public DateTime lastEat;
         public int interactCnt;
         public DateTime livingDate;
         public int continuousDays;
+        public int loveScore;
+        public bool isEvent;
+        public string eventType;
     }
 
     [System.Serializable]
@@ -31,6 +34,21 @@ namespace Models.Insect.Response
         public long loveScore;
         public bool isEvent;
         public string eventType;
+    }
+
+    [System.Serializable]
+    public class InsectListWithRegionResponse
+    {
+        public int num;
+        public List<InsectInfo> insectList;
+    }
+
+    [System.Serializable]
+    public class InsectInfo
+    {
+        public string family;
+        public long raisingInsectId;
+        public string nickname;
     }
 
     [System.Serializable]
