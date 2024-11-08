@@ -5,13 +5,32 @@ using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using TMPro;
+using UnityEngine.UI;
 
 public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public ARRaycastManager arRaycaster; // AR Raycast Manager
     public GameObject foodPrefab; // Food 프리팹
     public TextMeshProUGUI FoodDescriptionText;
-    private GameObject foodPreviewObject; // 드래그 중 미리보기로 나타날 Food 오브젝트
+
+    public Button feedButton;
+    public GameObject foodIcon;
+
+    private GameObject foodPreviewObject;
+
+    void Start()
+    {
+        foodIcon.SetActive(false);
+        feedButton.gameObject.SetActive(true);
+        feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "오늘의 먹이주기";
+        feedButton.onClick.AddListener(ShowFoodIcon);
+    }
+
+    public void ShowFoodIcon()
+    {
+        foodIcon.SetActive(true);
+        feedButton.gameObject.SetActive(false);
+    }
 
     // 드래그 시작 시 호출되는 함수입니다
     public void OnBeginDrag(PointerEventData eventData)
