@@ -3,6 +3,8 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
 using System;
+using Models.Request.InsectRequest;
+using Models.Response.InsectResponse;
 
 namespace API.Catch
 {

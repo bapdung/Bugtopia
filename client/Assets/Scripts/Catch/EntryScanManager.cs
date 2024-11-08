@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using API.Catch;
+using Models.Response.InsectResponse;
 
 public class EntryScanManager : MonoBehaviour
 {

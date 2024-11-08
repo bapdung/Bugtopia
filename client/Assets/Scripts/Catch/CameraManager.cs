@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Android;
 using UnityEngine.UI;
 using API.Catch;
+using Models.Response.InsectResponse;
+
 
 public class CameraManager : MonoBehaviour
 {
