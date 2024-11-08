@@ -1,5 +1,6 @@
 using Firebase.Extensions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Firebase;
 using Firebase.Messaging;
 using UnityEngine.Networking;
@@ -12,7 +13,7 @@ using Models.User.Response;
 public class FirebaseHandler : MonoBehaviour
 {
     private static bool instanceExists;
-    private UserApi userApi; // UserApi 인스턴스
+    public UserApi userApi;
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class FirebaseHandler : MonoBehaviour
     }
 
     // Firebase 초기화
-    private void InitializeFirebase()
+    public void InitializeFirebase()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
             if (task.Result == DependencyStatus.Available)
@@ -57,9 +58,12 @@ public class FirebaseHandler : MonoBehaviour
     }
 
     // Firebase Messaging token 받아오기
-    private void OnTokenReceived(object sender, TokenReceivedEventArgs token)
+    public void OnTokenReceived(object sender, TokenReceivedEventArgs token)
     {
         Debug.Log("Firebase token: " + token.Token);
+
+        // 전역 공간에 deviceId 저장
+        UserStateManager.Instance.SetDeviceId(token.Token);
 
         // 로그인 요청 전송
         StartCoroutine(userApi.PostLogin(
@@ -70,11 +74,15 @@ public class FirebaseHandler : MonoBehaviour
     }
 
     // 로그인 성공 시 호출되는 콜백
-    private void OnLoginSuccess(UserLoginResponse response)
+    public void OnLoginSuccess(UserLoginResponse response)
     {
         if (response.isJoined)
         {
             Debug.Log("이미 가입된 사용자: " + response.nickname);
+
+            // 전역 공간에 userId와 nickname 저장
+            UserStateManager.Instance.SetUserId(response.userId ?? 0);
+            UserStateManager.Instance.SetNickname(response.nickname);
         }
         else
         {
@@ -85,20 +93,46 @@ public class FirebaseHandler : MonoBehaviour
         }
     }
 
-    // 회원가입 성공 시 호출되는 콜백
-    private void OnJoinSuccess(UserJoinResponse response)
+    // 회원가입 로직
+    public IEnumerator JoinUser(string nickname)
     {
-        Debug.Log("가입 완료 - 사용자 ID: " + response.userId + ", 닉네임: " + response.nickname);
+        string deviceId = UserStateManager.Instance.DeviceId;
+
+        if (!string.IsNullOrEmpty(deviceId) && !string.IsNullOrEmpty(nickname))
+        {
+            yield return userApi.PostJoin(
+                new UserJoinRequest { deviceId = deviceId, nickname = nickname },
+                OnJoinSuccess,
+                OnRequestFailure
+            );
+        }
+        else
+        {
+            Debug.LogError("deviceId 또는 nickname이 설정되지 않았습니다.");
+        }
+    }
+
+    // 회원가입 성공 시 호출되는 콜백
+    public void OnJoinSuccess(UserJoinResponse response)
+    {
+        Debug.Log("회원가입 성공 - 사용자 ID: " + response.userId + ", 닉네임: " + response.nickname);
+
+        // 전역 공간에 userId와 nickname 저장
+        UserStateManager.Instance.SetUserId(response.userId);
+        UserStateManager.Instance.SetNickname(response.nickname);
+
+        // 회원가입 후 GreetingScene으로 이동 (필요 시 제거 가능)
+        SceneManager.LoadScene("GreetingScene");
     }
 
     // 요청 실패 시 호출되는 콜백
-    private void OnRequestFailure(string error)
+    public void OnRequestFailure(string error)
     {
         Debug.LogError("User Api 요청 실패: " + error);
     }
 
     // 메시지 수신 시 호출되는 이벤트 핸들러
-    private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
+    public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
     {
         Debug.Log("알림 수신: " + e.Message.Notification.Body);
     }
