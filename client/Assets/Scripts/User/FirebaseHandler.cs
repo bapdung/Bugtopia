@@ -2,11 +2,17 @@ using Firebase.Extensions;
 using UnityEngine;
 using Firebase;
 using Firebase.Messaging;
-using System.Threading.Tasks;
+using UnityEngine.Networking;
+using System.Collections;
+using API.User;
+using System.Text;
+using Models.User.Request;
+using Models.User.Response;
 
 public class FirebaseHandler : MonoBehaviour
 {
     private static bool instanceExists;
+    private UserApi userApi; // UserApi 인스턴스
 
     private void Awake()
     {
@@ -24,6 +30,9 @@ public class FirebaseHandler : MonoBehaviour
             return;
         }
 
+        // UserApi 인스턴스 초기화
+        userApi = gameObject.AddComponent<UserApi>();
+
         InitializeFirebase();
     }
 
@@ -31,10 +40,9 @@ public class FirebaseHandler : MonoBehaviour
     private void InitializeFirebase()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
-            FirebaseApp app = FirebaseApp.DefaultInstance;
-
             if (task.Result == DependencyStatus.Available)
             {
+                FirebaseApp app = FirebaseApp.DefaultInstance;
                 Debug.Log("Firebase 시작!");
 
                 // Firebase Messaging 초기화
@@ -52,8 +60,44 @@ public class FirebaseHandler : MonoBehaviour
     private void OnTokenReceived(object sender, TokenReceivedEventArgs token)
     {
         Debug.Log("Firebase token: " + token.Token);
+
+        // 로그인 요청 전송
+        StartCoroutine(userApi.PostLogin(
+            new UserLoginRequest { deviceId = token.Token },
+            OnLoginSuccess,
+            OnRequestFailure
+        ));
     }
 
+    // 로그인 성공 시 호출되는 콜백
+    private void OnLoginSuccess(UserLoginResponse response)
+    {
+        if (response.isJoined)
+        {
+            Debug.Log("이미 가입된 사용자: " + response.nickname);
+        }
+        else
+        {
+            Debug.Log("가입되지 않은 사용자, CreateNicknameScene으로 이동합니다.");
+
+            // CreateNicknameScene으로 이동
+            SceneManager.LoadScene("CreateNicknameScene");
+        }
+    }
+
+    // 회원가입 성공 시 호출되는 콜백
+    private void OnJoinSuccess(UserJoinResponse response)
+    {
+        Debug.Log("가입 완료 - 사용자 ID: " + response.userId + ", 닉네임: " + response.nickname);
+    }
+
+    // 요청 실패 시 호출되는 콜백
+    private void OnRequestFailure(string error)
+    {
+        Debug.LogError("User Api 요청 실패: " + error);
+    }
+
+    // 메시지 수신 시 호출되는 이벤트 핸들러
     private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
     {
         Debug.Log("알림 수신: " + e.Message.Notification.Body);
