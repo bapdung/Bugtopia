@@ -10,7 +10,7 @@ public class InsectListController : MonoBehaviour
     public Transform content;
     private InsectApi insectApi;
 
-    private void Start()
+    private void Awake()
     {
         if (insectApi == null)
         {
