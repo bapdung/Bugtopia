@@ -6,13 +6,15 @@ using UnityEngine.XR.ARSubsystems;
 using API.Insect;
 using Models.Insect.Response;
 using Models.Insect.Request;
+using TMPro;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
-    public ARRaycastManager aRRaycaster; // AR Raycast Manager를 참조하여 평면에 대한 레이캐스팅 수행
-    public GameObject foodPrefab; // 평면에 배치할 Food 오브젝트
-    public GameObject insectPrefab; // 화면 중앙에 배치할 Insect 오브젝트
-    public InsectApi insectApi; // Insect API를 참조
+    public ARRaycastManager aRRaycaster;
+    public GameObject foodPrefab;
+    public GameObject insectPrefab;
+    public InsectApi insectApi;
+    public TextMeshProUGUI nicknameText;
 
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
@@ -40,6 +42,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
         {
             insectInfoResponse = response;
+            nicknameText.text = insectInfoResponse.nickname;
             Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
         },
         (error) =>
