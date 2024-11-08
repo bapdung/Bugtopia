@@ -1,5 +1,6 @@
 // Scripts/Catch/EntryScanManager.cs
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro; // TextMeshPro 사용
 using Models.Insect.Response;
@@ -83,6 +84,7 @@ public class EntryScanManager : MonoBehaviour
                 {
                     Debug.Log("닉네임이 성공적으로 전송되었습니다.");
                     Debug.Log(response.raisingInsectId);
+                    SceneManager.LoadScene("InsectDetailScene");  
                 }
                 else
                 {
