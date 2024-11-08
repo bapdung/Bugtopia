@@ -57,6 +57,7 @@ public class RaisingInsectService {
     @Transactional
     public CheckInsectEventResponseDto saveLoveScore(Long raisingInsectId, int categoryType) throws IOException {
         try {
+            RaisingInsect raisingInsect = raisingInsectRepository.findByRaisingInsectId(raisingInsectId);
             Category category = CategoryUtils.getCategory(categoryType);
 
             InsectLoveScore insectLoveScore = InsectLoveScore.builder()
@@ -65,6 +66,12 @@ public class RaisingInsectService {
                     .build();
 
             insectLoveScoreRepository.save(insectLoveScore);
+
+            if (category == Category.FOOD) {
+                raisingInsect.updateFeedCnt();
+            } else if (category == Category.INTERACTION) {
+                raisingInsect.updateInteractCnt();
+            }
         } catch (IllegalArgumentException e) {
             log.error(e.getMessage());
             throw e;
