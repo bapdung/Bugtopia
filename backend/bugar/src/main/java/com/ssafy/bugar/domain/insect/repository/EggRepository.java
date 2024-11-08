@@ -1,6 +1,6 @@
 package com.ssafy.bugar.domain.insect.repository;
 
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.EggItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto.EggItem;
 import com.ssafy.bugar.domain.insect.entity.Egg;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +18,7 @@ public interface EggRepository extends JpaRepository<Egg, Long> {
             ORDER BY e.created_date DESC
             """, nativeQuery = true)
     List<EggItem> findEggItemsByUserIdOrderByCreatedDateDesc(@Param("userId") Long userId);
+
+    Egg findByEggId(Long eggId);
 
 }

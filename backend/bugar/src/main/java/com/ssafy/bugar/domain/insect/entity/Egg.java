@@ -38,4 +38,15 @@ public class Egg {
     @Column(nullable = false)
     private EggState state;
 
+    public Egg(String parentNickname, Long insectId, Long userId) {
+        this.parentNickname = parentNickname;
+        this.insectId = insectId;
+        this.userId = userId;
+        this.createdDate = new Timestamp(System.currentTimeMillis());
+        this.state = EggState.POSSIBLE;
+    }
+
+    public void raise() {
+        this.state = EggState.RAISED;
+    }
 }

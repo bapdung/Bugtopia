@@ -41,4 +41,14 @@ public class Notification {
     @Column(nullable = false)
     private Timestamp createdDate;
 
+    public Notification(NotificationType type, Long raisingInsectId) {
+        this.raisingInsectId = raisingInsectId;
+        this.type = type;
+        this.isRead = false;
+        this.createdDate = new Timestamp(System.currentTimeMillis());
+    }
+
+    public void read() {
+        this.isRead = true;
+    }
 }

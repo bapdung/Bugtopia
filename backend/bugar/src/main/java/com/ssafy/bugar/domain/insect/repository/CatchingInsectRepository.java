@@ -1,7 +1,7 @@
 package com.ssafy.bugar.domain.insect.repository;
 
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto.CatchInsectDetailProjection;
-import com.ssafy.bugar.domain.insect.dto.response.CatchListResponseDto.CatchedInsectItem;
+import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto.CatchedInsectItem;
 import com.ssafy.bugar.domain.insect.entity.CatchedInsect;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

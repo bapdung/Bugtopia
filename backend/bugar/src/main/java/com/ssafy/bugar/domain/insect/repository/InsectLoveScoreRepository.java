@@ -13,11 +13,11 @@ public interface InsectLoveScoreRepository extends JpaRepository<InsectLoveScore
     List<InsectLoveScore> findInsectLoveScoreByRaisingInsectId(Long raisingInsectId);
 
     @Query("""
-        SELECT ls
-        FROM InsectLoveScore ls
-        WHERE ls.raisingInsectId = :raisingInsectId AND ls.category = :category
-        ORDER BY ls.createdDate DESC
-    """)
-    List<InsectLoveScore> findInsectLoveScoreByCategory(long raisingInsectId, Category category);
+                SELECT ls
+                FROM InsectLoveScore ls
+                WHERE ls.raisingInsectId = :raisingInsectId AND ls.category = :category
+                ORDER BY ls.createdDate DESC
+            """)
+    List<InsectLoveScore> findInsectLoveScoreByCategory(Long raisingInsectId, Category category);
 
 }
