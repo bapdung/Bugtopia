@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public ARRaycastManager arRaycaster; // AR Raycast Manager
     public GameObject foodPrefab; // Food 프리팹
+    public TextMeshProUGUI FoodDescriptionText;
     private GameObject foodPreviewObject; // 드래그 중 미리보기로 나타날 Food 오브젝트
 
     // 드래그 시작 시 호출되는 함수입니다
