@@ -21,6 +21,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     void Start()
     {
         foodIcon.SetActive(false);
+        FoodDescriptionText.gameObject.SetActive(false);
         feedButton.gameObject.SetActive(true);
         feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "오늘의 먹이주기";
         feedButton.onClick.AddListener(ShowFoodIcon);
@@ -29,6 +30,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void ShowFoodIcon()
     {
         foodIcon.SetActive(true);
+        FoodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
     }
 
