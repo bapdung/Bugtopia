@@ -6,4 +6,10 @@ namespace Models.Insect.Request
         public long raisingInsectId;
         public int category;
     }
+
+    [System.Serializable]
+    public class SearchInsectRequest
+    {
+        public string photoUrl;
+    }
 }

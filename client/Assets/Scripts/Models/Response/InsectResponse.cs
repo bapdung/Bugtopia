@@ -51,4 +51,26 @@ namespace Models.Insect.Response
         public string nickname;
     }
 
+    [System.Serializable]
+    public class SearchUnsectResponse
+    {
+        public int insectId;
+        public string krName;
+        public string engName;
+        public string info;
+        public int canRaise;
+        public string family;
+        public string area;
+        public string rejectedReason;
+    }
+    [System.Serializable]
+    public class S3Response
+    {
+        public S3Data data;
+    }
+    [System.Serializable]
+    public class S3Data
+    {
+        public string path;
+    }
 }
