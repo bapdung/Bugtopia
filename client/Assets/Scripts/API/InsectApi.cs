@@ -81,5 +81,39 @@ namespace API.Insect
                 }
             }
         }
+
+        public IEnumerator GetInsectListWithRegion(string region, System.Action<InsectListWithRegionResponse> onSuccess, System.Action<string> onFailure)
+        {
+            string requestUrl = $"{insectUrl}/area?areaType={region}";
+
+            using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
+            {
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", UserStateManager.Instance.UserId.ToString());
+
+                yield return request.SendWebRequest();
+
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonResponse = request.downloadHandler.text;
+                    InsectListWithRegionResponse responseData = JsonUtility.FromJson<InsectListWithRegionResponse>(jsonResponse);
+
+                    Debug.Log("InsectListWithRegionResponse: " + responseData.num);
+                    // Debug.Log("InsectListWithRegionResponse: " + responseData.insectList);
+                    // foreach (InsectInfo child in responseData.insectList)
+                    // {
+                    //     Debug.Log(child.family + " " + child.raisingInsectId + " " + child.nickname);
+                    // }
+
+                    // 성공 콜백 호출
+                    onSuccess?.Invoke(responseData);
+                }
+                else
+                {
+                    // 실패 콜백 호출 (오류 메시지 전달)
+                    onFailure?.Invoke(request.error);
+                }
+            }
+        }
     }
 }
