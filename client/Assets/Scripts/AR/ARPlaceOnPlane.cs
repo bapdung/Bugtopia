@@ -16,6 +16,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     public GameObject insectPrefab;
     public InsectApi insectApi;
     public TextMeshProUGUI nicknameText;
+    public TextMeshProUGUI notificationText;
     public GameObject foodIcon;
     public TextMeshProUGUI foodDescriptionText;
     public Button feedButton;
@@ -57,6 +58,9 @@ public class ARPlaceOnPlane : MonoBehaviour
         insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
 
         UpdateInsectObject();
+        
+        ShowNotification("Tip: 곤충을 가볍게 터치해서 쓰다듬을 수 있어요!", 5f);
+
     }
 
     void Update()
@@ -149,6 +153,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             Destroy(foodObject);
             foodObject = null;
+            ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
 
             ResetUIAfterFeeding();
 
@@ -196,6 +201,23 @@ public class ARPlaceOnPlane : MonoBehaviour
         feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "지금은 배불러요!";
         feedButton.interactable = false;
         feedButton.gameObject.SetActive(true);
+    }
+
+    // 알림 텍스트 표시 함수
+    private void ShowNotification(string message, float duration)
+    {
+        notificationText.text = message;
+        notificationText.gameObject.SetActive(true);
+        Debug.Log("이제 숨기러가요");
+        StartCoroutine(HideNotificationAfterDelay(duration));
+    }
+
+    // 알림 텍스트 숨기기
+    private IEnumerator HideNotificationAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log("이제 숨겨요");
+        notificationText.gameObject.SetActive(false);
     }
 
 
