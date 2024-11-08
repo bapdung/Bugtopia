@@ -7,6 +7,7 @@ using API.Insect;
 using Models.Insect.Response;
 using Models.Insect.Request;
 using TMPro;
+using UnityEngine.UI;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ARPlaceOnPlane : MonoBehaviour
     public GameObject insectPrefab;
     public InsectApi insectApi;
     public TextMeshProUGUI nicknameText;
+    public GameObject foodIcon;
+    public TextMeshProUGUI foodDescriptionText;
+    public Button feedButton;
 
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
@@ -145,6 +149,9 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             Destroy(foodObject);
             foodObject = null;
+
+            ResetUIAfterFeeding();
+
         }
     }
 
@@ -180,6 +187,15 @@ public class ARPlaceOnPlane : MonoBehaviour
         foodObject = newFoodObject;
         isInsectMoving = true;
         Debug.Log("지흔: Insect가 Food로 이동을 시작합니다.");
+    }
+
+    private void ResetUIAfterFeeding()
+    {
+        foodIcon.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
+        feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "지금은 배불러요!";
+        feedButton.interactable = false;
+        feedButton.gameObject.SetActive(true);
     }
 
 
