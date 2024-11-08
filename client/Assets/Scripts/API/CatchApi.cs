@@ -113,39 +113,52 @@ namespace API.Catch
                 }
             }
         }
-    }
+        public IEnumerator PostCatch(Action<bool> callback)
+        {
+            using (UnityWebRequest request = new UnityWebRequest(catchUrl, "POST"))
+            {
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
 
-    [System.Serializable]
-    public class SearchInsectRequest
-    {
-        public string photoUrl;
-    }
+                yield return request.SendWebRequest();
 
-    // 수정된 응답 객체
-    [System.Serializable]
-    public class SearchInsectResponse
-    {
-        public int insectId;           // 곤충ID
-        public string krName;          // 곤충명 (한글)
-        public string engName;         // 곤충명 (영어)
-        public string info;            // 곤충 정보
-        public int canRaise;           // 육성 가능(0), 육성 불가능(1), 슬롯 부족(2)
-        public string family;          // 곤충 종류
-        public string area;            // 서식지
-        public string rejectedReason;  // 육성 불가능인 경우 이유, 그 외는 null
-    
-    }
+                if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogError(request.error);
+                    callback?.Invoke(false);
+                }
+                else
+                {
+                    callback?.Invoke(true);
+                }
+            }
+        }
 
-    [System.Serializable]
-    public class S3Response
-    {
-        public S3Data data;
-    }
+        public IEnumerator PostInsectNickname(long userId, InsectNicknameRequest requestBody, Action<InsectNicknameResponse> callback)
+        {
+            string requestUrl = $"{environmentConfig.baseUrl}/insect";
+            string jsonRequest = JsonUtility.ToJson(requestBody);
 
-    [System.Serializable]
-    public class S3Data
-    {
-        public string path;
+            using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
+            {
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
+                request.uploadHandler = new UploadHandlerRaw(jsonBytes);
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userId.ToString());
+                
+                yield return request.SendWebRequest();
+                Debug.Log(request.result);
+                if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogError(request.error);
+                }
+                else
+                {
+                    InsectNicknameResponse response = JsonUtility.FromJson<InsectNicknameResponse>(request.downloadHandler.text);
+                    callback?.Invoke(response);
+                }
+            }
+        }
     }
-
 }
