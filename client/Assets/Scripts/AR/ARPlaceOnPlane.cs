@@ -7,6 +7,7 @@ using API.Insect;
 using Models.Insect.Response;
 using Models.Insect.Request;
 using TMPro;
+using UnityEngine.UI;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class ARPlaceOnPlane : MonoBehaviour
     public GameObject foodPrefab;
     public GameObject insectPrefab;
     public InsectApi insectApi;
+    public TextMeshProUGUI foodDescriptionText;
+    public Button feedButton;
+    public GameObject foodIcon;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
     public FoodDragHandler foodDragHandler; 
@@ -178,8 +182,8 @@ public class ARPlaceOnPlane : MonoBehaviour
     
     private void ResetUIAfterFeeding()
     {
-        Debug.Log("UI 초기화");
-        foodDragHandler.HideFoodIcon();
-        foodDragHandler.feedButton.gameObject.SetActive(true);
+        feedButton.gameObject.SetActive(true);
+        foodIcon.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
     }
 }

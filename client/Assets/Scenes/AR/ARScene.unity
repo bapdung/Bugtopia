@@ -1274,8 +1274,12 @@ MonoBehaviour:
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
+  foodDescriptionText: {fileID: 653360550}
+  feedButton: {fileID: 809947710}
+  foodIcon: {fileID: 1175401533}
   nicknameText: {fileID: 1146719292}
   notificationText: {fileID: 1932621515}
+  foodDragHandler: {fileID: 0}
 --- !u!4 &1037246578
 Transform:
   m_ObjectHideFlags: 0

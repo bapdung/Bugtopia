@@ -27,6 +27,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void ShowFoodIcon()
     {
+        Debug.Log("지흔: ShowFoodIcon");
         foodIcon.SetActive(true);
         foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
@@ -34,6 +35,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void HideFoodIcon()
     {
+        Debug.Log("지흔: UI 초기화");
         foodIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
     }
