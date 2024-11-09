@@ -78,4 +78,12 @@ public class RaisingInsect {
         this.state = state;
     }
 
+    public void updateFeedCnt() {
+        this.feedCnt += 1;
+    }
+
+    public void updateInteractCnt() {
+        this.interactCnt += 1;
+    }
+
 }

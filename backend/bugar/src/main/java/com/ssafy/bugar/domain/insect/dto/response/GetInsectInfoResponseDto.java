@@ -1,6 +1,8 @@
 package com.ssafy.bugar.domain.insect.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ssafy.bugar.domain.insect.enums.AreaType;
+import com.ssafy.bugar.domain.insect.enums.EventType;
 import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,25 +11,27 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class GetInsectInfoResponseDto {
 
-    private AreaType areaType;
-    private int canFeed;
+    private Long raisingInsectId;
     private String nickname;
     private String insectName;
-    private Long insectId;
+    private String family;
+    private AreaType areaType;
+    private int feedCnt;
+    private Timestamp lastEat;
+    private int interactCnt;
     private Timestamp livingDate;
-    private Long clearEvent;
+    private int continuousDays;
+    private int loveScore;
+    private boolean isEvent;
+    private EventType eventType;
 
-    @Builder
-    public GetInsectInfoResponseDto(AreaType areaType, int canFeed, String nickname, String insectName, Long insectId, Timestamp livingDate, Long clearEvent) {
-        this.areaType = areaType;
-        this.canFeed = canFeed;
-        this.nickname = nickname;
-        this.insectName = insectName;
-        this.insectId = insectId;
-        this.livingDate = livingDate;
-        this.clearEvent = clearEvent;
+    @JsonProperty("isEvent")
+    public boolean getIsEvent() {
+        return isEvent;
     }
-
 }
+

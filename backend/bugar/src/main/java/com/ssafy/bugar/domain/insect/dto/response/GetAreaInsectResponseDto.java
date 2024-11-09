@@ -9,11 +9,11 @@ import lombok.Getter;
 public class GetAreaInsectResponseDto {
 
     private int num;
-    private List<InsectList> insectListList;
+    private List<InsectList> insectList;
 
     public interface InsectList {
         Long getRaisingInsectId();
-        Long getInsectId();
         String getNickname();
+        String getFamily();
     }
 }
