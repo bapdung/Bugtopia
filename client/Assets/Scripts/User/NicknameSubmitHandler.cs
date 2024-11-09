@@ -24,14 +24,14 @@ public class nicknameSubmitHandler : MonoBehaviour
         {
             // 닉네임이 유효하면 전역 공간에 저장
             UserStateManager.Instance.SetNickname(nickname);
-            Debug.Log("전역 공간에 설정된 닉네임: " + nickname);
+            Debug.Log("민채: 전역 공간에 설정된 닉네임: " + nickname);
 
             // checkNicknameScene으로 이동
             SceneManager.LoadScene("checkNicknameScene");
         }
         else
         {
-            Debug.Log("닉네임이 입력되지 않았습니다.");
+            Debug.Log("민채: 닉네임이 입력되지 않았습니다.");
         }
     }
 }

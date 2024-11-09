@@ -49,7 +49,7 @@ namespace API.User
                 }
                 else
                 {
-                    Debug.LogError("로그인 요청 실패: " + request.error);
+                    Debug.LogError("민채: 로그인 요청 실패: " + request.error);
                     // 실패 콜백 호출 (오류 메시지 전달)
                     onFailure?.Invoke(request.error);
                 }
@@ -80,7 +80,7 @@ namespace API.User
                 }
                 else
                 {
-                    Debug.LogError("회원가입 요청 실패: " + request.error);
+                    Debug.LogError("민채: 회원가입 요청 실패: " + request.error);
                     // 실패 콜백 호출 (오류 메시지 전달)
                     onFailure?.Invoke(request.error);
                 }

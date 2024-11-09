@@ -60,17 +60,20 @@ public class UserStateManager : MonoBehaviour
     public void SetUserId(long userId)
     {
         UserId = userId;
+        Debug.Log("UserId가 변경되었습니다: " + UserId);
     }
 
     // 외부에서 DeviceId를 설정할 수 있는 메서드
     public void SetDeviceId(string deviceId)
     {
         DeviceId = deviceId;
+        Debug.Log("DeviceId가 변경되었습니다: " + DeviceId);
     }
 
     // 외부에서 Nickname을 설정할 수 있는 메서드
     public void SetNickname(string nickname)
     {
         Nickname = nickname;
+        Debug.Log("Nickname이 변경되었습니다: " + Nickname);
     }
 }
