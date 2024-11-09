@@ -4,6 +4,8 @@ import com.ssafy.bugar.domain.insect.dto.response.CheckInsectEventResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetArInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto.Info;
+import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto.LoveScore;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.Event;
 import com.ssafy.bugar.domain.insect.entity.Insect;
@@ -22,6 +24,7 @@ import com.ssafy.bugar.domain.notification.enums.NotificationType;
 import com.ssafy.bugar.domain.notification.service.NotificationService;
 import com.ssafy.bugar.global.util.CategoryUtils;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -100,23 +103,37 @@ public class RaisingInsectService {
         List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId,
                 Category.FOOD);
 
+        Timestamp lastEat = null;
+
+        if (!foodLoveScore.isEmpty()) {
+            lastEat = foodLoveScore.get(0).getCreatedDate();
+        }
+
         CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
 
-        return GetInsectInfoResponseDto.builder()
+        Info info = Info.builder()
                 .raisingInsectId(raisingInsectId)
                 .nickname(raisingInsect.getInsectNickname())
                 .insectName(insectType.getInsectKrName())
                 .family(insectType.getFamily())
                 .areaType(areaName)
-                .feedCnt(raisingInsect.getFeedCnt())
-                .lastEat(foodLoveScore.get(0).getCreatedDate())
-                .interactCnt(raisingInsect.getInteractCnt())
                 .livingDate(raisingInsect.getCreatedDate())
-                .continuousDays(raisingInsect.getContinuousDays())
-                .loveScore(checkInsectEvent.getLoveScore())
+                .build();
+
+        LoveScore loveScore = LoveScore.builder()
+                .total(checkInsectEvent.getLoveScore())
+                .feedCnt(raisingInsect.getFeedCnt())
+                .lastEat(lastEat)
+                .interactCnt(raisingInsect.getInteractCnt())
+                .build();
+
+        GetInsectInfoResponseDto.Event event = GetInsectInfoResponseDto.Event.builder()
+                .endEvent(eventRepository.findByEventId(raisingInsect.getEventId()).getEventName())
                 .isEvent(checkInsectEvent.getIsEvent())
                 .eventType(checkInsectEvent.getEventType())
                 .build();
+
+        return new GetInsectInfoResponseDto(info, loveScore, event);
     }
 
     public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) throws IOException {
