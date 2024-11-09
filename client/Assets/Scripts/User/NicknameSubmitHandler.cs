@@ -17,13 +17,21 @@ public class nicknameSubmitHandler : MonoBehaviour
 
     void onClickButton()
     {
-        Debug.Log(nicknameInputField);
+        // 입력 필드에서 닉네임을 가져옴
         string nickname = nicknameInputField.text;
-        if (nickname.Length > 0)
+
+        if (nickname.Length > 0 && nickname.Length < 13)
         {
-            Debug.Log(nickname);
+            // 닉네임이 유효하면 전역 공간에 저장
+            UserStateManager.Instance.SetNickname(nickname);
+            Debug.Log("민채: 전역 공간에 설정된 닉네임: " + nickname);
+
+            // checkNicknameScene으로 이동
             SceneManager.LoadScene("checkNicknameScene");
         }
+        else
+        {
+            Debug.Log("민채: 닉네임이 입력되지 않았습니다.");
+        }
     }
-
 }

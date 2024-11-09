@@ -55,6 +55,7 @@ namespace API.Insect
 
             // JSON 직렬화
             string json = JsonUtility.ToJson(requestData);
+            Debug.Log("JSON: " + json);
 
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
