@@ -16,6 +16,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     public InsectApi insectApi;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
+    public FoodDragHandler foodDragHandler; 
 
     private GameObject foodObject;
     private GameObject insectObject;
@@ -27,11 +28,11 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     void Awake()
     {
-        if (insectApi == null)
-        {
-            GameObject insectApiObject = new GameObject("InsectApiObject");
-            insectApi = insectApiObject.AddComponent<InsectApi>();
-        }
+        GameObject insectApiObject = new GameObject("InsectApiObject");
+        insectApi = insectApiObject.AddComponent<InsectApi>();
+
+        GameObject foodDragHandlerObject = new GameObject("foodDragHandlerObject");
+        foodDragHandler = foodDragHandlerObject.AddComponent<FoodDragHandler>();
     }
 
     void Start()
@@ -143,6 +144,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             Destroy(foodObject);
             foodObject = null;
             ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
+            ResetUIAfterFeeding();
         }
     }
 
@@ -172,5 +174,12 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         notificationText.gameObject.SetActive(false);
+    }
+    
+    private void ResetUIAfterFeeding()
+    {
+        Debug.Log("UI 초기화");
+        foodDragHandler.HideFoodIcon();
+        foodDragHandler.feedButton.gameObject.SetActive(true);
     }
 }
