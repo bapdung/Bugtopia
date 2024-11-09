@@ -7,7 +7,6 @@ using API.Insect;
 using Models.Insect.Response;
 using Models.Insect.Request;
 using TMPro;
-using UnityEngine.UI;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
@@ -17,18 +16,14 @@ public class ARPlaceOnPlane : MonoBehaviour
     public InsectApi insectApi;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
-    public GameObject foodIcon;
-    public TextMeshProUGUI foodDescriptionText;
-    public Button feedButton;
 
-    private GameObject foodObject; // 생성된 Food 오브젝트
-    private GameObject insectObject; // 생성된 Insect 오브젝트
-
-    private InsectInfoResponse insectInfoResponse; // Insect 정보
-    private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
-    private Animator insectAnimator; // Insect의 Animator
-    private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
-    private float rotationSpeed = 2.0f; // 회전 속도
+    private GameObject foodObject;
+    private GameObject insectObject;
+    private InsectInfoResponse insectInfoResponse;
+    private IncreaseScoreResponse increaseScoreResponse;
+    private Animator insectAnimator;
+    private bool isInsectMoving = false;
+    private float rotationSpeed = 2.0f;
 
     void Awake()
     {
@@ -47,13 +42,11 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             insectInfoResponse = response;
             nicknameText.text = insectInfoResponse.nickname;
-            Debug.Log("지흔: insectInfoResponse.nickname: " + insectInfoResponse.nickname);
 
             insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
             
             if (insectPrefab != null)
             {
-                Debug.Log("지흔: insectPrefab 로드 성공 - family: " + insectInfoResponse.family);
                 UpdateInsectObject();
             }
             else
@@ -73,7 +66,6 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         if (insectObject == null)
         {
-            Debug.Log("지흔: insectObject가 null입니다. UpdateInsectObject 호출 시도");
             UpdateInsectObject();
         }
 
@@ -91,7 +83,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         if (aRRaycaster.Raycast(screenCenter, hits, TrackableType.Planes))
         {
             Pose placementPose = hits[0].pose;
-            Debug.Log("지흔: 평면 발견 - 위치: " + placementPose.position + ", 회전: " + placementPose.rotation);
 
             if (insectObject == null)
             {
@@ -106,8 +97,6 @@ public class ARPlaceOnPlane : MonoBehaviour
                 {
                     SetInsectIdle();
                 }
-
-                Debug.Log("지흔: Insect 오브젝트가 화면 중앙에 배치되었습니다 - 위치: " + insectObject.transform.position + ", 스케일: " + insectObject.transform.localScale);
             }
         }
         else
@@ -147,7 +136,6 @@ public class ARPlaceOnPlane : MonoBehaviour
                 onSuccess: (response) =>
                 {
                     increaseScoreResponse = response;
-                    Debug.Log("점수 증가 성공 - 애정도 총합: " + response.loveScore);
                 },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
@@ -155,19 +143,6 @@ public class ARPlaceOnPlane : MonoBehaviour
             Destroy(foodObject);
             foodObject = null;
             ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
-            ResetUIAfterFeeding();
-        }
-    }
-
-    private IEnumerator SwitchToIdleAfterAttack()
-    {
-        Debug.Log("지흔: 3초 동안 공격 애니메이션 유지");
-        yield return new WaitForSeconds(3);
-
-        if (insectAnimator != null)
-        {
-            insectAnimator.SetBool("attack", false);
-            SetInsectIdle();
         }
     }
 
@@ -177,12 +152,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             insectAnimator.SetBool("idle", true);
             insectAnimator.SetBool("walk", false);
-            insectAnimator.SetBool("turnleft", false);
-            insectAnimator.SetBool("turnright", false);
-            insectAnimator.SetBool("flyleft", false);
-            insectAnimator.SetBool("flyright", false);
-            insectAnimator.SetBool("attack", false);
-            insectAnimator.SetBool("hit", false);
         }
     }
 
@@ -190,23 +159,12 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         foodObject = newFoodObject;
         isInsectMoving = true;
-        Debug.Log("지흔: Insect가 Food로 이동을 시작합니다 - Food 위치: " + foodObject.transform.position);
-    }
-
-    private void ResetUIAfterFeeding()
-    {
-        foodIcon.SetActive(false);
-        foodDescriptionText.gameObject.SetActive(false);
-        // feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "지금은 배불러요!";
-        // feedButton.interactable = false;
-        feedButton.gameObject.SetActive(true);
     }
 
     private void ShowNotification(string message, float duration)
     {
         notificationText.text = message;
         notificationText.gameObject.SetActive(true);
-        Debug.Log("지흔: 알림 표시 - 메시지: " + message);
         StartCoroutine(HideNotificationAfterDelay(duration));
     }
 
@@ -214,6 +172,5 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         notificationText.gameObject.SetActive(false);
-        Debug.Log("지흔: 알림 숨김");
     }
 }

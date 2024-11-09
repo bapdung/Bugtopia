@@ -1276,9 +1276,6 @@ MonoBehaviour:
   insectApi: {fileID: 0}
   nicknameText: {fileID: 1146719292}
   notificationText: {fileID: 1932621515}
-  foodIcon: {fileID: 0}
-  foodDescriptionText: {fileID: 0}
-  feedButton: {fileID: 0}
 --- !u!4 &1037246578
 Transform:
   m_ObjectHideFlags: 0
@@ -1792,7 +1789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  FoodDescriptionText: {fileID: 653360550}
+  foodDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   foodIcon: {fileID: 1175401533}
 --- !u!114 &1175401538
