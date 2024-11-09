@@ -816,8 +816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d449ca9d95cc7c04b88da45122661f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmButton: {fileID: 2121010081}
-  cancelButton: {fileID: 1463793922}
 --- !u!1 &1703220113
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confirmButton: {fileID: 2121010081}
   cancelButton: {fileID: 1463793922}
+  nicknameCheck: {fileID: 994407790}
 --- !u!1 &1715758349
 GameObject:
   m_ObjectHideFlags: 0
