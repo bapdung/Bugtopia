@@ -197,8 +197,8 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         foodIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
-        feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "지금은 배불러요!";
-        feedButton.interactable = false;
+        // feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "지금은 배불러요!";
+        // feedButton.interactable = false;
         feedButton.gameObject.SetActive(true);
     }
 

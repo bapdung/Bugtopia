@@ -11,7 +11,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     public ARRaycastManager arRaycaster; // AR Raycast Manager
     public GameObject foodPrefab; // Food 프리팹
-    public TextMeshProUGUI FoodDescriptionText;
+    public TextMeshProUGUI foodDescriptionText;
 
     public Button feedButton;
     public GameObject foodIcon;
@@ -21,7 +21,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     void Start()
     {
         foodIcon.SetActive(false);
-        FoodDescriptionText.gameObject.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
         feedButton.gameObject.SetActive(true);
         feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "오늘의 먹이주기";
         feedButton.onClick.AddListener(ShowFoodIcon);
@@ -30,7 +30,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void ShowFoodIcon()
     {
         foodIcon.SetActive(true);
-        FoodDescriptionText.gameObject.SetActive(true);
+        foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
     }
 
