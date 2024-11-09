@@ -5,6 +5,7 @@ public static class PrefabLoader
 {
     public static GameObject LoadInsectPrefab(string family)
     {
+        Debug.Log("지흔: 프리팹을 로드하자");
         string prefabPath = $"Prefabs/{family}"; // family 값에 따라 경로 설정
         GameObject loadedPrefab = Resources.Load<GameObject>(prefabPath);
 
