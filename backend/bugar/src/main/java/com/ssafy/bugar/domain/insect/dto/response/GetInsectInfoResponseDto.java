@@ -12,7 +12,7 @@ public class GetInsectInfoResponseDto {
 
     private Info info;
     private LoveScore loveScore;
-    private NextEventInfo event;
+    private NextEventInfo nextEventInfo;
 
     @Getter
     @AllArgsConstructor
