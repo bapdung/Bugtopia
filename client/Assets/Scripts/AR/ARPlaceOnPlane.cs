@@ -20,15 +20,16 @@ public class ARPlaceOnPlane : MonoBehaviour
     public GameObject foodIcon;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
-    public FoodDragHandler foodDragHandler; 
+    public FoodDragHandler foodDragHandler;
 
-    private GameObject foodObject;
-    private GameObject insectObject;
-    private InsectInfoResponse insectInfoResponse;
-    private IncreaseScoreResponse increaseScoreResponse;
-    private Animator insectAnimator;
-    private bool isInsectMoving = false;
-    private float rotationSpeed = 2.0f;
+    private GameObject foodObject; // 생성된 Food 오브젝트
+    private GameObject insectObject; // 생성된 Insect 오브젝트
+
+    private InsectArInfoResponse insectInfoResponse; // Insect 정보
+    private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
+    private Animator insectAnimator; // Insect의 Animator
+    private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
+    private float rotationSpeed = 2.0f; // 회전 속도
 
     void Awake()
     {
@@ -43,7 +44,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         long raisingInsectId = 1;
 
-        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        StartCoroutine(insectApi.GetInsectArInfo(raisingInsectId, (response) =>
         {
             insectInfoResponse = response;
             nicknameText.text = insectInfoResponse.nickname;
@@ -141,6 +142,7 @@ public class ARPlaceOnPlane : MonoBehaviour
                 onSuccess: (response) =>
                 {
                     increaseScoreResponse = response;
+                    Debug.Log("점수 증가 성공 - 애정도 총합: " + response.loveScore);
                 },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
@@ -179,7 +181,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         yield return new WaitForSeconds(delay);
         notificationText.gameObject.SetActive(false);
     }
-    
+
     private void ResetUIAfterFeeding()
     {
         feedButton.gameObject.SetActive(true);
