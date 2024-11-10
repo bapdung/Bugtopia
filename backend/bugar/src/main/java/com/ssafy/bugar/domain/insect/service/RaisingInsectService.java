@@ -6,6 +6,7 @@ import com.ssafy.bugar.domain.insect.dto.response.GetAreaInsectResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto.Info;
 import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto.LoveScore;
+import com.ssafy.bugar.domain.insect.dto.response.GetInsectInfoResponseDto.NextEventInfo;
 import com.ssafy.bugar.domain.insect.dto.response.SaveRaisingInsectResponseDto;
 import com.ssafy.bugar.domain.insect.entity.Event;
 import com.ssafy.bugar.domain.insect.entity.Insect;
@@ -97,19 +98,9 @@ public class RaisingInsectService {
             return null;
         }
 
+        // 곤충 정보 구하기
         Insect insectType = insectRepository.findByInsectId(raisingInsect.getInsectId());
         AreaType areaName = areaRepository.findByAreaId(insectType.getAreaId()).getAreaName();
-
-        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId,
-                Category.FOOD);
-
-        Timestamp lastEat = null;
-
-        if (!foodLoveScore.isEmpty()) {
-            lastEat = foodLoveScore.get(0).getCreatedDate();
-        }
-
-        CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
 
         Info info = Info.builder()
                 .raisingInsectId(raisingInsectId)
@@ -120,20 +111,44 @@ public class RaisingInsectService {
                 .livingDate(raisingInsect.getCreatedDate())
                 .build();
 
+        // 애정도 정보 구하기
+        List<InsectLoveScore> foodLoveScore = insectLoveScoreRepository.findInsectLoveScoreByCategory(raisingInsectId,
+                Category.FOOD);
+
+        Timestamp lastEat = null;
+
+        if (!foodLoveScore.isEmpty()) {
+            lastEat = foodLoveScore.get(0).getCreatedDate();
+        }
+
+        CheckInsectEventResponseDto checkInsectEvent = checkInsectEvent(raisingInsectId);
+        int LoveScoreTotal = checkInsectEvent.getLoveScore();
+
         LoveScore loveScore = LoveScore.builder()
-                .total(checkInsectEvent.getLoveScore())
+                .total(LoveScoreTotal)
                 .feedCnt(raisingInsect.getFeedCnt())
                 .lastEat(lastEat)
                 .interactCnt(raisingInsect.getInteractCnt())
                 .build();
 
-        GetInsectInfoResponseDto.Event event = GetInsectInfoResponseDto.Event.builder()
-                .endEvent(eventRepository.findByEventId(raisingInsect.getEventId()).getEventName())
-                .isEvent(checkInsectEvent.getIsEvent())
-                .eventType(checkInsectEvent.getEventType())
-                .build();
+        // 이벤트 정보 구하기
+        NextEventInfo nextEventInfo = null;
+        int completedEventScore = eventRepository.findByEventId(raisingInsect.getEventId()).getEventScore();
+        List<Event> notCompletedEvents = eventRepository.getNotCompletedEvents(completedEventScore);
 
-        return new GetInsectInfoResponseDto(info, loveScore, event);
+        if (notCompletedEvents.isEmpty()) {
+            nextEventInfo = NextEventInfo.builder()
+                    .nextEvent("END")
+                    .build();
+        } else {
+            Event notCompletedEvent = notCompletedEvents.get(0);
+            nextEventInfo = NextEventInfo.builder()
+                    .nextEvent(notCompletedEvent.getEventName().toString())
+                    .remainScore(notCompletedEvent.getEventScore() - LoveScoreTotal)
+                    .build();
+        }
+
+        return new GetInsectInfoResponseDto(info, loveScore, nextEventInfo);
     }
 
     public CheckInsectEventResponseDto checkInsectEvent(Long raisingInsectId) throws IOException {
