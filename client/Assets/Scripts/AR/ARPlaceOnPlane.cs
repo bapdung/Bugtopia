@@ -161,6 +161,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             insectAnimator.SetBool("flyleft", false);
             insectAnimator.SetBool("flyright", false);
             insectAnimator.SetBool("attack", false);
+            insectAnimator.SetBool("bite", false);
             insectAnimator.SetBool("hit", false);
         }
     }
@@ -171,7 +172,11 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             Debug.Log("지흔 : 잠깐 멈췄다가 바로 공격");
             SetInsectIdle();
-            insectAnimator.SetTrigger("attack");
+            if(insectInfoResponse.family == "Tarantula"){
+                insectAnimator.SetTrigger("bite");
+            } else{
+                insectAnimator.SetTrigger("attack");
+            }
             StartCoroutine(SwitchToIdleAfterAttack());
         }
     }
