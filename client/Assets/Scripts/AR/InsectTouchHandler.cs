@@ -75,9 +75,8 @@ public class InsectTouchHandler : MonoBehaviour
             yield break;
         }
 
-        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
-        heartInstance.transform.SetParent(this.transform); 
-        heartInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        heartInstance.transform.SetParent(this.transform);
 
         yield return new WaitForSeconds(3.0f); 
 
