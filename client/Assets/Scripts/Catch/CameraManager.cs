@@ -14,8 +14,15 @@ public class CameraManager : MonoBehaviour
     private WebCamTexture webCamTexture;
     public GameObject HelpPanel;
     public GameObject LoadingPanel;
-    private CatchApi catchApi;
-
+    public CatchApi catchApi;
+    private void Awake()
+    {
+        if (catchApi == null)
+        {
+            GameObject catchApiObject = new GameObject("CatchApiObject");  // 새 GameObject 생성
+            catchApi = catchApiObject.AddComponent<CatchApi>();  // catchApi 컴포넌트를 추가하여 할당
+        }
+    }
     void Start()
     {
         // 권한 받기
@@ -47,7 +54,6 @@ public class CameraManager : MonoBehaviour
         }
         // TODO : api response가 도착하면 심사결과 페이지로 이동하게 할 것
 
-        catchApi = FindObjectOfType<CatchApi>();
     }
 
     public void TakePhotoButton()

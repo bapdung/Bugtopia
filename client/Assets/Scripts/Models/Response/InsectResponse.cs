@@ -45,7 +45,7 @@ namespace Models.Insect.Response
     }
 
     [System.Serializable]
-    public class SearchUnsectResponse
+    public class SearchInsectResponse
     {
         public int insectId;
         public string krName;
@@ -100,5 +100,13 @@ namespace Models.Insect.Response
     {
         public string nextEvent;
         public int remainScore;
+    }
+
+    [System.Serializable]
+    public class InsectNicknameResponse
+    {
+        public long raisingInsectId;
+        public string nickname;
+        public string family;
     }
 }

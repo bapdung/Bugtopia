@@ -12,4 +12,11 @@ namespace Models.Insect.Request
     {
         public string photoUrl;
     }
+
+    [System.Serializable]
+    public class InsectNicknameRequest
+    {
+        public long insectId;
+        public string nickname;
+    }
 }
