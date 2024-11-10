@@ -37,13 +37,14 @@ public class InsectDetailController : MonoBehaviour
     [SerializeField] private Image f2andt2Line;
     [SerializeField] private Image t2andmLine;
     [SerializeField] private Image endLine;
-
     
     [SerializeField] private Image foodCircle1;
     [SerializeField] private Image teritoryCircle1;
     [SerializeField] private Image foodCircle2;
     [SerializeField] private Image teritoryCircle2;
     [SerializeField] private Image marryCircle;
+
+    [SerializeField] private TextMeshProUGUI eventInfoText;
 
     [SerializeField] private TextMeshProUGUI livingDate;
     [SerializeField] private TextMeshProUGUI ddayText;
@@ -125,6 +126,21 @@ public class InsectDetailController : MonoBehaviour
             interactContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
         } else {
             interactContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
+        }
+
+        string nextEvent = response.nextEventInfo.nextEvent;
+        if(nextEvent == "END") {
+            eventInfoText.text = "축하합니다! 모든 이벤트를 클리어 했습니다!";
+        } else if (nextEvent == "MARRY") {
+            eventInfoText.text = "최종 전투 이벤트가 열렸습니다!";
+        } else {
+            int remainScore = response.nextEventInfo.remainScore;
+            Debug.Log(remainScore);
+            if(remainScore == 0) {
+                eventInfoText.text = "다음 필요 애정도를 보려면 전투 클리어가 필요합니다";
+            } else {
+                eventInfoText.text = "다음 이벤트까지 애정도 " + remainScore +"이 더 필요합니다";
+            }
         }
     }
 

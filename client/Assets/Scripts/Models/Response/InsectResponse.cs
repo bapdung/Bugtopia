@@ -72,7 +72,7 @@ namespace Models.Insect.Response
     {
         public Info info;
         public LoveScore loveScore;
-        public EventDetail eventDetail;
+        public NextEventInfo nextEventInfo;
     }
 
     [System.Serializable]
@@ -96,10 +96,9 @@ namespace Models.Insect.Response
     }
 
     [System.Serializable]
-    public class EventDetail
+    public class NextEventInfo
     {
-        public string endEvent;
-        public bool isEvent;
-        public string eventType;
+        public string nextEvent;
+        public int remainScore;
     }
 }
