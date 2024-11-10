@@ -72,7 +72,7 @@ public class InsectDetailController : MonoBehaviour
         insectName.text = response.info.insectName;
 
         feedCnt = response.loveScore.feedCnt;
-        feedContainerText.text = "먹이주기 ( " + feedCnt + "/2)";
+        feedContainerText.text = "먹이주기 ( " + feedCnt + "/5)";
 
         interactCnt = response.loveScore.interactCnt;
         interactContainerText.text = "쓰다듬기 (" + interactCnt + "/10)";
@@ -90,7 +90,7 @@ public class InsectDetailController : MonoBehaviour
 
         if (feedCnt >= 2) {
             feedInfo1.text = "오늘은 다 먹었어요";
-            feedInfo2.text = "먹이는 하루에 두 번만 줘요";
+            feedInfo2.text = "먹이는 하루에 5번만 줘요";
             feedContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
         } else {
             feedContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
