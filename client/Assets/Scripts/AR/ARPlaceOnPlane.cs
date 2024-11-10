@@ -24,7 +24,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
-    private InsectInfoResponse insectInfoResponse; // Insect 정보
+    private InsectArInfoResponse insectInfoResponse; // Insect 정보
     private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
@@ -43,7 +43,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         long raisingInsectId = 1;
 
-        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        StartCoroutine(insectApi.GetInsectArInfo(raisingInsectId, (response) =>
         {
             insectInfoResponse = response;
             nicknameText.text = insectInfoResponse.nickname;

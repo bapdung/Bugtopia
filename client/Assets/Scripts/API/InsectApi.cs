@@ -23,7 +23,7 @@ namespace API.Insect
             insectUrl = $"{environmentConfig.baseUrl}/insect";
         }
 
-        public IEnumerator GetInsectInfo(long raisingInsectId, System.Action<InsectInfoResponse> onSuccess, System.Action<string> onFailure)
+        public IEnumerator GetInsectInfo(long raisingInsectId, System.Action<InsectDetailInfoResponse> onSuccess, System.Action<string> onFailure)
         {
             string requestUrl = $"{insectUrl}/{raisingInsectId}";
 
@@ -36,7 +36,7 @@ namespace API.Insect
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     string jsonResponse = request.downloadHandler.text;
-                    InsectInfoResponse responseData = JsonUtility.FromJson<InsectInfoResponse>(jsonResponse);
+                    InsectDetailInfoResponse responseData = JsonUtility.FromJson<InsectDetailInfoResponse>(jsonResponse);
 
                     // 성공 콜백 호출
                     onSuccess?.Invoke(responseData);
@@ -44,6 +44,30 @@ namespace API.Insect
                 else
                 {
                     // 실패 콜백 호출 (오류 메시지 전달)
+                    onFailure?.Invoke(request.error);
+                }
+            }
+        }
+
+        public IEnumerator GetInsectArInfo(long raisingInsectId , System.Action<InsectArInfoResponse> onSuccess, System.Action<string> onFailure)
+        {
+            string requestUrl = $"{insectUrl}/url/{raisingInsectId}";
+
+            using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
+            {
+                request.SetRequestHeader("Content-Type", "application/json");
+
+                yield return request.SendWebRequest();
+
+                if(request.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonResponse = request.downloadHandler.text;
+                    InsectArInfoResponse responseData = JsonUtility.FromJson<InsectArInfoResponse>(jsonResponse);
+
+                    onSuccess?.Invoke(responseData);
+                }
+                else 
+                {
                     onFailure?.Invoke(request.error);
                 }
             }

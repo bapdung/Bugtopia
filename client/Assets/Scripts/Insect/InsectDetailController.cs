@@ -66,24 +66,24 @@ public class InsectDetailController : MonoBehaviour
         }
     }
 
-    private void OnSuccess(InsectInfoResponse response)
+    private void OnSuccess(InsectDetailInfoResponse response)
     {
-        insectNickname.text = response.nickname;
-        insectName.text = response.insectName;
+        insectNickname.text = response.info.nickname;
+        insectName.text = response.info.insectName;
 
-        feedCnt = response.feedCnt;
+        feedCnt = response.loveScore.feedCnt;
         feedContainerText.text = "먹이주기 ( " + feedCnt + "/2)";
 
-        interactCnt = response.interactCnt;
+        interactCnt = response.loveScore.interactCnt;
         interactContainerText.text = "쓰다듬기 (" + interactCnt + "/10)";
 
-        if(response.areaType == "FOREST") {
+        if(response.info.areaType == "FOREST") {
             area.text = "숲";
             areaContainer.color = new Color(41f / 255f, 157f / 255f, 89f / 255f);
-        } else if (response.areaType == "WATER") {
+        } else if (response.info.areaType == "WATER") {
             area.text = "연못";
             areaContainer.color = new Color(55f / 255f, 102f / 255f, 230f / 255f);
-        } else if (response.areaType == "GARDEN") {
+        } else if (response.info.areaType == "GARDEN") {
             area.text = "꽃밭";
             areaContainer.color = new Color(209f / 255f, 51f / 255f, 235f / 255f);
         }
@@ -95,7 +95,7 @@ public class InsectDetailController : MonoBehaviour
         } else {
             feedContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
             
-            if (DateTime.TryParse(response.lastEat, out lastEatTime))
+            if (DateTime.TryParse(response.loveScore.lastEat, out lastEatTime))
             {
                 StartCountdown();
             }
