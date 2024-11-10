@@ -97,7 +97,7 @@ public class ARPlaceOnPlane : MonoBehaviour
                 insectObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
                 var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
-                touchHandler.Initialize(insectApi, insectInfoResponse);
+                touchHandler.Initialize(insectApi, insectInfoResponse, insectAnimator);
                 touchHandler.notificationText = notificationText; 
 
                 if (insectAnimator != null)

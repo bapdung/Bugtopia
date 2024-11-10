@@ -8,17 +8,19 @@ using TMPro;
 
 public class InsectTouchHandler : MonoBehaviour
 {
+    public TextMeshProUGUI notificationText;
     public GameObject heartPrefab;
     private InsectApi insectApi;
     private InsectArInfoResponse insectInfoResponse;
     private IncreaseScoreResponse increaseScoreResponse;
-    public TextMeshProUGUI notificationText;
+    private Animator insectAnimator;
    
-    public void Initialize(InsectApi api, InsectArInfoResponse infoResponse)
+    public void Initialize(InsectApi api, InsectArInfoResponse infoResponse, Animator animator)
     {
         insectApi = api;
         insectInfoResponse = infoResponse;
         heartPrefab = Resources.Load<GameObject>("AR/Heart");
+        insectAnimator = animator;
     }
 
     private void Update()
@@ -52,6 +54,12 @@ public class InsectTouchHandler : MonoBehaviour
         // 알림 텍스트 표시
         StartCoroutine(ShowNotificationText());
 
+        if (insectAnimator != null)
+        {
+            insectAnimator.SetTrigger("hit");
+            StartCoroutine(SetInsectTouch());
+        }
+
         var increaseScoreRequest = new IncreaseScoreRequest
         {
             raisingInsectId = insectInfoResponse.raisingInsectId,
@@ -75,10 +83,10 @@ public class InsectTouchHandler : MonoBehaviour
             yield break;
         }
 
-        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 0.3f, Quaternion.identity);
         heartInstance.transform.SetParent(this.transform);
 
-        yield return new WaitForSeconds(3.0f); 
+        yield return new WaitForSeconds(2.0f); 
 
         Destroy(heartInstance);
     }
@@ -91,5 +99,12 @@ public class InsectTouchHandler : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
 
         notificationText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator SetInsectTouch()
+    {
+        yield return new WaitForSeconds(2.0f);
+        insectAnimator.SetBool("hit", false);
+        insectAnimator.SetBool("idle", true);
     }
 }
