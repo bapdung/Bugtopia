@@ -108,7 +108,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         }
         else
         {
-            Debug.Log("지흔: 평면 감지 실패 - Raycast 결과 없음");
+            // Debug.Log("지흔: 평면 감지 실패 - Raycast 결과 없음");
         }
     }
 
@@ -128,10 +128,10 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, foodObject.transform.position, step);
 
-        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.4f)
+        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.2f)
         {
             isInsectMoving = false;
-            SetInsectIdle();
+            SetInsectEat();
 
             var increaseScoreRequest = new IncreaseScoreRequest
             {
@@ -161,8 +161,32 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             insectAnimator.SetBool("idle", true);
             insectAnimator.SetBool("walk", false);
+            insectAnimator.SetBool("turnleft", false);
+            insectAnimator.SetBool("turnright", false);
+            insectAnimator.SetBool("flyleft", false);
+            insectAnimator.SetBool("flyright", false);
+            insectAnimator.SetBool("attack", false);
+            insectAnimator.SetBool("hit", false);
         }
     }
+
+    private void SetInsectEat()
+    {
+        if (insectAnimator != null)
+        {
+            Debug.Log("지흔 : 잠깐 멈췄다가 바로 공격");
+            SetInsectIdle();
+            insectAnimator.SetTrigger("attack");
+            StartCoroutine(SwitchToIdleAfterAttack());
+        }
+    }
+
+    private IEnumerator SwitchToIdleAfterAttack()
+    {
+        yield return new WaitForSeconds(4.0f);
+        SetInsectIdle();
+    }
+
 
     public void StartInsectMovement(GameObject newFoodObject)
     {
