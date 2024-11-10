@@ -21,7 +21,6 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         HideFoodIcon();
         feedButton.gameObject.SetActive(true);
-        feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "오늘의 먹이주기";
         feedButton.onClick.AddListener(ShowFoodIcon);
     }
 
