@@ -197,6 +197,7 @@ public class RaisingInsectService {
                 Category.FOOD);
 
         return GetArInsectInfoResponseDto.builder()
+                .raisingInsectId(raisingInsectId)
                 .nickname(raisingInsect.getInsectNickname())
                 .family(insect.getFamily())
                 .feedCnt(raisingInsect.getFeedCnt())

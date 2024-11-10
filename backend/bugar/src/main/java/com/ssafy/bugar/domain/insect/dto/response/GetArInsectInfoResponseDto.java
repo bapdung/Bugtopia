@@ -10,6 +10,7 @@ import lombok.Getter;
 @Builder
 public class GetArInsectInfoResponseDto {
 
+    private long raisingInsectId;
     private String nickname;
     private String family;
     private int feedCnt;
