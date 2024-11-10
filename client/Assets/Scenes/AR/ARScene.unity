@@ -847,8 +847,8 @@ MonoBehaviour:
   m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uBA39\uC774\uB97C \uACE4\uCDA9 \uADFC\uCC98
     \uD3C9\uBA74\uC5D0 \uB358\uC838\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 20e7b5a96814e2f43873276eb814c91c, type: 2}
-  m_sharedMaterial: {fileID: 2675761959349057276, guid: 20e7b5a96814e2f43873276eb814c91c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_sharedMaterial: {fileID: 8920113225108332148, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1531,6 +1531,7 @@ MonoBehaviour:
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
+  playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
   nicknameText: {fileID: 1146719292}
   notificationText: {fileID: 1932621515}
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
   foodDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
+  playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
 --- !u!114 &1175401538
 MonoBehaviour:

@@ -13,6 +13,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public GameObject foodPrefab; // Food 프리팹
     public TextMeshProUGUI foodDescriptionText;
     public Button feedButton;
+    public Button playButton;
     public GameObject foodIcon;
 
     private GameObject foodPreviewObject;
@@ -21,6 +22,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         HideFoodIcon();
         feedButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
         feedButton.onClick.AddListener(ShowFoodIcon);
     }
 
@@ -30,6 +32,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         foodIcon.SetActive(true);
         foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
     }
 
     public void HideFoodIcon()

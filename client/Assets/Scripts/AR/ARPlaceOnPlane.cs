@@ -17,6 +17,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     public InsectApi insectApi;
     public TextMeshProUGUI foodDescriptionText;
     public Button feedButton;
+    public Button playButton;
     public GameObject foodIcon;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
@@ -185,6 +186,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private void ResetUIAfterFeeding()
     {
         feedButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
         foodIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
     }
