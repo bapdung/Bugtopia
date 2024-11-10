@@ -66,7 +66,6 @@ public class ARPlaceOnPlane : MonoBehaviour
             Debug.LogError("지흔: insect 정보 불러오기 실패 - " + error);
         }));
         
-        ShowNotification("Tip: 곤충을 가볍게 터치해서 쓰다듬을 수 있어요!", 5f);
     }
 
     void Update()
@@ -99,11 +98,14 @@ public class ARPlaceOnPlane : MonoBehaviour
 
                 var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
                 touchHandler.Initialize(insectApi, insectInfoResponse);
+                touchHandler.notificationText = notificationText; 
 
                 if (insectAnimator != null)
                 {
                     SetInsectIdle();
                 }
+
+                ShowNotification("Tip: 곤충을 가볍게 터치해서 쓰다듬을 수 있어요!", 5f);
             }
         }
         else
@@ -183,7 +185,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private IEnumerator SwitchToIdleAfterAttack()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(3.0f);
         SetInsectIdle();
         Destroy(foodObject);
         foodObject = null;

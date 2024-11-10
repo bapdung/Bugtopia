@@ -3,23 +3,22 @@ using API.Insect;
 using Models.Insect.Request;
 using Models.Insect.Response;
 using System;
+using System.Collections;
+using TMPro;
 
 public class InsectTouchHandler : MonoBehaviour
 {
+    public GameObject heartPrefab;
     private InsectApi insectApi;
     private InsectArInfoResponse insectInfoResponse;
     private IncreaseScoreResponse increaseScoreResponse;
-    private Action<string, float> ShowNotification; // 알림 표시 콜백
-
+    public TextMeshProUGUI notificationText;
+   
     public void Initialize(InsectApi api, InsectArInfoResponse infoResponse)
     {
         insectApi = api;
         insectInfoResponse = infoResponse;
-    }
-
-    public void SetNotificationHandler(Action<string, float> showNotification)
-    {
-        ShowNotification = showNotification;
+        heartPrefab = Resources.Load<GameObject>("AR/Heart");
     }
 
     private void Update()
@@ -47,6 +46,12 @@ public class InsectTouchHandler : MonoBehaviour
     {
         Debug.Log($"지흔: {gameObject.name}이 터치되었습니다!");
 
+        // 하트 표시 코루틴 시작
+        StartCoroutine(ShowHeart());
+
+        // 알림 텍스트 표시
+        StartCoroutine(ShowNotificationText());
+
         var increaseScoreRequest = new IncreaseScoreRequest
         {
             raisingInsectId = insectInfoResponse.raisingInsectId,
@@ -57,10 +62,35 @@ public class InsectTouchHandler : MonoBehaviour
             onSuccess: (response) => {
                 increaseScoreResponse = response;
                 Debug.Log("점수 증가 성공");
-                
-                ShowNotification?.Invoke(insectInfoResponse.nickname + "을(를) 쓰다듬었어요!", 3f);
             },
             onFailure: error => Debug.LogError("점수 증가 실패: " + error)
         ));
+    }
+
+    private IEnumerator ShowHeart()
+    {
+        if (heartPrefab == null)
+        {
+            Debug.LogError("heartPrefab이 할당되지 않았습니다.");
+            yield break;
+        }
+
+        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+        heartInstance.transform.SetParent(this.transform); 
+        heartInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+        yield return new WaitForSeconds(3.0f); 
+
+        Destroy(heartInstance);
+    }
+
+    private IEnumerator ShowNotificationText()
+    {
+        notificationText.text = $"{insectInfoResponse.nickname}을(를) 쓰다듬었어요!";
+        notificationText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        notificationText.gameObject.SetActive(false);
     }
 }
