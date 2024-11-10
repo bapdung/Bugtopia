@@ -83,7 +83,7 @@ namespace Models.Insect.Response
         public string insectName;
         public string family;
         public string areaType;
-        public DateTime livingDate;
+        public string livingDate;
     }
 
     [System.Serializable]

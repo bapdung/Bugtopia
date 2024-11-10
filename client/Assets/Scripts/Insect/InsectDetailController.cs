@@ -17,25 +17,36 @@ public class InsectDetailController : MonoBehaviour
     [SerializeField] private Image areaContainer;
     [SerializeField] private TextMeshProUGUI area;
 
-    [SerializeField] private Image interactInfoContainer;
-    [SerializeField] private TextMeshProUGUI interactInfo;
-
-    [SerializeField] private Image feedInfoContainer;
     [SerializeField] private TextMeshProUGUI feedInfo1;
     [SerializeField] private TextMeshProUGUI feedInfo2;
 
-    [SerializeField] private Image insectInfoContainer;
     [SerializeField] private TextMeshProUGUI insectNickname;
     [SerializeField] private TextMeshProUGUI insectName;
 
-    [SerializeField] private Button detailBtn;
-    [SerializeField] private TextMeshProUGUI detailBtnText;
-
-    [SerializeField] private Image todoContainer;
     [SerializeField] private Image interactContainer;
     [SerializeField] private TextMeshProUGUI interactContainerText;
+
     [SerializeField] private Image feedContainer;
     [SerializeField] private TextMeshProUGUI feedContainerText;
+
+    [SerializeField] private TextMeshProUGUI LoveScoreText;
+
+    [SerializeField] private Image startLine;
+    [SerializeField] private Image f1andt1Line;
+    [SerializeField] private Image t1andf2Line;
+    [SerializeField] private Image f2andt2Line;
+    [SerializeField] private Image t2andmLine;
+    [SerializeField] private Image endLine;
+
+    
+    [SerializeField] private Image foodCircle1;
+    [SerializeField] private Image teritoryCircle1;
+    [SerializeField] private Image foodCircle2;
+    [SerializeField] private Image teritoryCircle2;
+    [SerializeField] private Image marryCircle;
+
+    [SerializeField] private TextMeshProUGUI livingDate;
+    [SerializeField] private TextMeshProUGUI ddayText;
 
     [SerializeField] private Button ARBtn;
 
@@ -54,7 +65,7 @@ public class InsectDetailController : MonoBehaviour
 
     private void Start()
     {
-        long raisingInsectId = 5; // => 하드코딩 (추후수정)
+        long raisingInsectId = 7; // => 하드코딩 (추후수정)
 
         if (insectApi != null)
         {
@@ -70,6 +81,15 @@ public class InsectDetailController : MonoBehaviour
     {
         insectNickname.text = response.info.nickname;
         insectName.text = response.info.insectName;
+        LoveScoreText.text = $"{response.loveScore.total}";
+
+        string dateString  = response.info.livingDate.Split("T")[0];
+        livingDate.text = "만난 날짜 : " + dateString.Replace("-",". ");
+
+        DateTime createdDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        TimeSpan dateDifference = DateTime.Now - createdDate;
+        int daysDifference = dateDifference.Days;
+        ddayText.text = "당신을 만난지 " + daysDifference +"일째";
 
         feedCnt = response.loveScore.feedCnt;
         feedContainerText.text = "먹이주기 ( " + feedCnt + "/5)";
@@ -88,7 +108,7 @@ public class InsectDetailController : MonoBehaviour
             areaContainer.color = new Color(209f / 255f, 51f / 255f, 235f / 255f);
         }
 
-        if (feedCnt >= 2) {
+        if (feedCnt >= 5) {
             feedInfo1.text = "오늘은 다 먹었어요";
             feedInfo2.text = "먹이는 하루에 5번만 줘요";
             feedContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
