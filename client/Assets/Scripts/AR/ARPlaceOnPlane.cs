@@ -128,7 +128,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, foodObject.transform.position, step);
 
-        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.2f)
+        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.3f)
         {
             isInsectMoving = false;
             SetInsectEat();
@@ -147,11 +147,6 @@ public class ARPlaceOnPlane : MonoBehaviour
                 },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
-
-            Destroy(foodObject);
-            foodObject = null;
-            ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
-            ResetUIAfterFeeding();
         }
     }
 
@@ -185,6 +180,10 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         yield return new WaitForSeconds(4.0f);
         SetInsectIdle();
+        Destroy(foodObject);
+        foodObject = null;
+        ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
+        ResetUIAfterFeeding();
     }
 
 
