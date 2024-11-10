@@ -51,7 +51,7 @@ namespace API.Insect
 
         public IEnumerator GetInsectArInfo(long raisingInsectId , System.Action<InsectArInfoResponse> onSuccess, System.Action<string> onFailure)
         {
-            string requestUrl = $"{insectUrl}/url/{raisingInsectId}";
+            string requestUrl = $"{insectUrl}/ar/{raisingInsectId}";
 
             using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
             {
