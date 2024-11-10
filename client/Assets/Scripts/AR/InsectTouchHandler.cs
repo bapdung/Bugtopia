@@ -7,11 +7,11 @@ using System;
 public class InsectTouchHandler : MonoBehaviour
 {
     private InsectApi insectApi;
-    private InsectInfoResponse insectInfoResponse;
+    private InsectArInfoResponse insectInfoResponse;
     private IncreaseScoreResponse increaseScoreResponse;
     private Action<string, float> ShowNotification; // 알림 표시 콜백
 
-    public void Initialize(InsectApi api, InsectInfoResponse infoResponse)
+    public void Initialize(InsectApi api, InsectArInfoResponse infoResponse)
     {
         insectApi = api;
         insectInfoResponse = infoResponse;
