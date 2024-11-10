@@ -1,0 +1,711 @@
+{
+    "1": {
+        "name":"벼잎말이명나방",
+        "order":"나비목",
+        "family":"포충나방과",
+        "genus":"Cnaphalocrocis",
+        "species":"벼잎말이명나방"
+    },
+    "2": {},
+    "3": {
+        "name":"벼줄기굴파리",
+        "order":"파리목",
+        "family":"노랑굴파리과",
+        "genus":"Chlorops",
+        "species":"벼줄기굴파리"
+    },
+    "4": {
+        "name":"이화명나방",
+        "order":"나비목",
+        "family":"명나방과",
+        "genus":"Chilo",
+        "species":"이화명나방"
+    },
+    "5": {
+        "name":"노란줄기나방",
+        "order":"나비목",
+        "family":"갈색나방상과",
+        "genus":"Scirpophaga",
+        "species":"노란줄기나방"
+    },
+    "6": {
+        "name":"벼룩파리",
+        "order":"파리목",
+        "family":"벼룩파리과",
+        "genus":"",
+        "species":"벼룩파리"
+    },
+    "7": {
+        "name":"벼줄기파리",
+        "order":"파리목",
+        "family":"노랑굴파리과",
+        "genus":"Chlorops",
+        "species":"벼룩파리"
+    },
+    "8": {
+        "name":"혹명나방",
+        "order":"나비목",
+        "family":"명나방과",
+        "genus":"Cnaphalocrocis",
+        "species":"혹명나방"
+    },
+    "9": {
+        "name":"gmlsemdaufrn",
+        "order":"노린재목",
+        "family":"멸구과",
+        "genus":"흰등멸구속",
+        "species":"흰등멸구"
+    },
+    "10": {
+        "name":"작은혹명나방",
+        "order":"나비목",
+        "family":"명나방과",
+        "genus":"Cnaphalocrocis",
+        "species":"작은혹명나방"
+    },
+    "11": {
+        "name":"벼물바구미",
+        "order":"머리대장하목",
+        "family":"바구미과",
+        "genus":"Curculionoidea",
+        "species":"벼물바구미"
+    },
+    "12": {
+        "name":"벼노린재",
+        "order":"노린재목",
+        "family":"노린재과",
+        "genus":"Scotinophara",
+        "species":"벼노린재"
+    },
+    "13": {
+        "name":"벼알벌레",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "14": {
+        "name":"벼껍질벌레",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "15": {
+        "name":"굼벵이",
+        "order":"딱정벌레목",
+        "family":"풍뎅이과",
+        "genus":"",
+        "species":"굼벵이"
+    },
+    "16": {
+        "name":"땅강아지",
+        "order":"메뚜기목",
+        "family":"땅강아지과",
+        "genus":"",
+        "species":"땅강아지"
+    },
+    "17": {
+        "name":"방아벌레",
+        "order":"딱정벌레목",
+        "family":"방아벌레과",
+        "genus":"",
+        "species":"방아벌레"
+    },
+    "18": {
+        "name":"Ctenucha multifaria",
+        "order":"나비목",
+        "family":"밤나방상과",
+        "genus":"Ctenucha",
+        "species":"Ctenucha multifaria"
+    },
+    "19": {
+        "name":"검거세미밤나방",
+        "order":"나비목",
+        "family":"밤나방상과",
+        "genus":"Agrotis",
+        "species":"검거세미밤나방"
+    },
+    "20": {
+        "name":"large cutworm ",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "21": {
+        "name":"노란머리거세미",
+        "order":"나비목",
+        "family":"녹투과",
+        "genus":"Apamea",
+        "species":"노란머리거세미"
+    },
+    "22": {
+        "name":"red spider",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "23": {
+        "name":"유럽옥수수좀",
+        "order":"나비목",
+        "family":"풀나방과",
+        "genus":"Ostrinia",
+        "species":"유럽옥수수좀"
+    },
+    "24": {
+        "name":"담배거세미나방",
+        "order":"나비목",
+        "family":"밤나방상과",
+        "genus":"거세미나방속",
+        "species":"담배거세미나방"
+    },
+    "25": {
+        "name":"진딧물",
+        "order":"노린재목",
+        "family":"진딧물아과",
+        "genus":"진딧물속",
+        "species":"진딧물"
+    },
+    "26": {
+        "name":"Potosi Brevitarsis",
+        "order":"딱정벌레목",
+        "family":"풍뎅이과",
+        "genus":"점박이꽃무지속",
+        "species":"Potosi Brevitarsis"
+    },
+    "27": {
+        "name":"복숭아나무 천공충",
+        "order":"나비목",
+        "family":"유리나방과",
+        "genus":"Synanthedon",
+        "species":"복숭아나무 천공충"
+    },
+    "28": {
+        "name":"보리수염진딧물",
+        "order":"매미목",
+        "family":"진딧물과",
+        "genus":"보리수염진딧물속",
+        "species":"보리수염진딧물"
+    },
+    "29": {
+        "name":"녹색 노린재",
+        "order":"노린재목",
+        "family":"노린재과",
+        "genus":"노린재속",
+        "species":"녹색 노린재"
+    },
+    "30": {
+        "name":"기장테두리진딧물",
+        "order":"노린재목",
+        "family":"노린재과",
+        "genus":"노린재속",
+        "species":"기장테두리진딧물"
+    },
+    "31": {
+        "name":"wheat blossom midge",
+        "order":"파리목",
+        "family":"혹파리과",
+        "genus":"혹파리속",
+        "species":"wheat blossom midge"
+    },
+    "32": {
+        "name":"겨울곡물 진드기",
+        "order":"털진드기목",
+        "family":"응애과",
+        "genus":"흙응애속",
+        "species":"겨울곡물 진드기"
+    },
+    "33": {
+        "name":"longlegged spider mite",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "34": {
+        "name":"wheat phloeothrips",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "35": {
+        "name":"밀줄기톱풀",
+        "order":"벌목",
+        "family":"톱풀과",
+        "genus":"톱풀속",
+        "species":"밀줄기톱풀"
+    },
+    "36": {
+        "name":"cerodonta denticornis",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "37": {
+        "name":"beet fly",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "38": {
+        "name":"벼룩잎벌레",
+        "order":"딱정벌레목",
+        "family":"잎벌레과",
+        "genus":"",
+        "species":"벼룩잎벌레"
+    },
+    "39": {
+        "name":"cabbage army worm",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "40": {
+        "name":"파밤나방",
+        "order":"나비목",
+        "family":"밤나방상과",
+        "genus":"소프도프테라속",
+        "species":"파밤나방"
+    },
+    "41": {
+        "name":"Beet spot flies",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "42": {
+        "name":"meadow moth",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "43": {
+        "name":"beet weevil",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "44": {
+        "name":"serica orientalis motschulsky",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "45": {
+        "name":"alfalfa weevil",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "46": {
+        "name":"flax budworm",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "47": {
+        "name":"알파파 식물 벌레",
+        "order":"노린재목",
+        "family":"장님노린재과",
+        "genus":"Adelphocoris",
+        "species":"알파파 식물 벌레"
+    },
+    "48": {
+        "name":"리구스 리네올라리스",
+        "order":"노린재목",
+        "family":"장님노린재과",
+        "genus":"Lygus",
+        "species":"리구스 리네올라리스"
+    },
+    "49": {
+        "name":"Locustoidea",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "50": {
+        "name":"청동 물집 딱정벌레",
+        "order":"딱정벌레목",
+        "family":"가뢰과",
+        "genus":"Lytta",
+        "species":"청동 물집 딱정벌레"
+    },
+    "51": {
+        "name":"legume blister beetle",
+        "order":"딱정벌레목",
+        "family":"가뢰과",
+        "genus":"Lytta",
+        "species":"legume blister beetle"
+    },
+    "52": {
+        "name":"남가뢰",
+        "order":"딱정벌레목",
+        "family":"가뢰과",
+        "genus":"남가뢰속",
+        "species":"남가뢰"
+    },
+    "53": {
+        "name":"therioaphis maculata Buckton",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "54": {
+        "name":"odontothrips loti",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "55": {
+        "name":"총채벌레",
+        "order":"총채벌레목",
+        "family":"총채벌레과",
+        "genus":"",
+        "species":"총채벌레"
+    },
+    "56": {
+        "name":"alfalfa seed chalcid",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "57": {
+        "name":"대만흰나비",
+        "order":"나비목",
+        "family":"흰나비과",
+        "genus":"Pieris",
+        "species":"대만흰나비"
+    },
+    "58": {
+        "name":"Apolygus lucorum",
+        "order":"노린재목",
+        "family":"장님노린재과",
+        "genus":"Apolygus",
+        "species":"Apolygus lucorum"
+    },
+    "59": {
+        "name":"쐐기나방과",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "60": {
+        "name":"포도 필록세라",
+        "order":"노린재목",
+        "family":"진딧물아목",
+        "genus":"Daktulosphaira",
+        "species":"포도 필록세라"
+    },
+    "61": {
+        "name":"포도 응애",
+        "order":"응애목",
+        "family":"혹응애과",
+        "genus":"Eriophyes",
+        "species":"포도 응애"
+    },
+    "62": {
+        "name":"Brevipoalpus lewisi McGregor",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "63": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "64": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "65": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "66": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "67": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "68": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "69": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "70": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "71": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "72": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "73": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "74": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "75": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "76": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "77": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "78": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "79": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "80": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "81": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "82": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "83": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "84": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "85": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "86": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "87": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "88": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "89": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "90": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "91": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "92": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "93": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "94": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "95": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "96": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "97": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "98": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "99": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "100": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "101": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    },
+    "102": {
+        "name":"",
+        "order":"",
+        "family":"",
+        "genus":"",
+        "species":""
+    }
+
+}

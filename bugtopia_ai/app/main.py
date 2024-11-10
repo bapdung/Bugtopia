@@ -10,5 +10,5 @@ class ImageRequest(BaseModel):
 @app.post("/fastapi/api/insects-detection")
 async def predict(request: ImageRequest):
     img_url = request.img_url
-    insect_name = await predict_insect(img_url)
-    return insect_name
+    insect_info  = await predict_insect(img_url)
+    return insect_info 

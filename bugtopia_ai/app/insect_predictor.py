@@ -4,7 +4,7 @@ import requests
 from io import BytesIO
 import yaml
 from pathlib import Path
-import os
+import os, json
 
 # 바운딩 박스 좌표를 가져오는 함수 임포트
 from bounding_box import get_bounding_box
@@ -13,6 +13,13 @@ from bounding_box import get_bounding_box
 MODEL_PATH = 'app/model/prediction_model.pt'
 YAML_PATH = 'app/model/data.yaml'
 OUTPUT_DIR = '/results'
+CLASSES_JSON_PATH = 'app/model/classes.json'
+
+# classes.json 파일에서 곤충 정보를 로드하는 함수
+def load_insect_info(class_id):
+    with open(CLASSES_JSON_PATH, 'r', encoding='utf-8') as file:
+        insect_data = json.load(file)
+    return insect_data.get(str(class_id), {})
 
 # 모델 로드 함수
 def load_model(model_path):
@@ -50,8 +57,8 @@ def predict_insect(image_url):
     predictions = []
     for pred in results[0].boxes.data:
         class_id = int(pred[5])  # 예측된 클래스 ID
-        class_name = class_names[class_id]
-        predictions.append((class_id, class_name))
+        insect_info = load_insect_info(class_id)  # 클래스 ID로 곤충 정보 조회
+        predictions.append(insect_info)
     
     # 결과 저장 경로 설정 및 이미지 저장
     image_name = Path(image_url).name
