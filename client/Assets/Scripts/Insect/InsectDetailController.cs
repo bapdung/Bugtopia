@@ -1,22 +1,58 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using API.Insect;
 using Models.Insect.Response;
 
 public class InsectDetailController : MonoBehaviour
 {
-    private InsectApi insectApi; // InsectApi 인스턴스 참조
 
-    private TextMeshProUGUI insectNickname; // 곤충 닉네임
-    private TextMeshProUGUI insectName;     // 곤충명(한글)
-    private TextMeshProUGUI areaType;       // 지역 종류
+    private Coroutine countdownCoroutine;
+
+    private InsectApi insectApi; // InsectApi 인스턴스 참조
+    private DateTime lastEatTime;
+
+    [SerializeField] private Image areaContainer;
+    [SerializeField] private TextMeshProUGUI area;
+
+    [SerializeField] private TextMeshProUGUI feedInfo1;
+    [SerializeField] private TextMeshProUGUI feedInfo2;
+
+    [SerializeField] private TextMeshProUGUI insectNickname;
+    [SerializeField] private TextMeshProUGUI insectName;
+
+    [SerializeField] private Image interactContainer;
+    [SerializeField] private TextMeshProUGUI interactContainerText;
+
+    [SerializeField] private Image feedContainer;
+    [SerializeField] private TextMeshProUGUI feedContainerText;
+
+    [SerializeField] private TextMeshProUGUI LoveScoreText;
+
+    [SerializeField] private Image startLine;
+    [SerializeField] private Image f1andt1Line;
+    [SerializeField] private Image t1andf2Line;
+    [SerializeField] private Image f2andt2Line;
+    [SerializeField] private Image t2andmLine;
+    [SerializeField] private Image endLine;
+    
+    [SerializeField] private Image foodCircle1;
+    [SerializeField] private Image teritoryCircle1;
+    [SerializeField] private Image foodCircle2;
+    [SerializeField] private Image teritoryCircle2;
+    [SerializeField] private Image marryCircle;
+
+    [SerializeField] private TextMeshProUGUI eventInfoText;
+
+    [SerializeField] private TextMeshProUGUI livingDate;
+    [SerializeField] private TextMeshProUGUI ddayText;
+
+    [SerializeField] private Button ARBtn;
 
     private int feedCnt;        // 오늘 먹이를 먹은 횟수
     private int interactCnt;    // 오늘 상호작용한 횟수
-
-    private bool canEat = false;        // 오늘 먹이를 추가로 줄 수 있는지 여부
-    private bool canInteract = false;   // 오늘 상호작용을 더 할 수 있는지 여부
 
     void Awake()
     {
@@ -30,13 +66,8 @@ public class InsectDetailController : MonoBehaviour
 
     private void Start()
     {
-        long raisingInsectId = 5; // => 하드코딩 (추후수정)
+        long raisingInsectId = 7; // => 하드코딩 (추후수정)
 
-        // TextMeshPro 텍스트 요소 동적 생성
-        insectNickname = CreateTextElement("Insect Nickname");
-        insectName = CreateTextElement("Insect Name");
-        areaType= CreateTextElement("Area Type");
-        
         if (insectApi != null)
         {
             StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, OnSuccess, OnFailure));
@@ -47,47 +78,107 @@ public class InsectDetailController : MonoBehaviour
         }
     }
 
-    // 텍스트 요소 동적 생성 함수
-    private TextMeshProUGUI CreateTextElement(string elementName)
+    private void OnSuccess(InsectDetailInfoResponse response)
     {
-        GameObject textObject = new GameObject(elementName); // 새로운 게임 오브젝트 생성
-        textObject.transform.SetParent(this.transform, false); // 현재 오브젝트(Canvas)에 자식으로 설정
-        TextMeshProUGUI textMeshPro = textObject.AddComponent<TextMeshProUGUI>(); // TextMeshProUGUI 컴포넌트 추가
-        textMeshPro.fontSize = 24; // 기본 폰트 크기 설정 (필요에 따라 조절 가능)
-        textMeshPro.alignment = TextAlignmentOptions.Center; // 기본 정렬 설정
-        return textMeshPro;
-    }
+        insectNickname.text = response.info.nickname;
+        insectName.text = response.info.insectName;
+        LoveScoreText.text = $"{response.loveScore.total}";
 
-    private void OnSuccess(InsectInfoResponse response)
-    {
-        insectNickname.text = response.nickname;
-        insectName.text = response.insectName;
-        feedCnt = response.feedCnt;
-        interactCnt = response.interactCnt;
+        string dateString  = response.info.livingDate.Split("T")[0];
+        livingDate.text = "만난 날짜 : " + dateString.Replace("-",". ");
 
-        if(response.areaType == "FOREST") {
-            areaType.text = "숲";
-        } else if (response.areaType == "WATER") {
-            areaType.text = "연못";
-        } else if (response.areaType == "GARDEN") {
-            areaType.text = "꽃밭";
+        DateTime createdDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        TimeSpan dateDifference = DateTime.Now - createdDate;
+        int daysDifference = dateDifference.Days;
+        ddayText.text = "당신을 만난지 " + daysDifference +"일째";
+
+        feedCnt = response.loveScore.feedCnt;
+        feedContainerText.text = "먹이주기 ( " + feedCnt + "/5)";
+
+        interactCnt = response.loveScore.interactCnt;
+        interactContainerText.text = "쓰다듬기 (" + interactCnt + "/10)";
+
+        if(response.info.areaType == "FOREST") {
+            area.text = "숲";
+            areaContainer.color = new Color(41f / 255f, 157f / 255f, 89f / 255f);
+        } else if (response.info.areaType == "WATER") {
+            area.text = "연못";
+            areaContainer.color = new Color(55f / 255f, 102f / 255f, 230f / 255f);
+        } else if (response.info.areaType == "GARDEN") {
+            area.text = "꽃밭";
+            areaContainer.color = new Color(209f / 255f, 51f / 255f, 235f / 255f);
         }
 
-        if(feedCnt < 2) {
-            canEat = true;
+        if (feedCnt >= 5) {
+            feedInfo1.text = "오늘은 다 먹었어요";
+            feedInfo2.text = "먹이는 하루에 5번만 줘요";
+            feedContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
+        } else {
+            feedContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
+            
+            if (DateTime.TryParse(response.loveScore.lastEat, out lastEatTime))
+            {
+                StartCountdown();
+            }
         }
 
-        if(interactCnt < 10) {
-            canInteract = true;
+        if(interactCnt >= 10) {
+            interactContainer.color = new Color(255f / 255f, 143f / 255f, 28f / 255f, 0.14f);
+        } else {
+            interactContainer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0.07f);
         }
 
-        Debug.Log("canEat = " + canEat);
-        Debug.Log("canInteract = " + canInteract);
+        string nextEvent = response.nextEventInfo.nextEvent;
+        if(nextEvent == "END") {
+            eventInfoText.text = "축하합니다! 모든 이벤트를 클리어 했습니다!";
+        } else if (nextEvent == "MARRY") {
+            eventInfoText.text = "최종 전투 이벤트가 열렸습니다!";
+        } else {
+            int remainScore = response.nextEventInfo.remainScore;
+            Debug.Log(remainScore);
+            if(remainScore == 0) {
+                eventInfoText.text = "다음 필요 애정도를 보려면 전투 클리어가 필요합니다";
+            } else {
+                eventInfoText.text = "다음 이벤트까지 애정도 " + remainScore +"이 더 필요합니다";
+            }
+        }
     }
 
     private void OnFailure(string error)
     {
         // 실패 시 오류 메시지 출력
         Debug.LogError("Failed to fetch insect info: " + error);
+    }
+
+    private void StartCountdown() {
+        // 기존에 진행 중이던 카운트다운을 중지하고 새로 시작
+        if (countdownCoroutine != null) {
+            StopCoroutine(countdownCoroutine);
+        }
+        countdownCoroutine = StartCoroutine(UpdateCountdown());
+    }
+
+     private IEnumerator UpdateCountdown()
+    {
+        while (true)
+        {
+            TimeSpan timeDifference = DateTime.Now - lastEatTime;
+            TimeSpan remainingTime = TimeSpan.FromHours(6) - timeDifference;
+
+            if (remainingTime.TotalSeconds <= 0)
+            {
+                feedInfo1.text = "오늘의 먹이 주기";
+                feedInfo2.text = "지금 먹이를 줄 수 있어요!";
+                break;
+            }
+            else
+            {
+                feedInfo1.text = "지금은 배가 불러요";
+                feedInfo2.text = "다음 밥 시간 - " + string.Format("{0:D2}:{1:D2}:{2:D2}",
+                    remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds);
+            }
+
+            yield return new WaitForSeconds(1);
+        }
     }
 }

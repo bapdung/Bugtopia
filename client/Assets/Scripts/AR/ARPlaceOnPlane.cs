@@ -6,18 +6,27 @@ using UnityEngine.XR.ARSubsystems;
 using API.Insect;
 using Models.Insect.Response;
 using Models.Insect.Request;
+using TMPro;
+using UnityEngine.UI;
 
 public class ARPlaceOnPlane : MonoBehaviour
 {
-    public ARRaycastManager aRRaycaster; // AR Raycast Manager를 참조하여 평면에 대한 레이캐스팅 수행
-    public GameObject foodPrefab; // 평면에 배치할 Food 오브젝트
-    public GameObject insectPrefab; // 화면 중앙에 배치할 Insect 오브젝트
-    public InsectApi insectApi; // Insect API를 참조
+    public ARRaycastManager aRRaycaster;
+    public GameObject foodPrefab;
+    public GameObject insectPrefab;
+    public InsectApi insectApi;
+    public TextMeshProUGUI foodDescriptionText;
+    public Button feedButton;
+    public Button playButton;
+    public GameObject foodIcon;
+    public TextMeshProUGUI nicknameText;
+    public TextMeshProUGUI notificationText;
+    public FoodDragHandler foodDragHandler;
 
     private GameObject foodObject; // 생성된 Food 오브젝트
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
-    private InsectInfoResponse insectInfoResponse; // Insect 정보
+    private InsectArInfoResponse insectInfoResponse; // Insect 정보
     private IncreaseScoreResponse increaseScoreResponse; //Insect 애정도 관련 정보
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
@@ -25,49 +34,53 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     void Awake()
     {
-        // insectApi가 할당되지 않았을 경우 코드 내에서 생성
-        if (insectApi == null)
-        {
-            GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
-            insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
-        }
+        GameObject insectApiObject = new GameObject("InsectApiObject");
+        insectApi = insectApiObject.AddComponent<InsectApi>();
+
+        GameObject foodDragHandlerObject = new GameObject("foodDragHandlerObject");
+        foodDragHandler = foodDragHandlerObject.AddComponent<FoodDragHandler>();
     }
 
     void Start()
     {
-        long raisingInsectId = 1; // 하드코딩된 raisingInsectId
+        long raisingInsectId = 1;
 
-        StartCoroutine(insectApi.GetInsectInfo(raisingInsectId, (response) =>
+        StartCoroutine(insectApi.GetInsectArInfo(raisingInsectId, (response) =>
         {
             insectInfoResponse = response;
-            Debug.Log("지흔: insectInfoResponse: " + insectInfoResponse.nickname);
+            nicknameText.text = insectInfoResponse.nickname;
+
+            insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
+            
+            if (insectPrefab != null)
+            {
+                UpdateInsectObject();
+            }
+            else
+            {
+                Debug.LogError("지흔: insectPrefab이 null입니다. 프리팹 로드 실패 - family: " + insectInfoResponse.family);
+            }
         },
         (error) =>
         {
-            Debug.LogError("지흔: insect 정보 불러오기 실패" + error);
+            Debug.LogError("지흔: insect 정보 불러오기 실패 - " + error);
         }));
-
-        insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
-
-        UpdateInsectObject();
+        
     }
 
     void Update()
     {
-        // 평면 중앙에 Insect 배치
         if (insectObject == null)
         {
             UpdateInsectObject();
         }
 
-        // Insect가 Food를 향해 이동
         if (isInsectMoving && insectObject != null && foodObject != null)
         {
             MoveInsectTowardsFood();
         }
     }
 
-    // 화면 중앙에 Insect 오브젝트를 배치하는 함수
     private void UpdateInsectObject()
     {
         Vector3 screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
@@ -76,53 +89,51 @@ public class ARPlaceOnPlane : MonoBehaviour
         if (aRRaycaster.Raycast(screenCenter, hits, TrackableType.Planes))
         {
             Pose placementPose = hits[0].pose;
-            if (insectObject == null) // Insect가 없는 상태일 때만 생성
+
+            if (insectObject == null)
             {
                 insectObject = Instantiate(insectPrefab, placementPose.position, placementPose.rotation);
-                insectAnimator = insectObject.GetComponent<Animator>(); // Animator 초기화
-                
-                var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
-                touchHandler.Initialize(insectApi, insectInfoResponse);
-
+                insectAnimator = insectObject.GetComponent<Animator>();
                 insectObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+                var touchHandler = insectObject.AddComponent<InsectTouchHandler>();
+                touchHandler.Initialize(insectApi, insectInfoResponse, insectAnimator);
+                touchHandler.notificationText = notificationText; 
 
                 if (insectAnimator != null)
                 {
-                    SetInsectIdle(); // 초기 상태를 idle로 설정
+                    SetInsectIdle();
                 }
-                Debug.Log("지흔: Insect가 화면 중앙에 배치되었습니다!");
+
+                ShowNotification("Tip: 곤충을 가볍게 터치해서 쓰다듬을 수 있어요!", 5f);
             }
+        }
+        else
+        {
+            // Debug.Log("지흔: 평면 감지 실패 - Raycast 결과 없음");
         }
     }
 
-    // Insect가 Food를 향해 이동하는 함수
     private void MoveInsectTowardsFood()
     {
         if (insectAnimator != null)
         {
-            // 이동 중일 때 walk 애니메이션 활성화
             insectAnimator.SetBool("walk", true);
             insectAnimator.SetBool("idle", false);
         }
 
-        float step = 0.5f * Time.deltaTime; // 이동 속도 조정
-
-        // 이동 방향 계산
+        float step = 0.5f * Time.deltaTime;
         Vector3 direction = (foodObject.transform.position - insectObject.transform.position).normalized;
 
-        // Insect의 회전 설정 (부드럽게 회전)
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        // Insect 오브젝트의 위치를 Food 오브젝트의 위치로 이동
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, foodObject.transform.position, step);
 
-        // 이동 후 Insect와 Food의 거리가 충분히 가까워졌을 때 충돌로 간주
-        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.4f)
+        if (Vector3.Distance(insectObject.transform.position, foodObject.transform.position) < 0.3f)
         {
-            isInsectMoving = false; // 이동 중지
-
-            SetInsectIdle();
+            isInsectMoving = false;
+            SetInsectEat();
 
             var increaseScoreRequest = new IncreaseScoreRequest
             {
@@ -131,53 +142,82 @@ public class ARPlaceOnPlane : MonoBehaviour
             };
 
             StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-                onSuccess: (response) => {
+                onSuccess: (response) =>
+                {
                     increaseScoreResponse = response;
-                    Debug.Log("점수 증가 성공");
-                    Debug.Log($"애정도 총합: {response.loveScore}");
-
+                    Debug.Log("점수 증가 성공 - 애정도 총합: " + response.loveScore);
                 },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
             ));
-
-            Destroy(foodObject);
-            foodObject = null;
         }
     }
 
-    // 공격 애니메이션을 3초 동안 유지하고 idle로 전환하는 Coroutine
-    private IEnumerator SwitchToIdleAfterAttack()
-    {
-        Debug.Log("지흔: 3초 동안 공격 애니메이션 유지");
-        yield return new WaitForSeconds(3); // 3초 대기
-
-        if (insectAnimator != null)
-        {
-            insectAnimator.SetBool("attack", false);
-            SetInsectIdle(); // idle로 전환
-        }
-    }
-
-    // Insect의 애니메이션을 idle로 초기화하는 함수
     private void SetInsectIdle()
     {
-        insectAnimator.SetBool("idle", true);
-        insectAnimator.SetBool("walk", false);
-        insectAnimator.SetBool("turnleft", false);
-        insectAnimator.SetBool("turnright", false);
-        insectAnimator.SetBool("flyleft", false);
-        insectAnimator.SetBool("flyright", false);
-        insectAnimator.SetBool("attack", false);
-        insectAnimator.SetBool("hit", false);
+        if (insectAnimator != null)
+        {
+            insectAnimator.SetBool("idle", true);
+            insectAnimator.SetBool("walk", false);
+            insectAnimator.SetBool("turnleft", false);
+            insectAnimator.SetBool("turnright", false);
+            insectAnimator.SetBool("flyleft", false);
+            insectAnimator.SetBool("flyright", false);
+            insectAnimator.SetBool("attack", false);
+            insectAnimator.SetBool("bite", false);
+            insectAnimator.SetBool("hit", false);
+        }
     }
 
-    // Food을 외부에서 생성한 경우 이 메서드를 호출하여 Insect가 이동을 시작하게 함
+    private void SetInsectEat()
+    {
+        if (insectAnimator != null)
+        {
+            Debug.Log("지흔 : 잠깐 멈췄다가 바로 공격");
+            SetInsectIdle();
+            if(insectInfoResponse.family == "Tarantula"){
+                insectAnimator.SetTrigger("bite");
+            } else{
+                insectAnimator.SetTrigger("attack");
+            }
+            StartCoroutine(SwitchToIdleAfterAttack());
+        }
+    }
+
+    private IEnumerator SwitchToIdleAfterAttack()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SetInsectIdle();
+        Destroy(foodObject);
+        foodObject = null;
+        ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
+        ResetUIAfterFeeding();
+    }
+
+
     public void StartInsectMovement(GameObject newFoodObject)
     {
         foodObject = newFoodObject;
         isInsectMoving = true;
-        Debug.Log("지흔: Insect가 Food로 이동을 시작합니다.");
     }
 
+    private void ShowNotification(string message, float duration)
+    {
+        notificationText.text = message;
+        notificationText.gameObject.SetActive(true);
+        StartCoroutine(HideNotificationAfterDelay(duration));
+    }
 
+    private IEnumerator HideNotificationAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        notificationText.gameObject.SetActive(false);
+    }
+
+    private void ResetUIAfterFeeding()
+    {
+        feedButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
+        foodIcon.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
+    }
 }

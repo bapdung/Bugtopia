@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:client/Assets/XR/Loaders/OpenXRLoader.asset.meta
+guid: a94b9ef7e862bd04c835304edb396ac7
+NativeFormatImporter:
+========
+guid: 9b1eb580ca52a458cacf9e079f44ffba
+DefaultImporter:
+>>>>>>>> client:client/Assets/PixelEmotion/Scenes/Demo2.unity.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

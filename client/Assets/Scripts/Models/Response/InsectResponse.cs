@@ -4,21 +4,14 @@ using System.Collections.Generic;
 namespace Models.Insect.Response
 {
     [System.Serializable]
-    public class InsectInfoResponse
+    public class InsectArInfoResponse
     {
         public long raisingInsectId;
         public string nickname;
-        public string insectName;
         public string family;
-        public string areaType;
         public int feedCnt;
-        public DateTime lastEat;
+        public string lastEat;
         public int interactCnt;
-        public DateTime livingDate;
-        public int continuousDays;
-        public int loveScore;
-        public bool isEvent;
-        public string eventType;
     }
 
     [System.Serializable]
@@ -72,6 +65,41 @@ namespace Models.Insect.Response
     public class S3Data
     {
         public string path;
+    }
+
+    [System.Serializable]
+    public class InsectDetailInfoResponse
+    {
+        public Info info;
+        public LoveScore loveScore;
+        public NextEventInfo nextEventInfo;
+    }
+
+    [System.Serializable]
+    public class Info
+    {
+        public long raisingInsectId;
+        public string nickname;
+        public string insectName;
+        public string family;
+        public string areaType;
+        public string livingDate;
+    }
+
+    [System.Serializable]
+    public class LoveScore
+    {
+        public int total;
+        public int feedCnt;
+        public string lastEat;
+        public int interactCnt;
+    }
+
+    [System.Serializable]
+    public class NextEventInfo
+    {
+        public string nextEvent;
+        public int remainScore;
     }
 
     [System.Serializable]

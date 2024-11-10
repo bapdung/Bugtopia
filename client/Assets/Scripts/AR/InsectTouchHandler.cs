@@ -1,50 +1,64 @@
-// InsectTouchHandler.cs
 using UnityEngine;
 using API.Insect;
 using Models.Insect.Request;
 using Models.Insect.Response;
+using System;
+using System.Collections;
+using TMPro;
 
 public class InsectTouchHandler : MonoBehaviour
 {
+    public TextMeshProUGUI notificationText;
+    public GameObject heartPrefab;
     private InsectApi insectApi;
-    private InsectInfoResponse insectInfoResponse;
+    private InsectArInfoResponse insectInfoResponse;
     private IncreaseScoreResponse increaseScoreResponse;
-
-    public void Initialize(InsectApi api, InsectInfoResponse infoResponse)
+    private Animator insectAnimator;
+   
+    public void Initialize(InsectApi api, InsectArInfoResponse infoResponse, Animator animator)
     {
         insectApi = api;
         insectInfoResponse = infoResponse;
+        heartPrefab = Resources.Load<GameObject>("AR/Heart");
+        insectAnimator = animator;
     }
 
     private void Update()
     {
-        // 터치 감지
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-
-            // 터치가 시작되었을 때만 처리
             if (touch.phase == TouchPhase.Began)
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit hit;
 
-                // 레이캐스트를 사용하여 터치된 오브젝트가 이 오브젝트인지 확인
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.transform == this.transform)
                     {
-                        OnInsectTouched(); // 터치된 경우 동작 수행
+                        OnInsectTouched();
                     }
                 }
             }
         }
     }
 
-    // 터치되었을 때 발생할 동작
     private void OnInsectTouched()
     {
         Debug.Log($"지흔: {gameObject.name}이 터치되었습니다!");
+
+        // 하트 표시 코루틴 시작
+        StartCoroutine(ShowHeart());
+
+        // 알림 텍스트 표시
+        StartCoroutine(ShowNotificationText());
+
+        if (insectAnimator != null)
+        {
+            insectAnimator.SetTrigger("hit");
+            StartCoroutine(SetInsectTouch());
+        }
 
         var increaseScoreRequest = new IncreaseScoreRequest
         {
@@ -52,13 +66,45 @@ public class InsectTouchHandler : MonoBehaviour
             category = 2
         };
 
-        // 점수 증가 API 호출
         StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
             onSuccess: (response) => {
-
+                increaseScoreResponse = response;
                 Debug.Log("점수 증가 성공");
             },
             onFailure: error => Debug.LogError("점수 증가 실패: " + error)
         ));
+    }
+
+    private IEnumerator ShowHeart()
+    {
+        if (heartPrefab == null)
+        {
+            Debug.LogError("heartPrefab이 할당되지 않았습니다.");
+            yield break;
+        }
+
+        GameObject heartInstance = Instantiate(heartPrefab, transform.position + Vector3.up * 0.3f, Quaternion.identity);
+        heartInstance.transform.SetParent(this.transform);
+
+        yield return new WaitForSeconds(2.0f); 
+
+        Destroy(heartInstance);
+    }
+
+    private IEnumerator ShowNotificationText()
+    {
+        notificationText.text = $"{insectInfoResponse.nickname}을(를) 쓰다듬었어요!";
+        notificationText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        notificationText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator SetInsectTouch()
+    {
+        yield return new WaitForSeconds(2.0f);
+        insectAnimator.SetBool("hit", false);
+        insectAnimator.SetBool("idle", true);
     }
 }
