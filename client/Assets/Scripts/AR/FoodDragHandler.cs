@@ -11,79 +11,75 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     public ARRaycastManager arRaycaster; // AR Raycast Manager
     public GameObject foodPrefab; // Food 프리팹
-    public TextMeshProUGUI FoodDescriptionText;
-
+    public TextMeshProUGUI foodDescriptionText;
     public Button feedButton;
+    public Button playButton;
     public GameObject foodIcon;
 
     private GameObject foodPreviewObject;
 
     void Start()
     {
-        foodIcon.SetActive(false);
-        FoodDescriptionText.gameObject.SetActive(false);
+        HideFoodIcon();
         feedButton.gameObject.SetActive(true);
-        feedButton.GetComponentInChildren<TextMeshProUGUI>().text = "오늘의 먹이주기";
+        playButton.gameObject.SetActive(true);
         feedButton.onClick.AddListener(ShowFoodIcon);
     }
 
     public void ShowFoodIcon()
     {
+        Debug.Log("지흔: ShowFoodIcon");
         foodIcon.SetActive(true);
-        FoodDescriptionText.gameObject.SetActive(true);
+        foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
     }
 
-    // 드래그 시작 시 호출되는 함수입니다
+    public void HideFoodIcon()
+    {
+        Debug.Log("지흔: UI 초기화");
+        foodIcon.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (foodPreviewObject == null)
         {
-            // 드래그가 시작되면 Food의 미리보기 오브젝트 생성
             foodPreviewObject = Instantiate(foodPrefab);
-            foodPreviewObject.SetActive(false); // 평면이 인식될 때만 활성화
+            foodPreviewObject.SetActive(false);
         }
 
         Debug.Log("지흔: Food 드래그가 시작되었습니다.");
     }
 
-    // 드래그 중일 때 호출되는 함수
     public void OnDrag(PointerEventData eventData)
     {
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-        // 드래그 위치가 평면에 닿는지 Raycast로 확인
         if (arRaycaster.Raycast(eventData.position, hits, TrackableType.Planes))
         {
             Pose hitPose = hits[0].pose;
 
-            // 미리보기 오브젝트를 평면에 표시
             foodPreviewObject.SetActive(true);
             foodPreviewObject.transform.position = hitPose.position;
             foodPreviewObject.transform.rotation = hitPose.rotation;
-
-            // Debug.Log("지흔: Food가 평면 미리보기로 표시 중...");
         }
         else
         {
-            // 평면이 감지되지 않으면 미리보기 오브젝트 비활성화
             foodPreviewObject.SetActive(false);
         }
     }
 
-    // 드래그가 끝났을 때 호출되는 함수
     public void OnEndDrag(PointerEventData eventData)
     {
         if (foodPreviewObject != null && foodPreviewObject.activeSelf)
         {
-            // 미리보기가 활성화된 상태라면 그 위치에 Food를 최종 배치
             GameObject placedFood = Instantiate(foodPrefab, foodPreviewObject.transform.position, foodPreviewObject.transform.rotation);
             Debug.Log("지흔: Food가 평면에 최종 배치되었습니다!");
 
-            // ARPlaceOnPlane의 StartBugMovement 호출
             FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood);
 
-            // 미리보기 오브젝트 삭제
             Destroy(foodPreviewObject);
             foodPreviewObject = null;
         }
@@ -91,11 +87,6 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Debug.Log("지흔: 드래그가 끝났지만 평면에 Food를 배치할 수 없습니다.");
         }
-    }
-
-    public void TestFunction()
-    {
-        Debug.Log("TestFunction 호출됨");
     }
 
     public void OnBeginDragWrapper()
