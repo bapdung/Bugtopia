@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: EnvironmentConfig
   m_EditorClassIdentifier: 
   baseUrl: https://k11a303.p.ssafy.io/api
+  s3Url: https://bugtopia.s3.ap-northeast-2.amazonaws.com
