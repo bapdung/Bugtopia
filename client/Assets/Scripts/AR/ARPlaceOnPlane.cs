@@ -20,9 +20,11 @@ public class ARPlaceOnPlane : MonoBehaviour
     public Button feedButton;
     public Button playButton;
     public GameObject foodIcon;
+    public GameObject treeIcon;
     public TextMeshProUGUI nicknameText;
     public TextMeshProUGUI notificationText;
     public FoodDragHandler foodDragHandler;
+    public TreeDragHandler treeDragHandler;
 
     private GameObject foodObject; 
     private GameObject treeObject;
@@ -41,10 +43,19 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         GameObject foodDragHandlerObject = new GameObject("foodDragHandlerObject");
         foodDragHandler = foodDragHandlerObject.AddComponent<FoodDragHandler>();
+
+        GameObject treeDragHandlerObject = new GameObject("treeDragHandlerObject");
+        treeDragHandler = treeDragHandlerObject.AddComponent<TreeDragHandler>();
     }
 
     void Start()
     {
+        feedButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
+        foodIcon.SetActive(false);
+        treeIcon.SetActive(false);
+        foodDescriptionText.gameObject.SetActive(false);
+
         long raisingInsectId = 1;
 
         StartCoroutine(insectApi.GetInsectArInfo(raisingInsectId, (response) =>

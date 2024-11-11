@@ -15,30 +15,30 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Button feedButton;
     public Button playButton;
     public GameObject treeIcon;
+    public GameObject foodIcon;
 
     private GameObject treePreviewObject;
 
     void Start()
     {
-        HideTreeIcon();
-        feedButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(true);
-        feedButton.onClick.AddListener(ShowTreeIcon);
     }
 
     public void ShowTreeIcon()
     {
         Debug.Log("지흔: ShowtreeIcon");
         treeIcon.SetActive(true);
+        foodIcon.SetActive(false);
         treeDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
+        treeDescriptionText.text = "통나무를 드래그해서 평면에!";
     }
 
     public void HideTreeIcon()
     {
         Debug.Log("지흔: UI 초기화");
         treeIcon.SetActive(false);
+        foodIcon.SetActive(false);
         treeDescriptionText.gameObject.SetActive(false);
     }
 

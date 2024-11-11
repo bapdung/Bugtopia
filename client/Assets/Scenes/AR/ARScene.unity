@@ -704,7 +704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 561790979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 883390938}
+        m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
+        m_MethodName: ShowTreeIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561790979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 809947711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1175401537}
+        m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+        m_MethodName: ShowFoodIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &809947711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,11 +1627,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arRaycaster: {fileID: 40919615}
-  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treePrefab: {fileID: 3079082519022472139, guid: 64eea9771ca511a4ba7aedb511635c73, type: 3}
   treeDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
   treeIcon: {fileID: 883390932}
+  foodIcon: {fileID: 1175401533}
 --- !u!1 &1037246574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,16 +1664,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treePrefab: {fileID: 3079082519022472139, guid: 64eea9771ca511a4ba7aedb511635c73, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
+  treeIcon: {fileID: 883390932}
   nicknameText: {fileID: 1146719292}
   notificationText: {fileID: 1932621515}
   foodDragHandler: {fileID: 0}
+  treeDragHandler: {fileID: 0}
 --- !u!4 &1037246578
 Transform:
   m_ObjectHideFlags: 0
@@ -2166,6 +2193,7 @@ MonoBehaviour:
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
+  treeIcon: {fileID: 883390932}
 --- !u!114 &1175401538
 MonoBehaviour:
   m_ObjectHideFlags: 0

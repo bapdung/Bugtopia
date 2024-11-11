@@ -15,30 +15,30 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Button feedButton;
     public Button playButton;
     public GameObject foodIcon;
+    public GameObject treeIcon;
 
     private GameObject foodPreviewObject;
 
     void Start()
     {
-        HideFoodIcon();
-        feedButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(true);
-        feedButton.onClick.AddListener(ShowFoodIcon);
     }
 
     public void ShowFoodIcon()
     {
         Debug.Log("지흔: ShowFoodIcon");
         foodIcon.SetActive(true);
+        treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
+        foodDescriptionText.text = "먹이를 드래그해서 평면에 놓아주세요!";
     }
 
     public void HideFoodIcon()
     {
         Debug.Log("지흔: UI 초기화");
         foodIcon.SetActive(false);
+        treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
     }
 
