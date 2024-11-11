@@ -1,0 +1,716 @@
+{
+  "1": {
+    "name": "벼잎말이명나방",
+    "order": "나비목",
+    "family": "포충나방과",
+    "genus": "Cnaphalocrocis",
+    "species": "벼잎말이명나방"
+  },
+  "2": {
+    "name": "벼멀구나방 애벌레",
+    "order": "나비목",
+    "family": "포충나방과",
+    "genus": "Cnaphalocrocis",
+    "species": "벼멀구나방 애벌레"
+  },
+  "3": {
+    "name": "벼줄기굴파리",
+    "order": "파리목",
+    "family": "노랑굴파리과",
+    "genus": "Chlorops",
+    "species": "벼줄기굴파리"
+  },
+  "4": {
+    "name": "이화명나방",
+    "order": "나비목",
+    "family": "명나방과",
+    "genus": "Chilo",
+    "species": "이화명나방"
+  },
+  "5": {
+    "name": "노란줄기나방",
+    "order": "나비목",
+    "family": "갈색나방상과",
+    "genus": "Scirpophaga",
+    "species": "노란줄기나방"
+  },
+  "6": {
+    "name": "벼룩파리",
+    "order": "파리목",
+    "family": "벼룩파리과",
+    "genus": "",
+    "species": "벼룩파리"
+  },
+  "7": {
+    "name": "벼줄기파리",
+    "order": "파리목",
+    "family": "노랑굴파리과",
+    "genus": "Chlorops",
+    "species": "벼룩파리"
+  },
+  "8": {
+    "name": "혹명나방",
+    "order": "나비목",
+    "family": "명나방과",
+    "genus": "Cnaphalocrocis",
+    "species": "혹명나방"
+  },
+  "9": {
+    "name": "gmlsemdaufrn",
+    "order": "노린재목",
+    "family": "멸구과",
+    "genus": "흰등멸구속",
+    "species": "흰등멸구"
+  },
+  "10": {
+    "name": "작은혹명나방",
+    "order": "나비목",
+    "family": "명나방과",
+    "genus": "Cnaphalocrocis",
+    "species": "작은혹명나방"
+  },
+  "11": {
+    "name": "벼물바구미",
+    "order": "머리대장하목",
+    "family": "바구미과",
+    "genus": "Curculionoidea",
+    "species": "벼물바구미"
+  },
+  "12": {
+    "name": "벼노린재",
+    "order": "노린재목",
+    "family": "노린재과",
+    "genus": "Scotinophara",
+    "species": "벼노린재"
+  },
+  "13": {
+    "name": "벼알벌레",
+    "order": "총채벌레목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "벼알벌레"
+  },
+  "14": {
+    "name": "벼껍질벌레",
+    "order": "총채벌레목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "벼알벌레"
+  },
+  "15": {
+    "name": "굼벵이",
+    "order": "딱정벌레목",
+    "family": "풍뎅이과",
+    "genus": "",
+    "species": "굼벵이"
+  },
+  "16": {
+    "name": "땅강아지",
+    "order": "메뚜기목",
+    "family": "땅강아지과",
+    "genus": "",
+    "species": "땅강아지"
+  },
+  "17": {
+    "name": "방아벌레",
+    "order": "딱정벌레목",
+    "family": "방아벌레과",
+    "genus": "",
+    "species": "방아벌레"
+  },
+  "18": {
+    "name": "멀티파리아 나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "Ctenucha",
+    "species": "멀티파리아 나방"
+  },
+  "19": {
+    "name": "검거세미밤나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "Agrotis",
+    "species": "검거세미밤나방"
+  },
+  "20": {
+    "name": "대형 나방 애벌레",
+    "order": "나비목",
+    "family": "",
+    "genus": "",
+    "species": "대형 나방 애벌레"
+  },
+  "21": {
+    "name": "노란머리거세미",
+    "order": "나비목",
+    "family": "녹투과",
+    "genus": "Apamea",
+    "species": "노란머리거세미"
+  },
+  "22": {
+    "name": "등나무 거미",
+    "order": "거미목",
+    "family": "농발거미과",
+    "genus": "",
+    "species": "등나무 거미"
+  },
+  "23": {
+    "name": "유럽옥수수좀",
+    "order": "나비목",
+    "family": "풀나방과",
+    "genus": "Ostrinia",
+    "species": "유럽옥수수좀"
+  },
+  "24": {
+    "name": "담배거세미나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "거세미나방속",
+    "species": "담배거세미나방"
+  },
+  "25": {
+    "name": "진딧물",
+    "order": "노린재목",
+    "family": "진딧물과",
+    "genus": "진딧물속",
+    "species": "진딧물"
+  },
+  "26": {
+    "name": "점박이꽃무지",
+    "order": "딱정벌레목",
+    "family": "풍뎅이과",
+    "genus": "점박이꽃무지속",
+    "species": "점박이꽃무지"
+  },
+  "27": {
+    "name": "복숭아나무 천공충",
+    "order": "나비목",
+    "family": "유리나방과",
+    "genus": "Synanthedon",
+    "species": "복숭아나무 천공충"
+  },
+  "28": {
+    "name": "보리수염진딧물",
+    "order": "매미목",
+    "family": "진딧물과",
+    "genus": "보리수염진딧물속",
+    "species": "보리수염진딧물"
+  },
+  "29": {
+    "name": "녹색 노린재",
+    "order": "노린재목",
+    "family": "노린재과",
+    "genus": "노린재속",
+    "species": "녹색 노린재"
+  },
+  "30": {
+    "name": "기장테두리진딧물",
+    "order": "노린재목",
+    "family": "노린재과",
+    "genus": "노린재속",
+    "species": "기장테두리진딧물"
+  },
+  "31": {
+    "name": "밀꽃 등에",
+    "order": "파리목",
+    "family": "혹파리과",
+    "genus": "혹파리속",
+    "species": "밀꽃 등에"
+  },
+  "32": {
+    "name": "겨울곡물 진드기",
+    "order": "진드기목",
+    "family": "응애과",
+    "genus": "흙응애속",
+    "species": "겨울곡물 진드기"
+  },
+  "33": {
+    "name": "긴 다리 거미 진드기",
+    "order": "진드기목",
+    "family": "응애과",
+    "genus": "",
+    "species": "긴 다리 거미 진드기"
+  },
+  "34": {
+    "name": "벼 총채벌레",
+    "order": "총채벌레목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "벼 총채벌레"
+  },
+  "35": {
+    "name": "밀줄기톱풀",
+    "order": "벌목",
+    "family": "톱풀과",
+    "genus": "톱풀속",
+    "species": "밀줄기톱풀"
+  },
+  "36": {
+    "name": "잎굴파리",
+    "order": "파리목",
+    "family": "잎굴파리과",
+    "genus": "",
+    "species": "잎굴파리"
+  },
+  "37": {
+    "name": "사탕무 파리",
+    "order": "파리목",
+    "family": "잎굴파리과",
+    "genus": "",
+    "species": "사탕무 파리"
+  },
+  "38": {
+    "name": "벼룩잎벌레",
+    "order": "딱정벌레목",
+    "family": "잎벌레과",
+    "genus": "",
+    "species": "벼룩잎벌레"
+  },
+  "39": {
+    "name": "배추좀나방 애벌레",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "",
+    "species": "배추좀나방 애벌레"
+  },
+  "40": {
+    "name": "파밤나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "소프도프테라속",
+    "species": "파밤나방"
+  },
+  "41": {
+    "name": "사탕무 파리",
+    "order": "파리목",
+    "family": "잎굴파리과",
+    "genus": "",
+    "species": "사탕무 파리"
+  },
+  "42": {
+    "name": "초원나방",
+    "order": "나비목",
+    "family": "풀나방과",
+    "genus": "",
+    "species": "초원나방"
+  },
+  "43": {
+    "name": "사탕무바구미",
+    "order": "딱정벌레목",
+    "family": "바구미과",
+    "genus": "",
+    "species": "사탕무바구미"
+  },
+  "44": {
+    "name": "동양풍뎅이",
+    "order": "딱정벌레목",
+    "family": "풍뎅이과",
+    "genus": "",
+    "species": "동양풍뎅이"
+  },
+  "45": {
+    "name": "알파파 바구미",
+    "order": "딱정벌레목",
+    "family": "바구미과",
+    "genus": "",
+    "species": "알파파 바구미"
+  },
+  "46": {
+    "name": "아마꽃봉오리벌레",
+    "order": "나비목",
+    "family": "명나방과",
+    "genus": "",
+    "species": "아마꽃봉오리벌레"
+  },
+  "47": {
+    "name": "알파파 식물 벌레",
+    "order": "노린재목",
+    "family": "장님노린재과",
+    "genus": "Adelphocoris",
+    "species": "알파파 식물 벌레"
+  },
+  "48": {
+    "name": "리구스 리네올라리스",
+    "order": "노린재목",
+    "family": "장님노린재과",
+    "genus": "Lygus",
+    "species": "리구스 리네올라리스"
+  },
+  "49": {
+    "name": "메뚜기",
+    "order": "메뚜기목",
+    "family": "메뚜기상과",
+    "genus": "",
+    "species": "메뚜기"
+  },
+  "50": {
+    "name": "청동 물집 딱정벌레",
+    "order": "딱정벌레목",
+    "family": "가뢰과",
+    "genus": "Lytta",
+    "species": "청동 물집 딱정벌레"
+  },
+  "51": {
+    "name": "콩 가뢰벌레",
+    "order": "딱정벌레목",
+    "family": "가뢰과",
+    "genus": "Lytta",
+    "species": "콩 가뢰벌레"
+  },
+  "52": {
+    "name": "남가뢰",
+    "order": "딱정벌레목",
+    "family": "가뢰과",
+    "genus": "남가뢰속",
+    "species": "남가뢰"
+  },
+  "53": {
+    "name": "점무늬 알팔파 진딧물",
+    "order": "노린재목",
+    "family": "진딧물과",
+    "genus": "",
+    "species": "점무늬 알팔파 진딧물"
+  },
+  "54": {
+    "name": "루핀 총채벌레",
+    "order": "총채벌레목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "루핀 총채벌레"
+  },
+  "55": {
+    "name": "총채벌레",
+    "order": "총채벌레목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "총채벌레"
+  },
+  "56": {
+    "name": "알파파 씨앗 말벌",
+    "order": "벌목",
+    "family": "작은벌과",
+    "genus": "",
+    "species": "알파파 씨앗 말벌"
+  },
+  "57": {
+    "name": "대만흰나비",
+    "order": "나비목",
+    "family": "흰나비과",
+    "genus": "Pieris",
+    "species": "대만흰나비"
+  },
+  "58": {
+    "name": "녹색꽃노린재",
+    "order": "노린재목",
+    "family": "꽃노린재과",
+    "genus": "Apolygus",
+    "species": "녹색꽃노린재"
+  },
+  "59": {
+    "name": "산누에나방",
+    "order": "나비목",
+    "family": "산누에나방과",
+    "genus": "",
+    "species": "산누에나방"
+  },
+  "60": {
+    "name": "포도 필록세라",
+    "order": "노린재목",
+    "family": "진딧물아목",
+    "genus": "Daktulosphaira",
+    "species": "포도 필록세라"
+  },
+  "61": {
+    "name": "포도 응애",
+    "order": "응애목",
+    "family": "혹응애과",
+    "genus": "Eriophyes",
+    "species": "포도 응애"
+  },
+  "62": {
+    "name": "루이스 납작응애",
+    "order": "거미목",
+    "family": "납작응애과",
+    "genus": "",
+    "species": "루이스 납작응애"
+  },
+  "63": {
+    "name": "열점박이잎벌레",
+    "order": "딱정벌레목",
+    "family": "잎벌레과",
+    "genus": "",
+    "species": "열점박이잎벌레"
+  },
+  "64": {
+    "name": "광식성 총채벌레",
+    "order": "노린재목",
+    "family": "총채벌레과",
+    "genus": "",
+    "species": "광식성 총채벌레"
+  },
+  "65": {
+    "name": "콤스톡 깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "콤스톡 깍지벌레"
+  },
+  "66": {
+    "name": "왕유리나방",
+    "order": "나비목",
+    "family": "유리나방과",
+    "genus": "",
+    "species": "왕유리나방"
+  },
+  "67": {
+    "name": "덩굴박각시나방속",
+    "order": "나비목",
+    "family": "박각시나방과",
+    "genus": "",
+    "species": "덩굴박각시나방속"
+  },
+  "68": {
+    "name": "꽃매미",
+    "order": "매미목",
+    "family": "매미충과",
+    "genus": "",
+    "species": "꽃매미"
+  },
+  "69": {
+    "name": "하늘소",
+    "order": "딱정벌레목",
+    "family": "하늘소과",
+    "genus": "",
+    "species": "하늘소"
+  },
+  "70": {
+    "name": "초록매미충",
+    "order": "노린재목",
+    "family": "매미충과",
+    "genus": "",
+    "species": "초록매미충"
+  },
+  "71": {
+    "name": "꽃노린재",
+    "order": "노린재목",
+    "family": "꽃노린재과",
+    "genus": "",
+    "species": "꽃노린재"
+  },
+  "72": {
+    "name": "온실가루이",
+    "order": "노린재목",
+    "family": "가루이과",
+    "genus": "",
+    "species": "온실가루이"
+  },
+  "73": {
+    "name": "끝무니 매미 애벌레",
+    "order": "노린재목",
+    "family": "매미충과",
+    "genus": "",
+    "species": "끝무니 매미 애벌레"
+  },
+  "74": {
+    "name": "산호랑나비",
+    "order": "나비목",
+    "family": "호랑나비과",
+    "genus": "",
+    "species": "산호랑나비"
+  },
+  "75": {
+    "name": "감귤응애",
+    "order": "거미목",
+    "family": "응애과",
+    "genus": "",
+    "species": "감귤응애"
+  },
+  "76": {
+    "name": "올리브 예응애",
+    "order": "거미목",
+    "family": "예응애과",
+    "genus": "",
+    "species": "올리브 예응애"
+  },
+  "77": {
+    "name": "감귤깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "감귤깍지벌레"
+  },
+  "78": {
+    "name": "화살깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "화살깍지벌레"
+  },
+  "79": {
+    "name": "붉은밀깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "붉은밀깍지벌레"
+  },
+  "80": {
+    "name": "파란깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "파란깍지벌레"
+  },
+  "81": {
+    "name": "대추나무 깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "대추나무 깍지벌레"
+  },
+  "82": {
+    "name": "구슬깍지벌레",
+    "order": "노린재목",
+    "family": "깍지벌레과",
+    "genus": "",
+    "species": "구슬깍지벌레"
+  },
+  "83": {
+    "name": "차나무가루이",
+    "order": "노린재목",
+    "family": "가루이과",
+    "genus": "",
+    "species": "차나무가루이"
+  },
+  "84": {
+    "name": "귤파리",
+    "order": "파리목",
+    "family": "초파리과",
+    "genus": "",
+    "species": "귤파리"
+  },
+  "85": {
+    "name": "동양과실파리",
+    "order": "파리목",
+    "family": "초파리과",
+    "genus": "",
+    "species": "동양과실파리"
+  },
+  "86": {
+    "name": "감귤긴날개초파리",
+    "order": "파리목",
+    "family": "초파리과",
+    "genus": "",
+    "species": "감귤긴날개초파리"
+  },
+  "87": {
+    "name": "담배나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "",
+    "species": "담배나방"
+  },
+  "88": {
+    "name": "밤나방",
+    "order": "나비목",
+    "family": "밤나방상과",
+    "genus": "",
+    "species": "밤나방"
+  },
+  "89": {
+    "name": "감귤잎굴파리나방",
+    "order": "나비목",
+    "family": "잎굴파리나방과",
+    "genus": "",
+    "species": "감귤잎굴파리나방"
+  },
+  "90": {
+    "name": "감귤검은진딧물",
+    "order": "노린재목",
+    "family": "진딧물과",
+    "genus": "",
+    "species": "감귤검은진딧물"
+  },
+  "91": {
+    "name": "감귤진딧물",
+    "order": "노린재목",
+    "family": "진딧물과",
+    "genus": "",
+    "species": "감귤진딧물"
+  },
+  "92": {
+    "name": "감귤녹색진딧물",
+    "order": "노린재목",
+    "family": "진딧물과",
+    "genus": "",
+    "species": "감귤녹색진딧물"
+  },
+  "93": {
+    "name": "차총채벌레",
+    "order": "총채벌레목",
+    "family": "총체벌레과",
+    "genus": "",
+    "species": "차총채벌레"
+  },
+  "94": {
+    "name": "혹파리",
+    "order": "파리목",
+    "family": "혹파리과",
+    "genus": "",
+    "species": "혹파리"
+  },
+  "95": {
+    "name": "흰등멸구",
+    "order": "노린재목",
+    "family": "벼멸구과",
+    "genus": "",
+    "species": "흰등멸구"
+  },
+  "96": {
+    "name": "사루르니스나방",
+    "order": "나비목",
+    "family": "멸구나방과",
+    "genus": "",
+    "species": "사루르니스나방"
+  },
+  "97": {
+    "name": "잎말이벌레",
+    "order": "딱정벌레목",
+    "family": "자벌레잎벌레과",
+    "genus": "",
+    "species": "잎말이벌레"
+  },
+  "98": {
+    "name": "클루메티아나방",
+    "order": "나비목",
+    "family": "멸구나방과",
+    "genus": "",
+    "species": "클루메티아나방"
+  },
+  "99": {
+    "name": "망고 납작부리 매미",
+    "order": "매미목",
+    "family": "매미충과",
+    "genus": "",
+    "species": "망고 납작부리 매미"
+  },
+  "100": {
+    "name": "보우리니하늘소",
+    "order": "딱정벌레목",
+    "family": "하늘소과",
+    "genus": "",
+    "species": "보우리니하늘소"
+  },
+  "101": {
+    "name": "망고씨 바구미",
+    "order": "딱정벌레목",
+    "family": "바구미과",
+    "genus": "",
+    "species": "망고씨 바구미"
+  },
+  "102": {
+    "name": "매미",
+    "order": "매미목",
+    "family": "매미충과",
+    "genus": "",
+    "species": "매미"
+  }
+}
