@@ -136,7 +136,6 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsFood()
     {
-        // Debug.Log("지흔: 음식으로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
@@ -175,7 +174,6 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsTree()
     {
-        // Debug.Log("지흔: 나무로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
