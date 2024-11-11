@@ -99,14 +99,14 @@ public class FirebaseHandler : MonoBehaviour
             UserStateManager.Instance.SetNickname(response.nickname);
             
             // 메인 씬으로 이동 MainScene
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("ARScene");
         }
         else if (response.joined == false)
         {
             Debug.Log("민채: 가입되지 않은 사용자, CreateNicknameScene으로 이동합니다.");
 
             // CreateNicknameScene으로 이동
-            SceneManager.LoadScene("CreateNicknameScene");
+            SceneManager.LoadScene("ARScene");
         }
     }
 
