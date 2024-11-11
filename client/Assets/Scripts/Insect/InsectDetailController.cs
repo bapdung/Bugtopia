@@ -141,7 +141,7 @@ public class InsectDetailController : MonoBehaviour
             eventInfoText.text = "최종 전투 이벤트가 열렸습니다!";
         } else {
             int remainScore = response.nextEventInfo.remainScore;
-            if(remainScore == 0) {
+            if(remainScore <= 0) {
                 eventInfoText.text = "다음 필요 애정도를 보려면 전투 클리어가 필요합니다";
             } else {
                 eventInfoText.text = "다음 이벤트까지 애정도 " + remainScore +"이 더 필요합니다";
