@@ -28,6 +28,7 @@ namespace API.User
         // 로그인 요청 메서드
         public IEnumerator PostLogin(UserLoginRequest requestData, System.Action<UserLoginResponse> onSuccess, System.Action<string> onFailure)
         {
+            Debug.Log("지흔: 로그인");
             string json = JsonUtility.ToJson(requestData);
 
             using (UnityWebRequest request = new UnityWebRequest(loginUrl, "POST"))
@@ -42,6 +43,8 @@ namespace API.User
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     string jsonResponse = request.downloadHandler.text;
+
+                    
                     UserLoginResponse responseData = JsonUtility.FromJson<UserLoginResponse>(jsonResponse);
 
                     // 성공 콜백 호출
@@ -49,7 +52,7 @@ namespace API.User
                 }
                 else
                 {
-                    Debug.LogError("민채: 로그인 요청 실패: " + request.error);
+                    Debug.LogError("지흔: 로그인 요청 실패: " + request.error);
                     // 실패 콜백 호출 (오류 메시지 전달)
                     onFailure?.Invoke(request.error);
                 }
@@ -59,6 +62,7 @@ namespace API.User
         // 회원가입 요청 메서드
         public IEnumerator PostJoin(UserJoinRequest requestData, System.Action<UserJoinResponse> onSuccess, System.Action<string> onFailure)
         {
+            Debug.Log("지흔: 회원가입 실행");
             string json = JsonUtility.ToJson(requestData);
 
             using (UnityWebRequest request = new UnityWebRequest(joinUrl, "POST"))
