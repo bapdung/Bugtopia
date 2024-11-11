@@ -196,7 +196,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             isInsectMoving = false;
             SetInsectIdle();
 
-            // StartCoroutine(MoveToTopOfTree());
+            StartCoroutine(MoveToTopOfTree());
         }
     }
 
@@ -208,14 +208,13 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            insectAnimator.SetBool("idle", false);
-            insectAnimator.SetBool("takeoff", true);
+            SetInsectTakeOff();
             Debug.Log("지흔: takeoff 애니메이션 실행");
 
             yield return new WaitForSeconds(0.5f);
 
             insectAnimator.SetBool("takeoff", false);
-            insectAnimator.SetBool("fly", true);
+            insectAnimator.SetTrigger("fly");
             Debug.Log("지흔: fly 애니메이션 실행 및 트리 꼭대기 위치로 이동 시작");
 
             Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
@@ -228,12 +227,12 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             Debug.Log("지흔: 트리 꼭대기 도착, landing 애니메이션 시작");
             insectAnimator.SetBool("fly", false);
-            insectAnimator.SetBool("landing", true);
+            insectAnimator.SetTrigger("landing");
 
             yield return new WaitForSeconds(0.5f);
 
-            insectAnimator.SetBool("landing", false);
-            insectAnimator.SetBool("idle", true);
+            insectAnimator.SetTrigger("landing");
+            SetInsectIdle();
             Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
 
             yield return new WaitForSeconds(2.0f);
@@ -295,6 +294,20 @@ public class ARPlaceOnPlane : MonoBehaviour
         }
     }
 
+    private void SetInsectTakeOff()
+    {
+        if (insectAnimator != null)
+        {
+            Debug.Log("지흔 : 날아갈 준비 takeOff");
+            SetInsectIdle();
+            if(insectInfoResponse.family == "Tarantula"){
+                insectAnimator.SetTrigger("bite");
+            } else{
+                insectAnimator.SetTrigger("takeoff");
+            }
+        }
+    }
+
     private IEnumerator SwitchToIdleAfterAttack()
     {
         yield return new WaitForSeconds(3.0f);
@@ -304,7 +317,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         ShowNotification(insectInfoResponse.nickname + "(이)가 먹이를 먹었어요!", 3f);
         ResetUIAfterFeeding();
     }
-
 
     public void StartInsectMovement(GameObject targetObject, bool isFood)
     {
