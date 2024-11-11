@@ -24,7 +24,8 @@ COPY ./app ./app
 
 # 모델 파일이 있는 디렉토리 생성 및 복사
 RUN mkdir -p /app/app/model
-COPY ./app/model/bugtopia_ai_model.pt /app/app/model/
+COPY ./app/model/bounding_model.pt /app/app/model/
+COPY ./app/model/prediction_model.pt /app/app/model/
 COPY ./app/model/classes.txt /app/app/model/
 
 # Python 경로 설정
