@@ -54,6 +54,9 @@ public class InsectDetailController : MonoBehaviour
     private int feedCnt;        // 오늘 먹이를 먹은 횟수
     private int interactCnt;    // 오늘 상호작용한 횟수
 
+    private Image[] lineImages;
+    private Image[] circleImages;
+
     void Awake()
     {
         // insectApi가 할당되지 않았을 경우 코드 내에서 생성
@@ -62,11 +65,14 @@ public class InsectDetailController : MonoBehaviour
             GameObject insectApiObject = new GameObject("InsectApiObject");  // 새 GameObject 생성
             insectApi = insectApiObject.AddComponent<InsectApi>();  // InsectApi 컴포넌트를 추가하여 할당
         }
+
+        lineImages = new Image[] { startLine, f1andt1Line, t1andf2Line, f2andt2Line, t2andmLine, endLine };
+        circleImages = new Image[] { foodCircle1, teritoryCircle1, foodCircle2, teritoryCircle2, marryCircle };
     }
 
     private void Start()
     {
-        long raisingInsectId = 7; // => 하드코딩 (추후수정)
+        long raisingInsectId = 5; // => 하드코딩 (추후수정)
 
         if (insectApi != null)
         {
@@ -135,11 +141,33 @@ public class InsectDetailController : MonoBehaviour
             eventInfoText.text = "최종 전투 이벤트가 열렸습니다!";
         } else {
             int remainScore = response.nextEventInfo.remainScore;
-            Debug.Log(remainScore);
             if(remainScore == 0) {
                 eventInfoText.text = "다음 필요 애정도를 보려면 전투 클리어가 필요합니다";
             } else {
                 eventInfoText.text = "다음 이벤트까지 애정도 " + remainScore +"이 더 필요합니다";
+            }
+        }
+        
+        int endPoint = 5;
+        if(nextEvent == "FOOD_C1") {
+            endPoint = 0;
+        } else if (nextEvent == "TERITORY_C1") {
+            endPoint = 1;
+        } else if (nextEvent == "FOOD_C2") {
+            endPoint = 2;
+        } else if (nextEvent == "TERITORY_C2") {
+            endPoint = 3;
+        } else if (nextEvent == "MARRY") {
+            endPoint = 4;
+        } else if (nextEvent == "END") {
+            endPoint = 5;
+        }
+
+        for(int i=0; i<=endPoint; i++) {
+            lineImages[i].color = new Color(255f / 255f, 143f / 255f, 28f / 255f);
+
+            if(i != 0) {
+                circleImages[i-1].color = new Color(255f / 255f, 143f / 255f, 28f / 255f);
             }
         }
     }
