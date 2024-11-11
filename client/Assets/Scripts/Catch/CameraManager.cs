@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using API.Catch;
 using Models.Insect.Response;
 
-
 public class CameraManager : MonoBehaviour
 {
     public RawImage cameraView;
@@ -52,7 +51,7 @@ public class CameraManager : MonoBehaviour
             LoadingPanel.SetActive(false); // 로딩중 숨기고 시작
             Debug.Log("로딩중판넬 찾고 숨겻음");
         }
-        // TODO : api response가 도착하면 심사결과 페이지로 이동하게 할 것
+        
 
     }
 
@@ -98,71 +97,12 @@ public class CameraManager : MonoBehaviour
             HelpPanel.SetActive(!HelpPanel.activeSelf);
         }
     }
+
+    void OnDestroy() {
+        if (webCamTexture)
+        {
+            webCamTexture.Stop();
+            webCamTexture = null;
+        }
+    }
 }
-
-
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using UnityEngine.SceneManagement;
-// using UnityEngine.Android;
-// using UnityEngine.UI;
-// using API.Catch;
-
-// public class CameraManager : MonoBehaviour
-// {
-//     public RawImage cameraView;
-//     private WebCamTexture webCamTexture;
-//     public GameObject HelpPanel;
-//     public GameObject LoadingPanel;
-//     private CatchApi catchApi;
-
-//     void Start()
-//     {
-//         if (HelpPanel != null)
-//         {
-//             HelpPanel.SetActive(false); // 도움말 숨기고 시작
-//             Debug.Log("판넬 찾고 숨겻음");
-//         }
-//         if (LoadingPanel != null)
-//         {
-//             LoadingPanel.SetActive(false); // 도움말 숨기고 시작
-//             Debug.Log("판넬 찾고 숨겻음");
-//         }
-
-//     }
-
-//     public void TakePhotoButton()
-//     {
-//         if (LoadingPanel != null)
-//         {
-//             LoadingPanel.SetActive(!LoadingPanel.activeSelf);
-//         }
-//         GameObject.Find("TakePhotoButton").GetComponent<Button>().interactable = false;
-//         GameObject.Find("BackToHomeButton").GetComponent<Button>().interactable = false;
-//         GameObject.Find("HelpButton").GetComponent<Button>().interactable = false;
-        
-//         StartCoroutine(WaitAndLoadScene());
-//     }
-//     public IEnumerator WaitAndLoadScene()
-//     {
-//         yield return new WaitForSeconds(3f);
-//         SceneManager.LoadScene("EntryScanScene");
-//     }
-
-//     public void BackToHomeButton()
-//     {
-//         SceneManager.LoadScene("MainScene");
-        
-//     }
-
-//     public void HelpButton()
-//     {
-//         Debug.Log("버튼 클릭됨");
-//         // Help Panel의 활성화 상태 반전
-//         if (HelpPanel != null)
-//         {
-//             HelpPanel.SetActive(!HelpPanel.activeSelf);
-//         }
-//     }
-// }
