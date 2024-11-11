@@ -136,7 +136,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsFood()
     {
-        Debug.Log("지흔: 음식으로 이동");
+        // Debug.Log("지흔: 음식으로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
@@ -175,7 +175,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsTree()
     {
-        Debug.Log("지흔: 나무로 이동");
+        // Debug.Log("지흔: 나무로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
@@ -190,9 +190,9 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, treeObject.transform.position, step);
 
-        if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 0.5f)
+        if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 4f)
         {
-            Debug.Log("지흔: 나무와의 거리 0.5f 이하, 트리 꼭대기로 바로 이동 시작");
+            Debug.Log("지흔: 나무와의 거리 4f 이하, 트리 꼭대기로 바로 이동 시작");
             isInsectMoving = false;
             SetInsectIdle();
 
@@ -219,19 +219,37 @@ public class ARPlaceOnPlane : MonoBehaviour
 
             Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
             float step = 0.5f * Time.deltaTime;
-            while (Vector3.Distance(insectObject.transform.position, topPosition) > 0.05f)
+
+            // 꼭대기까지 이동하는 동안 fly 애니메이션 유지 및 나무 방향으로 회전
+            while (true)
             {
+                // 나무 방향을 바라보도록 회전 조절
+                Vector3 direction = (topPosition - insectObject.transform.position).normalized;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+                // 트리 꼭대기 위치로 이동
                 insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, topPosition, step);
+
+                // X, Y 좌표가 목표 위치와 가까워지면 착륙 조건을 충족
+                if (Mathf.Abs(insectObject.transform.position.x - topPosition.x) < 0.05f &&
+                    Mathf.Abs(insectObject.transform.position.y - topPosition.y) < 0.05f)
+                {
+                    Debug.Log("지흔: X, Y 좌표가 목표 위치와 일치하여 landing 애니메이션 시작");
+                    insectAnimator.SetBool("fly", false);
+                    insectAnimator.SetTrigger("landing");
+                    break;
+                }
+
                 yield return null;
             }
 
             Debug.Log("지흔: 트리 꼭대기 도착, landing 애니메이션 시작");
+            yield return new WaitForSeconds(1.5f); // 충분한 지연 시간으로 fly 애니메이션이 완료되도록 함
             insectAnimator.SetBool("fly", false);
             insectAnimator.SetTrigger("landing");
 
             yield return new WaitForSeconds(0.5f);
-
-            insectAnimator.SetTrigger("landing");
             SetInsectIdle();
             Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
 
