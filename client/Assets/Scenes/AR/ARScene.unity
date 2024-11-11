@@ -1464,7 +1464,7 @@ GameObject:
   - component: {fileID: 883390937}
   - component: {fileID: 883390936}
   - component: {fileID: 883390935}
-  - component: {fileID: 883390934}
+  - component: {fileID: 883390938}
   m_Layer: 5
   m_Name: TreeIcon
   m_TagString: Untagged
@@ -1491,24 +1491,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -346}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &883390934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883390932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c265fbc4c93fdf846a2615032aa05b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arRaycaster: {fileID: 40919615}
-  foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  foodDescriptionText: {fileID: 653360550}
-  feedButton: {fileID: 809947710}
-  playButton: {fileID: 561790978}
-  foodIcon: {fileID: 883390932}
 --- !u!114 &883390935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,8 +1508,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 883390934}
-          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
           m_MethodName: OnBeginDragWrapper
           m_Mode: 1
           m_Arguments:
@@ -1542,8 +1524,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 883390934}
-          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
           m_MethodName: OnDragWrapper
           m_Mode: 1
           m_Arguments:
@@ -1558,8 +1540,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 883390934}
-          m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
           m_MethodName: OnEndDragWrapper
           m_Mode: 1
           m_Arguments:
@@ -1608,6 +1590,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883390932}
   m_CullTransparentMesh: 1
+--- !u!114 &883390938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc1d97810c195d4388eb6d608737676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arRaycaster: {fileID: 40919615}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treeDescriptionText: {fileID: 653360550}
+  feedButton: {fileID: 809947710}
+  playButton: {fileID: 561790978}
+  treeIcon: {fileID: 883390932}
 --- !u!1 &1037246574
 GameObject:
   m_ObjectHideFlags: 0
