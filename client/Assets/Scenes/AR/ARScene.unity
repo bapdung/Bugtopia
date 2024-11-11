@@ -306,8 +306,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBA39\uC774\uC8FC\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
-  m_sharedMaterial: {fileID: 8920113225108332148, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
+  m_sharedMaterial: {fileID: 6427110649787235152, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -803,8 +803,8 @@ MonoBehaviour:
   m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uBA39\uC774\uB97C \uACE4\uCDA9 \uADFC\uCC98
     \uD3C9\uBA74\uC5D0 \uB358\uC838\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
-  m_sharedMaterial: {fileID: 8920113225108332148, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1377,8 +1377,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB180\uC544\uC8FC\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
-  m_sharedMaterial: {fileID: 8920113225108332148, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2099,8 +2099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f668e00dc340b85408974fd89ff02edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 0}
   notificationText: {fileID: 1932621515}
+  heartPrefab: {fileID: 0}
 --- !u!4 &1577749885
 Transform:
   m_ObjectHideFlags: 0
