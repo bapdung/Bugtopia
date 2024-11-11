@@ -97,4 +97,12 @@ public class CameraManager : MonoBehaviour
             HelpPanel.SetActive(!HelpPanel.activeSelf);
         }
     }
+
+    void OnDestroy() {
+        if (webCamTexture)
+        {
+            webCamTexture.Stop();
+            webCamTexture = null;
+        }
+    }
 }
