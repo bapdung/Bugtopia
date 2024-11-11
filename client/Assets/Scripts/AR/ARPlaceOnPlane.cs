@@ -190,29 +190,77 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, treeObject.transform.position, step);
 
-        if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 0.3f)
+        if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 0.5f)
         {
-            Debug.Log("지흔 : 나무랑 부딪힘");
+            Debug.Log("지흔: 나무와의 거리 0.5f 이하, 트리 꼭대기로 바로 이동 시작");
             isInsectMoving = false;
-            insectAnimator.SetBool("walk", false);
-            insectAnimator.SetBool("idle", true);
-            // SetInsectEat();
+            SetInsectIdle();
 
-            var increaseScoreRequest = new IncreaseScoreRequest
-            {
-                raisingInsectId = insectInfoResponse.raisingInsectId,
-                category = 3
-            };
-
-            StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
-                onSuccess: (response) =>
-                {
-                    increaseScoreResponse = response;
-                    Debug.Log("지흔 : 점수 증가 성공 - 애정도 총합: " + response.loveScore);
-                },
-                onFailure: error => Debug.LogError("지흔 : 점수 증가 실패: " + error)
-            ));
+            // StartCoroutine(MoveToTopOfTree());
         }
+    }
+
+    private IEnumerator MoveToTopOfTree()
+    {
+        Debug.Log("지흔: 트리 꼭대기로 올라가는 애니메이션 시작");
+
+        if (insectAnimator != null)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            insectAnimator.SetBool("idle", false);
+            insectAnimator.SetBool("takeoff", true);
+            Debug.Log("지흔: takeoff 애니메이션 실행");
+
+            yield return new WaitForSeconds(0.5f);
+
+            insectAnimator.SetBool("takeoff", false);
+            insectAnimator.SetBool("fly", true);
+            Debug.Log("지흔: fly 애니메이션 실행 및 트리 꼭대기 위치로 이동 시작");
+
+            Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
+            float step = 0.5f * Time.deltaTime;
+            while (Vector3.Distance(insectObject.transform.position, topPosition) > 0.05f)
+            {
+                insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, topPosition, step);
+                yield return null;
+            }
+
+            Debug.Log("지흔: 트리 꼭대기 도착, landing 애니메이션 시작");
+            insectAnimator.SetBool("fly", false);
+            insectAnimator.SetBool("landing", true);
+
+            yield return new WaitForSeconds(0.5f);
+
+            insectAnimator.SetBool("landing", false);
+            insectAnimator.SetBool("idle", true);
+            Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
+
+            yield return new WaitForSeconds(2.0f);
+            Debug.Log("지흔: 2초 후 지면으로 떨어지는 모션 시작");
+            // StartCoroutine(FallToGround());
+        }
+    }
+
+    private IEnumerator FallToGround()
+    {
+        Debug.Log("지흔: 지면으로 떨어지기 위해 곤충 뒤집힘");
+        Quaternion flippedRotation = Quaternion.Euler(180, insectObject.transform.eulerAngles.y, 0);
+        insectObject.transform.rotation = flippedRotation;
+
+        Vector3 groundPosition = treeObject.transform.position + new Vector3(0, -0.5f, 0);
+        float fallSpeed = 1.0f;
+
+        Debug.Log("지흔: 떨어지는 중...");
+        while (Vector3.Distance(insectObject.transform.position, groundPosition) > 0.05f)
+        {
+            insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, groundPosition, fallSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        Debug.Log("지흔: 지면에 도착, idle 상태로 전환 및 원래 자세 복원");
+        insectAnimator.SetBool("idle", true);
+        insectObject.transform.rotation = Quaternion.Euler(0, insectObject.transform.eulerAngles.y, 0);
     }
 
     private void SetInsectIdle()
@@ -228,6 +276,7 @@ public class ARPlaceOnPlane : MonoBehaviour
             insectAnimator.SetBool("attack", false);
             insectAnimator.SetBool("bite", false);
             insectAnimator.SetBool("hit", false);
+            Debug.Log("지흔: 곤충 상태 idle로 설정");
         }
     }
 
