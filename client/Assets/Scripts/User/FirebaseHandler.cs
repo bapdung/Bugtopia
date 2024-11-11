@@ -7,11 +7,14 @@ using System.Collections;
 using API.User;
 using Models.User.Request;
 using Models.User.Response;
+using UnityEngine.UI;
+using TMPro;
 
 public class FirebaseHandler : MonoBehaviour
 {
     private static bool instanceExists;
     public UserApi userApi;
+    public Button button;
 
     private void Awake()
     {
@@ -98,15 +101,15 @@ public class FirebaseHandler : MonoBehaviour
             UserStateManager.Instance.SetUserId(response.userId ?? 0);
             UserStateManager.Instance.SetNickname(response.nickname);
             
-            // 메인 씬으로 이동 MainScene
-            SceneManager.LoadScene("MainScene");
+            // button 누르면 MainScene으로 이동
+            button.onClick.AddListener(() => moveScene("MainScene"));
         }
         else if (response.joined == false)
         {
             Debug.Log("지흔: 가입되지 않은 사용자, CreateNicknameScene으로 이동합니다.");
 
-            // CreateNicknameScene으로 이동
-            SceneManager.LoadScene("CreateNicknameScene");
+            // button 누르면 CreateNicknameScene으로 이동
+            button.onClick.AddListener(() => moveScene("CreateNicknameScene"));
         }
     }
 
@@ -138,8 +141,7 @@ public class FirebaseHandler : MonoBehaviour
         UserStateManager.Instance.SetUserId(response.userId);
         UserStateManager.Instance.SetNickname(response.nickname);
 
-        // 회원가입 후 GreetingScene으로 이동 (필요 시 제거 가능)
-        SceneManager.LoadScene("GreetingScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     // 요청 실패 시 호출되는 콜백
@@ -152,5 +154,10 @@ public class FirebaseHandler : MonoBehaviour
     public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
     {
         Debug.Log("지흔: 알림 수신: " + e.Message.Notification.Body);
+    }
+
+    public void moveScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
