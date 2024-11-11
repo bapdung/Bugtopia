@@ -15,14 +15,14 @@ public class FirebaseHandler : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("민채: FirebaseHandler의 Awake 메서드가 실행되었습니다.");
+        Debug.Log("지흔: FirebaseHandler의 Awake 메서드가 실행되었습니다.");
 
         if (!instanceExists)
         {
             // 이 GameObject가 씬 전환 시에도 유지되도록 설정
             DontDestroyOnLoad(this.gameObject);
             instanceExists = true;
-            Debug.Log("민채: FirebaseHandler가 전역 공간에 등록되었습니다.");
+            Debug.Log("지흔: FirebaseHandler가 전역 공간에 등록되었습니다.");
         }
         else
         {
@@ -47,7 +47,7 @@ public class FirebaseHandler : MonoBehaviour
         if (dependencyTask.Result == DependencyStatus.Available)
         {
             FirebaseApp app = FirebaseApp.DefaultInstance;
-            Debug.Log("민채: Firebase 시작!");
+            Debug.Log("지흔: Firebase 시작!");
 
             // Firebase Messaging 초기화
             FirebaseMessaging.TokenReceived += OnTokenReceived;
@@ -55,14 +55,14 @@ public class FirebaseHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("민채: Firebase 시작 오류: " + dependencyTask.Result);
+            Debug.LogError("지흔: Firebase 시작 오류: " + dependencyTask.Result);
         }
     }
 
     // Firebase Messaging token 받아오기
     public void OnTokenReceived(object sender, TokenReceivedEventArgs token)
     {
-        Debug.Log("민채: Firebase token: " + token.Token);
+        Debug.Log("지흔: Firebase token: " + token.Token);
 
         // 전역 공간에 deviceId 저장
         UserStateManager.Instance.SetDeviceId(token.Token);
@@ -86,27 +86,27 @@ public class FirebaseHandler : MonoBehaviour
     { 
         if (response == null)
         {
-            Debug.LogError("민채: 응답이 null입니다. 로그인 응답을 확인하세요.");
+            Debug.LogError("지흔: 응답이 null입니다. 로그인 응답을 확인하세요.");
             return; // response가 null일 경우 함수 종료
         }
         
         if (response.joined == true)
         {
-            Debug.Log("민채: 이미 가입된 사용자: " + response.nickname);
+            Debug.Log("지흔: 이미 가입된 사용자: " + response.nickname);
 
             // 전역 공간에 userId와 nickname 저장
             UserStateManager.Instance.SetUserId(response.userId ?? 0);
             UserStateManager.Instance.SetNickname(response.nickname);
             
             // 메인 씬으로 이동 MainScene
-            SceneManager.LoadScene("ARScene");
+            SceneManager.LoadScene("MainScene");
         }
         else if (response.joined == false)
         {
-            Debug.Log("민채: 가입되지 않은 사용자, CreateNicknameScene으로 이동합니다.");
+            Debug.Log("지흔: 가입되지 않은 사용자, CreateNicknameScene으로 이동합니다.");
 
             // CreateNicknameScene으로 이동
-            SceneManager.LoadScene("ARScene");
+            SceneManager.LoadScene("CreateNicknameScene");
         }
     }
 
@@ -125,14 +125,14 @@ public class FirebaseHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("민채: deviceId 또는 nickname이 설정되지 않았습니다.");
+            Debug.LogError("지흔: deviceId 또는 nickname이 설정되지 않았습니다.");
         }
     }
 
     // 회원가입 성공 시 호출되는 콜백
     public void OnJoinSuccess(UserJoinResponse response)
     {
-        Debug.Log("민채: 회원가입 성공 - 사용자 ID: " + response.userId + ", 닉네임: " + response.nickname);
+        Debug.Log("지흔: 회원가입 성공 - 사용자 ID: " + response.userId + ", 닉네임: " + response.nickname);
 
         // 전역 공간에 userId와 nickname 저장
         UserStateManager.Instance.SetUserId(response.userId);
@@ -145,12 +145,12 @@ public class FirebaseHandler : MonoBehaviour
     // 요청 실패 시 호출되는 콜백
     public void OnRequestFailure(string error)
     {
-        Debug.LogError("민채: User Api 요청 실패: " + error);
+        Debug.LogError("지흔: User Api 요청 실패: " + error);
     }
 
     // 메시지 수신 시 호출되는 이벤트 핸들러
     public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
     {
-        Debug.Log("민채: 알림 수신: " + e.Message.Notification.Body);
+        Debug.Log("지흔: 알림 수신: " + e.Message.Notification.Body);
     }
 }

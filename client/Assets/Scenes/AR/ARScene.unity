@@ -800,11 +800,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uBA39\uC774\uB97C \uACE4\uCDA9 \uADFC\uCC98
-    \uD3C9\uBA74\uC5D0 \uB358\uC838\uC8FC\uC138\uC694!"
+  m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uACE4\uCDA9 \uADFC\uCC98 \uD3C9\uBA74\uC5D0
+    \uC62C\uB824\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1639,6 +1639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}
@@ -1836,7 +1837,7 @@ Camera:
   m_GameObject: {fileID: 1114040580}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2

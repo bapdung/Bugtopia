@@ -13,6 +13,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 {
     public ARRaycastManager aRRaycaster;
     public GameObject foodPrefab;
+    public GameObject treePrefab;
     public GameObject insectPrefab;
     public InsectApi insectApi;
     public TextMeshProUGUI foodDescriptionText;
@@ -23,7 +24,8 @@ public class ARPlaceOnPlane : MonoBehaviour
     public TextMeshProUGUI notificationText;
     public FoodDragHandler foodDragHandler;
 
-    private GameObject foodObject; // 생성된 Food 오브젝트
+    private GameObject foodObject; 
+    private GameObject treeObject;
     private GameObject insectObject; // 생성된 Insect 오브젝트
 
     private InsectArInfoResponse insectInfoResponse; // Insect 정보
@@ -78,6 +80,11 @@ public class ARPlaceOnPlane : MonoBehaviour
         if (isInsectMoving && insectObject != null && foodObject != null)
         {
             MoveInsectTowardsFood();
+        }
+
+        if (isInsectMoving && insectObject != null && treeObject != null)
+        {
+            MoveInsectTowardsTree();
         }
     }
 
@@ -148,6 +155,46 @@ public class ARPlaceOnPlane : MonoBehaviour
                     Debug.Log("점수 증가 성공 - 애정도 총합: " + response.loveScore);
                 },
                 onFailure: error => Debug.LogError("점수 증가 실패: " + error)
+            ));
+        }
+    }
+
+    private void MoveInsectTowardsTree()
+    {
+        if (insectAnimator != null)
+        {
+            insectAnimator.SetBool("walk", true);
+            insectAnimator.SetBool("idle", false);
+        }
+
+        float step = 0.5f * Time.deltaTime;
+        Vector3 direction = (treeObject.transform.position - insectObject.transform.position).normalized;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, treeObject.transform.position, step);
+
+        if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 0.3f)
+        {
+            isInsectMoving = false;
+            insectAnimator.SetBool("walk", false);
+            insectAnimator.SetBool("idle", true);
+            // SetInsectEat();
+
+            var increaseScoreRequest = new IncreaseScoreRequest
+            {
+                raisingInsectId = insectInfoResponse.raisingInsectId,
+                category = 3
+            };
+
+            StartCoroutine(insectApi.PostIncreaseScore(increaseScoreRequest,
+                onSuccess: (response) =>
+                {
+                    increaseScoreResponse = response;
+                    Debug.Log("지흔 : 점수 증가 성공 - 애정도 총합: " + response.loveScore);
+                },
+                onFailure: error => Debug.LogError("지흔 : 점수 증가 실패: " + error)
             ));
         }
     }

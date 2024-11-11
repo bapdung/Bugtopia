@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public ARRaycastManager arRaycaster; // AR Raycast Manager
-    public GameObject treePrefab; // Tree 프리팹
+    public ARRaycastManager arRaycaster;
+    public GameObject treePrefab;
     public TextMeshProUGUI treeDescriptionText;
     public Button feedButton;
     public Button playButton;
