@@ -14,49 +14,97 @@ public class CameraManager : MonoBehaviour
     public GameObject HelpPanel;
     public GameObject LoadingPanel;
     public CatchApi catchApi;
+
     private void Awake()
     {
         if (catchApi == null)
         {
-            GameObject catchApiObject = new GameObject("CatchApiObject");  // 새 GameObject 생성
-            catchApi = catchApiObject.AddComponent<CatchApi>();  // catchApi 컴포넌트를 추가하여 할당
+            GameObject catchApiObject = new GameObject("CatchApiObject");
+            catchApi = catchApiObject.AddComponent<CatchApi>();
         }
     }
+
     void Start()
     {
-        // 권한 받기
+        // 카메라 권한 확인 및 요청
         if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
         {
             Permission.RequestUserPermission(Permission.Camera);
+            StartCoroutine(CheckCameraPermission());
+        }
+        else
+        {
+            InitializeCamera();
         }
 
-        if (WebCamTexture.devices.Length > 0) 
+        // HelpPanel과 LoadingPanel 초기화
+        if (HelpPanel != null)
+        {
+            HelpPanel.SetActive(false);
+            Debug.Log("도움말 패널 숨김");
+        }
+        if (LoadingPanel != null)
+        {
+            LoadingPanel.SetActive(false);
+            Debug.Log("로딩 패널 숨김");
+        }
+    }
+
+    IEnumerator CheckCameraPermission()
+    {
+        while (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+        {
+            yield return null; // 계속 대기
+        }
+
+        Debug.Log("카메라 권한 승인됨");
+        InitializeCamera();
+    }
+
+    private void InitializeCamera()
+    {
+        if (WebCamTexture.devices.Length > 0)
         {
             Debug.Log("카메라 디바이스 감지됨: " + WebCamTexture.devices[0].name);
             webCamTexture = new WebCamTexture(WebCamTexture.devices[0].name);
             cameraView.texture = webCamTexture;
             webCamTexture.Play();
 
+            // 카메라 비율 유지 및 화면에 꽉 차도록 설정
+            float videoRatio = (float)webCamTexture.width / webCamTexture.height;
+            float screenRatio = (float)Screen.width / Screen.height;
+
+            if (videoRatio > screenRatio)
+            {
+                // 비디오가 더 넓은 경우 - 높이를 기준으로 너비 조정
+                cameraView.rectTransform.sizeDelta = new Vector2(cameraView.rectTransform.sizeDelta.y * videoRatio, cameraView.rectTransform.sizeDelta.y);
+            }
+            else
+            {
+                // 화면이 더 넓은 경우 - 너비를 기준으로 높이 조정
+                cameraView.rectTransform.sizeDelta = new Vector2(cameraView.rectTransform.sizeDelta.x, cameraView.rectTransform.sizeDelta.x / videoRatio);
+            }
+
+            // 카메라 회전 각도 보정
             int rotationAngle = webCamTexture.videoRotationAngle;
             cameraView.rectTransform.localEulerAngles = new Vector3(0, 0, -rotationAngle);
-        }
 
-        if (HelpPanel != null)
-        {
-            HelpPanel.SetActive(false); // 도움말 숨기고 시작
-            Debug.Log("도움말판넬 찾고 숨겻음");
+            Debug.Log("카메라 초기화 완료 및 출력 시작");
         }
-        if (LoadingPanel != null)
+        else
         {
-            LoadingPanel.SetActive(false); // 로딩중 숨기고 시작
-            Debug.Log("로딩중판넬 찾고 숨겻음");
+            Debug.LogError("사용 가능한 카메라가 없습니다.");
         }
-        
-
     }
 
     public void TakePhotoButton()
     {
+        if (webCamTexture == null || !webCamTexture.isPlaying)
+        {
+            Debug.LogWarning("카메라가 활성화되어 있지 않습니다.");
+            return;
+        }
+
         Texture2D photo = new Texture2D(webCamTexture.width, webCamTexture.height);
         photo.SetPixels(webCamTexture.GetPixels());
         photo.Apply();
@@ -67,42 +115,50 @@ public class CameraManager : MonoBehaviour
         }
 
         string fileName = "photo_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
-        byte[] photoBytes = photo.EncodeToPNG(); 
+        byte[] photoBytes = photo.EncodeToPNG();
+
+        Debug.Log("사진 촬영 및 파일 저장 준비 완료: " + fileName);
 
         // S3 URL 요청 및 사진 업로드
         StartCoroutine(catchApi.GetS3Url(fileName, photoBytes));
     }
-    // 사진 업로드 후 API 결과를 EntryScanManager로 전달
+
     public void OnInsectSearched(SearchInsectResponse response)
     {
-        // 검색된 곤충 정보를 EntryScanManager에 전달하여 UI 업데이트
         var entryScanManager = FindObjectOfType<EntryScanManager>();
         if (entryScanManager != null)
         {
             entryScanManager.UpdateInsectInfo(response);
+            Debug.Log("곤충 정보 UI 업데이트 완료");
+        }
+        else
+        {
+            Debug.LogWarning("EntryScanManager를 찾을 수 없습니다.");
         }
     }
 
     public void BackToHomeButton()
     {
-        SceneManager.LoadScene("MainScene");  
+        Debug.Log("메인 화면으로 돌아가기 버튼 클릭");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void HelpButton()
     {
-        Debug.Log("버튼 클릭됨");
-        // Help Panel의 활성화 상태 반전
+        Debug.Log("도움말 버튼 클릭됨");
         if (HelpPanel != null)
         {
             HelpPanel.SetActive(!HelpPanel.activeSelf);
         }
     }
 
-    void OnDestroy() {
+    void OnDestroy()
+    {
         if (webCamTexture)
         {
             webCamTexture.Stop();
             webCamTexture = null;
+            Debug.Log("카메라 정지 및 리소스 해제");
         }
     }
 }
