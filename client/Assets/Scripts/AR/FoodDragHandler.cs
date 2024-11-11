@@ -15,30 +15,30 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Button feedButton;
     public Button playButton;
     public GameObject foodIcon;
+    public GameObject treeIcon;
 
     private GameObject foodPreviewObject;
 
     void Start()
     {
-        HideFoodIcon();
-        feedButton.gameObject.SetActive(true);
-        playButton.gameObject.SetActive(true);
-        feedButton.onClick.AddListener(ShowFoodIcon);
     }
 
     public void ShowFoodIcon()
     {
         Debug.Log("지흔: ShowFoodIcon");
         foodIcon.SetActive(true);
+        treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
+        foodDescriptionText.text = "먹이를 드래그해서 평면에 놓아주세요!";
     }
 
     public void HideFoodIcon()
     {
         Debug.Log("지흔: UI 초기화");
         foodIcon.SetActive(false);
+        treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
     }
 
@@ -78,7 +78,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GameObject placedFood = Instantiate(foodPrefab, foodPreviewObject.transform.position, foodPreviewObject.transform.rotation);
             Debug.Log("지흔: Food가 평면에 최종 배치되었습니다!");
 
-            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood);
+            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood, true);
 
             Destroy(foodPreviewObject);
             foodPreviewObject = null;
