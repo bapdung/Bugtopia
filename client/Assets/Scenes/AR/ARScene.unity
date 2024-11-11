@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arRaycaster: {fileID: 40919615}
-  treePrefab: {fileID: 3079082519022472139, guid: 64eea9771ca511a4ba7aedb511635c73, type: 3}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
   treeDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  treePrefab: {fileID: 3079082519022472139, guid: 64eea9771ca511a4ba7aedb511635c73, type: 3}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}

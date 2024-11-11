@@ -78,7 +78,7 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GameObject placedTree = Instantiate(treePrefab, treePreviewObject.transform.position, treePreviewObject.transform.rotation);
             Debug.Log("지흔: Tree가 평면에 최종 배치되었습니다!");
 
-            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedTree);
+            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedTree, false);
 
             Destroy(treePreviewObject);
             treePreviewObject = null;

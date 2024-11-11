@@ -78,7 +78,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             GameObject placedFood = Instantiate(foodPrefab, foodPreviewObject.transform.position, foodPreviewObject.transform.rotation);
             Debug.Log("지흔: Food가 평면에 최종 배치되었습니다!");
 
-            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood);
+            FindObjectOfType<ARPlaceOnPlane>().StartInsectMovement(placedFood, true);
 
             Destroy(foodPreviewObject);
             foodPreviewObject = null;

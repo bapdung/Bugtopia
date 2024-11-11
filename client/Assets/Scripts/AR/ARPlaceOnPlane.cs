@@ -88,14 +88,16 @@ public class ARPlaceOnPlane : MonoBehaviour
             UpdateInsectObject();
         }
 
-        if (isInsectMoving && insectObject != null && foodObject != null)
+        if (isInsectMoving && insectObject != null)
         {
-            MoveInsectTowardsFood();
-        }
-
-        if (isInsectMoving && insectObject != null && treeObject != null)
-        {
-            MoveInsectTowardsTree();
+            if (foodObject != null)
+            {
+                MoveInsectTowardsFood();
+            }
+            else if (treeObject != null)
+            {
+                MoveInsectTowardsTree();
+            }
         }
     }
 
@@ -134,6 +136,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsFood()
     {
+        Debug.Log("지흔: 음식으로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
@@ -172,6 +175,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
     private void MoveInsectTowardsTree()
     {
+        Debug.Log("지흔: 나무로 이동");
         if (insectAnimator != null)
         {
             insectAnimator.SetBool("walk", true);
@@ -188,6 +192,7 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 0.3f)
         {
+            Debug.Log("지흔 : 나무랑 부딪힘");
             isInsectMoving = false;
             insectAnimator.SetBool("walk", false);
             insectAnimator.SetBool("idle", true);
@@ -252,10 +257,20 @@ public class ARPlaceOnPlane : MonoBehaviour
     }
 
 
-    public void StartInsectMovement(GameObject newFoodObject)
+    public void StartInsectMovement(GameObject targetObject, bool isFood)
     {
-        foodObject = newFoodObject;
         isInsectMoving = true;
+
+        if (isFood)
+        {
+            foodObject = targetObject;
+            treeObject = null; // 나무 이동을 중지
+        }
+        else
+        {
+            treeObject = targetObject;
+            foodObject = null; // 음식 이동을 중지
+        }
     }
 
     private void ShowNotification(string message, float duration)
