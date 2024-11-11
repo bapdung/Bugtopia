@@ -704,7 +704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 561790979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 883390938}
+        m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
+        m_MethodName: ShowTreeIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561790979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,11 +812,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uBA39\uC774\uB97C \uACE4\uCDA9 \uADFC\uCC98
-    \uD3C9\uBA74\uC5D0 \uB358\uC838\uC8FC\uC138\uC694!"
+  m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uACE4\uCDA9 \uADFC\uCC98 \uD3C9\uBA74\uC5D0
+    \uC62C\uB824\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1279,7 +1291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 809947711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1175401537}
+        m_TargetAssemblyTypeName: FoodDragHandler, Assembly-CSharp
+        m_MethodName: ShowFoodIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &809947711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,6 +1476,163 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864129309}
   m_CullTransparentMesh: 1
+--- !u!1 &883390932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883390933}
+  - component: {fileID: 883390937}
+  - component: {fileID: 883390936}
+  - component: {fileID: 883390935}
+  - component: {fileID: 883390938}
+  m_Layer: 5
+  m_Name: TreeIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &883390933
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1855392035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -346}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &883390935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
+          m_MethodName: OnBeginDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
+          m_MethodName: OnDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 883390938}
+          m_TargetAssemblyTypeName: TreeDragHandler, Assembly-CSharp
+          m_MethodName: OnEndDragWrapper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &883390936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4ffcc84e476c9b541b8b46aba7c36604, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &883390937
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_CullTransparentMesh: 1
+--- !u!114 &883390938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883390932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc1d97810c195d4388eb6d608737676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arRaycaster: {fileID: 40919615}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treeDescriptionText: {fileID: 653360550}
+  feedButton: {fileID: 809947710}
+  playButton: {fileID: 561790978}
+  treeIcon: {fileID: 883390932}
+  foodIcon: {fileID: 1175401533}
 --- !u!1 &1037246574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,15 +1664,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
+  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
+  treeIcon: {fileID: 883390932}
   nicknameText: {fileID: 1146719292}
   notificationText: {fileID: 1932621515}
   foodDragHandler: {fileID: 0}
+  treeDragHandler: {fileID: 0}
 --- !u!4 &1037246578
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,7 +1864,7 @@ Camera:
   m_GameObject: {fileID: 1114040580}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -2009,6 +2193,7 @@ MonoBehaviour:
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
   foodIcon: {fileID: 1175401533}
+  treeIcon: {fileID: 883390932}
 --- !u!114 &1175401538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7265,6 +7450,7 @@ RectTransform:
   m_Children:
   - {fileID: 766626720}
   - {fileID: 1175401534}
+  - {fileID: 883390933}
   - {fileID: 653360549}
   - {fileID: 1146719291}
   - {fileID: 1932621514}
