@@ -5,6 +5,7 @@ using System.Text;
 using System;
 using Models.Insect.Response;
 using Models.Insect.Request;
+using Models.InsectBook.Response;
 
 namespace API.Catch
 {
@@ -13,9 +14,12 @@ namespace API.Catch
         [SerializeField] private EnvironmentConfig environmentConfig;
 
         private string catchUrl;
+        private long userId ;
 
         void Awake()
         {
+            userId = UserStateManager.Instance.UserId;
+
             if (environmentConfig == null)
             {
                 environmentConfig = Resources.Load<EnvironmentConfig>("EnvironmentConfig");
@@ -26,7 +30,7 @@ namespace API.Catch
         // S3 URL을 얻는 메서드
         public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
         {
-            string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
+            string requestUrl = $"{environmentConfig.baseUrl}/api/files/upload/{fileName}";
             string responseS3Url = string.Empty;
 
             using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
@@ -157,6 +161,30 @@ namespace API.Catch
                 {
                     InsectNicknameResponse response = JsonUtility.FromJson<InsectNicknameResponse>(request.downloadHandler.text);
                     callback?.Invoke(response);
+                }
+            }
+        }
+
+        public IEnumerator GetCatchInsectList(System.Action<CatchListResponse> onSuccess, System.Action<string> onFailure)
+        {
+            string requestUrl = $"{catchUrl}?viewType=CATCHED";
+
+            using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
+            {
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userId.ToString());
+
+                yield return request.SendWebRequest();
+
+                if(request.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonResponse = request.downloadHandler.text;
+                    CatchListResponse responseData = JsonUtility.FromJson<CatchListResponse>(jsonResponse);
+                    onSuccess?.Invoke(responseData);
+                }
+                else
+                {
+                    onFailure?.Invoke(request.error);
                 }
             }
         }
