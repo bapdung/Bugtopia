@@ -248,11 +248,14 @@ public class ARPlaceOnPlane : MonoBehaviour
             insectAnimator.SetTrigger("landing");
 
             yield return new WaitForSeconds(0.5f);
+            insectAnimator.SetBool("landing", false);
+            insectAnimator.SetBool("idle", true);
             SetInsectIdle();
             Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
 
             ResetUIAfterPlaying();
 
+            //TODO : 여기까지는 못했어 미안해요 여러분 원래는 떨어지는 모션까지 완성하고자 함
             // yield return new WaitForSeconds(2.0f);
             // Debug.Log("지흔: 2초 후 지면으로 떨어지는 모션 시작");
             // // StartCoroutine(FallToGround());
@@ -377,7 +380,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     {
         feedButton.gameObject.SetActive(true);
         playButton.gameObject.SetActive(true);
-        feedIcon.SetActive(false);
+        treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
     }
 }
