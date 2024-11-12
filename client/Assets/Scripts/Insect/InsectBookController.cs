@@ -70,7 +70,7 @@ public class InsectBookController : MonoBehaviour
 
             eggNameText.text = eggItem.eggName;
             receiveDateText.text = eggItem.receiveDate.Split(' ')[0].Replace("-",". ");
-            StartCoroutine(LoadImageFromURL($"{environmentConfig.s3Url}/test/eggImg.png", eggImage));
+            StartCoroutine(LoadImageFromURL($"{environmentConfig.s3Url}/admin/eggImg.png", eggImage));
         }
     }
 
