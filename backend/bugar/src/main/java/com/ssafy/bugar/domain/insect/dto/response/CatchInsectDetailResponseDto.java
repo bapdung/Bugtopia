@@ -17,7 +17,9 @@ public class CatchInsectDetailResponseDto {
 
     // 채집 곤충
     private String engName;
+    private String imgUrl;
     private String info;
+    private String photo;
     private Integer canRaise;
     private String area;
     private String rejectedReason;
@@ -41,6 +43,8 @@ public class CatchInsectDetailResponseDto {
         String getEngName();
 
         String getInfo();
+
+        String getPhoto();
 
         Integer getCanRaise();
 
