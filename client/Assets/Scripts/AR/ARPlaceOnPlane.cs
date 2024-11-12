@@ -233,7 +233,30 @@ public class ARPlaceOnPlane : MonoBehaviour
                 if (Mathf.Abs(insectObject.transform.position.x - topPosition.x) < 0.05f &&
                     Mathf.Abs(insectObject.transform.position.y - topPosition.y) < 0.05f)
                 {
-                    Debug.Log("지흔: X, Y 좌표가 목표 위치와 일치하여 landing 애니메이션 시작");
+                    Debug.Log("지흔: X, Y 좌표가 목표 위치와 일치하여 수직 하강 시작");
+
+                    // 수직 하강 준비
+                    Vector3 verticalTargetPosition = new Vector3(
+                        insectObject.transform.position.x, 
+                        Mathf.Min(treeObject.transform.position.y + 0.1f, insectObject.transform.position.y - 0.3f), 
+                        insectObject.transform.position.z
+                    );
+                    Debug.Log("지흔: 현재 위치: " + insectObject.transform.position + ", 목표 수직 하강 위치: " + verticalTargetPosition);
+                    // 수직 하강 실행
+                    // 현재 Y 위치가 목표 Y 위치보다 높은 경우에만 수직 하강
+                    if (insectObject.transform.position.y > verticalTargetPosition.y)
+                    {
+                        // 수직 하강 실행
+                        while (Vector3.Distance(insectObject.transform.position, verticalTargetPosition) > 0.05f)
+                        {
+                            Debug.Log("지흔: 수직하강 중 - 현재 위치: " + insectObject.transform.position + ", 목표 위치: " + verticalTargetPosition);
+                            insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, verticalTargetPosition, step);
+                            yield return null;
+                        }
+                    }
+
+                    //하강완료 후 착륙 애니메이션
+                    Debug.Log("지흔: Z축 거리 조건 만족, landing 애니메이션 시작");
                     insectAnimator.SetBool("fly", false);
                     insectAnimator.SetTrigger("landing");
                     break;
