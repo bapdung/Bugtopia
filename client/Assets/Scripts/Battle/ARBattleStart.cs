@@ -38,15 +38,17 @@ public class ARBattleStart : MonoBehaviour
         countdownText.text = "Battle Start!";
         yield return new WaitForSeconds(1);
         countdownText.text = "";
-
+        Debug.Log("지흔: 스타트카운트다운 끝");
         StartBattle();
     }
 
     void StartBattle()
     {
+        Debug.Log("지흔: 스타트배틀함수시작");
         if (!battleStarted)
         {
-            battleManager.StartBattleScene();
+            Debug.Log("지흔: 11111");
+            StartCoroutine(battleManager.StartBattleScene());
             battleStarted = true;
         }
     }

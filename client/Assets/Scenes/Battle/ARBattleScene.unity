@@ -1539,7 +1539,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 13677944}
-  battleManager: {fileID: 0}
+  battleManager: {fileID: 1412608474}
+  battleStartButton: {fileID: 1820261013}
 --- !u!1 &1600812346
 GameObject:
   m_ObjectHideFlags: 0
