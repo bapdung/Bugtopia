@@ -48,7 +48,11 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             treePreviewObject = Instantiate(treePrefab);
             treePreviewObject.SetActive(false);
-        }
+
+            Vector3 newPosition = treePreviewObject.transform.position;
+            newPosition.y += 1f;
+            treePreviewObject.transform.position = newPosition;
+            }
 
         Debug.Log("지흔: Tree 드래그가 시작되었습니다.");
     }

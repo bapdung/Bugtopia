@@ -306,8 +306,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBA39\uC774\uC8FC\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
-  m_sharedMaterial: {fileID: 6427110649787235152, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -815,8 +815,8 @@ MonoBehaviour:
   m_text: "\uC2A4\uC640\uC774\uD504\uD574\uC11C \uACE4\uCDA9 \uADFC\uCC98 \uD3C9\uBA74\uC5D0
     \uC62C\uB824\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
-  m_sharedMaterial: {fileID: 6192598325095855303, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arRaycaster: {fileID: 40919615}
-  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treePrefab: {fileID: 8665405594073703101, guid: d3032933550ff354ca77b87a2609386c, type: 3}
   treeDescriptionText: {fileID: 653360550}
   feedButton: {fileID: 809947710}
   playButton: {fileID: 561790978}
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aRRaycaster: {fileID: 40919615}
   foodPrefab: {fileID: 2260262152139036279, guid: 0cc7c29a80e096846b000c2f141e3bae, type: 3}
-  treePrefab: {fileID: 7803973052075293331, guid: e254097348111bb439cd9a06b4218aba, type: 3}
+  treePrefab: {fileID: 8665405594073703101, guid: d3032933550ff354ca77b87a2609386c, type: 3}
   insectPrefab: {fileID: 0}
   insectApi: {fileID: 0}
   foodDescriptionText: {fileID: 653360550}
