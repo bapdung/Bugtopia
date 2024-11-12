@@ -108,6 +108,7 @@ public class CatchingBuilderService {
                 .krwName(catchInsect.getKrwName())
                 .engName(catchInsect.getEngName())
                 .info(catchInsect.getInfo())
+                .imgUrl(catchInsect.getPhoto())
                 .canRaise(getCanRaise(catchInsect, userId))
                 .family(catchInsect.getFamily())
                 .area(catchInsect.getArea())
