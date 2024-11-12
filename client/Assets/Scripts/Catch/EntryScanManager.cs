@@ -22,6 +22,7 @@ public class EntryScanManager : MonoBehaviour
     public TMP_InputField nicknameInputText;
     public Button nicknameSubmitButton;
     private string nickname;
+    private int canRaiseInsect;
 
     private void Awake()
     {
@@ -46,22 +47,52 @@ public class EntryScanManager : MonoBehaviour
 
     public void UpdateInsectInfo(SearchInsectResponse response)
     {
+        canRaiseInsect = response.canRaise;
         insectNameText.text = "곤충명 (한글): " + response.krName + "\n" + "곤충명 (영어): " + response.engName;
         familyText.text = "곤충 종류: " + response.family;
         areaText.text = "서식지: " + response.area;
         rejectedReasonText.text = response.rejectedReason != null ? "육성 불가능 사유: " + response.rejectedReason : "곤충 정보: " + response.info;
+        if (canRaiseInsect == 1)
+        {
+            StartRaisingButton.interactable = false;
+            StartRaisingButton.GetComponentInChildren<TextMeshProUGUI>().text = "입국거절";
+        }
+        else
+        {
+            StartRaisingButton.interactable = true;
+            StartRaisingButton.GetComponentInChildren<TextMeshProUGUI>().text = "육성 시작";
+        }
     }
+
 
     public void OnStartRaisingButtonClick()
     {
         NicknamePanel.SetActive(true);
-        // StartCoroutine(catchApi.PostCatch((success) =>
-        // {
-        //     if (success)
-        //     {
-        //         NicknamePanel.SetActive(true); 
-        //     }
-        // }));
+
+        if (canRaiseInsect == 2)
+        {
+            // 슬롯 가득 찼음을 알리는 메시지 설정
+            nicknameInputText.gameObject.SetActive(false); // 닉네임 입력 필드는 숨김
+            nicknameSubmitButton.GetComponentInChildren<TextMeshProUGUI>().text = "메인으로 돌아가기";
+            rejectedReasonText.text = "육성 슬롯이 가득 찼습니다. 더 이상 곤충을 키울 수 없습니다.";
+
+            // 버튼 클릭 시 MainScene으로 이동
+            nicknameSubmitButton.onClick.RemoveAllListeners();
+            nicknameSubmitButton.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("MainScene");
+            });
+        }
+        else
+        {
+            // 육성 가능한 경우 닉네임 패널을 정상적으로 표시
+            nicknameInputText.gameObject.SetActive(true);
+            nicknameSubmitButton.GetComponentInChildren<TextMeshProUGUI>().text = "닉네임 등록";
+
+            // 기존 닉네임 제출 기능을 연결
+            nicknameSubmitButton.onClick.RemoveAllListeners();
+            nicknameSubmitButton.onClick.AddListener(OnNicknameSubmit);
+        }
     }
 
     public void OnNicknameSubmit()
