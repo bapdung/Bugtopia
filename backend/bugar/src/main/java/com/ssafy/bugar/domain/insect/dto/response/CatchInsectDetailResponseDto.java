@@ -12,7 +12,7 @@ import lombok.Getter;
 @Builder
 public class CatchInsectDetailResponseDto {
     // 공통 속성
-    private String krwName;
+    private String krName;
     private String family;
 
     // 채집 곤충
@@ -35,7 +35,7 @@ public class CatchInsectDetailResponseDto {
     public interface CatchInsectDetailProjection {
 
         // 공통 속성
-        String getKrwName();
+        String getKrName();
 
         String getFamily();
 
