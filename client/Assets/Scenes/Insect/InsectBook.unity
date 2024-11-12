@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.99595684, b: 0.99595684, a: 0}
+  m_Color: {r: 0.87058824, g: 0.87058824, b: 0.87058824, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1083,6 +1083,7 @@ GameObject:
   - component: {fileID: 778111838}
   - component: {fileID: 778111840}
   - component: {fileID: 778111841}
+  - component: {fileID: 778111842}
   m_Layer: 5
   m_Name: CatchPanel
   m_TagString: Untagged
@@ -1184,6 +1185,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   environmentConfig: {fileID: 0}
+  catchApi: {fileID: 0}
+  insectItemPrefab: {fileID: 1840436361694800420, guid: 15105450be15cf742b79c564a5762400, type: 3}
+  catchPanel: {fileID: 778111837}
+--- !u!114 &778111842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778111836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d98a6cc30030542ab6285ee73eb98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   insectItemPrefab: {fileID: 1840436361694800420, guid: 15105450be15cf742b79c564a5762400, type: 3}
   catchPanel: {fileID: 778111837}
 --- !u!1 &958879545

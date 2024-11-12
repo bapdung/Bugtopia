@@ -8,7 +8,7 @@ using Models.InsectBook.Response;
 
 public class InsectBookController : MonoBehaviour
 {
-    [SerializeField] private EnvironmentConfig environmentConfig;
+    private EnvironmentConfig environmentConfig;
 
     private CatchApi catchApi;
 
