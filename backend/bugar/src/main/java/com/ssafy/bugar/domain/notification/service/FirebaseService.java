@@ -51,7 +51,7 @@ public class FirebaseService {
         PushMessageRequestDto fcmMessage = PushMessageRequestDto.builder()
                 .message(PushMessageRequestDto.Message.builder()
                         .token(targetToken)
-                        .notification(PushMessageRequestDto.Notification.builder()
+                        .data(PushMessageRequestDto.Data.builder()
                                 .title(title)
                                 .body(body)
                                 .image(null)
