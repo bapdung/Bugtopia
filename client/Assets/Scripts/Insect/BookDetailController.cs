@@ -11,16 +11,23 @@ public class BookDetailController : MonoBehaviour
     private CatchApi catchApi;
 
     [SerializeField] private Image catchImage;
-    [SerializeField] private TextMeshProUGUI canRaise;
+
+    [SerializeField] private Image canRaise;
+    [SerializeField] private TextMeshProUGUI canRaiseText;
 
     [SerializeField] private TextMeshProUGUI krName;
     [SerializeField] private TextMeshProUGUI engName;
     
     [SerializeField] private TextMeshProUGUI info;
 
+    [SerializeField] private GameObject possibleArea;
+    [SerializeField] private GameObject impossibleArea;
+
     [SerializeField] private Image insectModelImg;
     [SerializeField] private Image area;
     [SerializeField] private TextMeshProUGUI areaName;
+
+    [SerializeField] private TextMeshProUGUI rejectedReasonText;
 
     void Awake()
     {
@@ -47,16 +54,22 @@ public class BookDetailController : MonoBehaviour
 
     private void OnSuccess(BookDetailResponse response)
     {
-        Debug.Log("engName = " + response.engName);
         StartCoroutine(LoadImageFromURL(response.imgUrl, catchImage));
         krName.text = response.krName;
         engName.text = response.engName;
         info.text = response.info;
         
         if(response.canRaise == 1) {
-            canRaise.text = "입국 불가";
+            canRaise.color = new Color(242f / 255f, 107f / 255f, 118f / 255f);
+            canRaiseText.text = "입국 거절";
+            possibleArea.SetActive(false);
+            impossibleArea.SetActive(true);
+            rejectedReasonText.text = response.rejectedReason;
         } else {
-            canRaise.text = "입국 승인";
+            canRaise.color = new Color(83f / 255f, 190f / 255f, 106f / 255f);
+            canRaiseText.text = "입국 승인";
+            possibleArea.SetActive(true);
+            impossibleArea.SetActive(false);
         }
 
         if(response.area == "FOREST") {
