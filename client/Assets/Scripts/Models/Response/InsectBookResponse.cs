@@ -28,4 +28,16 @@ namespace Models.InsectBook.Response
         public string eggName;
         public string receiveDate;
     }
+
+    [System.Serializable]
+    public class BookDetailResponse {
+        public string krName;
+        public string engName;
+        public string imgUrl;
+        public string info;
+        public int canRaise;
+        public string family;
+        public string area;
+        public string rejectedReason;
+    }
 }
