@@ -4,4 +4,5 @@ using UnityEngine;
 public class EnvironmentConfig : ScriptableObject
 {
     public string baseUrl;
+    public string s3Url;
 }
