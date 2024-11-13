@@ -47,4 +47,6 @@ public interface RaisingInsectRepository extends JpaRepository<RaisingInsect, Lo
             WHERE r.raising_insect_id = :raisingInsectId
             """, nativeQuery = true)
     CatchInsectDetailProjection findDoneInsectDetail(@Param("raisingInsectId") Long raisingInsectId);
+
+    List<RaisingInsect> findAllByUserId(Long userId);
 }
