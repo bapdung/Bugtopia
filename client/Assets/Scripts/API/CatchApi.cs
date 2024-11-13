@@ -30,7 +30,7 @@ namespace API.Catch
         // S3 URL을 얻는 메서드
         public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
         {
-            string requestUrl = $"{environmentConfig.baseUrl}/api/files/upload/{fileName}";
+            string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
             string responseS3Url = string.Empty;
 
             using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
@@ -180,6 +180,30 @@ namespace API.Catch
                 {
                     string jsonResponse = request.downloadHandler.text;
                     CatchListResponse responseData = JsonUtility.FromJson<CatchListResponse>(jsonResponse);
+                    onSuccess?.Invoke(responseData);
+                }
+                else
+                {
+                    onFailure?.Invoke(request.error);
+                }
+            }
+        }
+
+        public IEnumerator GetBookDetail(int insectId, System.Action<BookDetailResponse> onSuccess, System.Action<string> onFailure)
+        {
+            string requestUrl = $"{catchUrl}/{insectId}?viewType=CATCHED";
+
+            using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
+            {
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userId.ToString());
+
+                yield return request.SendWebRequest();
+
+                if(request.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonResponse = request.downloadHandler.text;
+                    BookDetailResponse responseData = JsonUtility.FromJson<BookDetailResponse>(jsonResponse);
                     onSuccess?.Invoke(responseData);
                 }
                 else
