@@ -29,6 +29,10 @@ public class BookDetailController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI rejectedReasonText;
 
+    [SerializeField] private Image raisBtn;
+    [SerializeField] private TextMeshProUGUI raiseBtnText;
+    [SerializeField] private TextMeshProUGUI deleteBtnText;
+
     void Awake()
     {
         if (catchApi == null)
@@ -65,11 +69,21 @@ public class BookDetailController : MonoBehaviour
             possibleArea.SetActive(false);
             impossibleArea.SetActive(true);
             rejectedReasonText.text = response.rejectedReason;
+
+            // 육성 버튼
+            raisBtn.color = new Color(252f / 255f, 195f / 255f, 136f / 255f);
+            raiseBtnText.text = "입국이 거절되면 키울 수 없어요";
+
+            deleteBtnText.text = "다른 곤충 촬영하기";
         } else {
             canRaise.color = new Color(83f / 255f, 190f / 255f, 106f / 255f);
             canRaiseText.text = "입국 승인";
             possibleArea.SetActive(true);
             impossibleArea.SetActive(false);
+
+            // 육성 버튼
+            raisBtn.color = new Color(255f / 255f, 143f / 255f, 28f / 255f);
+            raiseBtnText.text = "육성 시작하기";
         }
 
         if(response.area == "FOREST") {

@@ -1822,6 +1822,9 @@ MonoBehaviour:
   area: {fileID: 339206505}
   areaName: {fileID: 216750213}
   rejectedReasonText: {fileID: 1930415367}
+  raisBtn: {fileID: 252326481}
+  raiseBtnText: {fileID: 183639542}
+  deleteBtnText: {fileID: 1516970279}
 --- !u!1 &1010234177
 GameObject:
   m_ObjectHideFlags: 0
