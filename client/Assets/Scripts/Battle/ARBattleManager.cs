@@ -10,8 +10,17 @@ public class ARBattleManager : MonoBehaviour
     private GameObject instance1;       
     private GameObject instance2;       
 
+    public GameObject battleEndPanel;
     private int health1 = 100;         
     private int health2 = 100;          
+
+    void Start()
+    {
+        if (battleEndPanel != null)
+        {
+            battleEndPanel.SetActive(false);
+        }
+    }
 
     public IEnumerator StartBattleScene()
     {
@@ -90,16 +99,19 @@ public class ARBattleManager : MonoBehaviour
     IEnumerator StartBattle()
     {
         Debug.Log("지흔: 전투가 시작했음");
-        // prefab 로드
-        Debug.Log("지흔: " + family);
-
         // 애니메이션 페이즈 1
-
+        Debug.Log("지흔: 페이즈 1");
         // 터치이벤트 발생
-
+        Debug.Log("지흔: 터치이벤트");
         // 애니메이션 페이즈 2
-
+        Debug.Log("지흔: 페이즈 2");
         // 전투 종료
+        Debug.Log("지흔: 전투 끝");
+        
+        if (battleEndPanel != null)
+        {
+            battleEndPanel.SetActive(true);
+        }
         yield return null;
     }
 }
