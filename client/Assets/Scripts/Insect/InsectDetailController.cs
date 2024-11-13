@@ -51,14 +51,23 @@ public class InsectDetailController : MonoBehaviour
 
   [SerializeField] private Button ARBtn;
 
+  [SerializeField] private TextMeshProUGUI TextQ1;
+  [SerializeField] private TextMeshProUGUI TextQ2;
+  [SerializeField] private TextMeshProUGUI TextQ3;
+  [SerializeField] private TextMeshProUGUI TextQ4;
+  [SerializeField] private TextMeshProUGUI TextQ5;
+
+  private Color defaultTextColor; // 퀘스트 기본 텍스트 색상
   private int feedCnt;        // 오늘 먹이를 먹은 횟수
   private int interactCnt;    // 오늘 상호작용한 횟수
 
   private Image[] lineImages;
   private Image[] circleImages;
+  private TextMeshProUGUI[] eventTexts;
 
   void Awake()
   {
+
     // insectApi가 할당되지 않았을 경우 코드 내에서 생성
     if (insectApi == null)
     {
@@ -68,11 +77,14 @@ public class InsectDetailController : MonoBehaviour
 
     lineImages = new Image[] { LineStart, LineQ1toQ2, LineQ2toQ3, LineQ3toQ4, LineQ4toQ5, LineEnd };
     circleImages = new Image[] { CircleQ1, CircleQ2, CircleQ3, CircleQ4, CircleQ5 };
+    eventTexts = new TextMeshProUGUI[] { TextQ1, TextQ2, TextQ3, TextQ4, TextQ5 };
+
   }
 
   private void Start()
   {
     long raisingInsectId = 5; // => 하드코딩 (추후수정)
+    defaultTextColor = TextQ1.color;
 
     if (insectApi != null)
     {
@@ -99,10 +111,12 @@ public class InsectDetailController : MonoBehaviour
     ddayText.text = "당신을 만난지 " + daysDifference + "일째";
 
     feedCnt = response.loveScore.feedCnt;
-    feedContainerText.text = "먹이주기 ( " + feedCnt + "/5)";
+    feedContainerText.text = "젤리주기 ( " + feedCnt + "/5)";
 
     interactCnt = response.loveScore.interactCnt;
     interactContainerText.text = "쓰다듬기 (" + interactCnt + "/10)";
+
+    SetEventTextColor(response.nextEventInfo.nextEvent);
 
     if (response.info.areaType == "FOREST")
     {
@@ -204,6 +218,32 @@ public class InsectDetailController : MonoBehaviour
     }
   }
 
+  private void SetEventTextColor(string nextEvent)
+  {
+    foreach (var text in eventTexts)
+    {
+      text.color = defaultTextColor;
+    }
+
+    switch (nextEvent)
+    {
+      case "FOOD_C1":
+        TextQ1.color = new Color(97f / 255f, 97f / 255f, 97f / 255f);
+        break;
+      case "TERITORY_C1":
+        TextQ2.color = new Color(97f / 255f, 97f / 255f, 97f / 255f);
+        break;
+      case "FOOD_C2":
+        TextQ3.color = new Color(97f / 255f, 97f / 255f, 97f / 255f);
+        break;
+      case "TERITORY_C2":
+        TextQ4.color = new Color(97f / 255f, 97f / 255f, 97f / 255f);
+        break;
+      case "MARRY":
+        TextQ5.color = new Color(97f / 255f, 97f / 255f, 97f / 255f);
+        break;
+    }
+  }
   private void OnFailure(string error)
   {
     // 실패 시 오류 메시지 출력
