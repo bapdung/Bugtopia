@@ -105,9 +105,10 @@ public class CatchingBuilderService {
         CatchInsectDetailProjection catchInsect = catchingInsectRepository.findCatchedInsectDetail(catchedInsectId);
 
         return CatchInsectDetailResponseDto.builder()
-                .krwName(catchInsect.getKrwName())
+                .krName(catchInsect.getKrName())
                 .engName(catchInsect.getEngName())
                 .info(catchInsect.getInfo())
+                .imgUrl(catchInsect.getPhoto())
                 .canRaise(getCanRaise(catchInsect, userId))
                 .family(catchInsect.getFamily())
                 .area(catchInsect.getArea())
@@ -124,7 +125,7 @@ public class CatchingBuilderService {
         log.info(messages.get(0).getIsRead() + " 읽음여부@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         return CatchInsectDetailResponseDto.builder()
                 .insectNickname(doneInsect.getInsectNickname())
-                .krwName(doneInsect.getKrwName())
+                .krName(doneInsect.getKrName())
                 .startDate(doneInsect.getStartDate())
                 .doneDate(doneInsect.getDoneDate())
                 .meetingDays(doneInsect.getMeetingDays())
