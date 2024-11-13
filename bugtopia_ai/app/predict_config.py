@@ -22,7 +22,7 @@ latitude = 49.207
 longitude = 16.608
 
 # API 요청을 보내는 함수
-def predict_run(s3_url, similar_images=True):
+def predict_run(s3_url):
     base64_image = s3_image_to_base64(s3_url)
 
     # API 요청 URL 및 헤더
@@ -37,7 +37,7 @@ def predict_run(s3_url, similar_images=True):
         "images": [base64_image],  # Base64 인코딩된 이미지 추가
         "latitude": latitude,
         "longitude": longitude,
-        "similar_images": similar_images
+        "similar_images": True
     }
 
     try:
@@ -47,7 +47,7 @@ def predict_run(s3_url, similar_images=True):
         print(response)
         # JSON 형식으로 응답 반환
         json_response = response.json()
-        
+        print(json_response)
         # 원하는 값 추출
         insect_name = json_response["result"]["classification"]["suggestions"][0]["name"]
         print(insect_name)
