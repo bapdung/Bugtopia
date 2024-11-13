@@ -59,12 +59,7 @@ namespace Models.Insect.Response
     [System.Serializable]
     public class S3Response
     {
-        public S3Data data;
-    }
-    [System.Serializable]
-    public class S3Data
-    {
-        public string path;
+        public string url;
     }
 
     [System.Serializable]
