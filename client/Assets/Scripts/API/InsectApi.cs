@@ -140,5 +140,62 @@ namespace API.Insect
                 }
             }
         }
+
+        // 곤충 키우기
+        public IEnumerator RaiseInsect(long insectId, string nickname, System.Action<string> onSuccess, System.Action<string> onFailure)
+        {
+            string requestUrl = $"{insectUrl}";
+
+            // InsectNicknameRequest 객체 생성
+            InsectNicknameRequest requestBody = new InsectNicknameRequest
+            {
+                insectId = insectId,
+                nickname = nickname
+            };
+            
+            string json = JsonUtility.ToJson(requestBody);
+
+            Debug.Log($"민채: Request URL: {requestUrl}");
+            Debug.Log($"민채: JSON Body: {json}");
+
+            using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
+            {
+                byte[] jsonToSend = Encoding.UTF8.GetBytes(json);
+                request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+                request.downloadHandler = new DownloadHandlerBuffer();
+
+                // 요청 헤더 설정
+                request.SetRequestHeader("Content-Type", "application/json");
+                string userId = UserStateManager.Instance.UserId.ToString();
+                request.SetRequestHeader("userId", userId);
+
+                Debug.Log($"민채: Header 'Content-Type': application/json");
+                Debug.Log($"민채: Header 'userId': {userId}");
+
+                yield return request.SendWebRequest();
+
+                // 응답 결과 확인
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonResponse = request.downloadHandler.text;
+                    Debug.Log($"민채: RaiseInsect 성공 - 응답 데이터: {jsonResponse}");
+
+                    // 성공 콜백 호출
+                    onSuccess?.Invoke(jsonResponse);
+                }
+                else
+                {
+                    Debug.LogError($"민채: 곤충 키우기 RaiseInsect 요청 실패");
+                    Debug.LogError($"민채: HTTP 상태 코드: {request.responseCode}");
+                    Debug.LogError($"민채: 요청 에러: {request.error}");
+                    Debug.LogError($"민채: 응답 데이터: {request.downloadHandler.text}");
+
+                    // 실패 콜백 호출
+                    onFailure?.Invoke(request.error);
+                }
+            }
+        }
+
+
     }
 }
