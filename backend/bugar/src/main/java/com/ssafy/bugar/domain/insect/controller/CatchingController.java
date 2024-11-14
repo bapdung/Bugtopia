@@ -2,8 +2,10 @@ package com.ssafy.bugar.domain.insect.controller;
 
 import com.ssafy.bugar.domain.insect.dto.request.CatchDeleteRequestDto;
 import com.ssafy.bugar.domain.insect.dto.request.CatchSaveRequestDto;
+import com.ssafy.bugar.domain.insect.dto.request.SearchInsectRequestDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectDetailResponseDto;
 import com.ssafy.bugar.domain.insect.dto.response.CatchInsectListResponseDto;
+import com.ssafy.bugar.domain.insect.dto.response.SearchInsectResponseDto;
 import com.ssafy.bugar.domain.insect.service.CatchingInsectService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,5 +58,12 @@ public class CatchingController {
                                                                         @RequestParam String viewType) {
         CatchInsectDetailResponseDto response = catchingInsectService.getDetail(insectId, viewType, userId);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<SearchInsectResponseDto> search(@RequestHeader("userId") Long userId,
+                                                          @RequestBody SearchInsectRequestDto searchInsectRequestDto) {
+        String imgUrl = searchInsectRequestDto.getImgUrl();
+        return ResponseEntity.ok(catchingInsectService.search(userId, imgUrl));
     }
 }
