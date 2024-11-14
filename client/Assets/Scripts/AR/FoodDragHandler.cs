@@ -18,9 +18,12 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public GameObject treeIcon;
 
     private GameObject foodPreviewObject;
+    public GameObject descriptionContainer;
+    private MeshVisualizerManager meshVisualizerManager;
 
     void Start()
     {
+        meshVisualizerManager = FindObjectOfType<MeshVisualizerManager>();
     }
 
     public void ShowFoodIcon()
@@ -29,9 +32,16 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         foodIcon.SetActive(true);
         treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(true);
+        descriptionContainer.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
         foodDescriptionText.text = "먹이를 드래그해서 평면에 놓아주세요!";
+
+        if (meshVisualizerManager != null)
+        {
+            meshVisualizerManager.ShowMeshVisualizer();
+        }
+
     }
 
     public void HideFoodIcon()
@@ -40,6 +50,12 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         foodIcon.SetActive(false);
         treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
+        descriptionContainer.gameObject.SetActive(false);
+
+        if (meshVisualizerManager != null)
+        {
+            meshVisualizerManager.HideMeshVisualizer();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -89,6 +105,7 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
+
     public void OnBeginDragWrapper()
     {
         OnBeginDrag(new PointerEventData(EventSystem.current));
@@ -103,4 +120,5 @@ public class FoodDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         OnEndDrag(new PointerEventData(EventSystem.current));
     }
+
 }

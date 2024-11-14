@@ -35,6 +35,18 @@ public class ARPlaceOnPlane : MonoBehaviour
     private Animator insectAnimator; // Insect의 Animator
     private bool isInsectMoving = false; // Insect가 Food로 이동 중인지 확인
     private float rotationSpeed = 2.0f; // 회전 속도
+    public RectTransform nicknameContainer; // nicknameContainer RectTransform 추가
+    public float containerPadding = 20f; // 컨테이너 여백 추가
+    public GameObject notificationContainer;
+    public GameObject descriptionContainer;
+    private Vector3 initialPosition; // 이동 전 초기 위치를 저장할 변수
+
+    // 평면 기준 초기 위치를 저장하는 변수를 추가합니다.
+    private Vector3 initialLocalPosition;
+    private Quaternion initialLocalRotation;
+    private Transform planeTransform; // 곤충이 놓여 있는 평면의 Transform
+    private bool isFlying = false; // 비행 상태 플래그
+
 
     void Awake()
     {
@@ -55,6 +67,8 @@ public class ARPlaceOnPlane : MonoBehaviour
         foodIcon.SetActive(false);
         treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
+        notificationContainer.gameObject.SetActive(false);
+        descriptionContainer.gameObject.SetActive(false);
 
         long raisingInsectId = 1;
 
@@ -62,6 +76,9 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             insectInfoResponse = response;
             nicknameText.text = insectInfoResponse.nickname;
+
+            // 닉네임 컨테이너의 크기 업데이트
+            UpdateNicknameContainerWidth();
 
             insectPrefab = PrefabLoader.LoadInsectPrefab(insectInfoResponse.family);
             
@@ -78,8 +95,16 @@ public class ARPlaceOnPlane : MonoBehaviour
         {
             Debug.LogError("지흔: insect 정보 불러오기 실패 - " + error);
         }));
-        
     }
+
+        private void UpdateNicknameContainerWidth()
+        {
+            // TextMeshPro의 Preferred Width를 가져와 컨테이너 크기 조정
+            float textWidth = nicknameText.preferredWidth;
+            nicknameContainer.sizeDelta = new Vector2(textWidth + 50, nicknameContainer.sizeDelta.y);
+
+            Debug.Log($"민채: 닉네임 컨테이너 크기 업데이트됨. 텍스트 너비: {textWidth}, 컨테이너 너비: {textWidth + containerPadding}");
+        }
 
     void Update()
     {
@@ -190,77 +215,180 @@ public class ARPlaceOnPlane : MonoBehaviour
 
         if (Vector3.Distance(insectObject.transform.position, treeObject.transform.position) < 4f)
         {
-            Debug.Log("지흔: 나무와의 거리 4f 이하, 트리 꼭대기로 바로 이동 시작");
+            Debug.Log("민채: 나무와의 거리 4f 이하, 트리 꼭대기로 바로 이동 시작");
             isInsectMoving = false;
             SetInsectIdle();
 
+            // 평면의 로컬 위치와 회전을 초기 위치로 저장
+            initialLocalPosition = insectObject.transform.localPosition;
+            initialLocalRotation = insectObject.transform.localRotation;
+            planeTransform = insectObject.transform.parent; // 평면의 부모 Transform을 저장
+
             StartCoroutine(MoveToTopOfTree());
         }
+        ResetUIAfterPlaying();
     }
 
-    private IEnumerator MoveToTopOfTree()
+private IEnumerator MoveToTopOfTree()
+{
+    Debug.Log("민채: 트리 꼭대기로 올라가는 애니메이션 시작");
+    initialPosition = insectObject.transform.position; // 처음 시작할 때 초기 위치를 저장
+
+    if (insectAnimator != null)
     {
-        Debug.Log("지흔: 트리 꼭대기로 올라가는 애니메이션 시작");
+        yield return new WaitForSeconds(0.5f);
 
-        if (insectAnimator != null)
+        SetInsectTakeOff();
+        isFlying = true;
+        Debug.Log("민채: takeoff 애니메이션 실행");
+
+        yield return new WaitForSeconds(0.5f);
+
+        insectAnimator.SetBool("takeoff", false);
+        insectAnimator.SetTrigger("fly");
+        Debug.Log("민채: fly 애니메이션 실행 및 트리 꼭대기 위치로 이동 시작");
+
+        // Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
+        // 나무 높이의 절반만큼 위로 이동하여 꼭대기 위치 설정
+        float treeHeight = treeObject.transform.localScale.y;
+        Vector3 topPosition = treeObject.transform.position + new Vector3(0, treeHeight / 2 + 0.2f, 0);
+        float step = 0.5f * Time.deltaTime;
+
+        // 꼭대기까지 이동하는 동안 fly 애니메이션 유지 및 나무 방향으로 회전
+        while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            Vector3 direction = (topPosition - insectObject.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            SetInsectTakeOff();
-            Debug.Log("지흔: takeoff 애니메이션 실행");
+            insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, topPosition, step);
 
-            yield return new WaitForSeconds(0.5f);
-
-            insectAnimator.SetBool("takeoff", false);
-            insectAnimator.SetTrigger("fly");
-            Debug.Log("지흔: fly 애니메이션 실행 및 트리 꼭대기 위치로 이동 시작");
-
-            Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
-            float step = 0.5f * Time.deltaTime;
-
-            // 꼭대기까지 이동하는 동안 fly 애니메이션 유지 및 나무 방향으로 회전
-            while (true)
+            if (Vector3.Distance(insectObject.transform.position, topPosition) < 0.05f)
             {
-                // 나무 방향을 바라보도록 회전 조절
-                Vector3 direction = (topPosition - insectObject.transform.position).normalized;
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-                // 트리 꼭대기 위치로 이동
-                insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, topPosition, step);
-
-                // X, Y 좌표가 목표 위치와 가까워지면 착륙 조건을 충족
-                if (Mathf.Abs(insectObject.transform.position.x - topPosition.x) < 0.05f &&
-                    Mathf.Abs(insectObject.transform.position.y - topPosition.y) < 0.05f)
-                {
-                    Debug.Log("지흔: X, Y 좌표가 목표 위치와 일치하여 landing 애니메이션 시작");
-                    insectAnimator.SetBool("fly", false);
-                    insectAnimator.SetTrigger("landing");
-                    break;
-                }
-
-                yield return null;
+                Debug.Log("민채: 트리 꼭대기 도착, landing 애니메이션 시작");
+                insectAnimator.SetBool("fly", false);
+                insectAnimator.SetTrigger("landing");
+                break;
             }
 
-            Debug.Log("지흔: 트리 꼭대기 도착, landing 애니메이션 시작");
-            yield return new WaitForSeconds(1.5f); // 충분한 지연 시간으로 fly 애니메이션이 완료되도록 함
-            insectAnimator.SetBool("fly", false);
-            insectAnimator.SetTrigger("landing");
-
-            yield return new WaitForSeconds(0.5f);
-            insectAnimator.SetBool("landing", false);
-            insectAnimator.SetBool("idle", true);
-            SetInsectIdle();
-            Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
-
-            ResetUIAfterPlaying();
-
-            //TODO : 여기까지는 못했어 미안해요 여러분 원래는 떨어지는 모션까지 완성하고자 함
-            // yield return new WaitForSeconds(2.0f);
-            // Debug.Log("지흔: 2초 후 지면으로 떨어지는 모션 시작");
-            // // StartCoroutine(FallToGround());
+            yield return null;
         }
+
+        yield return new WaitForSeconds(1.5f); // 착륙 애니메이션 지연
+        insectAnimator.SetBool("landing", false);
+        insectAnimator.SetBool("idle", true);
+        SetInsectIdle();
+
+        // 일정 시간 후 다시 원래 위치로 비행
+        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(FlyBackToInitialPosition());
     }
+}
+
+private IEnumerator FlyBackToInitialPosition()
+{
+    Debug.Log("민채: 원래 위치로 돌아가는 비행 시작");
+
+    if (insectAnimator != null)
+    {
+        insectAnimator.SetTrigger("takeoff"); // 다시 이륙 애니메이션
+        yield return new WaitForSeconds(0.5f);
+
+        insectAnimator.SetBool("fly", true);
+        Debug.Log("민채: 원래 위치로 돌아가는 비행 애니메이션 실행");
+
+        float step = 0.5f * Time.deltaTime;
+
+        while (true)
+        {
+            Vector3 direction = (initialPosition - insectObject.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, initialPosition, step);
+
+            if (Vector3.Distance(insectObject.transform.position, initialPosition) < 0.05f)
+            {
+                Debug.Log("민채: 원래 위치 도착, 착륙 및 idle 상태로 전환");
+                insectAnimator.SetBool("fly", false);
+                insectAnimator.SetTrigger("landing");
+                break;
+            }
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1.0f);
+        insectAnimator.SetBool("landing", false);
+        insectAnimator.SetBool("idle", true);
+        SetInsectIdle();
+    }
+}
+
+
+    // private IEnumerator MoveToTopOfTree()
+    // {
+    //     Debug.Log("지흔: 트리 꼭대기로 올라가는 애니메이션 시작");
+
+    //     if (insectAnimator != null)
+    //     {
+    //         yield return new WaitForSeconds(0.5f);
+
+    //         SetInsectTakeOff();
+    //         Debug.Log("지흔: takeoff 애니메이션 실행");
+
+    //         yield return new WaitForSeconds(0.5f);
+
+    //         insectAnimator.SetBool("takeoff", false);
+    //         insectAnimator.SetTrigger("fly");
+    //         Debug.Log("지흔: fly 애니메이션 실행 및 트리 꼭대기 위치로 이동 시작");
+
+    //         Vector3 topPosition = treeObject.transform.position + new Vector3(0, 2.0f, 0);
+    //         float step = 0.5f * Time.deltaTime;
+
+    //         // 꼭대기까지 이동하는 동안 fly 애니메이션 유지 및 나무 방향으로 회전
+    //         while (true)
+    //         {
+    //             // 나무 방향을 바라보도록 회전 조절
+    //             Vector3 direction = (topPosition - insectObject.transform.position).normalized;
+    //             Quaternion targetRotation = Quaternion.LookRotation(direction);
+    //             insectObject.transform.rotation = Quaternion.Slerp(insectObject.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+    //             // 트리 꼭대기 위치로 이동
+    //             insectObject.transform.position = Vector3.MoveTowards(insectObject.transform.position, topPosition, step);
+
+    //             // X, Y 좌표가 목표 위치와 가까워지면 착륙 조건을 충족
+    //             if (Mathf.Abs(insectObject.transform.position.x - topPosition.x) < 0.05f &&
+    //                 Mathf.Abs(insectObject.transform.position.y - topPosition.y) < 0.05f)
+    //             {
+    //                 Debug.Log("지흔: X, Y 좌표가 목표 위치와 일치하여 landing 애니메이션 시작");
+    //                 insectAnimator.SetBool("fly", false);
+    //                 insectAnimator.SetTrigger("landing");
+    //                 break;
+    //             }
+
+    //             yield return null;
+    //         }
+
+    //         Debug.Log("지흔: 트리 꼭대기 도착, landing 애니메이션 시작");
+    //         yield return new WaitForSeconds(1.5f); // 충분한 지연 시간으로 fly 애니메이션이 완료되도록 함
+    //         insectAnimator.SetBool("fly", false);
+    //         insectAnimator.SetTrigger("landing");
+
+    //         yield return new WaitForSeconds(0.5f);
+    //         insectAnimator.SetBool("landing", false);
+    //         insectAnimator.SetBool("idle", true);
+    //         SetInsectIdle();
+    //         Debug.Log("지흔: landing 완료 후 idle 상태로 전환");
+
+    //         ResetUIAfterPlaying();
+
+    //         //TODO : 여기까지는 못했어 미안해요 여러분 원래는 떨어지는 모션까지 완성하고자 함
+    //         // yield return new WaitForSeconds(2.0f);
+    //         // Debug.Log("지흔: 2초 후 지면으로 떨어지는 모션 시작");
+    //         // // StartCoroutine(FallToGround());
+    //     }
+    // }
 
     private IEnumerator FallToGround()
     {
@@ -297,6 +425,9 @@ public class ARPlaceOnPlane : MonoBehaviour
             insectAnimator.SetBool("bite", false);
             insectAnimator.SetBool("hit", false);
             Debug.Log("지흔: 곤충 상태 idle로 설정");
+        }
+        else {
+        Debug.Log("지흔: insectAnimator 가 null 이에요");
         }
     }
 
@@ -358,6 +489,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private void ShowNotification(string message, float duration)
     {
         notificationText.text = message;
+        notificationContainer.gameObject.SetActive(true);
         notificationText.gameObject.SetActive(true);
         StartCoroutine(HideNotificationAfterDelay(duration));
     }
@@ -365,6 +497,7 @@ public class ARPlaceOnPlane : MonoBehaviour
     private IEnumerator HideNotificationAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        notificationContainer.gameObject.SetActive(false);
         notificationText.gameObject.SetActive(false);
     }
 
@@ -374,6 +507,7 @@ public class ARPlaceOnPlane : MonoBehaviour
         playButton.gameObject.SetActive(true);
         foodIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
+        descriptionContainer.gameObject.SetActive(false);
     }
 
     private void ResetUIAfterPlaying()
@@ -382,5 +516,6 @@ public class ARPlaceOnPlane : MonoBehaviour
         playButton.gameObject.SetActive(true);
         treeIcon.SetActive(false);
         foodDescriptionText.gameObject.SetActive(false);
+        descriptionContainer.gameObject.SetActive(false);
     }
 }

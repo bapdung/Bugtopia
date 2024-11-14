@@ -18,9 +18,12 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public GameObject foodIcon;
 
     private GameObject treePreviewObject;
+    public GameObject descriptionContainer;
+    private MeshVisualizerManager meshVisualizerManager;
 
     void Start()
     {
+        meshVisualizerManager = FindObjectOfType<MeshVisualizerManager>();
     }
 
     public void ShowTreeIcon()
@@ -29,9 +32,15 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         treeIcon.SetActive(true);
         foodIcon.SetActive(false);
         treeDescriptionText.gameObject.SetActive(true);
+        descriptionContainer.gameObject.SetActive(true);
         feedButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false);
-        treeDescriptionText.text = "통나무를 드래그해서 평면에!";
+        treeDescriptionText.text = "통나무를 드래그해서 평면에 올려주세요!";
+
+       if (meshVisualizerManager != null)
+        {
+            meshVisualizerManager.ShowMeshVisualizer();
+        }
     }
 
     public void HideTreeIcon()
@@ -40,6 +49,12 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         treeIcon.SetActive(false);
         foodIcon.SetActive(false);
         treeDescriptionText.gameObject.SetActive(false);
+        descriptionContainer.gameObject.SetActive(false);
+
+        if (meshVisualizerManager != null)
+        {
+            meshVisualizerManager.HideMeshVisualizer();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,6 +71,7 @@ public class TreeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         Debug.Log("지흔: Tree 드래그가 시작되었습니다.");
     }
+
 
     public void OnDrag(PointerEventData eventData)
     {
