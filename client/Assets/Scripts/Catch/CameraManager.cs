@@ -120,7 +120,7 @@ public class CameraManager : MonoBehaviour
         Debug.Log("사진 촬영 및 파일 저장 준비 완료: " + fileName);
 
         // S3 URL 요청 및 사진 업로드
-        StartCoroutine(catchApi.GetS3Url(fileName, photoBytes));
+        StartCoroutine(catchApi.GetS3Url(fileName, photoBytes, "EntryScanScene"));
     }
 
     public void OnInsectSearched(SearchInsectResponse response)

@@ -5,6 +5,7 @@ using System.Text;
 using System;
 using Models.Insect.Response;
 using Models.Insect.Request;
+using UnityEngine.SceneManagement;
 
 namespace API.Catch
 {
@@ -24,7 +25,7 @@ namespace API.Catch
         }
 
         // S3 URL을 얻는 메서드
-        public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
+        public IEnumerator GetS3Url(string fileName, byte[] photoBytes, string nextScene)
         {
             string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
             string responseS3Url = string.Empty;
@@ -47,12 +48,12 @@ namespace API.Catch
 
             if (!string.IsNullOrEmpty(responseS3Url))
             {
-                StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes));
+                StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes, nextScene));
             }
         }
 
         // S3에 사진을 업로드하는 메서드
-        public IEnumerator UploadPhotoToS3(string s3Url, string fileName, byte[] photoBytes)
+        public IEnumerator UploadPhotoToS3(string s3Url, string fileName, byte[] photoBytes, string nextScene)
         {
             UnityWebRequest request = new UnityWebRequest(s3Url, "PUT");
             request.uploadHandler = new UploadHandlerRaw(photoBytes);
@@ -76,6 +77,8 @@ namespace API.Catch
                     {
                         cameraManager.OnInsectSearched(response);
                     }
+
+                    SceneManager.LoadScene(nextScene);
                 }));
             }
         }

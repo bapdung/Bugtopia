@@ -165,7 +165,7 @@ public class CameraController : MonoBehaviour
         Debug.Log("민채: 사진 촬영 및 S3 업로드 준비 완료: " + fileName);
 
         // 민채: S3 URL 요청 및 사진 업로드
-        StartCoroutine(catchApi.GetS3Url(fileName, photoBytes));
+        StartCoroutine(catchApi.GetS3Url(fileName, photoBytes, "EntryScanScene"));
     }
 
     void OnDestroy()
