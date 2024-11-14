@@ -9,4 +9,6 @@ public interface InsectRepository extends JpaRepository<Insect, Long> {
 
     Insect findByInsectId(Long insectId);
 
+    Insect findByInsectEngName(String insectEngName);
+
 }
