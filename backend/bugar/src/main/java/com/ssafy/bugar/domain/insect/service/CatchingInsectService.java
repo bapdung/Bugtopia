@@ -111,10 +111,14 @@ public class CatchingInsectService {
         // FastAPI 응답 처리
         int status = (int) response.getBody().get("status");
         if (status == 200) {
-            String family = (String) response.getBody().get("content");
+            String name = (String) response.getBody().get("content");
 
             // 곤충 정보 찾기
-            Insect insect = insectRepository.findByFamily(family);
+            Insect insect = insectRepository.findByInsectEngName(name);
+
+            if (insect == null) {
+                return new SearchInsectResponseDto(404, null);
+            }
 
             // 지역 찾기
             long areaId = insect.getAreaId();
@@ -143,7 +147,7 @@ public class CatchingInsectService {
                     .info(insect.getInsectInfo())
                     .imgUrl(imgUrl)
                     .canRaise(canRaise)
-                    .family(family)
+                    .family(insect.getFamily())
                     .area(areaName)
                     .rejectedReason(insect.getRejectedReason())
                     .build();
