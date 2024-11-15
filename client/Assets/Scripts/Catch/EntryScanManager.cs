@@ -23,6 +23,7 @@ public class EntryScanManager : MonoBehaviour
     public Button nicknameSubmitButton;
     private string nickname;
     private int canRaiseInsect;
+    private long insectId;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class EntryScanManager : MonoBehaviour
     public void UpdateInsectInfo(SearchInsectResponse response)
     {
         canRaiseInsect = response.canRaise;
+        insectId = response.insectId;
         insectNameText.text = "곤충명 (한글): " + response.krName + "\n" + "곤충명 (영어): " + response.engName;
         familyText.text = "곤충 종류: " + response.family;
         areaText.text = "서식지: " + response.area;
@@ -97,9 +99,7 @@ public class EntryScanManager : MonoBehaviour
 
     public void OnNicknameSubmit()
     {
-        long userId = 1L; // 예시 userId
-        long insectId = 6L; // 예시 insectId
-        
+        long userId = UserStateManager.Instance.UserId; 
         nickname = nicknameInputText.text; 
 
         InsectNicknameRequest requestBody = new InsectNicknameRequest{
@@ -116,7 +116,7 @@ public class EntryScanManager : MonoBehaviour
                     Debug.Log("닉네임이 성공적으로 전송되었습니다.");
                     Debug.Log(response.raisingInsectId);
                     
-                    PlayerPrefs.SetInt("raisingInsectId", response.raisingInsectId); 
+                    PlayerPrefs.SetInt("raisingInsectId", (int)response.raisingInsectId); 
                     PlayerPrefs.Save();
 
                     SceneManager.LoadScene("InsectDetailScene");

@@ -122,7 +122,7 @@ namespace API.Catch
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-
+                request.SetRequestHeader("userId", UserStateManager.Instance.UserId.ToString());
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)

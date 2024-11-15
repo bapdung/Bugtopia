@@ -72,7 +72,8 @@ public class InsectDetailController : MonoBehaviour
 
     private void Start()
     {
-        long raisingInsectId = PlayerPrefs.GetInt("raisingInsectId", 1);
+        int tempRaisingInsectId = PlayerPrefs.GetInt("raisingInsectId", 1);
+        long raisingInsectId = (long)(tempRaisingInsectId);
 
         if (insectApi != null)
         {
