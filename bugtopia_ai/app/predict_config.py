@@ -43,7 +43,7 @@ def predict_run(s3_url):
         print(response)
         json_response = response.json()
         print(json_response)
-        insect_name = json_response["result"]["classification"]["suggestions"][0]["name"]
+        insect_name = json_response["result"]["classification"]["suggestions"][0]["details"]["common_names"][0]
         print(insect_name)
         return insect_name
 
