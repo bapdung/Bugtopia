@@ -7,8 +7,8 @@ from pathlib import Path
 import os, json
 
 # 바운딩 박스 좌표를 가져오는 함수 임포트
-from bounding_box import get_bounding_box
-
+from .bounding_box import get_bounding_box
+from .predict_config import predict_run
 # 모델 및 데이터 경로 설정
 MODEL_PATH = 'app/model/prediction_model.pt'
 YAML_PATH = 'app/model/data.yaml'
@@ -39,7 +39,7 @@ def load_image_from_s3(url):
     return img
 
 # 이미지를 받아 예측하고 바운딩 박스 그리기
-def predict_insect(image_url):
+def predict_insect2(image_url):
     model = load_model(MODEL_PATH)
     class_names = load_class_names(YAML_PATH)
     # S3 URL에서 이미지 로드
@@ -71,3 +71,7 @@ def predict_insect(image_url):
     print("Predictions (Class ID, Class Name):", predictions)
     return predictions
 
+def predict_insect(img_url):
+    response = predict_run(img_url)
+    print(response)
+    return response
