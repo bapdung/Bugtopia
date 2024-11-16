@@ -15,11 +15,11 @@ async def predict(request: ImageRequest):
     if insect_info == "No Insect Detected":status_code = 401
     else: status_code = 200
 
-    response_data = {
-        "status":status_code,
-        "content":insect_info
-    }
-    return response_data
-
     # 일단 임시로
-    # return "Stag Beetle"
+    return {"status":200, "content":"Stag Beetle"}
+
+    # response_data = {
+    #     "status":status_code,
+    #     "content":insect_info
+    # }
+    # return response_data
