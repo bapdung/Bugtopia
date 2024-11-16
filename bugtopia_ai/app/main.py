@@ -9,9 +9,17 @@ class ImageRequest(BaseModel):
 
 @app.post("/fastapi/api/insects-detection")
 async def predict(request: ImageRequest):
-    # img_url = request.img_url
-    # insect_info  = predict_insect(img_url)
-    # return insect_info 
+    img_url = request.img_url
+    insect_info  = predict_insect(img_url)
+
+    if insect_info == "No Insect Detected":status_code = 401
+    else: status_code = 200
+
+    response_data = {
+        "status":status_code,
+        "content":insect_info
+    }
+    return response_data
 
     # 일단 임시로
-    return "Stag Beetle"
+    # return "Stag Beetle"
