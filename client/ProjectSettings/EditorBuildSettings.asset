@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Insect/BookResultScene.unity
     guid: 670a726b7d711cb488dfb40fb7e95cf9
+  - enabled: 1
+    path: Assets/Scenes/Catch/EntryScanScene.unity
+    guid: fba0c6d8fdd4b1144b16392fd84df40c
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9da824055b39a3d4e863539f16ad8e47, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: d677626f693395e419c6a182a46195a2, type: 2}

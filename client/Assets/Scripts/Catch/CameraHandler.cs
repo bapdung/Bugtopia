@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using API.Catch;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CameraController : MonoBehaviour
     public GameObject infoPopup; // 민채: 팝업 창 오브젝트 연결
     public Button confirmButton; // 민채: 확인 버튼 오브젝트 연결
     public Button captureButton; // 민채: 촬영 버튼 오브젝트 연결
+    public Button returnButton;
     public GameObject loadingPanel; // 민채: 로딩 패널 오브젝트 연결
     public CatchApi catchApi;
 
@@ -29,6 +31,11 @@ public class CameraController : MonoBehaviour
         {
             confirmButton.onClick.AddListener(ClosePopup);
         }
+        if (returnButton != null)
+        {
+            returnButton.onClick.AddListener(onClickReturnButton);
+        }
+        
 
         // 민채: 촬영 버튼 클릭 시 사진을 찍는 함수 연결
         if (captureButton != null)
@@ -167,6 +174,11 @@ public class CameraController : MonoBehaviour
         // 민채: S3 URL 요청 및 사진 업로드
         StartCoroutine(catchApi.GetS3Url(fileName, photoBytes, "EntryScanScene"));
         loadingPanel.SetActive(false);
+    }
+
+    public void onClickReturnButton()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     void OnDestroy()
