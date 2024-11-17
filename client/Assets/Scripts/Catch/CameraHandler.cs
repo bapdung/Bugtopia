@@ -166,6 +166,7 @@ public class CameraController : MonoBehaviour
 
         // 민채: S3 URL 요청 및 사진 업로드
         StartCoroutine(catchApi.GetS3Url(fileName, photoBytes, "EntryScanScene"));
+        loadingPanel.SetActive(false);
     }
 
     void OnDestroy()

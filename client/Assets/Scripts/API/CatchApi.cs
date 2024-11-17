@@ -29,9 +29,15 @@ namespace API.Catch
         {
             string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
             string responseS3Url = string.Empty;
-
-            using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
+            
+            string jsonRequest = "{\"prefix\":\"catch\"}";
+            using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
+                request.uploadHandler = new UploadHandlerRaw(jsonBytes);
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
+                
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
@@ -41,7 +47,7 @@ namespace API.Catch
                 else
                 {
                     var jsonResponse = JsonUtility.FromJson<S3Response>(request.downloadHandler.text);
-                    responseS3Url = jsonResponse.data.path;
+                    responseS3Url = jsonResponse.url;
                     Debug.Log(responseS3Url);
                 }
             }
@@ -90,10 +96,11 @@ namespace API.Catch
 
             var searchRequest = new SearchInsectRequest
             {
-                photoUrl = photoUrl
+                imgUrl = photoUrl
             };
 
             string jsonRequest = JsonUtility.ToJson(searchRequest);
+            string userIdForRequest = UserStateManager.Instance.UserId.ToString();
 
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
@@ -101,6 +108,7 @@ namespace API.Catch
                 request.uploadHandler = new UploadHandlerRaw(jsonBytes);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userIdForRequest);
 
                 yield return request.SendWebRequest();
 
@@ -118,11 +126,14 @@ namespace API.Catch
         }
         public IEnumerator PostCatch(Action<bool> callback)
         {
+            string userIdForRequest = UserStateManager.Instance.UserId.ToString();
+
             using (UnityWebRequest request = new UnityWebRequest(catchUrl, "POST"))
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("userId", UserStateManager.Instance.UserId.ToString());
+                request.SetRequestHeader("userId", userIdForRequest);
+
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
@@ -140,8 +151,13 @@ namespace API.Catch
         public IEnumerator PostInsectNickname(long userId, InsectNicknameRequest requestBody, Action<InsectNicknameResponse> callback)
         {
             string requestUrl = $"{environmentConfig.baseUrl}/insect";
-            string jsonRequest = JsonUtility.ToJson(requestBody);
+            if (requestBody.insectId == 0 || requestBody.insectId == null)
+            {
+                requestBody.insectId = 6;
+            }
 
+            string jsonRequest = JsonUtility.ToJson(requestBody);
+            Debug.Log(jsonRequest);
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
@@ -151,7 +167,7 @@ namespace API.Catch
                 request.SetRequestHeader("userId", userId.ToString());
                 
                 yield return request.SendWebRequest();
-                Debug.Log(request.result);
+                Debug.Log(request);
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
                     Debug.LogError(request.error);

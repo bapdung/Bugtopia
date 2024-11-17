@@ -54,6 +54,7 @@ public class EntryScanManager : MonoBehaviour
         familyText.text = "곤충 종류: " + response.family;
         areaText.text = "서식지: " + response.area;
         rejectedReasonText.text = response.rejectedReason != null ? "육성 불가능 사유: " + response.rejectedReason : "곤충 정보: " + response.info;
+        Debug.Log(response);
         if (canRaiseInsect == 1)
         {
             StartRaisingButton.interactable = false;
