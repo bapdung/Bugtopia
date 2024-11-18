@@ -56,11 +56,11 @@ public class InsectDetailController : MonoBehaviour
   [SerializeField] private TextMeshProUGUI TextQ3;
   [SerializeField] private TextMeshProUGUI TextQ4;
   [SerializeField] private TextMeshProUGUI TextQ5;
-
+  public Image insectImagePanel;
   private Color defaultTextColor; // 퀘스트 기본 텍스트 색상
   private int feedCnt;        // 오늘 먹이를 먹은 횟수
   private int interactCnt;    // 오늘 상호작용한 횟수
-
+  private string family;
   private Image[] lineImages;
   private Image[] circleImages;
   private TextMeshProUGUI[] eventTexts;
@@ -102,6 +102,7 @@ public class InsectDetailController : MonoBehaviour
     insectNickname.text = response.info.nickname;
     insectName.text = response.info.insectName;
     LoveScoreText.text = $"{response.loveScore.total}";
+    family = response.info.family;
 
     string dateString = response.info.livingDate.Split("T")[0];
     livingDate.text = "만난 날짜 : " + dateString.Replace("-", ". ");
@@ -217,8 +218,19 @@ public class InsectDetailController : MonoBehaviour
         circleImages[i - 1].color = new Color(255f / 255f, 143f / 255f, 28f / 255f);
       }
     }
+
+    SetInsectImage(family);
   }
 
+  private void SetInsectImage(string family)
+  {
+      Sprite insectSprite = Resources.Load<Sprite>("InsectImages/" +  family.Replace(" ", ""));
+      if (insectSprite!= null)
+      {
+          insectImagePanel.sprite = insectSprite;
+      }
+  }
+  
   private void SetEventTextColor(string nextEvent)
   {
     foreach (var text in eventTexts)
