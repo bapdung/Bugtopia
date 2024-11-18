@@ -6,6 +6,8 @@ using System;
 using Models.Insect.Response;
 using Models.Insect.Request;
 using Models.InsectBook.Response;
+using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 namespace API.Catch
 {
@@ -27,109 +29,20 @@ namespace API.Catch
             catchUrl = $"{environmentConfig.baseUrl}/catch";
         }
 
-        // // S3 URL을 얻는 메서드
-        // public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
-        // {
-        //     string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
-        //     string responseS3Url = string.Empty;
-
-        //     using (UnityWebRequest request = UnityWebRequest.Get(requestUrl))
-        //     {
-        //         yield return request.SendWebRequest();
-
-        //         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-        //         {
-        //             Debug.LogError(request.error);
-        //         }
-        //         else
-        //         {
-        //             var jsonResponse = JsonUtility.FromJson<S3Response>(request.downloadHandler.text);
-        //             responseS3Url = jsonResponse.data.path;
-        //             Debug.Log(responseS3Url);
-        //         }
-        //     }
-
-        //     if (!string.IsNullOrEmpty(responseS3Url))
-        //     {
-        //         StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes));
-        //     }
-        // }
-
-
-
-        // // S3 URL을 얻는 메서드 (POST 요청으로 변경)
-        // public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
-        // {
-        //     string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
-        //     string responseS3Url = string.Empty;
-
-        //     // JSON body에 prefix 추가
-        //     var postData = new
-        //     {
-        //         prefix = "sample"
-        //     };
-
-        //     string jsonRequest = JsonUtility.ToJson(postData);
-
-        //     using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
-        //     {
-        //         byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
-        //         request.uploadHandler = new UploadHandlerRaw(jsonBytes);
-        //         request.downloadHandler = new DownloadHandlerBuffer();
-        //         request.SetRequestHeader("Content-Type", "application/json");
-        //         Debug.Log(requestUrl);
-        //         Debug.Log(postData);
-        //         Debug.Log(jsonRequest);
-        //         yield return request.SendWebRequest();
-
-        //         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-        //         {
-        //             Debug.LogError(request.error);
-        //         }
-        //         else
-        //         {
-        //             // 응답 JSON 파싱
-        //             var jsonResponse = JsonUtility.FromJson<S3Response>(request.downloadHandler.text);
-        //             responseS3Url = jsonResponse.data.path;
-        //             Debug.Log(responseS3Url);
-        //         }
-        //     }
-
-        //     if (!string.IsNullOrEmpty(responseS3Url))
-        //     {
-        //         // S3에 파일 업로드
-        //         StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes));
-        //     }
-        // }
-
-        [System.Serializable]
-        public class PostData
-        {
-            public string prefix;
-        }
-
-        public IEnumerator GetS3Url(string fileName, byte[] photoBytes)
+        // S3 URL을 얻는 메서드
+        public IEnumerator GetS3Url(string fileName, byte[] photoBytes, string nextScene)
         {
             string requestUrl = $"{environmentConfig.baseUrl}/files/upload/{fileName}";
             string responseS3Url = string.Empty;
-
-            // 명시적으로 클래스를 정의하여 객체 생성
-            var postData = new PostData
-            {
-                prefix = "catch"
-            };
-
-            string jsonRequest = JsonUtility.ToJson(postData); // 이제 jsonRequest에 올바르게 값이 직렬화됩니다.
-
+            
+            string jsonRequest = "{\"prefix\":\"catch\"}";
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
                 request.uploadHandler = new UploadHandlerRaw(jsonBytes);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
-                Debug.Log(requestUrl);
-                Debug.Log(postData.prefix); // "sample"이 찍힙니다.
-                Debug.Log(jsonRequest); // 이제 제대로 직렬화된 JSON이 출력됩니다.
+                
                 yield return request.SendWebRequest();
 
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
@@ -140,7 +53,6 @@ namespace API.Catch
                 {
                     // 응답 JSON 파싱
                     var jsonResponse = JsonUtility.FromJson<S3Response>(request.downloadHandler.text);
-                    Debug.Log(jsonResponse);
                     responseS3Url = jsonResponse.url;
                     Debug.Log(responseS3Url);
                 }
@@ -148,13 +60,12 @@ namespace API.Catch
 
             if (!string.IsNullOrEmpty(responseS3Url))
             {
-                // S3에 파일 업로드
-                StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes));
+                StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes, nextScene));
             }
         }
-
+        private SearchInsectResponse currentResponse;
         // S3에 사진을 업로드하는 메서드
-        public IEnumerator UploadPhotoToS3(string s3Url, string fileName, byte[] photoBytes)
+        public IEnumerator UploadPhotoToS3(string s3Url, string fileName, byte[] photoBytes, string nextScene)
         {
             UnityWebRequest request = new UnityWebRequest(s3Url, "PUT");
             request.uploadHandler = new UploadHandlerRaw(photoBytes);
@@ -171,17 +82,26 @@ namespace API.Catch
             {
                 Debug.Log("s3에 사진 업로드 성공");
                 string photoUrl = s3Url; 
+                SceneManager.sceneLoaded += OnSceneLoaded;
+
                 StartCoroutine(PostSearchInsect(photoUrl, (SearchInsectResponse response) =>
                 {
-                    var cameraManager = FindObjectOfType<CameraManager>();
-                    if (cameraManager != null)
-                    {
-                        cameraManager.OnInsectSearched(response);
-                    }
+                    currentResponse = response;
+                    SceneManager.LoadScene(nextScene);
+                    Debug.Log(response.krName);
                 }));
             }
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "EntryScanScene")
+            {
+                EntryScanManager entryScanManager = FindObjectOfType<EntryScanManager>();
+                entryScanManager.UpdateInsectInfo(currentResponse);
+            }
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
         // 'postSearchInsect' API에 사진 URL을 전송
         public IEnumerator PostSearchInsect(string photoUrl, Action<SearchInsectResponse> callback)
         {
@@ -189,10 +109,11 @@ namespace API.Catch
 
             var searchRequest = new SearchInsectRequest
             {
-                photoUrl = photoUrl
+                imgUrl = photoUrl
             };
 
             string jsonRequest = JsonUtility.ToJson(searchRequest);
+            string userIdForRequest = UserStateManager.Instance.UserId.ToString();
 
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
@@ -200,6 +121,7 @@ namespace API.Catch
                 request.uploadHandler = new UploadHandlerRaw(jsonBytes);
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userIdForRequest);
 
                 yield return request.SendWebRequest();
 
@@ -210,17 +132,40 @@ namespace API.Catch
                 else
                 {
                     // API 응답을 SearchInsectResponse 객체로 파싱
-                    SearchInsectResponse response = JsonUtility.FromJson<SearchInsectResponse>(request.downloadHandler.text);
+                    SearchInsectApiResponse apiResponse = JsonUtility.FromJson<SearchInsectApiResponse>(request.downloadHandler.text);
+                    Debug.Log(apiResponse.status);
+                    
+                    SearchInsectResponse response = apiResponse.content;
+                    response.imgUrl = RemoveQueryParams(response.imgUrl);
+
+                    Debug.Log(response.imgUrl);
                     callback?.Invoke(response);  // 콜백 함수 호출
                 }
             }
         }
+
+        private string RemoveQueryParams(string url)
+        {
+            string pattern = @"\.(jpg|jpeg|png|gif)(\?|$)";
+            var match = Regex.Match(url, pattern);
+
+            if (match.Success)
+            {
+                return url.Substring(0, match.Index + match.Length);  
+            }
+
+            return url;
+        }
+
         public IEnumerator PostCatch(Action<bool> callback)
         {
+            string userIdForRequest = UserStateManager.Instance.UserId.ToString();
+
             using (UnityWebRequest request = new UnityWebRequest(catchUrl, "POST"))
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("userId", userIdForRequest);
 
                 yield return request.SendWebRequest();
 
@@ -239,8 +184,13 @@ namespace API.Catch
         public IEnumerator PostInsectNickname(long userId, InsectNicknameRequest requestBody, Action<InsectNicknameResponse> callback)
         {
             string requestUrl = $"{environmentConfig.baseUrl}/insect";
-            string jsonRequest = JsonUtility.ToJson(requestBody);
+            if (requestBody.insectId == 0 || requestBody.insectId == null)
+            {
+                requestBody.insectId = 6;
+            }
 
+            string jsonRequest = JsonUtility.ToJson(requestBody);
+            Debug.Log(jsonRequest);
             using (UnityWebRequest request = new UnityWebRequest(requestUrl, "POST"))
             {
                 byte[] jsonBytes = Encoding.UTF8.GetBytes(jsonRequest);
@@ -250,7 +200,7 @@ namespace API.Catch
                 request.SetRequestHeader("userId", userId.ToString());
                 
                 yield return request.SendWebRequest();
-                Debug.Log(request.result);
+                Debug.Log(request);
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
                     Debug.LogError(request.error);

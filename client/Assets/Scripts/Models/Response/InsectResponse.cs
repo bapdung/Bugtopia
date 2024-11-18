@@ -45,6 +45,13 @@ namespace Models.Insect.Response
     }
 
     [System.Serializable]
+    public class SearchInsectApiResponse
+    {
+        public int status;  // 상태 코드 (예: 200, 404)
+        public SearchInsectResponse content;  // 실제 데이터
+}
+
+    [System.Serializable]
     public class SearchInsectResponse
     {
         public int insectId;
@@ -55,6 +62,7 @@ namespace Models.Insect.Response
         public string family;
         public string area;
         public string rejectedReason;
+        public string imgUrl;
     }
     [System.Serializable]
     public class S3Response
