@@ -1,4 +1,4 @@
-# <img src="./docs/img/logo.png" width="150">
+# <img src="./exec/img/logo.png" width="150">
 
 ## <img src="./exec/img/icon.png" width="25"> 프로젝트 소개
 
