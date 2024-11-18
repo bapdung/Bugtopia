@@ -55,6 +55,7 @@ namespace Models.Insect.Response
         public string family;
         public string area;
         public string rejectedReason;
+        public string imgUrl;
     }
     [System.Serializable]
     public class S3Response

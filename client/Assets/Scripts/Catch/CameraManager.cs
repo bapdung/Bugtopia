@@ -140,7 +140,7 @@ public class CameraManager : MonoBehaviour
     public void BackToHomeButton()
     {
         Debug.Log("메인 화면으로 돌아가기 버튼 클릭");
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("InsectBook");
     }
 
     public void HelpButton()

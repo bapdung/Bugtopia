@@ -178,7 +178,7 @@ public class CameraController : MonoBehaviour
 
     public void onClickReturnButton()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("InsectBook");
     }
 
     void OnDestroy()

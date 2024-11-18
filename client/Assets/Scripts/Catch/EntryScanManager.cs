@@ -6,6 +6,8 @@ using TMPro; // TextMeshPro 사용
 using Models.Insect.Response;
 using Models.Insect.Request;
 using API.Catch;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class EntryScanManager : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class EntryScanManager : MonoBehaviour
     public TextMeshProUGUI areaText;
     public TextMeshProUGUI rejectedReasonText;
     public Button StartRaisingButton;
+    public Image InsectCharaterImagePanel;
+    public Image cameraImagePanel;
 
     public TMP_InputField nicknameInputText;
     public Button nicknameSubmitButton;
@@ -50,11 +54,17 @@ public class EntryScanManager : MonoBehaviour
     {
         canRaiseInsect = response.canRaise;
         insectId = response.insectId;
+
         insectNameText.text = "곤충명 (한글): " + response.krName + "\n" + "곤충명 (영어): " + response.engName;
         familyText.text = "곤충 종류: " + response.family;
         areaText.text = "서식지: " + response.area;
         rejectedReasonText.text = response.rejectedReason != null ? "육성 불가능 사유: " + response.rejectedReason : "곤충 정보: " + response.info;
         Debug.Log(response);
+
+        SetInsectImage(response.family);
+
+        setCameraImage(response.imgUrl);
+
         if (canRaiseInsect == 1)
         {
             StartRaisingButton.interactable = false;
@@ -64,6 +74,39 @@ public class EntryScanManager : MonoBehaviour
         {
             StartRaisingButton.interactable = true;
             StartRaisingButton.GetComponentInChildren<TextMeshProUGUI>().text = "육성 시작";
+        }
+    }
+    
+    private void SetInsectImage(string family)
+    {
+        Sprite insectSprite = Resources.Load<Sprite>("InsectImages/" + family);
+        if (insectSprite!= null)
+        {
+            InsectCharaterImagePanel.sprite = insectSprite;
+        }
+    }
+
+    private void setCameraImage(string imgUrl)
+    {
+        StartCoroutine(DownloadImage(imgUrl));
+    }    
+
+    private IEnumerator DownloadImage(string imgUrl)
+    {
+        using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(imgUrl))
+        {
+            yield return request.SendWebRequest();
+
+            Texture2D texture = DownloadHandlerTexture.GetContent(request);
+
+            Sprite downloadedSprite = Sprite.Create(
+                texture,
+                new Rect(0, 0, texture.width, texture.height),
+                new Vector2(0.5f, 0.5f)
+            );
+
+            cameraImagePanel.sprite = downloadedSprite;
+            Destroy(texture);
         }
     }
 
@@ -83,7 +126,7 @@ public class EntryScanManager : MonoBehaviour
             nicknameSubmitButton.onClick.RemoveAllListeners();
             nicknameSubmitButton.onClick.AddListener(() =>
             {
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("InsectBook");
             });
         }
         else
