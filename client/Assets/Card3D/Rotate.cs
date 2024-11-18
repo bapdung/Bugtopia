@@ -28,7 +28,7 @@ public class Rotate : MonoBehaviour
   private Vector2 lastTouchPosition;
   private bool isTouching;
 
-  private float targetRotationX = 0; // Target X rotation angle
+  private float targetRotationX = -6; // Target X rotation angle
   private float targetRotationY = 0; // Target Y rotation angle
 
   private void Awake()
@@ -72,7 +72,7 @@ public class Rotate : MonoBehaviour
       {
         // Reset touch tracking and set target rotation back to the original view
         isTouching = false;
-        targetRotationX = 0;
+        targetRotationX = -6;
         targetRotationY = 0;
       }
     }
