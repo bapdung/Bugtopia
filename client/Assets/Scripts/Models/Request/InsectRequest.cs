@@ -10,7 +10,7 @@ namespace Models.Insect.Request
     [System.Serializable]
     public class SearchInsectRequest
     {
-        public string photoUrl;
+        public string imgUrl;
     }
 
     [System.Serializable]

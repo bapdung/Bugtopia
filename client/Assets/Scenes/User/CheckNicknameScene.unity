@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uAC78\uB85C \uD560\uB798\uC694"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
-  m_sharedMaterial: {fileID: 6427110649787235152, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -434,10 +434,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: InsectKing
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
-  m_sharedMaterial: {fileID: 6427110649787235152, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1086,8 +1086,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC870\uAE08 \uB354 \uACE0\uBBFC\uD574\uBCFC\uAC8C\uC694"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
-  m_sharedMaterial: {fileID: 6427110649787235152, guid: 029d5c6798bd9624f93b8dfadbe834b1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1317,8 +1317,8 @@ MonoBehaviour:
   m_text: "\uC774 \uB2C9\uB124\uC784\uC744 \uD2B8\uB808\uC774\uB108 \uC774\uB984\uC73C\uB85C
     \uC124\uC815\uD560\uAE4C\uC694?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
-  m_sharedMaterial: {fileID: 6192598325095855303, guid: a96f481393318c84c95bd83de48fc89f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e485c7ad999fbad469426634fc430732, type: 2}
+  m_sharedMaterial: {fileID: 6192598325095855303, guid: e485c7ad999fbad469426634fc430732, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

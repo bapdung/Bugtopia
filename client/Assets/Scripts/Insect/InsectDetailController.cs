@@ -83,7 +83,8 @@ public class InsectDetailController : MonoBehaviour
 
   private void Start()
   {
-    long raisingInsectId = 5; // => 하드코딩 (추후수정)
+    int tempRaisingInsectId = PlayerPrefs.GetInt("raisingInsectId", 1);
+    long raisingInsectId = (long)(tempRaisingInsectId);
     defaultTextColor = TextQ1.color;
 
     if (insectApi != null)
