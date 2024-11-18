@@ -18,9 +18,15 @@ async def predict(request: ImageRequest):
     if insect_info == "No Insect Detected":status_code = 401
     else: status_code = 200
 
-
+    insect_datas = {
+        "Megasoma elephas": "Stag Beetle",
+        "Lucanus cervus": "Lucanidae",
+        "Aporrectodea caliginosa": "Lumbricidae",
+        "Trypoxylus dichotomus": "Stag Beetle"
+    }
+    content = insect_datas[insect_info]
     response_data = {
         "status":status_code,
-        "content":insect_info
+        "content":content
     }
     return response_data
