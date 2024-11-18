@@ -173,12 +173,22 @@ public class CameraController : MonoBehaviour
 
         // 민채: S3 URL 요청 및 사진 업로드
         StartCoroutine(catchApi.GetS3Url(fileName, photoBytes, "EntryScanScene"));
+        if (webCamTexture != null)
+        {
+            Debug.Log("민채: 카메라 정지 중...");
+            webCamTexture.Stop();
+        }
         loadingPanel.SetActive(false);
     }
 
     public void onClickReturnButton()
     {
-        SceneManager.LoadScene("InsectBook");
+        if (webCamTexture != null)
+        {
+            Debug.Log("민채: 카메라 정지 중...");
+            webCamTexture.Stop();
+        }
+        SceneManager.LoadScene("MainScene");
     }
 
     void OnDestroy()

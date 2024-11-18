@@ -103,7 +103,7 @@ public class FirebaseHandler : MonoBehaviour
       UserStateManager.Instance.SetNickname(response.nickname);
 
       // button 누르면 MainScene으로 이동
-      button.onClick.AddListener(() => moveScene("InsectBook"));
+      button.onClick.AddListener(() => moveScene("MainScene"));
     }
     else if (response.joined == false)
     {
@@ -142,7 +142,7 @@ public class FirebaseHandler : MonoBehaviour
     UserStateManager.Instance.SetUserId(response.userId);
     UserStateManager.Instance.SetNickname(response.nickname);
 
-    SceneManager.LoadScene("InsectBook");
+    SceneManager.LoadScene("MainScene");
   }
 
   // 요청 실패 시 호출되는 콜백

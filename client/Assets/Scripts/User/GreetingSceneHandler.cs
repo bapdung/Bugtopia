@@ -43,6 +43,6 @@ public class Greeting : MonoBehaviour
         canvasGroup.alpha = 0f;
 
         // 화면 전환: MainScene으로
-        SceneManager.LoadScene("InsectBook");
+        SceneManager.LoadScene("MainScene");
     }
 }
