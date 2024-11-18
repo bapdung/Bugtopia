@@ -52,6 +52,7 @@ public class CheckNicknameHandler : MonoBehaviour
                 // FirebaseHandler의 회원가입 메서드 호출
                 StartCoroutine(firebaseHandler.JoinUser(nickname));
                 Debug.Log("민채: 회원가입 요청을 시작했습니다.");
+                SceneManager.LoadScene("MainScene");
             }
             else
             {
