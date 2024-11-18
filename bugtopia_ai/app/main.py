@@ -24,9 +24,15 @@ async def predict(request: ImageRequest):
         "Aporrectodea caliginosa": "Lumbricidae",
         "Trypoxylus dichotomus": "Stag Beetle"
     }
-    content = insect_datas[insect_info]
-    response_data = {
-        "status":status_code,
-        "content":content
-    }
+    if insect_info in insect_datas:
+        content = insect_datas[insect_info]
+        response_data = {
+            "status":status_code,
+            "content":content
+        }
+    else:
+        response_data = {
+            "status":401,
+            "content": "No Insect Detected"
+        }
     return response_data
