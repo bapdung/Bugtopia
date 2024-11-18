@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using API.Insect;
@@ -64,10 +65,27 @@ public class InsectDetailController : MonoBehaviour
   private Image[] lineImages;
   private Image[] circleImages;
   private TextMeshProUGUI[] eventTexts;
-
+  public Button returnButton;
+  
+  public void onClickReturnButton()
+  {
+    SceneManager.LoadScene("MainScene");
+  }
+  public void onClickArButton()
+  {
+    SceneManager.LoadScene("ARScene");
+  }
+  
   void Awake()
   {
-
+    if (returnButton != null)
+    {
+        returnButton.onClick.AddListener(onClickReturnButton);
+    }
+    if (ARBtn != null)
+    {
+        ARBtn.onClick.AddListener(onClickArButton);
+    }
     // insectApi가 할당되지 않았을 경우 코드 내에서 생성
     if (insectApi == null)
     {
@@ -296,4 +314,5 @@ public class InsectDetailController : MonoBehaviour
       yield return new WaitForSeconds(1);
     }
   }
+
 }
