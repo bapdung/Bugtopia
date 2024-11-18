@@ -7,6 +7,7 @@ using Models.Insect.Response;
 using Models.Insect.Request;
 using Models.InsectBook.Response;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 namespace API.Catch
 {
@@ -62,7 +63,7 @@ namespace API.Catch
                 StartCoroutine(UploadPhotoToS3(responseS3Url, fileName, photoBytes, nextScene));
             }
         }
-
+        private SearchInsectResponse currentResponse;
         // S3에 사진을 업로드하는 메서드
         public IEnumerator UploadPhotoToS3(string s3Url, string fileName, byte[] photoBytes, string nextScene)
         {
@@ -81,19 +82,26 @@ namespace API.Catch
             {
                 Debug.Log("s3에 사진 업로드 성공");
                 string photoUrl = s3Url; 
+                SceneManager.sceneLoaded += OnSceneLoaded;
+
                 StartCoroutine(PostSearchInsect(photoUrl, (SearchInsectResponse response) =>
                 {
-                    var cameraManager = FindObjectOfType<CameraManager>();
-                    if (cameraManager != null)
-                    {
-                        cameraManager.OnInsectSearched(response);
-                    }
-
+                    currentResponse = response;
                     SceneManager.LoadScene(nextScene);
+                    Debug.Log(response.krName);
                 }));
             }
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "EntryScanScene")
+            {
+                EntryScanManager entryScanManager = FindObjectOfType<EntryScanManager>();
+                entryScanManager.UpdateInsectInfo(currentResponse);
+            }
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
         // 'postSearchInsect' API에 사진 URL을 전송
         public IEnumerator PostSearchInsect(string photoUrl, Action<SearchInsectResponse> callback)
         {
@@ -124,11 +132,31 @@ namespace API.Catch
                 else
                 {
                     // API 응답을 SearchInsectResponse 객체로 파싱
-                    SearchInsectResponse response = JsonUtility.FromJson<SearchInsectResponse>(request.downloadHandler.text);
+                    SearchInsectApiResponse apiResponse = JsonUtility.FromJson<SearchInsectApiResponse>(request.downloadHandler.text);
+                    Debug.Log(apiResponse.status);
+                    
+                    SearchInsectResponse response = apiResponse.content;
+                    response.imgUrl = RemoveQueryParams(response.imgUrl);
+
+                    Debug.Log(response.imgUrl);
                     callback?.Invoke(response);  // 콜백 함수 호출
                 }
             }
         }
+
+        private string RemoveQueryParams(string url)
+        {
+            string pattern = @"\.(jpg|jpeg|png|gif)(\?|$)";
+            var match = Regex.Match(url, pattern);
+
+            if (match.Success)
+            {
+                return url.Substring(0, match.Index + match.Length);  
+            }
+
+            return url;
+        }
+
         public IEnumerator PostCatch(Action<bool> callback)
         {
             string userIdForRequest = UserStateManager.Instance.UserId.ToString();
