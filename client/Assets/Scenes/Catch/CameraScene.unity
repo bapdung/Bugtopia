@@ -2221,6 +2221,7 @@ MonoBehaviour:
   returnButton: {fileID: 625009094}
   loadingPanel: {fileID: 1516827609}
   catchApi: {fileID: 0}
+  rawImage: {fileID: 1747206128}
 --- !u!114 &1747206131
 MonoBehaviour:
   m_ObjectHideFlags: 0
