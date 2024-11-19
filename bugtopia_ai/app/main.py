@@ -13,6 +13,9 @@ async def predict(request: ImageRequest):
     # return {"status":200, "content":"Megasoma elephas"}
 
     img_url = request.img_url
+    if '?' in img_url:
+        img_url = filename.split('?')[0]
+
     insect_info  = predict_insect(img_url)
 
     if insect_info == "No Insect Detected":status_code = 401
