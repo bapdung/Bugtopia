@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
+    public RawImage CameraView;
     private WebCamTexture webCamTexture;
     public GameObject infoPopup; // 민채: 팝업 창 오브젝트 연결
     public Button confirmButton; // 민채: 확인 버튼 오브젝트 연결
@@ -75,6 +76,7 @@ public class CameraController : MonoBehaviour
         if (infoPopup != null)
         {
             infoPopup.SetActive(false); // 민채: 팝업 창 비활성화
+            confirmButton.gameObject.SetActive(false);
         }
     }
 
@@ -104,14 +106,14 @@ public class CameraController : MonoBehaviour
 
             // 민채: 해상도 1080 x 1920으로 웹캠 설정
             webCamTexture = new WebCamTexture(WebCamTexture.devices[0].name, 1080, 1920);
-            RawImage rawImage = GetComponent<RawImage>();
+            CameraView.texture = webCamTexture;
+            webCamTexture.Play();
+            // RawImage rawImage = GetComponent<RawImage>();
 
-            if (rawImage != null)
+            if (CameraView != null)
             {
-                rawImage.texture = webCamTexture;
-                webCamTexture.Play();
 
-                StartCoroutine(AdjustRotation(rawImage));
+                StartCoroutine(AdjustRotation(CameraView));
 
                 if (webCamTexture.isPlaying)
                 {
@@ -132,6 +134,7 @@ public class CameraController : MonoBehaviour
             Debug.LogError("민채: 사용 가능한 카메라 장치를 찾을 수 없습니다.");
         }
     }
+
 
     private IEnumerator AdjustRotation(RawImage rawImage)
     {
