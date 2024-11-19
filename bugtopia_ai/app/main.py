@@ -14,7 +14,7 @@ async def predict(request: ImageRequest):
 
     img_url = request.img_url
     if '?' in img_url:
-        img_url = filename.split('?')[0]
+        img_url = img_url.split('?')[0]
 
     insect_info  = predict_insect(img_url)
 
