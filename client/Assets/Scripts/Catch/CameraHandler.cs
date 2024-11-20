@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
             GameObject catchApiObject = new GameObject("CatchApiObject");
             catchApi = catchApiObject.AddComponent<CatchApi>();
         }
+
     }
 
     void Start()
@@ -69,6 +70,7 @@ public class CameraController : MonoBehaviour
         {
             infoPopup.SetActive(true); // 민채: 팝업 창 활성화
         }
+        
     }
 
     private void ClosePopup()
@@ -166,7 +168,9 @@ public class CameraController : MonoBehaviour
 
         if (loadingPanel != null)
         {
+            Debug.Log("민채: 로딩패널활성화");
             loadingPanel.SetActive(true); // 민채: 로딩 패널 활성화
+            Debug.Log($"민채: 로딩 패널 활성화 상태: {loadingPanel.activeSelf}");
         }
 
         string fileName = "photo_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
