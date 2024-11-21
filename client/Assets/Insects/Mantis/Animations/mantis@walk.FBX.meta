@@ -1,0 +1,722 @@
+fileFormatVersion: 2
+guid: 5270822962693aa4cb96123f4590126f
+timeCreated: 1525035757
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: IK Chain005
+    100002: mantis
+    100004: //RootNode
+    100006: mantis_Abdomen1_bones
+    100008: mantis_Abdomen2_bones
+    100010: mantis_Abdomen3_bones
+    100012: mantis_Abdomen4-nub_bones
+    100014: mantis_Abdomen4_bones
+    100016: mantis_COM_ctrl
+    100018: mantis_Head-nub_bones
+    100020: mantis_Head_bones
+    100022: mantis_Head_ctrl
+    100024: mantis_Head_ctrl001
+    100026: mantis_Head_ctrl002
+    100028: mantis_Head_ctrl003
+    100030: mantis_Hip_ctrl
+    100032: mantis_l_Antennae1_bone
+    100034: mantis_l_Antennae1_ctrl
+    100036: mantis_l_Antennae2_bone
+    100038: mantis_l_Antennae2_ctrl
+    100040: mantis_l_Antennae3_bone
+    100042: mantis_l_Antennae3_ctrl
+    100044: mantis_l_Antennae4_bone
+    100046: mantis_l_Antennae4_ctrl
+    100048: mantis_l_Antennae5_bone
+    100050: mantis_l_Antennae5_ctrl
+    100052: mantis_l_Antennae6_bone
+    100054: mantis_l_Antennae6_ctrl
+    100056: mantis_l_Antennae7_bone
+    100058: mantis_l_Antennae7_ctrl
+    100060: mantis_l_Antennae8-nub_bone
+    100062: mantis_l_Antennae8_bone
+    100064: mantis_l_Antennae8_ctrl
+    100066: mantis_l_ball_IKGoal
+    100068: mantis_l_ballback_IKGoal
+    100070: mantis_l_ballfront_IKGoal
+    100072: mantis_l_Coxa_bone
+    100074: mantis_l_Coxa_ctrl
+    100076: mantis_l_CoxaBack_bone
+    100078: mantis_l_CoxaBack_ctrl
+    100080: mantis_l_CoxaFront_bone
+    100082: mantis_l_Femur_bone
+    100084: mantis_l_FemurBack_bone
+    100086: mantis_l_FemurFront_bone
+    100088: mantis_l_fingerfront_IKGoal
+    100090: mantis_l_FingerTap_hlp
+    100092: mantis_l_Foot_ctrl
+    100094: mantis_l_FootBack_ctrl
+    100096: mantis_l_FootFront_ctrl
+    100098: mantis_l_Heel_hlp
+    100100: mantis_l_Heel_hlp 1
+    100102: mantis_l_heel_IKGoal
+    100104: mantis_l_HeelBack_hlp
+    100106: mantis_l_heelback_IKGoal
+    100108: mantis_l_HeelPeel_hlp
+    100110: mantis_l_HeelPeel_hlp 1
+    100112: mantis_l_HeelPeelBack_hlp
+    100114: mantis_l_MetaTarsus-nub_bone
+    100116: mantis_l_MetaTarsus_bone
+    100118: mantis_l_MetaTarsusBack-nub_bone
+    100120: mantis_l_MetaTarsusBack_bone
+    100122: mantis_l_MetaTarsusFront-nub_bone
+    100124: mantis_l_MetaTarsusFront_bone
+    100126: mantis_l_Tarsus_bone
+    100128: mantis_l_TarsusBack_bone
+    100130: mantis_l_TarsusFront_bone
+    100132: mantis_l_Tibia_bone
+    100134: mantis_l_TibiaBack_bone
+    100136: mantis_l_TibiaFront_bone
+    100138: mantis_l_toe_IKGoal
+    100140: mantis_l_toeback_IKGoal
+    100142: mantis_l_toefront_IKGoal
+    100144: mantis_l_ToeLift_hlp
+    100146: mantis_l_ToeLift_hlp 1
+    100148: mantis_l_ToeLiftBack_hlp
+    100150: mantis_l_ToeTap_hlp
+    100152: mantis_l_ToeTap_hlp 1
+    100154: mantis_l_ToeTapBack_hlp
+    100156: mantis_Main_ctrl
+    100158: mantis_MesoThorax_bones
+    100160: mantis_MetaThorax_bones
+    100162: mantis_ProThorax_bones
+    100164: mantis_ProThorax_ctrl
+    100166: mantis_r_Antennae1_bone
+    100168: mantis_r_Antennae1_ctrl
+    100170: mantis_r_Antennae2_bone
+    100172: mantis_r_Antennae2_ctrl
+    100174: mantis_r_Antennae3_bone
+    100176: mantis_r_Antennae3_ctrl
+    100178: mantis_r_Antennae4_bone
+    100180: mantis_r_Antennae4_ctrl
+    100182: mantis_r_Antennae5_bone
+    100184: mantis_r_Antennae5_ctrl
+    100186: mantis_r_Antennae6_bone
+    100188: mantis_r_Antennae6_ctrl
+    100190: mantis_r_Antennae7_bone
+    100192: mantis_r_Antennae7_ctrl
+    100194: mantis_r_Antennae8-nub_bone
+    100196: mantis_r_Antennae8_bone
+    100198: mantis_r_Antennae8_ctrl
+    100200: mantis_r_ball_IKGoal
+    100202: mantis_r_ballback_IKGoal
+    100204: mantis_r_ballfront_IKGoal
+    100206: mantis_r_Coxa_bone
+    100208: mantis_r_Coxa_ctrl
+    100210: mantis_r_CoxaBack_bone
+    100212: mantis_r_CoxaBack_ctrl
+    100214: mantis_r_CoxaFront_bone
+    100216: mantis_r_Femur_bone
+    100218: mantis_r_FemurBack_bone
+    100220: mantis_r_FemurFront_bone
+    100222: mantis_r_fingerfront_IKGoal
+    100224: mantis_r_Foot_ctrl
+    100226: mantis_r_FootBack_ctrl
+    100228: mantis_r_FootFront_ctrl
+    100230: mantis_r_Heel_hlp
+    100232: mantis_r_Heel_hlp 1
+    100234: mantis_r_heel_IKGoal
+    100236: mantis_r_HeelBack_hlp
+    100238: mantis_r_heelback_IKGoal
+    100240: mantis_r_heelfront_IKGoal
+    100242: mantis_r_HeelPeel_hlp
+    100244: mantis_r_HeelPeel_hlp 1
+    100246: mantis_r_HeelPeelBack_hlp
+    100248: mantis_r_MetaTarsus-nub_bone
+    100250: mantis_r_MetaTarsus_bone
+    100252: mantis_r_MetaTarsusBack-nub_bone
+    100254: mantis_r_MetaTarsusBack_bone
+    100256: mantis_r_MetaTarsusFront-nub_bone
+    100258: mantis_r_MetaTarsusFront_bone
+    100260: mantis_r_Tarsus_bone
+    100262: mantis_r_TarsusBack_bone
+    100264: mantis_r_TarsusFront_bone
+    100266: mantis_r_Tibia_bone
+    100268: mantis_r_TibiaBack_bone
+    100270: mantis_r_TibiaFront_bone
+    100272: mantis_r_toe_IKGoal
+    100274: mantis_r_toeback_IKGoal
+    100276: mantis_r_toefront_IKGoal
+    100278: mantis_r_ToeLift_hlp
+    100280: mantis_r_ToeLift_hlp 1
+    100282: mantis_r_ToeLiftBack_hlp
+    100284: mantis_r_ToeTap_hlp
+    100286: mantis_r_ToeTap_hlp 1
+    100288: mantis_r_ToeTapBack_hlp
+    100290: mantis_SpineBase_ctrl
+    100292: Point007
+    400000: IK Chain005
+    400002: mantis
+    400004: //RootNode
+    400006: mantis_Abdomen1_bones
+    400008: mantis_Abdomen2_bones
+    400010: mantis_Abdomen3_bones
+    400012: mantis_Abdomen4-nub_bones
+    400014: mantis_Abdomen4_bones
+    400016: mantis_COM_ctrl
+    400018: mantis_Head-nub_bones
+    400020: mantis_Head_bones
+    400022: mantis_Head_ctrl
+    400024: mantis_Head_ctrl001
+    400026: mantis_Head_ctrl002
+    400028: mantis_Head_ctrl003
+    400030: mantis_Hip_ctrl
+    400032: mantis_l_Antennae1_bone
+    400034: mantis_l_Antennae1_ctrl
+    400036: mantis_l_Antennae2_bone
+    400038: mantis_l_Antennae2_ctrl
+    400040: mantis_l_Antennae3_bone
+    400042: mantis_l_Antennae3_ctrl
+    400044: mantis_l_Antennae4_bone
+    400046: mantis_l_Antennae4_ctrl
+    400048: mantis_l_Antennae5_bone
+    400050: mantis_l_Antennae5_ctrl
+    400052: mantis_l_Antennae6_bone
+    400054: mantis_l_Antennae6_ctrl
+    400056: mantis_l_Antennae7_bone
+    400058: mantis_l_Antennae7_ctrl
+    400060: mantis_l_Antennae8-nub_bone
+    400062: mantis_l_Antennae8_bone
+    400064: mantis_l_Antennae8_ctrl
+    400066: mantis_l_ball_IKGoal
+    400068: mantis_l_ballback_IKGoal
+    400070: mantis_l_ballfront_IKGoal
+    400072: mantis_l_Coxa_bone
+    400074: mantis_l_Coxa_ctrl
+    400076: mantis_l_CoxaBack_bone
+    400078: mantis_l_CoxaBack_ctrl
+    400080: mantis_l_CoxaFront_bone
+    400082: mantis_l_Femur_bone
+    400084: mantis_l_FemurBack_bone
+    400086: mantis_l_FemurFront_bone
+    400088: mantis_l_fingerfront_IKGoal
+    400090: mantis_l_FingerTap_hlp
+    400092: mantis_l_Foot_ctrl
+    400094: mantis_l_FootBack_ctrl
+    400096: mantis_l_FootFront_ctrl
+    400098: mantis_l_Heel_hlp
+    400100: mantis_l_Heel_hlp 1
+    400102: mantis_l_heel_IKGoal
+    400104: mantis_l_HeelBack_hlp
+    400106: mantis_l_heelback_IKGoal
+    400108: mantis_l_HeelPeel_hlp
+    400110: mantis_l_HeelPeel_hlp 1
+    400112: mantis_l_HeelPeelBack_hlp
+    400114: mantis_l_MetaTarsus-nub_bone
+    400116: mantis_l_MetaTarsus_bone
+    400118: mantis_l_MetaTarsusBack-nub_bone
+    400120: mantis_l_MetaTarsusBack_bone
+    400122: mantis_l_MetaTarsusFront-nub_bone
+    400124: mantis_l_MetaTarsusFront_bone
+    400126: mantis_l_Tarsus_bone
+    400128: mantis_l_TarsusBack_bone
+    400130: mantis_l_TarsusFront_bone
+    400132: mantis_l_Tibia_bone
+    400134: mantis_l_TibiaBack_bone
+    400136: mantis_l_TibiaFront_bone
+    400138: mantis_l_toe_IKGoal
+    400140: mantis_l_toeback_IKGoal
+    400142: mantis_l_toefront_IKGoal
+    400144: mantis_l_ToeLift_hlp
+    400146: mantis_l_ToeLift_hlp 1
+    400148: mantis_l_ToeLiftBack_hlp
+    400150: mantis_l_ToeTap_hlp
+    400152: mantis_l_ToeTap_hlp 1
+    400154: mantis_l_ToeTapBack_hlp
+    400156: mantis_Main_ctrl
+    400158: mantis_MesoThorax_bones
+    400160: mantis_MetaThorax_bones
+    400162: mantis_ProThorax_bones
+    400164: mantis_ProThorax_ctrl
+    400166: mantis_r_Antennae1_bone
+    400168: mantis_r_Antennae1_ctrl
+    400170: mantis_r_Antennae2_bone
+    400172: mantis_r_Antennae2_ctrl
+    400174: mantis_r_Antennae3_bone
+    400176: mantis_r_Antennae3_ctrl
+    400178: mantis_r_Antennae4_bone
+    400180: mantis_r_Antennae4_ctrl
+    400182: mantis_r_Antennae5_bone
+    400184: mantis_r_Antennae5_ctrl
+    400186: mantis_r_Antennae6_bone
+    400188: mantis_r_Antennae6_ctrl
+    400190: mantis_r_Antennae7_bone
+    400192: mantis_r_Antennae7_ctrl
+    400194: mantis_r_Antennae8-nub_bone
+    400196: mantis_r_Antennae8_bone
+    400198: mantis_r_Antennae8_ctrl
+    400200: mantis_r_ball_IKGoal
+    400202: mantis_r_ballback_IKGoal
+    400204: mantis_r_ballfront_IKGoal
+    400206: mantis_r_Coxa_bone
+    400208: mantis_r_Coxa_ctrl
+    400210: mantis_r_CoxaBack_bone
+    400212: mantis_r_CoxaBack_ctrl
+    400214: mantis_r_CoxaFront_bone
+    400216: mantis_r_Femur_bone
+    400218: mantis_r_FemurBack_bone
+    400220: mantis_r_FemurFront_bone
+    400222: mantis_r_fingerfront_IKGoal
+    400224: mantis_r_Foot_ctrl
+    400226: mantis_r_FootBack_ctrl
+    400228: mantis_r_FootFront_ctrl
+    400230: mantis_r_Heel_hlp
+    400232: mantis_r_Heel_hlp 1
+    400234: mantis_r_heel_IKGoal
+    400236: mantis_r_HeelBack_hlp
+    400238: mantis_r_heelback_IKGoal
+    400240: mantis_r_heelfront_IKGoal
+    400242: mantis_r_HeelPeel_hlp
+    400244: mantis_r_HeelPeel_hlp 1
+    400246: mantis_r_HeelPeelBack_hlp
+    400248: mantis_r_MetaTarsus-nub_bone
+    400250: mantis_r_MetaTarsus_bone
+    400252: mantis_r_MetaTarsusBack-nub_bone
+    400254: mantis_r_MetaTarsusBack_bone
+    400256: mantis_r_MetaTarsusFront-nub_bone
+    400258: mantis_r_MetaTarsusFront_bone
+    400260: mantis_r_Tarsus_bone
+    400262: mantis_r_TarsusBack_bone
+    400264: mantis_r_TarsusFront_bone
+    400266: mantis_r_Tibia_bone
+    400268: mantis_r_TibiaBack_bone
+    400270: mantis_r_TibiaFront_bone
+    400272: mantis_r_toe_IKGoal
+    400274: mantis_r_toeback_IKGoal
+    400276: mantis_r_toefront_IKGoal
+    400278: mantis_r_ToeLift_hlp
+    400280: mantis_r_ToeLift_hlp 1
+    400282: mantis_r_ToeLiftBack_hlp
+    400284: mantis_r_ToeTap_hlp
+    400286: mantis_r_ToeTap_hlp 1
+    400288: mantis_r_ToeTapBack_hlp
+    400290: mantis_SpineBase_ctrl
+    400292: Point007
+    2300000: mantis_l_Foot_ctrl
+    2300002: mantis_l_FootBack_ctrl
+    2300004: mantis_l_FootFront_ctrl
+    2300006: mantis_r_Foot_ctrl
+    2300008: mantis_r_FootBack_ctrl
+    2300010: mantis_r_FootFront_ctrl
+    3300000: mantis_l_Foot_ctrl
+    3300002: mantis_l_FootBack_ctrl
+    3300004: mantis_l_FootFront_ctrl
+    3300006: mantis_r_Foot_ctrl
+    3300008: mantis_r_FootBack_ctrl
+    3300010: mantis_r_FootFront_ctrl
+    4300000: mantis
+    4300002: mantis_l_Foot_ctrl
+    4300004: mantis_r_Foot_ctrl
+    4300006: mantis_l_FootFront_ctrl
+    4300008: mantis_r_FootFront_ctrl
+    4300010: mantis_l_FootBack_ctrl
+    4300012: mantis_r_FootBack_ctrl
+    7400000: walk
+    9500000: //RootNode
+    13700000: mantis
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 416
+      lastFrame: 444
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mantis
+        weight: 1
+      - path: mantis_Head_ctrl
+        weight: 1
+      - path: mantis_Hip_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Abdomen2_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Abdomen2_bones/mantis_Abdomen3_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Abdomen2_bones/mantis_Abdomen3_bones/mantis_Abdomen4_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Abdomen2_bones/mantis_Abdomen3_bones/mantis_Abdomen4_bones/mantis_Abdomen4-nub_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Head_ctrl001
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Head_ctrl001/mantis_Head_ctrl002
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_Head_ctrl001/mantis_Head_ctrl002/mantis_Head_ctrl003
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone/mantis_l_FemurBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone/mantis_l_FemurBack_bone/mantis_l_TibiaBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone/mantis_l_FemurBack_bone/mantis_l_TibiaBack_bone/mantis_l_TarsusBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone/mantis_l_FemurBack_bone/mantis_l_TibiaBack_bone/mantis_l_TarsusBack_bone/mantis_l_MetaTarsusBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_bone/mantis_l_FemurBack_bone/mantis_l_TibiaBack_bone/mantis_l_TarsusBack_bone/mantis_l_MetaTarsusBack_bone/mantis_l_MetaTarsusBack-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_l_CoxaBack_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone/mantis_l_Femur_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone/mantis_l_Femur_bone/mantis_l_Tibia_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone/mantis_l_Femur_bone/mantis_l_Tibia_bone/mantis_l_Tarsus_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone/mantis_l_Femur_bone/mantis_l_Tibia_bone/mantis_l_Tarsus_bone/mantis_l_MetaTarsus_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_bone/mantis_l_Femur_bone/mantis_l_Tibia_bone/mantis_l_Tarsus_bone/mantis_l_MetaTarsus_bone/mantis_l_MetaTarsus-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_l_Coxa_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_Head-nub_bones
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone/mantis_l_Antennae5_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone/mantis_l_Antennae5_bone/mantis_l_Antennae6_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone/mantis_l_Antennae5_bone/mantis_l_Antennae6_bone/mantis_l_Antennae7_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone/mantis_l_Antennae5_bone/mantis_l_Antennae6_bone/mantis_l_Antennae7_bone/mantis_l_Antennae8_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_bone/mantis_l_Antennae2_bone/mantis_l_Antennae3_bone/mantis_l_Antennae4_bone/mantis_l_Antennae5_bone/mantis_l_Antennae6_bone/mantis_l_Antennae7_bone/mantis_l_Antennae8_bone/mantis_l_Antennae8-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl/mantis_l_Antennae4_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl/mantis_l_Antennae4_ctrl/mantis_l_Antennae5_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl/mantis_l_Antennae4_ctrl/mantis_l_Antennae5_ctrl/mantis_l_Antennae6_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl/mantis_l_Antennae4_ctrl/mantis_l_Antennae5_ctrl/mantis_l_Antennae6_ctrl/mantis_l_Antennae7_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_l_Antennae1_ctrl/mantis_l_Antennae2_ctrl/mantis_l_Antennae3_ctrl/mantis_l_Antennae4_ctrl/mantis_l_Antennae5_ctrl/mantis_l_Antennae6_ctrl/mantis_l_Antennae7_ctrl/mantis_l_Antennae8_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone/mantis_r_Antennae5_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone/mantis_r_Antennae5_bone/mantis_r_Antennae6_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone/mantis_r_Antennae5_bone/mantis_r_Antennae6_bone/mantis_r_Antennae7_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone/mantis_r_Antennae5_bone/mantis_r_Antennae6_bone/mantis_r_Antennae7_bone/mantis_r_Antennae8_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_bone/mantis_r_Antennae2_bone/mantis_r_Antennae3_bone/mantis_r_Antennae4_bone/mantis_r_Antennae5_bone/mantis_r_Antennae6_bone/mantis_r_Antennae7_bone/mantis_r_Antennae8_bone/mantis_r_Antennae8-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl/mantis_r_Antennae4_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl/mantis_r_Antennae4_ctrl/mantis_r_Antennae5_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl/mantis_r_Antennae4_ctrl/mantis_r_Antennae5_ctrl/mantis_r_Antennae6_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl/mantis_r_Antennae4_ctrl/mantis_r_Antennae5_ctrl/mantis_r_Antennae6_ctrl/mantis_r_Antennae7_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_Head_bones/mantis_r_Antennae1_ctrl/mantis_r_Antennae2_ctrl/mantis_r_Antennae3_ctrl/mantis_r_Antennae4_ctrl/mantis_r_Antennae5_ctrl/mantis_r_Antennae6_ctrl/mantis_r_Antennae7_ctrl/mantis_r_Antennae8_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone/mantis_l_FemurFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone/mantis_l_FemurFront_bone/mantis_l_TibiaFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone/mantis_l_FemurFront_bone/mantis_l_TibiaFront_bone/mantis_l_TarsusFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone/mantis_l_FemurFront_bone/mantis_l_TibiaFront_bone/mantis_l_TarsusFront_bone/mantis_l_MetaTarsusFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_l_CoxaFront_bone/mantis_l_FemurFront_bone/mantis_l_TibiaFront_bone/mantis_l_TarsusFront_bone/mantis_l_MetaTarsusFront_bone/mantis_l_MetaTarsusFront-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone/mantis_r_FemurFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone/mantis_r_FemurFront_bone/mantis_r_TibiaFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone/mantis_r_FemurFront_bone/mantis_r_TibiaFront_bone/mantis_r_TarsusFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone/mantis_r_FemurFront_bone/mantis_r_TibiaFront_bone/mantis_r_TarsusFront_bone/mantis_r_MetaTarsusFront_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_ProThorax_bones/mantis_r_CoxaFront_bone/mantis_r_FemurFront_bone/mantis_r_TibiaFront_bone/mantis_r_TarsusFront_bone/mantis_r_MetaTarsusFront_bone/mantis_r_MetaTarsusFront-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone/mantis_r_Femur_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone/mantis_r_Femur_bone/mantis_r_Tibia_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone/mantis_r_Femur_bone/mantis_r_Tibia_bone/mantis_r_Tarsus_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone/mantis_r_Femur_bone/mantis_r_Tibia_bone/mantis_r_Tarsus_bone/mantis_r_MetaTarsus_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_bone/mantis_r_Femur_bone/mantis_r_Tibia_bone/mantis_r_Tarsus_bone/mantis_r_MetaTarsus_bone/mantis_r_MetaTarsus-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_MesoThorax_bones/mantis_r_Coxa_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone/mantis_r_FemurBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone/mantis_r_FemurBack_bone/mantis_r_TibiaBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone/mantis_r_FemurBack_bone/mantis_r_TibiaBack_bone/mantis_r_TarsusBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone/mantis_r_FemurBack_bone/mantis_r_TibiaBack_bone/mantis_r_TarsusBack_bone/mantis_r_MetaTarsusBack_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_bone/mantis_r_FemurBack_bone/mantis_r_TibiaBack_bone/mantis_r_TarsusBack_bone/mantis_r_MetaTarsusBack_bone/mantis_r_MetaTarsusBack-nub_bone
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_COM_ctrl/mantis_Abdomen1_bones/mantis_MetaThorax_bones/mantis_r_CoxaBack_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1/mantis_l_HeelPeel_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1/mantis_l_HeelPeel_hlp 1/mantis_l_ball_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1/mantis_l_HeelPeel_hlp 1/mantis_l_heel_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1/mantis_l_ToeTap_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_Foot_ctrl/mantis_l_Heel_hlp 1/mantis_l_ToeLift_hlp
+          1/mantis_l_ToeTap_hlp 1/mantis_l_toe_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp/mantis_l_HeelPeelBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp/mantis_l_HeelPeelBack_hlp/mantis_l_ballback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp/mantis_l_HeelPeelBack_hlp/mantis_l_heelback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp/mantis_l_ToeTapBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootBack_ctrl/mantis_l_HeelBack_hlp/mantis_l_ToeLiftBack_hlp/mantis_l_ToeTapBack_hlp/mantis_l_toeback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_HeelPeel_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_HeelPeel_hlp/mantis_l_ballfront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_HeelPeel_hlp/mantis_r_heelfront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_ToeTap_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_ToeTap_hlp/mantis_l_FingerTap_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_ToeTap_hlp/mantis_l_FingerTap_hlp/mantis_l_fingerfront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_l_FootFront_ctrl/mantis_l_Heel_hlp/mantis_l_ToeLift_hlp/mantis_l_ToeTap_hlp/mantis_l_toefront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1/mantis_r_HeelPeel_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1/mantis_r_HeelPeel_hlp 1/mantis_r_ball_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1/mantis_r_HeelPeel_hlp 1/mantis_r_heel_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1/mantis_r_ToeTap_hlp 1
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_Foot_ctrl/mantis_r_Heel_hlp 1/mantis_r_ToeLift_hlp
+          1/mantis_r_ToeTap_hlp 1/mantis_r_toe_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp/mantis_r_HeelPeelBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp/mantis_r_HeelPeelBack_hlp/mantis_r_ballback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp/mantis_r_HeelPeelBack_hlp/mantis_r_heelback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp/mantis_r_ToeTapBack_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootBack_ctrl/mantis_r_HeelBack_hlp/mantis_r_ToeLiftBack_hlp/mantis_r_ToeTapBack_hlp/mantis_r_toeback_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_HeelPeel_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_HeelPeel_hlp/IK
+          Chain005
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_HeelPeel_hlp/mantis_r_ballfront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_ToeTap_hlp
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_ToeTap_hlp/mantis_r_toefront_IKGoal
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_ToeTap_hlp/Point007
+        weight: 1
+      - path: mantis_Main_ctrl/mantis_r_FootFront_ctrl/mantis_r_Heel_hlp/mantis_r_ToeLift_hlp/mantis_r_ToeTap_hlp/Point007/mantis_r_fingerfront_IKGoal
+        weight: 1
+      - path: mantis_ProThorax_ctrl
+        weight: 1
+      - path: mantis_SpineBase_ctrl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 416
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: mantis_Main_ctrl
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
