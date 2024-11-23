@@ -1,7 +1,7 @@
 import requests
 import base64
 import json
-API_KEY = "u1imsDa5DpAY8FrNHR3syspdcZScwGzAbzWWR9vqRZrpGXJZPY"
+API_KEY = "Hi1K6B8BW4Ow0RAgTrrzqXkugnfD0zxZ8UjhtxLPpz3orS1TrB"
 S3URL = ''
 # S3에서 이미지를 가져와 Base64로 인코딩하는 함수
 def s3_image_to_base64(s3_url):
